@@ -23,7 +23,6 @@ describe('break-even validation', () => {
       cy.get('@input').type('2');
       cy.get('@input').parent().should('not.have.class', 'has-error');
     })
-
   });
 
   describe('variableExpense', () => {
@@ -72,14 +71,9 @@ describe('break-even validation', () => {
       cy.get('@input').parent().should('not.have.class', 'has-error');
     })
 
-  });
-
-
-  
+  });  
 
   it('calulate button should exist', () => {
     cy.getDataTestId('calculate-break-even').should('exist');
   })
-
-
 })
