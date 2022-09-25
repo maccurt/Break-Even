@@ -8,20 +8,21 @@
             <h1>Break Even Calculator</h1>
 
             <form [formGroup]="formGroup" (submit)="submit()">
-                <div class="mb-3">
+                <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('revenuePerUnit')!))}">
 
                     <label for="revenuePerUnit" class="form-label">Revenue Per Unit</label>
                     <input id="revenuePerUnit" class="form-control" type="number" data-test-id="revenue-per-unit"
                         formControlName="revenuePerUnit">
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3" [ngClass]="{'has-error':(isVariableExpenseValid(formGroup.get('variableExpense')!))}">
                     <label for="variableExpense" class="form-label">Variable Expense</label>
                     <input id="variableExpense" class="form-control" type="number" data-test-id="variable-expense"
                         formControlName="variableExpense">
+                    <div class="input-error">required, must be less than revenu per unit</div>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('fixedExpense')!))}">
                     <label for="fixedExpense">Fixed Expense</label>
                     <input id="fixedExpense" class="form-control" type="number" data-test-id="fixed-expense"
                         formControlName="fixedExpense">
