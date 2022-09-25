@@ -2,7 +2,13 @@
 
 .input-error {
     visibility: hidden;
-    color:red;
+    color: red;
+}
+
+.hint {
+    color: black;
+    font-style: oblique;
+    margin-top: 3px;
 }
 
 .has-error {
@@ -12,5 +18,9 @@
     }
     .input-error {
         visibility: visible;
+    }
+
+    .hint {
+        color: red;
     }
 }

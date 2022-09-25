@@ -13,26 +13,35 @@
                     <label for="revenuePerUnit" class="form-label">Revenue Per Unit</label>
                     <input id="revenuePerUnit" class="form-control" type="number" data-test-id="revenue-per-unit"
                         formControlName="revenuePerUnit">
+                    <div class="hint">
+                        required
+                    </div>
                 </div>
 
                 <div class="mb-3" [ngClass]="{'has-error':(isVariableExpenseValid(formGroup.get('variableExpense')!))}">
                     <label for="variableExpense" class="form-label">Variable Expense</label>
                     <input id="variableExpense" class="form-control" type="number" data-test-id="variable-expense"
                         formControlName="variableExpense">
-                    <div class="input-error">required, must be less than revenu per unit</div>
+
+                    <div class="hint">
+                        required: must be less than revenue per unit
+                    </div>
+
                 </div>
 
                 <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('fixedExpense')!))}">
                     <label for="fixedExpense">Fixed Expense</label>
                     <input id="fixedExpense" class="form-control" type="number" data-test-id="fixed-expense"
                         formControlName="fixedExpense">
+                    <div class="hint">
+                        required
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button id="calculate-break-even" data-test-id="calculate-break-even" type="submit"
+                    class="btn btn-primary">Calculate</button>
 
             </form>
-
-
         </div>
     </div>
     <div *ngIf="unitsToBreakEven">
