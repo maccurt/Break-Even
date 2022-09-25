@@ -9,7 +9,6 @@ export class UnitService {
 
   breakEvenUnits = (revenuePerUnit: number, variableExpensePerUnit: number, fixedCost: number) => {
     let unitsToBreakEven = fixedCost / (revenuePerUnit - variableExpensePerUnit);
-    
     return Math.ceil(unitsToBreakEven);
   }
 }

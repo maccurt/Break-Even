@@ -1,1 +1,24 @@
-<p>break-even works!</p>
+<div>
+
+    <form [formGroup]="formGroup" (submit)="submit()">
+        <label>Revenue Per Unit</label>
+        <input type="number" data-test-id="revenue-per-unit" formControlName="revenuePerUnit">
+
+
+        <label>Variable Expense</label>
+        <input type="number" data-test-id="variable-expense" formControlName="variableExpense">
+
+        <label>Fixed Expense</label>
+        <input type="number" data-test-id="fixed-expense" formControlName="fixedExpense">
+
+        <button type="submit">Calculate</button>
+    </form>
+
+
+    <div *ngIf="unitsToBreakEven">
+        <h1> Units: {{unitsToBreakEven}} </h1>
+    </div>
+
+
+
+</div>
