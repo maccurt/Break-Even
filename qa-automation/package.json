@@ -1,0 +1,9 @@
+{
+    "scripts": {
+        "open": "cypress open",
+        "prod": "cypress open --config baseUrl=https://breakeven.profitdreamer.com/"
+    },
+    "dependencies": {
+        "cypress": "^10.8.0"
+    }
+}
