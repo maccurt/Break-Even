@@ -1,24 +1,38 @@
-<div>
+<br>
+<br>
+<div class="container">
+    <div class="row">
 
-    <form [formGroup]="formGroup" (submit)="submit()">
-        <label>Revenue Per Unit</label>
-        <input type="number" data-test-id="revenue-per-unit" formControlName="revenuePerUnit">
+        <div class="col-4">
+
+            <form [formGroup]="formGroup" (submit)="submit()">
+                <div class="mb-3">
+
+                    <label for="revenuePerUnit" class="form-label">Revenue Per Unit</label>
+                    <input id="revenuePerUnit" class="form-control" type="number" data-test-id="revenue-per-unit"
+                        formControlName="revenuePerUnit">
+                </div>
+
+                <div class="mb-3">
+                    <label for="variableExpense" class="form-label">Variable Expense</label>
+                    <input id="variableExpense" class="form-control" type="number" data-test-id="variable-expense"
+                        formControlName="variableExpense">
+                </div>
+
+                <div class="mb-3">
+                    <label for="fixedExpense">Fixed Expense</label>
+                    <input id="fixedExpense" class="form-control" type="number" data-test-id="fixed-expense"
+                        formControlName="fixedExpense">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
 
 
-        <label>Variable Expense</label>
-        <input type="number" data-test-id="variable-expense" formControlName="variableExpense">
-
-        <label>Fixed Expense</label>
-        <input type="number" data-test-id="fixed-expense" formControlName="fixedExpense">
-
-        <button type="submit">Calculate</button>
-    </form>
-
-
-    <div *ngIf="unitsToBreakEven">
-        <h1> Units: {{unitsToBreakEven}} </h1>
+        </div>
     </div>
-
-
-
+    <div *ngIf="unitsToBreakEven">
+        <h1 data-test-id="unts-to-break-even"> Units: {{unitsToBreakEven}} </h1>
+    </div>
 </div>
