@@ -6,9 +6,15 @@ import { Injectable } from '@angular/core';
 export class UnitService {
 
   constructor() { }
-
+  
   breakEvenUnits = (revenuePerUnit: number, variableExpensePerUnit: number, fixedCost: number) => {
-    let unitsToBreakEven = fixedCost / (revenuePerUnit - variableExpensePerUnit);
+    const contributionMargin = this.contributionMargin(revenuePerUnit, variableExpensePerUnit);
+    let unitsToBreakEven = fixedCost / contributionMargin;
     return Math.ceil(unitsToBreakEven);
-  }
+  };
+
+  contributionMargin = (revenuePerUnit: number, variableExpensePerUnit: number) => {
+    let cm = revenuePerUnit - variableExpensePerUnit;
+    return cm;
+  };
 }

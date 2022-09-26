@@ -33,19 +33,19 @@ export class BreakEvenComponent {
       fixedExpense: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] })
     });
 
-    this.formGroup.addValidators(revenueVariableExpenseValidator())
+    this.formGroup.addValidators(revenueVariableExpenseValidator());
   }
 
   isInvalid = (control: AbstractControl): boolean => {
     return (control.touched && control.invalid) || (control.invalid && this.showErrors);
-  }
+  };
 
   isVariableExpenseValid = (control: AbstractControl): boolean => {
 
     return this.isInvalid(control) ||
       (control.touched && this.formGroup.errors && this.formGroup.errors['variableExpenseError']);
 
-  }
+  };
 
   submit = () => {
     if (this.formGroup.valid) {
@@ -54,5 +54,5 @@ export class BreakEvenComponent {
       let fe = this.formGroup.value.fixedExpense!;
       this.unitsToBreakEven = this.unitService.breakEvenUnits(rpu, ve, fe);
     }
-  }
+  };
 }

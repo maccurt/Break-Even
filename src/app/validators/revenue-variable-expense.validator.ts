@@ -12,5 +12,5 @@ export function revenueVariableExpenseValidator(): ValidatorFn {
         }
         return null;
 
-    }
+    };
 }

@@ -4,6 +4,7 @@
         "prod": "cypress open --config baseUrl=https://breakeven.profitdreamer.com/"
     },
     "devDependencies": {
+        "@angular-eslint/schematics": "^14.1.2",
         "cypress": "^10.8.0",
         "typescript": "^4.8.3"
     }
