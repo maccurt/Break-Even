@@ -23,13 +23,11 @@ export class BreakEvenComponent {
     private unitService: UnitService) {
 
     this.formGroup = this.formBuilder.group({
-      revenuePerUnit: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
-      //variable expense
+      revenuePerUnit: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),      
       variableExpense: new FormControl(0, {
         nonNullable: true,
         validators: [Validators.required, Validators.min(1)]
       }),
-
       fixedExpense: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] })
     });
 
@@ -44,7 +42,6 @@ export class BreakEvenComponent {
 
     return this.isInvalid(control) ||
       (control.touched && this.formGroup.errors && this.formGroup.errors['variableExpenseError']);
-
   };
 
   submit = () => {

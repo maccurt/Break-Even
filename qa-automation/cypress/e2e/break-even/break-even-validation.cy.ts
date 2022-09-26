@@ -8,11 +8,7 @@ describe('break-even validation', () => {
 
     beforeEach(()=>{
       cy.getDataTestId('revenue-per-unit').as('input');
-    })
-
-    it('should exist', () => {
-      cy.get('@input').should('exist');
-    })
+    })    
 
     it('should have error when clear and blur', () => {
       cy.get('@input').clear().blur();
@@ -20,7 +16,7 @@ describe('break-even validation', () => {
     })
 
     it('should not have error when 2 ', () => {
-      cy.get('@input').type('2');
+      cy.get('@input').clear().type('2').blur();
       cy.get('@input').parent().should('not.have.class', 'has-error');
     })
   });
@@ -30,18 +26,14 @@ describe('break-even validation', () => {
     beforeEach(()=>{
       cy.getDataTestId('variable-expense').as('input');
     })
-
-    it('should exist', () => {
-      cy.get('@input').should('exist');
-    })
-
+    
     it('should have error when clear and blur', () => {
       cy.get('@input').clear().blur();
       cy.get('@input').parent().should('have.class', 'has-error');
     })    
 
-    it('should have error when 2 greater than revenue ', () => {
-      cy.get('@input').clear().type('2');
+    it('should have error when 2 = to revenue ', () => {
+      cy.get('@input').clear().type('2').blur();
       cy.get('@input').parent().should('have.class', 'has-error');
     })
 
