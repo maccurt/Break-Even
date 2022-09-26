@@ -1,3 +1,4 @@
+import { UnitIncomeStatement } from './../unit-income-statement.class';
 import { UnitService } from './../unit.service';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
@@ -10,6 +11,7 @@ import { revenueVariableExpenseValidator } from '../validators/revenue-variable-
 })
 export class BreakEvenComponent {
 
+  incomeStatement!:UnitIncomeStatement;
   unitsToBreakEven?: number;
   showErrors = false;
   //form set up
@@ -49,7 +51,8 @@ export class BreakEvenComponent {
       let rpu = this.formGroup.value.revenuePerUnit!;
       let ve = this.formGroup.value.variableExpense!;
       let fe = this.formGroup.value.fixedExpense!;
-      this.unitsToBreakEven = this.unitService.breakEvenUnits(rpu, ve, fe);
+
+      this.incomeStatement = this.unitService.breakEvenUnitIncomeStatement(rpu, ve, fe);
     }
   };
 }
