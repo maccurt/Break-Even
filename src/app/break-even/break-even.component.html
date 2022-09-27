@@ -49,13 +49,11 @@
         <div class="col-4">
             <div *ngIf="incomeStatement">
 
-                <div>
+                <div class="form-wrapper">
+
                     <h1 data-test-id="units-to-break-even">
                         Units: {{incomeStatement.units | number}}
                     </h1>
-                </div>
-
-                <div class="form-wrapper">
                     <table data-test-id="unit-income-statement" class="table table-striped">
 
                         <tbody>
