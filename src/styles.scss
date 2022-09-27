@@ -1,4 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+table {
+    .total {
+        font-size: larger;
+        font-weight: 700;
+    }
+    .total-xl {
+        font-size: x-large;
+        font-weight: 800;
+    }
+
+    .sub-total {
+        font-size: large;
+        font-weight: 600;
+    }
+
+    tr.border-1 {
+        border-bottom: 1px solid #cccccc;
+    }
+
+    tr.border-2 {
+        border-bottom: 2px solid black;
+    }
+
+    td.indent {
+        padding-left: 15px;
+    }
+}
+
+.form-wrapper {
+    border: 1px solid #cccccc;
+    padding: 15px 25px 25px 15px;
+}
 
 .input-error {
     visibility: hidden;
