@@ -11,7 +11,7 @@ import { revenueVariableExpenseValidator } from '../validators/revenue-variable-
 })
 export class BreakEvenComponent {
 
-  incomeStatement!:UnitIncomeStatement;
+  incomeStatement!: UnitIncomeStatement;
   unitsToBreakEven?: number;
   showErrors = false;
   //form set up
@@ -19,18 +19,20 @@ export class BreakEvenComponent {
     revenuePerUnit: FormControl<number>;
     variableExpense: FormControl<number>;
     fixedExpense: FormControl<number>;
+    grossProfit: FormControl<number>;
   }>;
 
   constructor(private formBuilder: FormBuilder,
     private unitService: UnitService) {
 
     this.formGroup = this.formBuilder.group({
-      revenuePerUnit: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),      
+      revenuePerUnit: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
       variableExpense: new FormControl(0, {
         nonNullable: true,
         validators: [Validators.required, Validators.min(1)]
       }),
-      fixedExpense: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] })
+      fixedExpense: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
+      grossProfit: new FormControl(0, { nonNullable: true, validators: [Validators.min(0)] })
     });
 
     this.formGroup.addValidators(revenueVariableExpenseValidator());
@@ -51,8 +53,9 @@ export class BreakEvenComponent {
       let rpu = this.formGroup.value.revenuePerUnit!;
       let ve = this.formGroup.value.variableExpense!;
       let fe = this.formGroup.value.fixedExpense!;
+      let gp = this.formGroup.value.grossProfit!;
 
-      this.incomeStatement = this.unitService.breakEvenUnitIncomeStatement(rpu, ve, fe);
+      this.incomeStatement = this.unitService.unitsIncomeStatement(rpu, ve, fe, gp);
     }
   };
 }

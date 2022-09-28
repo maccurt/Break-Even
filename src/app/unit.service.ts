@@ -14,25 +14,26 @@ export class UnitService {
     return Math.round(value * decimals) / decimals;
   }
 
-  breakEvenUnitIncomeStatement = (revenuePerUnit: number, variableExpensePerUnit: number,
-    fixedExpense: number): UnitIncomeStatement => {
+  unitsIncomeStatement = (revenuePerUnit: number, variableExpensePerUnit: number,
+    fixedExpense: number, grossProfitDesired: number = 0): UnitIncomeStatement => {
 
     const contributionMargin = this.contributionMargin(revenuePerUnit, variableExpensePerUnit);
-    let units = this.breakEvenUnits(revenuePerUnit, variableExpensePerUnit, fixedExpense);
+    let units = this.breakEvenUnits(revenuePerUnit, variableExpensePerUnit, fixedExpense, grossProfitDesired);
     const statement = new UnitIncomeStatement();
     statement.revenue = this.round(units * revenuePerUnit);
     statement.variableExpense = this.round(units * variableExpensePerUnit);
     statement.fixedExpense = fixedExpense;
     statement.expenseTotal = this.round(statement.variableExpense + statement.fixedExpense, 2)
-    statement.grossProfit = this.round(statement.revenue - statement.expenseTotal);    
+    statement.grossProfit = this.round(statement.revenue - statement.expenseTotal);
+    statement.grossProfitPercent = this.grofitPercent(statement.revenue, statement.expenseTotal);
     statement.contributionMargin = contributionMargin;
     statement.units = units;
     return statement;
   };
 
-  breakEvenUnits = (revenuePerUnit: number, variableExpensePerUnit: number, fixedCost: number): number => {
+  breakEvenUnits = (revenuePerUnit: number, variableExpensePerUnit: number, fixedCost: number, grossProfitDesired: number = 0): number => {
     const contributionMargin = this.contributionMargin(revenuePerUnit, variableExpensePerUnit);
-    let unitsToBreakEven = fixedCost / contributionMargin;
+    let unitsToBreakEven = (fixedCost + grossProfitDesired) / contributionMargin;
     return Math.ceil(unitsToBreakEven);
   };
 
@@ -40,4 +41,10 @@ export class UnitService {
     let cm = revenuePerUnit - variableExpensePerUnit;
     return cm;
   };
+
+  grofitPercent = (revenue: number, costOfGoodSold: number): number => {
+    let gp = this.round(((revenue - costOfGoodSold) / revenue) * 100);
+    return gp;
+  }
+
 }
