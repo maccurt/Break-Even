@@ -26,13 +26,19 @@ table {
     }
 }
 
+.section-wrapper {
+    border: 1px solid #cccccc;
+    padding: 15px;
+}
 .form-wrapper {
     border: 1px solid #cccccc;
     padding: 15px 25px 25px 15px;
 }
 
-.calculator-wrapper{
-    background-color: #e6ecff;    
+.calculator-wrapper {
+    background-color: #e6ecff;
+    border: 1px solid #cccccc;
+    padding: 15px 25px 25px 15px;
 }
 
 .input-error {
