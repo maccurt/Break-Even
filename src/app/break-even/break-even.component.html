@@ -6,7 +6,7 @@
         <div class="col-4">
 
             <h3>Break Even Calculator</h3>
-            <div data-test-id="break-even-calculator" class="form-wrapper">
+            <div data-test-id="break-even-calculator" class="form-wrapper calculator-wrapper">
 
                 <form [formGroup]="formGroup" (submit)="submit()">
                     <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('revenuePerUnit')!))}">
@@ -40,16 +40,22 @@
                         </div>
                     </div>
 
+                    <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('grossProfit')!))}">
+                        <label for="grossProfit">Gross Profit Desired</label>
+                        <input id="grossProfit" class="form-control" type="number" data-test-id="gross-profit"
+                            formControlName="grossProfit">
+                    </div>
+
                     <button id="calculate-break-even" data-test-id="calculate-break-even" type="submit"
                         class="btn btn-primary">Calculate</button>
                 </form>
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-5">
             <div *ngIf="incomeStatement">
 
-                <div class="form-wrapper">
+                <div class="form-wrapper ">
 
                     <h1 data-test-id="units-to-break-even">
                         Units: {{incomeStatement.units | number}}
@@ -61,29 +67,34 @@
                                 <td>Revenue</td>
                                 <td> <span data-test-id="revenue"> ${{incomeStatement.revenue |number:'1.2-2'}}</span>
                                 </td>
+                                <td></td>
                             </tr>
                             <tr class="sub-total">
                                 <td class="indent">+ Variable Expense</td>
                                 <td><span data-test-id="variable-expense"> {{incomeStatement.variableExpense
                                         |number:'1.2-2'}}</span></td>
+                                <td></td>
                             </tr>
 
                             <tr class="sub-total border-2">
                                 <td class="indent">+ Fixed Expense</td>
                                 <td><span data-test-id="fixed-expense"> {{incomeStatement.fixedExpense
                                         |number:'1.2-2'}}</span></td>
+                                <td></td>
                             </tr>
 
                             <tr class="total border-2">
                                 <td>Expense</td>
                                 <td><span data-test-id="expense-total"> ${{incomeStatement.expenseTotal
                                         |number:'1.2-2'}}</span></td>
+                                <td></td>
                             </tr>
 
                             <tr class="total ">
                                 <td>Gross Profit</td>
                                 <td><span data-test-id="gross-profit">
                                         ${{incomeStatement.grossProfit|number:'1.2-2'}}</span></td>
+                                <td>{{incomeStatement.grossProfitPercent}}%</td>
                             </tr>
                         </tbody>
 
