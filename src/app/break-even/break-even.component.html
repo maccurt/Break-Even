@@ -5,103 +5,105 @@
 
         <div class="col-12 col-md-9 col-lg-7 col-xl-5 col-xxl-4 mb-5">
 
-            <h3>Break Even Calculator</h3>
-            <div data-test-id="break-even-calculator" class="form-wrapper calculator-wrapper">
+            <div class="section-wrapper">
+                <h3>Unit Profit Analysis</h3>
+                <div data-test-id="break-even-calculator" class="calculator-wrapper">
 
-                <form [formGroup]="formGroup" (submit)="submit()">
-                    <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('revenuePerUnit')!))}">
+                    <form [formGroup]="formGroup" (submit)="submit()">
+                        <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('revenuePerUnit')!))}">
 
-                        <label for="revenuePerUnit" class="form-label">Revenue Per Unit</label>
-                        <input id="revenuePerUnit" class="form-control" type="number" data-test-id="revenue-per-unit"
-                            formControlName="revenuePerUnit">
-                        <div class="hint">
-                            required
-                        </div>
-                    </div>
-
-                    <div class="mb-3"
-                        [ngClass]="{'has-error':(isVariableExpenseValid(formGroup.get('variableExpense')!))}">
-                        <label for="variableExpense" class="form-label">Variable Expense</label>
-                        <input id="variableExpense" class="form-control" type="number" data-test-id="variable-expense"
-                            formControlName="variableExpense">
-
-                        <div class="hint">
-                            required: must be less than revenue per unit
+                            <label for="revenuePerUnit" class="form-label">Revenue Per Unit</label>
+                            <input id="revenuePerUnit" class="form-control" type="number"
+                                data-test-id="revenue-per-unit" formControlName="revenuePerUnit">
+                            <div class="hint">
+                                required
+                            </div>
                         </div>
 
-                    </div>
+                        <div class="mb-3"
+                            [ngClass]="{'has-error':(isVariableExpenseValid(formGroup.get('variableExpense')!))}">
+                            <label for="variableExpense" class="form-label">Variable Expense</label>
+                            <input id="variableExpense" class="form-control" type="number"
+                                data-test-id="variable-expense" formControlName="variableExpense">
 
-                    <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('fixedExpense')!))}">
-                        <label for="fixedExpense">Fixed Expense</label>
-                        <input id="fixedExpense" class="form-control" type="number" data-test-id="fixed-expense"
-                            formControlName="fixedExpense">
-                        <div class="hint">
-                            required
+                            <div class="hint">
+                                required: must be less than revenue per unit
+                            </div>
+
                         </div>
-                    </div>
 
-                    <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('grossProfit')!))}">
-                        <label for="grossProfit">Gross Profit Desired</label>
-                        <input id="grossProfit" class="form-control" type="number" data-test-id="gross-profit"
-                            formControlName="grossProfit">
-                    </div>
+                        <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('fixedExpense')!))}">
+                            <label for="fixedExpense">Fixed Expense</label>
+                            <input id="fixedExpense" class="form-control" type="number" data-test-id="fixed-expense"
+                                formControlName="fixedExpense">
+                            <div class="hint">
+                                required
+                            </div>
+                        </div>
 
-                    <button id="calculate-break-even" data-test-id="calculate-break-even" type="submit"
-                        class="btn btn-primary">Calculate</button>
-                </form>
+                        <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('grossProfit')!))}">
+                            <label for="grossProfit">Gross Profit Desired</label>
+                            <input id="grossProfit" class="form-control" type="number" data-test-id="gross-profit"
+                                formControlName="grossProfit">
+                        </div>
+
+                        <button id="calculate-break-even" data-test-id="calculate-break-even" type="submit"
+                            class="btn btn-primary">Calculate</button>
+                    </form>
+                </div>
             </div>
         </div>
 
         <div class="col-12 col-md-9 col-lg-7 col-xl-5 col-xxl-5 ">
-            <div *ngIf="incomeStatement">
+            <div *ngIf="incomeStatement" class="section-wrapper">
 
-                <div class="form-wrapper ">
 
-                    <h1 data-test-id="units-to-break-even">
-                        Units: {{incomeStatement.units | number}}
-                    </h1>
-                    <table data-test-id="unit-income-statement" class="table table-striped">
 
-                        <tbody>
-                            <tr class="total border-2">
-                                <td>Revenue</td>
-                                <td> <span data-test-id="revenue"> ${{incomeStatement.revenue |number:'1.2-2'}}</span>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr class="sub-total">
-                                <td class="indent">+ Variable Expense</td>
-                                <td><span data-test-id="variable-expense"> {{incomeStatement.variableExpense
-                                        |number:'1.2-2'}}</span></td>
-                                <td></td>
-                            </tr>
+                <h3 data-test-id="units-to-break-even">
+                    Units: {{incomeStatement.units | number}}
+                </h3>
+                <table data-test-id="unit-income-statement" class="table table-striped">
 
-                            <tr class="sub-total border-2">
-                                <td class="indent">+ Fixed Expense</td>
-                                <td><span data-test-id="fixed-expense"> {{incomeStatement.fixedExpense
-                                        |number:'1.2-2'}}</span></td>
-                                <td></td>
-                            </tr>
+                    <tbody>
+                        <tr class="total border-2">
+                            <td>Revenue</td>
+                            <td> <span data-test-id="revenue"> ${{incomeStatement.revenue |number:'1.2-2'}}</span>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr class="sub-total">
+                            <td class="indent">+ Variable Expense</td>
+                            <td><span data-test-id="variable-expense"> {{incomeStatement.variableExpense
+                                    |number:'1.2-2'}}</span></td>
+                            <td></td>
+                        </tr>
 
-                            <tr class="total border-2">
-                                <td>Expense</td>
-                                <td><span data-test-id="expense-total"> ${{incomeStatement.expenseTotal
-                                        |number:'1.2-2'}}</span></td>
-                                <td></td>
-                            </tr>
+                        <tr class="sub-total border-2">
+                            <td class="indent">+ Fixed Expense</td>
+                            <td><span data-test-id="fixed-expense"> {{incomeStatement.fixedExpense
+                                    |number:'1.2-2'}}</span></td>
+                            <td></td>
+                        </tr>
 
-                            <tr class="total ">
-                                <td>Gross Profit</td>
-                                <td><span data-test-id="gross-profit">
-                                        ${{incomeStatement.grossProfit|number:'1.2-2'}}</span></td>
-                                <td>{{incomeStatement.grossProfitPercent}}%</td>
-                            </tr>
-                        </tbody>
+                        <tr class="total border-2">
+                            <td>Expense</td>
+                            <td><span data-test-id="expense-total"> ${{incomeStatement.expenseTotal
+                                    |number:'1.2-2'}}</span></td>
+                            <td></td>
+                        </tr>
 
-                    </table>
+                        <tr class="total ">
+                            <td>Gross Profit</td>
+                            <td><span data-test-id="gross-profit">
+                                    ${{incomeStatement.grossProfit|number:'1.2-2'}}</span></td>
+                            <td>{{incomeStatement.grossProfitPercent}}%</td>
+                        </tr>
+                    </tbody>
 
-                </div>
+                </table>
+
             </div>
+
 
 
         </div>
