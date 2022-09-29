@@ -1,13 +1,13 @@
 import { baselineBreakEven } from "./baselineUnitAnalyisInput";
 
-describe('break-even-happy-path', () => {
+describe('desired-gross-profit-happy-path', () => {
 
     beforeEach(() => {
-        baselineBreakEven(8, 3, 10000, 0);
+        baselineBreakEven(400, 325, 45000, 60000);
     });
 
     it('should calculate units to be 2,000 with comma', () => {
         cy.getDataTestId('unit-profit-analysis-unit')
-            .should('contain.text', "2,000 Units To Break Even.")
+            .should('contain.text', "1,400 Units To Make A Gross Profit Of 60,000.00.")
     });
 });

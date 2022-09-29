@@ -9,7 +9,7 @@ export class ExpectedIncomeStatement {
 export function baselineBreakEven(revenuPerUnit: number, variableExpense: number,
     fixedExpense: number, grossProfit: number) {
     cy.visit('break-even')
-    cy.getDataTestId('break-even-calculator').as('calculator');
+    cy.getDataTestId('unit-analysis-calculator').as('calculator');
     cy.get('@calculator').getDataTestId('revenue-per-unit').clear().type(revenuPerUnit.toString()).blur();
     cy.get('@calculator').getDataTestId('variable-expense').clear().type(variableExpense.toString()).blur();
     cy.get('@calculator').getDataTestId('fixed-expense').clear().type(fixedExpense.toString()).blur();
