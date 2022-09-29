@@ -8,6 +8,6 @@ describe('break-even-happy-path', () => {
 
     it('should calculate units to be 2,000 with comma', () => {
         cy.getDataTestId('unit-profit-analysis-unit')
-            .should('contain.text', "2,000 Units To Break Even.")
+            .should('contain.text', "2,000 Units To Break Even.");
     });
 });
