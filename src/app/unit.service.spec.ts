@@ -8,7 +8,7 @@ describe('UnitService', () => {
     it('should calculate the income statement correctly', () => {
       //page 475 Managerial accounting
       //1400 * 325 = 455.000 variable expense + 45,000 fixed expense =+45      
-      const incomeStatement = unitService.unitsIncomeStatement(400, 325, 45000, 60000);
+      const incomeStatement = unitService.unitsIncomeStatement(400, 325, 45000, 60000,40);
       expect(incomeStatement.units).toEqual(1400);
       expect(incomeStatement.revenue).toEqual(560000);
       expect(incomeStatement.variableExpense).toEqual(455000);
@@ -16,6 +16,8 @@ describe('UnitService', () => {
       expect(incomeStatement.expenseTotal).toEqual(500000);
       expect(incomeStatement.grossProfit).toEqual(60000);
       expect(incomeStatement.grossProfitDesired).toEqual(60000);
+      expect(incomeStatement.incomeTax).toEqual(24000);
+      expect(incomeStatement.netIncome).toEqual(36000);
     });
 
     it('should calculate the income statement correctly', () => {

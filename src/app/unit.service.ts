@@ -12,10 +12,10 @@ export class UnitService {
   round = (value: number, precision: number = 2): number => {
     const decimals = Math.pow(10, precision);
     return Math.round(value * decimals) / decimals;
-  }
+  };
 
   unitsIncomeStatement = (revenuePerUnit: number, variableExpensePerUnit: number,
-    fixedExpense: number, grossProfitDesired: number = 0): UnitIncomeStatement => {
+    fixedExpense: number, grossProfitDesired: number = 0, taxRatePercent: number = 35): UnitIncomeStatement => {
 
     const contributionMargin = this.contributionMargin(revenuePerUnit, variableExpensePerUnit);
     let units = this.breakEvenUnits(revenuePerUnit, variableExpensePerUnit, fixedExpense, grossProfitDesired);
@@ -23,11 +23,18 @@ export class UnitService {
     statement.revenue = this.round(units * revenuePerUnit);
     statement.variableExpense = this.round(units * variableExpensePerUnit);
     statement.fixedExpense = fixedExpense;
-    statement.expenseTotal = this.round(statement.variableExpense + statement.fixedExpense, 2)
+    statement.expenseTotal = this.round(statement.variableExpense + statement.fixedExpense, 2);
     statement.grossProfitDesired = grossProfitDesired;
     statement.grossProfit = this.round(statement.revenue - statement.expenseTotal);
     statement.grossProfitPercent = this.grofitPercent(statement.revenue, statement.expenseTotal);
     statement.contributionMargin = contributionMargin;
+
+    statement.incomeTax = this.round(statement.grossProfit * (taxRatePercent / 100));
+    statement.taxRatePercent = taxRatePercent;
+
+
+    statement.netIncome = this.round(statement.grossProfit - statement.incomeTax);
+
     statement.units = units;
     return statement;
   };
@@ -46,6 +53,6 @@ export class UnitService {
   grofitPercent = (revenue: number, costOfGoodSold: number): number => {
     let gp = this.round(((revenue - costOfGoodSold) / revenue) * 100);
     return gp;
-  }
+  };
 
 }

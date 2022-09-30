@@ -1,6 +1,3 @@
-<br>
-<br>
-
 <div class="container">
     <div class="row">
 
@@ -43,11 +40,19 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('grossProfit')!))}">
+                            <!-- <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('grossProfit')!))}">
                                 <label for="grossProfit">Gross Profit Desired</label>
                                 <input id="grossProfit" class="form-control" type="number" data-test-id="gross-profit"
                                     formControlName="grossProfit">
+                            </div> -->
+
+
+                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('netIncome')!))}">
+                                <label for="netIncome">Net Income Desired</label>
+                                <input id="netIncome" class="form-control" type="number" data-test-id="net-income"
+                                    formControlName="netIncome">
                             </div>
+
 
                             <button id="calculate-break-even" data-test-id="calculate-break-even" type="submit"
                                 class="btn btn-primary">Calculate</button>
@@ -91,34 +96,49 @@
                                 <td> <span data-test-id="revenue"> ${{incomeStatement.revenue
                                         |number:'1.2-2'}}</span>
                                 </td>
-                                <td></td>
+
                             </tr>
                             <tr class="sub-total">
                                 <td class="indent">+ Variable Expense</td>
                                 <td><span data-test-id="variable-expense"> {{incomeStatement.variableExpense
                                         |number:'1.2-2'}}</span></td>
-                                <td></td>
+
                             </tr>
 
                             <tr class="sub-total border-2">
                                 <td class="indent">+ Fixed Expense</td>
                                 <td><span data-test-id="fixed-expense"> {{incomeStatement.fixedExpense
                                         |number:'1.2-2'}}</span></td>
-                                <td></td>
+
                             </tr>
 
                             <tr class="total border-2">
                                 <td>Expense</td>
                                 <td><span data-test-id="expense-total"> ${{incomeStatement.expenseTotal
                                         |number:'1.2-2'}}</span></td>
-                                <td></td>
+
                             </tr>
 
-                            <tr class="total ">
+                            <tr class="total border-2 ">
                                 <td>Gross Profit</td>
                                 <td><span data-test-id="gross-profit">
                                         ${{incomeStatement.grossProfit|number:'1.2-2'}}</span></td>
-                                <td>{{incomeStatement.grossProfitPercent}}%</td>
+                                <!-- <td>{{incomeStatement.grossProfitPercent}}%</td> -->
+                            </tr>
+
+
+                            <tr class="sub-total border-2">
+                                <td class="indent">
+                                    - Income Tax <span class="tax-rate-percent" data-test-id="tax-rate-percent">
+                                        {{incomeStatement.taxRatePercent}}%</span> </td>
+                                <td><span data-test-id="income-tax">
+                                        {{incomeStatement.incomeTax|number:'1.2-2'}}</span></td>
+                            </tr>
+
+                            <tr class="total ">
+                                <td>Net Income</td>
+                                <td><span data-test-id="net-income">
+                                        ${{incomeStatement.netIncome|number:'1.2-2'}}</span></td>
                             </tr>
                         </tbody>
 
@@ -130,7 +150,7 @@
 
         <div *ngIf="incomeStatement" class="col-12 col-md-9 col-lg-7 col-xl-5 col-xxl-4">
 
-            <mat-card>                
+            <mat-card>
                 <mat-card-content>
                     <div [chart]="chart"></div>
                 </mat-card-content>

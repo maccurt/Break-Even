@@ -8,4 +8,7 @@ export class UnitIncomeStatement {
   grossProfit!: number;
   grossProfitPercent!: number;
   grossProfitDesired:number = 0;
+  taxRatePercent!: number;
+  incomeTax!: number;  
+  netIncome!: number;
 }
