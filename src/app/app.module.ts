@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BreakEvenComponent } from './break-even/break-even.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {MatCardModule} from '@angular/material/card';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    MatChipsModule    
     
   ],
   providers: [],
