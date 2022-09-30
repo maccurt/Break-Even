@@ -5,13 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BreakEvenComponent } from './break-even/break-even.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { HomeComponent } from './home/home.component';
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BreakEvenComponent
+    BreakEvenComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -19,8 +22,9 @@ import {MatChipsModule} from '@angular/material/chips';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatChipsModule    
-    
+    MatChipsModule,
+    ChartModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

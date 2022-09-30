@@ -59,7 +59,7 @@
 
         </div>
 
-        <div *ngIf="incomeStatement" class="col-12 col-md-9 col-lg-7 col-xl-5 col-xxl-5 ">
+        <div *ngIf="incomeStatement" class="col-12 col-md-9 col-lg-7 col-xl-5 col-xxl-4 ">
 
             <mat-card style="margin-bottom:15px;">
                 <mat-card-content>
@@ -126,6 +126,16 @@
                 </mat-card-content>
 
             </mat-card>
+        </div>
+
+        <div *ngIf="incomeStatement" class="col-12 col-md-9 col-lg-7 col-xl-5 col-xxl-4">
+
+            <mat-card>                
+                <mat-card-content>
+                    <div [chart]="chart"></div>
+                </mat-card-content>
+            </mat-card>
+
         </div>
     </div>
     <br>
