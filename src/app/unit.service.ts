@@ -24,6 +24,7 @@ export class UnitService {
     statement.variableExpense = this.round(units * variableExpensePerUnit);
     statement.fixedExpense = fixedExpense;
     statement.expenseTotal = this.round(statement.variableExpense + statement.fixedExpense, 2)
+    statement.grossProfitDesired = grossProfitDesired;
     statement.grossProfit = this.round(statement.revenue - statement.expenseTotal);
     statement.grossProfitPercent = this.grofitPercent(statement.revenue, statement.expenseTotal);
     statement.contributionMargin = contributionMargin;

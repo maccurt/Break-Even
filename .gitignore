@@ -43,3 +43,4 @@ Thumbs.db
 
 qa-automation/node_modules/
 qa-automation/cypress/videos/
+qa-automation/cypress/screenshots/

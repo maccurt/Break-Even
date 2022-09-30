@@ -33,7 +33,10 @@ table {
 .form-wrapper {
     border: 1px solid #cccccc;
     padding: 15px 25px 25px 15px;
+    background-color: #e6ecff;
 }
+
+
 
 .calculator-wrapper {
     background-color: #e6ecff;
@@ -65,3 +68,6 @@ table {
         color: red;
     }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

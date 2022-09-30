@@ -3,6 +3,8 @@ import { UnitService } from './../unit.service';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { revenueVariableExpenseValidator } from '../validators/revenue-variable-expense.validator';
+import { Chart } from 'angular-highcharts';
+import { PieChartData, ProfitDreamerChartService } from '../chart.service';
 
 @Component({
   selector: 'app-break-even',
@@ -10,6 +12,8 @@ import { revenueVariableExpenseValidator } from '../validators/revenue-variable-
   styleUrls: ['./break-even.component.scss']
 })
 export class BreakEvenComponent {
+
+  chart!: Chart;
 
   incomeStatement!: UnitIncomeStatement;
   unitsToBreakEven?: number;
@@ -23,7 +27,8 @@ export class BreakEvenComponent {
   }>;
 
   constructor(private formBuilder: FormBuilder,
-    private unitService: UnitService) {
+    private unitService: UnitService,
+    private chartService: ProfitDreamerChartService) {
 
     this.formGroup = this.formBuilder.group({
       revenuePerUnit: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
@@ -54,8 +59,16 @@ export class BreakEvenComponent {
       let ve = this.formGroup.value.variableExpense!;
       let fe = this.formGroup.value.fixedExpense!;
       let gp = this.formGroup.value.grossProfit!;
-
+      
       this.incomeStatement = this.unitService.unitsIncomeStatement(rpu, ve, fe, gp);
+
+      let data: PieChartData[] = [
+        { name: 'Variable Expense', y: this.incomeStatement.variableExpense, color: '#ffcccc' },
+        { name: 'Fixed Expense', y: this.incomeStatement.fixedExpense, color: '#ffe6cc' },
+        { name: 'Gross Profit', y: this.incomeStatement.grossProfit, color: '#ccffcc', sliced: true }
+      ];
+
+      this.chart = new Chart(this.chartService.pieChartOptions('Revenue Break-Down', data));
     }
   };
 }
