@@ -40,19 +40,11 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('grossProfit')!))}">
+                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('grossProfit')!))}">
                                 <label for="grossProfit">Gross Profit Desired</label>
                                 <input id="grossProfit" class="form-control" type="number" data-test-id="gross-profit"
                                     formControlName="grossProfit">
-                            </div> -->
-
-
-                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('netIncome')!))}">
-                                <label for="netIncome">Net Income Desired</label>
-                                <input id="netIncome" class="form-control" type="number" data-test-id="net-income"
-                                    formControlName="netIncome">
-                            </div>
-
+                            </div>                            
 
                             <button id="calculate-break-even" data-test-id="calculate-break-even" type="submit"
                                 class="btn btn-primary">Calculate</button>

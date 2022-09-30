@@ -45,6 +45,17 @@ export class UnitService {
     return Math.ceil(unitsToBreakEven);
   };
 
+  grossProfitByNetIncome = (taxRate: number, netIncome: number): number => {
+    const grossProfit = netIncome / (1 - (taxRate / 100));
+    return grossProfit;
+  };
+
+  // breakEvenUnitsNetIncome = (revenuePerUnit: number, variableExpensePerUnit: number, fixedCost: number, taxRate: number, netIncome: number): number => {
+  //   const contributionMargin = this.contributionMargin(revenuePerUnit, variableExpensePerUnit);
+  //   let unitsToBreakEven = (fixedCost + grossProfitDesired) / contributionMargin;
+  //   return Math.ceil(unitsToBreakEven);
+  // };
+
   contributionMargin = (revenuePerUnit: number, variableExpensePerUnit: number): number => {
     let cm = revenuePerUnit - variableExpensePerUnit;
     return cm;
