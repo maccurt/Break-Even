@@ -14,6 +14,14 @@ export class UnitService {
     return Math.round(value * decimals) / decimals;
   };
 
+  unitsIncomeStatementNetIcome = (revenuePerUnit: number, variableExpensePerUnit: number,
+    fixedExpense: number, netIncome: number, taxRatePercent: number = 35): UnitIncomeStatement => {
+
+    const grossProfit = this.grossProfitByNetIncome(taxRatePercent, netIncome);
+    return this.unitsIncomeStatement(revenuePerUnit, variableExpensePerUnit, fixedExpense, grossProfit, taxRatePercent);
+
+  };
+
   unitsIncomeStatement = (revenuePerUnit: number, variableExpensePerUnit: number,
     fixedExpense: number, grossProfitDesired: number = 0, taxRatePercent: number = 35): UnitIncomeStatement => {
 

@@ -9,6 +9,23 @@ describe('UnitService', () => {
     });
   });
 
+  describe('unitsIncomeStatementNetIcome', () => {
+    it('should calculate the income statement correctly', () => {
+      //page 475 Managerial accounting
+      //1400 * 325 = 455.000 variable expense + 45,000 fixed expense =+45      
+      const incomeStatement = unitService.unitsIncomeStatementNetIcome(500, 225, 45000, 65130, 35);
+      expect(incomeStatement.units).toEqual(528);
+      expect(incomeStatement.revenue).toEqual(264000);
+      expect(incomeStatement.variableExpense).toEqual(118800);
+      expect(incomeStatement.fixedExpense).toEqual(45000);
+      expect(incomeStatement.expenseTotal).toEqual(163800);
+      expect(incomeStatement.grossProfit).toEqual(100200);
+      expect(incomeStatement.grossProfitDesired).toEqual(100200);
+      expect(incomeStatement.incomeTax).toEqual(35070);
+      expect(incomeStatement.netIncome).toEqual(65130);
+    });
+  });
+
   describe('breakEvenUnitIncomeStatement', () => {
     it('should calculate the income statement correctly', () => {
       //page 475 Managerial accounting
