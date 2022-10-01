@@ -4,10 +4,13 @@ export class ExpectedIncomeStatement {
     fixedExpense: string | number;
     expenseTotal: string | number;
     grossProfit: string | number;
+    netIncome:string;
+    incomeTax:string;
+    taxRate:string;
 }
 
 export function baselineBreakEven(revenuPerUnit: number, variableExpense: number,
-    fixedExpense: number, netIncome: number, taxRate) {
+    fixedExpense: number, netIncome: number, taxRate: number) {
     cy.visit('break-even');
     cy.getDataTestId('unit-analysis-calculator').as('calculator');
     cy.get('@calculator').getDataTestId('revenue-per-unit').clear().type(revenuPerUnit.toString()).blur();
@@ -47,5 +50,20 @@ export function breakEvenTest(expectedIncomeStatement: ExpectedIncomeStatement) 
     it('gross profit', () => {
         cy.get('@income-statement').getDataTestId('gross-profit')
             .should('contain.text', expectedIncomeStatement.grossProfit);
+    });
+
+    it('tax rate', () => {
+        cy.get('@income-statement').getDataTestId('tax-rate-percent')
+            .should('contain.text', expectedIncomeStatement.taxRate);
+    });
+
+    it('income tax', () => {
+        cy.get('@income-statement').getDataTestId('income-tax')
+            .should('contain.text', expectedIncomeStatement.incomeTax);
+    });
+
+    it('net income', () => {
+        cy.get('@income-statement').getDataTestId('net-income')
+            .should('contain.text', expectedIncomeStatement.netIncome);
     });
 }

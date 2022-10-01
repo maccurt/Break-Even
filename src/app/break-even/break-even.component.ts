@@ -61,6 +61,7 @@ export class BreakEvenComponent {
 
   submit = () => {
     if (this.formGroup.valid) {
+      this.showErrors = false;
       let rpu = this.formGroup.value.revenuePerUnit!;
       let ve = this.formGroup.value.variableExpense!;
       let fe = this.formGroup.value.fixedExpense!;
@@ -77,6 +78,9 @@ export class BreakEvenComponent {
       ];
 
       this.chartOptions = this.chartService.pieChartOptions('Revenue Break-Down', data);
+    }
+    else {
+      this.showErrors = true;
     }
   };
 }
