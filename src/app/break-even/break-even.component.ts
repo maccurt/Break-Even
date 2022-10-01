@@ -1,10 +1,13 @@
+
 import { UnitIncomeStatement } from './../unit-income-statement.class';
 import { UnitService } from './../unit.service';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { revenueVariableExpenseValidator } from '../validators/revenue-variable-expense.validator';
-import { Chart } from 'angular-highcharts';
 import { PieChartData, ProfitDreamerChartService } from '../chart.service';
+import * as Highcharts from 'highcharts';
+
+
 
 @Component({
   selector: 'app-break-even',
@@ -13,7 +16,8 @@ import { PieChartData, ProfitDreamerChartService } from '../chart.service';
 })
 export class BreakEvenComponent {
 
-  chart!: Chart;
+  Highcharts: typeof Highcharts = Highcharts; 
+  chartOptions!:Highcharts.Options;
 
   incomeStatement!: UnitIncomeStatement;
   unitsToBreakEven?: number;
@@ -72,7 +76,7 @@ export class BreakEvenComponent {
         { name: 'Net Income', y: this.incomeStatement.netIncome, color: '#000000', sliced: true }
       ];
 
-      this.chart = new Chart(this.chartService.pieChartOptions('Revenue Break-Down', data));
+      this.chartOptions =  this.chartService.pieChartOptions('Revenue Break-Down', data);
     }
   };
 }

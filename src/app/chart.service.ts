@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 //TODO is this blowing up the package size? check
-import * as Highcharts from 'highcharts';
+// import * as Highcharts from 'highcharts';
 
 export class PieChartData {
     name!: string;
