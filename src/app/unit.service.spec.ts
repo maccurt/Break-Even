@@ -20,7 +20,6 @@ describe('UnitService', () => {
       expect(incomeStatement.fixedExpense).toEqual(45000);
       expect(incomeStatement.expenseTotal).toEqual(163800);
       expect(incomeStatement.grossProfit).toEqual(100200);
-      expect(incomeStatement.grossProfitDesired).toEqual(100200);
       expect(incomeStatement.incomeTax).toEqual(35070);
       expect(incomeStatement.netIncome).toEqual(65130);
     });
@@ -37,7 +36,6 @@ describe('UnitService', () => {
       expect(incomeStatement.fixedExpense).toEqual(45000);
       expect(incomeStatement.expenseTotal).toEqual(500000);
       expect(incomeStatement.grossProfit).toEqual(60000);
-      expect(incomeStatement.grossProfitDesired).toEqual(60000);
       expect(incomeStatement.incomeTax).toEqual(24000);
       expect(incomeStatement.netIncome).toEqual(36000);
     });
@@ -50,7 +48,6 @@ describe('UnitService', () => {
       expect(incomeStatement.fixedExpense).toEqual(10000);
       expect(incomeStatement.expenseTotal).toEqual(15685.68);
       expect(incomeStatement.grossProfit).toEqual(5.32);
-      expect(incomeStatement.grossProfitDesired).toEqual(0);
     });
   });
 
