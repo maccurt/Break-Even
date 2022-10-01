@@ -18,7 +18,9 @@ export class UnitService {
     fixedExpense: number, netIncome: number, taxRatePercent: number = 35): UnitIncomeStatement => {
 
     const grossProfit = this.grossProfitByNetIncome(taxRatePercent, netIncome);
-    return this.unitsIncomeStatement(revenuePerUnit, variableExpensePerUnit, fixedExpense, grossProfit, taxRatePercent);
+    let is = this.unitsIncomeStatement(revenuePerUnit, variableExpensePerUnit, fixedExpense, grossProfit, taxRatePercent);    
+    is.netIncomeDesired = netIncome;
+    return is;
 
   };
 
@@ -32,7 +34,7 @@ export class UnitService {
     statement.variableExpense = this.round(units * variableExpensePerUnit);
     statement.fixedExpense = fixedExpense;
     statement.expenseTotal = this.round(statement.variableExpense + statement.fixedExpense, 2);
-    statement.grossProfitDesired = grossProfitDesired;
+    
     statement.grossProfit = this.round(statement.revenue - statement.expenseTotal);
     statement.grossProfitPercent = this.grofitPercent(statement.revenue, statement.expenseTotal);
     statement.contributionMargin = contributionMargin;

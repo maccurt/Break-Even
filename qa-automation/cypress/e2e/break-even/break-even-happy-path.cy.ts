@@ -3,7 +3,7 @@ import { baselineBreakEven } from "./baselineUnitAnalyisInput";
 describe('break-even-happy-path', () => {
 
     beforeEach(() => {
-        baselineBreakEven(8, 3, 10000, 0);
+        baselineBreakEven(8, 3, 10000, 0, 40);
     });
 
     it('should calculate units to be 2,000 with comma', () => {

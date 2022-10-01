@@ -40,11 +40,17 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('grossProfit')!))}">
-                                <label for="grossProfit">Gross Profit Desired</label>
-                                <input id="grossProfit" class="form-control" type="number" data-test-id="gross-profit"
-                                    formControlName="grossProfit">
-                            </div>                            
+                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('netIncome')!))}">
+                                <label for="netIncome">Net Income</label>
+                                <input id="netIncome" class="form-control" type="number" data-test-id="net-income"
+                                    formControlName="netIncome">
+                            </div>
+
+                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('taxRate')!))}">
+                                <label for="taxRate">Tax Rate %</label>
+                                <input id="taxRate" class="form-control" type="number" data-test-id="tax-rate"
+                                    formControlName="taxRate">
+                            </div>
 
                             <button id="calculate-break-even" data-test-id="calculate-break-even" type="submit"
                                 class="btn btn-primary">Calculate</button>
@@ -62,13 +68,13 @@
                 <mat-card-content>
                     <div data-test-id="unit-profit-analysis-unit">
                         <h3>
-                            <div *ngIf="incomeStatement.grossProfitDesired > 0">
-                                {{incomeStatement.units | number}} Units To Make A Gross Profit Of
-                                ${{incomeStatement.grossProfitDesired |number:'1.2-2' }}.
+                            <div *ngIf="incomeStatement.netIncomeDesired> 0">
+                                {{incomeStatement.units | number}} Units To Make A Net Income Of
+                                ${{incomeStatement.netIncomeDesired |number:'1.2-2' }}.
 
                             </div>
 
-                            <div *ngIf="incomeStatement.grossProfitDesired === 0">
+                            <div *ngIf="incomeStatement.netIncomeDesired === 0">
                                 {{incomeStatement.units | number}} Units To Break Even.
                             </div>
 
