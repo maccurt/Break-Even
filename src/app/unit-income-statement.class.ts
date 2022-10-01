@@ -1,4 +1,4 @@
-export class UnitIncomeStatement {
+export class UnitIncomeStatement {  
   revenue!: number;
   variableExpense!: number;
   fixedExpense!: number;
@@ -6,6 +6,9 @@ export class UnitIncomeStatement {
   contributionMargin!: number;
   units!: number;
   grossProfit!: number;
-  grossProfitPercent!: number;
-  grossProfitDesired:number = 0;
+  grossProfitPercent!: number;  
+  taxRatePercent!: number;
+  incomeTax!: number;  
+  netIncomeDesired!:number;
+  netIncome!: number;
 }

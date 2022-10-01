@@ -7,21 +7,22 @@ export class ExpectedIncomeStatement {
 }
 
 export function baselineBreakEven(revenuPerUnit: number, variableExpense: number,
-    fixedExpense: number, grossProfit: number) {
-    cy.visit('break-even')
+    fixedExpense: number, netIncome: number, taxRate) {
+    cy.visit('break-even');
     cy.getDataTestId('unit-analysis-calculator').as('calculator');
     cy.get('@calculator').getDataTestId('revenue-per-unit').clear().type(revenuPerUnit.toString()).blur();
     cy.get('@calculator').getDataTestId('variable-expense').clear().type(variableExpense.toString()).blur();
     cy.get('@calculator').getDataTestId('fixed-expense').clear().type(fixedExpense.toString()).blur();
-    cy.get('@calculator').getDataTestId('gross-profit').clear().type(grossProfit.toString()).blur();
+    cy.get('@calculator').getDataTestId('net-income').clear().type(netIncome.toString()).blur();
+    cy.get('@calculator').getDataTestId('tax-rate').clear().type(taxRate.toString()).blur();
     cy.get('@calculator').getDataTestId('calculate-break-even').click();
 }
 
 export function breakEvenTest(expectedIncomeStatement: ExpectedIncomeStatement) {
 
     beforeEach(() => {
-        cy.getDataTestId('unit-income-statement').as('income-statement')
-    })
+        cy.getDataTestId('unit-income-statement').as('income-statement');
+    });
 
     it('revenue', () => {
         cy.get('@income-statement').getDataTestId('revenue')

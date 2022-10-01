@@ -1,22 +1,26 @@
+<div class="app-component">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" aria-expanded="false">
-    <div class="container">
-        <a class="navbar-brand" href="#">Profit Dreamer</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                
-                <li  class="nav-item" data-bs-toggle="collapse"
-                    data-bs-target=".navbar-collapse.show">
-                    <a class="nav-link" routerLink="break-even">Unit Profit Analysis</a>
-                </li>      
-            </ul>                
-            
-        </div>               
-    </div>    
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-expanded="false">
+        <div class="container">
+            <a class="navbar-brand" href="#">Unit Profit Analysiss</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-<router-outlet></router-outlet>
+                    <li class="nav-item" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">
+                        <a class="nav-link" routerLink="break-even">Basic Analysis</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div style="margin-top:30px;">
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -23,7 +23,8 @@ export class BreakEvenComponent {
     revenuePerUnit: FormControl<number>;
     variableExpense: FormControl<number>;
     fixedExpense: FormControl<number>;
-    grossProfit: FormControl<number>;
+    netIncome: FormControl<number>;
+    taxRate: FormControl<number>;
   }>;
 
   constructor(private formBuilder: FormBuilder,
@@ -37,7 +38,8 @@ export class BreakEvenComponent {
         validators: [Validators.required, Validators.min(1)]
       }),
       fixedExpense: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
-      grossProfit: new FormControl(0, { nonNullable: true, validators: [Validators.min(0)] })
+      netIncome: new FormControl(0, { nonNullable: true, validators: [Validators.min(0)] }),
+      taxRate: new FormControl(35, { nonNullable: true, validators: [Validators.min(0), Validators.max(99)] })
     });
 
     this.formGroup.addValidators(revenueVariableExpenseValidator());
@@ -58,14 +60,16 @@ export class BreakEvenComponent {
       let rpu = this.formGroup.value.revenuePerUnit!;
       let ve = this.formGroup.value.variableExpense!;
       let fe = this.formGroup.value.fixedExpense!;
-      let gp = this.formGroup.value.grossProfit!;
-      
-      this.incomeStatement = this.unitService.unitsIncomeStatement(rpu, ve, fe, gp);
+      let ni = this.formGroup.value.netIncome!;
+      let taxRate = this.formGroup.value.taxRate!;
+
+      this.incomeStatement = this.unitService.unitsIncomeStatementNetIcome(rpu, ve, fe, ni, taxRate);
 
       let data: PieChartData[] = [
         { name: 'Variable Expense', y: this.incomeStatement.variableExpense, color: '#ffcccc' },
         { name: 'Fixed Expense', y: this.incomeStatement.fixedExpense, color: '#ffe6cc' },
-        { name: 'Gross Profit', y: this.incomeStatement.grossProfit, color: '#ccffcc', sliced: true }
+        { name: 'Taxes', y: this.incomeStatement.incomeTax, color: '#cce0ff' },
+        { name: 'Net Income', y: this.incomeStatement.netIncome, color: '#000000', sliced: true }
       ];
 
       this.chart = new Chart(this.chartService.pieChartOptions('Revenue Break-Down', data));

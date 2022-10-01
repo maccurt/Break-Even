@@ -3,12 +3,34 @@ import { UnitService } from './unit.service';
 describe('UnitService', () => {
   let unitService = new UnitService();
 
-  describe('breakEvenUnitIncomeStatement', () => {
+  describe('grossProfitByNetIncome', () => {
+    it('should calculate correctly', () => {
+      expect(unitService.grossProfitByNetIncome(35, 6500)).toEqual(10000);
+    });
+  });
 
+  describe('unitsIncomeStatementNetIcome', () => {
     it('should calculate the income statement correctly', () => {
       //page 475 Managerial accounting
       //1400 * 325 = 455.000 variable expense + 45,000 fixed expense =+45      
-      const incomeStatement = unitService.unitsIncomeStatement(400, 325, 45000, 60000);
+      const incomeStatement = unitService.unitsIncomeStatementNetIcome(500, 225, 45000, 65130, 35);
+      expect(incomeStatement.units).toEqual(528);
+      expect(incomeStatement.revenue).toEqual(264000);
+      expect(incomeStatement.variableExpense).toEqual(118800);
+      expect(incomeStatement.fixedExpense).toEqual(45000);
+      expect(incomeStatement.expenseTotal).toEqual(163800);
+      expect(incomeStatement.grossProfit).toEqual(100200);
+      expect(incomeStatement.grossProfitDesired).toEqual(100200);
+      expect(incomeStatement.incomeTax).toEqual(35070);
+      expect(incomeStatement.netIncome).toEqual(65130);
+    });
+  });
+
+  describe('breakEvenUnitIncomeStatement', () => {
+    it('should calculate the income statement correctly', () => {
+      //page 475 Managerial accounting
+      //1400 * 325 = 455.000 variable expense + 45,000 fixed expense =+45      
+      const incomeStatement = unitService.unitsIncomeStatement(400, 325, 45000, 60000, 40);
       expect(incomeStatement.units).toEqual(1400);
       expect(incomeStatement.revenue).toEqual(560000);
       expect(incomeStatement.variableExpense).toEqual(455000);
@@ -16,6 +38,8 @@ describe('UnitService', () => {
       expect(incomeStatement.expenseTotal).toEqual(500000);
       expect(incomeStatement.grossProfit).toEqual(60000);
       expect(incomeStatement.grossProfitDesired).toEqual(60000);
+      expect(incomeStatement.incomeTax).toEqual(24000);
+      expect(incomeStatement.netIncome).toEqual(36000);
     });
 
     it('should calculate the income statement correctly', () => {
