@@ -8,7 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { HomeComponent } from './home/home.component';
-import { ChartModule } from 'angular-highcharts';
+import { HighchartsChartModule } from 'highcharts-angular';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { ChartModule } from 'angular-highcharts';
     BrowserAnimationsModule,
     MatCardModule,
     MatChipsModule,
-    ChartModule
+    HighchartsChartModule
 
   ],
   providers: [],
