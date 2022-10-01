@@ -44,12 +44,18 @@
                                 <label for="netIncome">Net Income</label>
                                 <input id="netIncome" class="form-control" type="number" data-test-id="net-income"
                                     formControlName="netIncome">
+                                <div class="hint">
+                                    required
+                                </div>
                             </div>
 
                             <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('taxRate')!))}">
                                 <label for="taxRate">Tax Rate %</label>
                                 <input id="taxRate" class="form-control" type="number" data-test-id="tax-rate"
                                     formControlName="taxRate">
+                                <div class="hint">
+                                    required: 0 to 99
+                                </div>
                             </div>
 
                             <button id="calculate-break-even" data-test-id="calculate-break-even" type="submit"
