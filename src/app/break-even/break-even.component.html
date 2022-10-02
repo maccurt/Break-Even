@@ -154,8 +154,9 @@
         <div *ngIf="incomeStatement" class="col-12 col-md-9 col-lg-7 col-xl-5 col-xxl-4">
 
             <mat-card>
-                <mat-card-content>
-                    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions">
+                <mat-card-content style="border:1px solid red ;" >
+                    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" style="width:300px !important;">
+
                     </highcharts-chart>
                 </mat-card-content>
             </mat-card>

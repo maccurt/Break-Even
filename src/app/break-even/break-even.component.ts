@@ -77,7 +77,8 @@ export class BreakEvenComponent {
         { name: 'Net Income', y: this.incomeStatement.netIncome, color: '#000000', sliced: true }
       ];
 
-      this.chartOptions = this.chartService.pieChartOptions('Revenue Break-Down', data);
+      this.chartOptions = this.chartService.pieChartOptions('Revenue Break-Down', data);     
+      
     }
     else {
       this.showErrors = true;
