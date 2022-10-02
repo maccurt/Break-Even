@@ -23,10 +23,16 @@ export class BreakEvenComponent {
 
   revenuePerUnitControl: FormControl<number | null> =
     new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
+  variableExpenseControl: FormControl<number | null> =
+    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
+      
+  fixedExpenseControl: FormControl<number | null> =
+    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
+      
   formGroup: FormGroup<{
     revenuePerUnit: FormControl<number | null>;
-    variableExpense: FormControl<number>;
-    fixedExpense: FormControl<number>;
+    variableExpense: FormControl<number | null>;
+    fixedExpense: FormControl<number | null>;
     netIncome: FormControl<number>;
     taxRate: FormControl<number>;
   }>;
@@ -40,11 +46,8 @@ export class BreakEvenComponent {
     //make video, branch and test to make sure it all works
     this.formGroup = this.formBuilder.group({
       revenuePerUnit: this.revenuePerUnitControl,
-      variableExpense: new FormControl(0, {
-        nonNullable: true,
-        validators: [Validators.required, Validators.min(1)]
-      }),
-      fixedExpense: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
+      variableExpense: this.variableExpenseControl,
+      fixedExpense: this.fixedExpenseControl,
       netIncome: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
       taxRate: new FormControl(35, { nonNullable: true, validators: [Validators.required, Validators.min(1), Validators.max(99)] })
     });
