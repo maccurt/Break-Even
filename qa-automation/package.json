@@ -2,7 +2,7 @@
     "scripts": {
         "open": "cypress open",
         "prod": "cypress open --config baseUrl=https://breakeven.profitdreamer.com/",
-        "run": "cypress run"
+        "run": "cypress run --config video=false " 
     },
     "devDependencies": {
         "@angular-eslint/schematics": "^14.1.2",

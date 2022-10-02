@@ -4,7 +4,7 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: BreakEvenComponent },
   { path: 'break-even', component: BreakEvenComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];

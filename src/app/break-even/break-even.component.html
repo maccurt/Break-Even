@@ -44,12 +44,18 @@
                                 <label for="netIncome">Net Income</label>
                                 <input id="netIncome" class="form-control" type="number" data-test-id="net-income"
                                     formControlName="netIncome">
+                                <div class="hint">
+                                    required
+                                </div>
                             </div>
 
                             <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('taxRate')!))}">
                                 <label for="taxRate">Tax Rate %</label>
                                 <input id="taxRate" class="form-control" type="number" data-test-id="tax-rate"
                                     formControlName="taxRate">
+                                <div class="hint">
+                                    required: 1 to 99
+                                </div>
                             </div>
 
                             <button id="calculate-break-even" data-test-id="calculate-break-even" type="submit"
@@ -121,7 +127,6 @@
                                 <td>Gross Profit</td>
                                 <td><span data-test-id="gross-profit">
                                         ${{incomeStatement.grossProfit|number:'1.2-2'}}</span></td>
-                                <!-- <td>{{incomeStatement.grossProfitPercent}}%</td> -->
                             </tr>
 
 
@@ -149,8 +154,9 @@
         <div *ngIf="incomeStatement" class="col-12 col-md-9 col-lg-7 col-xl-5 col-xxl-4">
 
             <mat-card>
-                <mat-card-content>
-                    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions">
+                <mat-card-content style="border:1px solid red ;" >
+                    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" style="width:300px !important;">
+
                     </highcharts-chart>
                 </mat-card-content>
             </mat-card>

@@ -18,7 +18,7 @@ export class UnitService {
     fixedExpense: number, netIncome: number, taxRatePercent: number = 35): UnitIncomeStatement => {
 
     const grossProfit = this.grossProfitByNetIncome(taxRatePercent, netIncome);
-    let is = this.unitsIncomeStatement(revenuePerUnit, variableExpensePerUnit, fixedExpense, grossProfit, taxRatePercent);    
+    let is = this.unitsIncomeStatement(revenuePerUnit, variableExpensePerUnit, fixedExpense, grossProfit, taxRatePercent);
     is.netIncomeDesired = netIncome;
     return is;
 
@@ -34,7 +34,7 @@ export class UnitService {
     statement.variableExpense = this.round(units * variableExpensePerUnit);
     statement.fixedExpense = fixedExpense;
     statement.expenseTotal = this.round(statement.variableExpense + statement.fixedExpense, 2);
-    
+
     statement.grossProfit = this.round(statement.revenue - statement.expenseTotal);
     statement.grossProfitPercent = this.grofitPercent(statement.revenue, statement.expenseTotal);
     statement.contributionMargin = contributionMargin;
@@ -59,12 +59,6 @@ export class UnitService {
     const grossProfit = netIncome / (1 - (taxRate / 100));
     return grossProfit;
   };
-
-  // breakEvenUnitsNetIncome = (revenuePerUnit: number, variableExpensePerUnit: number, fixedCost: number, taxRate: number, netIncome: number): number => {
-  //   const contributionMargin = this.contributionMargin(revenuePerUnit, variableExpensePerUnit);
-  //   let unitsToBreakEven = (fixedCost + grossProfitDesired) / contributionMargin;
-  //   return Math.ceil(unitsToBreakEven);
-  // };
 
   contributionMargin = (revenuePerUnit: number, variableExpensePerUnit: number): number => {
     let cm = revenuePerUnit - variableExpensePerUnit;

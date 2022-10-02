@@ -1,4 +1,3 @@
-
 import { UnitIncomeStatement } from './../unit-income-statement.class';
 import { UnitService } from './../unit.service';
 import { Component } from '@angular/core';
@@ -7,8 +6,6 @@ import { revenueVariableExpenseValidator } from '../validators/revenue-variable-
 import { PieChartData, ProfitDreamerChartService } from '../chart.service';
 import * as Highcharts from 'highcharts';
 
-
-
 @Component({
   selector: 'app-break-even',
   templateUrl: './break-even.component.html',
@@ -16,8 +13,8 @@ import * as Highcharts from 'highcharts';
 })
 export class BreakEvenComponent {
 
-  Highcharts: typeof Highcharts = Highcharts; 
-  chartOptions!:Highcharts.Options;
+  Highcharts: typeof Highcharts = Highcharts;
+  chartOptions!: Highcharts.Options;
 
   incomeStatement!: UnitIncomeStatement;
   unitsToBreakEven?: number;
@@ -35,6 +32,9 @@ export class BreakEvenComponent {
     private unitService: UnitService,
     private chartService: ProfitDreamerChartService) {
 
+    //TODO can you make this better? Can you make the form controls be in the declare above. Can you remove the use of 
+    //magic strings in the HTML, create controls for this, so they can be referenced in the template
+    //make video, branch and test to make sure it all works
     this.formGroup = this.formBuilder.group({
       revenuePerUnit: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
       variableExpense: new FormControl(0, {
@@ -42,8 +42,8 @@ export class BreakEvenComponent {
         validators: [Validators.required, Validators.min(1)]
       }),
       fixedExpense: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
-      netIncome: new FormControl(0, { nonNullable: true, validators: [Validators.min(0)] }),
-      taxRate: new FormControl(35, { nonNullable: true, validators: [Validators.min(0), Validators.max(99)] })
+      netIncome: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
+      taxRate: new FormControl(35, { nonNullable: true, validators: [Validators.required, Validators.min(1), Validators.max(99)] })
     });
 
     this.formGroup.addValidators(revenueVariableExpenseValidator());
@@ -61,6 +61,7 @@ export class BreakEvenComponent {
 
   submit = () => {
     if (this.formGroup.valid) {
+      this.showErrors = false;
       let rpu = this.formGroup.value.revenuePerUnit!;
       let ve = this.formGroup.value.variableExpense!;
       let fe = this.formGroup.value.fixedExpense!;
@@ -76,7 +77,11 @@ export class BreakEvenComponent {
         { name: 'Net Income', y: this.incomeStatement.netIncome, color: '#000000', sliced: true }
       ];
 
-      this.chartOptions =  this.chartService.pieChartOptions('Revenue Break-Down', data);
+      this.chartOptions = this.chartService.pieChartOptions('Revenue Break-Down', data);     
+      
+    }
+    else {
+      this.showErrors = true;
     }
   };
 }
