@@ -25,31 +25,31 @@ export class BreakEvenComponent {
     new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
   variableExpenseControl: FormControl<number | null> =
     new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
-      
   fixedExpenseControl: FormControl<number | null> =
     new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
-      
+  netIncomeControl: FormControl<number | null> =
+    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
+  taxRateControl: FormControl<number | null> =
+    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1), Validators.max(99)] });
+
   formGroup: FormGroup<{
     revenuePerUnit: FormControl<number | null>;
     variableExpense: FormControl<number | null>;
     fixedExpense: FormControl<number | null>;
-    netIncome: FormControl<number>;
-    taxRate: FormControl<number>;
+    netIncome: FormControl<number | null>;
+    taxRate: FormControl<number | null>;
   }>;
 
   constructor(private formBuilder: FormBuilder,
     private unitService: UnitService,
     private chartService: ProfitDreamerChartService) {
 
-    //TODO can you make this better? Can you make the form controls be in the declare above. Can you remove the use of 
-    //magic strings in the HTML, create controls for this, so they can be referenced in the template
-    //make video, branch and test to make sure it all works
     this.formGroup = this.formBuilder.group({
       revenuePerUnit: this.revenuePerUnitControl,
       variableExpense: this.variableExpenseControl,
       fixedExpense: this.fixedExpenseControl,
-      netIncome: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
-      taxRate: new FormControl(35, { nonNullable: true, validators: [Validators.required, Validators.min(1), Validators.max(99)] })
+      netIncome: this.netIncomeControl,
+      taxRate: this.taxRateControl,
     });
 
     this.formGroup.addValidators(revenueVariableExpenseValidator());
