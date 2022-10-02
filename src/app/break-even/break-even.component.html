@@ -20,7 +20,7 @@
                             </div>
 
                             <div class="mb-3"
-                                [ngClass]="{'has-error':(isVariableExpenseValid(formGroup.get('variableExpense')!))}">
+                                [ngClass]="{'has-error':(isVariableExpenseValid(variableExpenseControl))}">
                                 <label for="variableExpense" class="form-label">Variable Expense</label>
                                 <input id="variableExpense" class="form-control" type="number"
                                     data-test-id="variable-expense" formControlName="variableExpense">
@@ -31,7 +31,7 @@
 
                             </div>
 
-                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('fixedExpense')!))}">
+                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(fixedExpenseControl))}">
                                 <label for="fixedExpense">Fixed Expense</label>
                                 <input id="fixedExpense" class="form-control" type="number" data-test-id="fixed-expense"
                                     formControlName="fixedExpense">
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('netIncome')!))}">
+                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(netIncomeControl))}">
                                 <label for="netIncome">Net Income</label>
                                 <input id="netIncome" class="form-control" type="number" data-test-id="net-income"
                                     formControlName="netIncome">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(formGroup.get('taxRate')!))}">
+                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(taxRateControl))}">
                                 <label for="taxRate">Tax Rate %</label>
                                 <input id="taxRate" class="form-control" type="number" data-test-id="tax-rate"
                                     formControlName="taxRate">
@@ -154,8 +154,9 @@
         <div *ngIf="incomeStatement" class="col-12 col-md-9 col-lg-7 col-xl-5 col-xxl-4">
 
             <mat-card>
-                <mat-card-content style="border:1px solid red ;" >
-                    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" style="width:300px !important;">
+                <mat-card-content style="border:1px solid red ;">
+                    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
+                        style="width:300px !important;">
 
                     </highcharts-chart>
                 </mat-card-content>
