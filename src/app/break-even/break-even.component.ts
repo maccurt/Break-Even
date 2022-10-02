@@ -20,8 +20,11 @@ export class BreakEvenComponent {
   unitsToBreakEven?: number;
   showErrors = false;
   //form set up
+
+  revenuePerUnitControl: FormControl<number | null> =
+    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
   formGroup: FormGroup<{
-    revenuePerUnit: FormControl<number>;
+    revenuePerUnit: FormControl<number | null>;
     variableExpense: FormControl<number>;
     fixedExpense: FormControl<number>;
     netIncome: FormControl<number>;
@@ -36,7 +39,7 @@ export class BreakEvenComponent {
     //magic strings in the HTML, create controls for this, so they can be referenced in the template
     //make video, branch and test to make sure it all works
     this.formGroup = this.formBuilder.group({
-      revenuePerUnit: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
+      revenuePerUnit: this.revenuePerUnitControl,
       variableExpense: new FormControl(0, {
         nonNullable: true,
         validators: [Validators.required, Validators.min(1)]
@@ -77,8 +80,8 @@ export class BreakEvenComponent {
         { name: 'Net Income', y: this.incomeStatement.netIncome, color: '#000000', sliced: true }
       ];
 
-      this.chartOptions = this.chartService.pieChartOptions('Revenue Break-Down', data);     
-      
+      this.chartOptions = this.chartService.pieChartOptions('Revenue Break-Down', data);
+
     }
     else {
       this.showErrors = true;
