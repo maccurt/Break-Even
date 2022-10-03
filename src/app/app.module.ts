@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { HomeComponent } from './home/home.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     BrowserAnimationsModule,
     MatCardModule,
     MatChipsModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    FontAwesomeModule
 
   ],
   providers: [],

@@ -5,6 +5,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { revenueVariableExpenseValidator } from '../validators/revenue-variable-expense.validator';
 import { PieChartData, ProfitDreamerChartService } from '../chart.service';
 import * as Highcharts from 'highcharts';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-break-even',
@@ -13,6 +14,7 @@ import * as Highcharts from 'highcharts';
 })
 export class BreakEvenComponent {
 
+  faCoffee = faCoffee;
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions!: Highcharts.Options;
   incomeStatement!: UnitIncomeStatement;
