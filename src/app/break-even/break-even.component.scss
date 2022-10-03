@@ -2,3 +2,15 @@
     font-size: medium;
     font-weight: normal;
 }
+
+
+//TODO remove this once you are done moving it to global chart.styles.scss
+// https://github.com/highcharts/highcharts/issues/6427
+//TODO you are going to have to make a size for each query I guess
+// highcharts-chart::ng-deep {
+//     .highcharts-container,
+//     .highcharts-container svg {
+//        width: 425px;
+       
+//     }
+//   }

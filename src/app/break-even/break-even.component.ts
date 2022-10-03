@@ -15,11 +15,10 @@ export class BreakEvenComponent {
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions!: Highcharts.Options;
-
   incomeStatement!: UnitIncomeStatement;
   unitsToBreakEven?: number;
   showErrors = false;
-  //form set up
+  chartRef: any;
 
   revenuePerUnitControl: FormControl<number | null> =
     new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
@@ -30,7 +29,7 @@ export class BreakEvenComponent {
   netIncomeControl: FormControl<number | null> =
     new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
   taxRateControl: FormControl<number | null> =
-    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1), Validators.max(99)] });
+    new FormControl<number | null>(35, { validators: [Validators.required, Validators.min(1), Validators.max(99)] });
 
   formGroup: FormGroup<{
     revenuePerUnit: FormControl<number | null>;
@@ -85,9 +84,24 @@ export class BreakEvenComponent {
 
       this.chartOptions = this.chartService.pieChartOptions('Revenue Break-Down', data);
 
+
+
     }
     else {
       this.showErrors = true;
     }
+  };
+
+  reflow = () => {    
+    this.chartRef.reflow();
+
+  };
+
+  chartCallback: Highcharts.ChartCallbackFunction = (chart) => {
+    this.chartRef = chart;
+    setTimeout(() => {
+      chart.reflow();
+    }, 0);
+
   };
 }

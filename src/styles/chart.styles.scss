@@ -1,0 +1,15 @@
+@import "../styles/variables";
+.chart-container {
+    // https://github.com/highcharts/highcharts/issues/6427
+
+    highcharts-chart {
+        .highcharts-container,
+        .highcharts-container svg {
+            width: 425px;
+
+            @include for-medium-and-below() {
+                width: 500px;
+            }
+        }
+    }
+}

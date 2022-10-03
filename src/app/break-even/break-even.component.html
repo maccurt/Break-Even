@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-12 col-md-9 col-lg-7 col-xl-5 col-xxl-4 mb-5">
+        <div class="col-12 col-md-9 col-lg-6 col-xl-5 col-xxl-4 mb-5">
 
             <mat-card>
                 <mat-card-title>Unit Profit Analysis</mat-card-title>
@@ -13,7 +13,8 @@
 
                                 <label for="revenuePerUnit" class="form-label">Revenue Per Unit</label>
                                 <input id="revenuePerUnit" class="form-control" type="number"
-                                    data-test-id="revenue-per-unit" formControlName="revenuePerUnit">
+                                    data-test-id="revenue-per-unit" formControlName="revenuePerUnit"
+                                    placeholder="What Do You Sell Each Unit For?">
                                 <div class="hint">
                                     required
                                 </div>
@@ -23,8 +24,8 @@
                                 [ngClass]="{'has-error':(isVariableExpenseValid(variableExpenseControl))}">
                                 <label for="variableExpense" class="form-label">Variable Expense</label>
                                 <input id="variableExpense" class="form-control" type="number"
-                                    data-test-id="variable-expense" formControlName="variableExpense">
-
+                                    data-test-id="variable-expense" formControlName="variableExpense"
+                                    placeholder="What Is Your Variable Expense Per Unit?">
                                 <div class="hint">
                                     required: must be less than revenue per unit
                                 </div>
@@ -34,16 +35,17 @@
                             <div class="mb-3" [ngClass]="{'has-error':(isInvalid(fixedExpenseControl))}">
                                 <label for="fixedExpense">Fixed Expense</label>
                                 <input id="fixedExpense" class="form-control" type="number" data-test-id="fixed-expense"
-                                    formControlName="fixedExpense">
+                                    formControlName="fixedExpense" placeholder="Fixed Expense For The Item You Sell.">
                                 <div class="hint">
                                     required
                                 </div>
                             </div>
 
                             <div class="mb-3" [ngClass]="{'has-error':(isInvalid(netIncomeControl))}">
-                                <label for="netIncome">Net Income</label>
+                                <label title="How much net income would you like to make?" for="netIncome">Net Income
+                                    Goal</label>
                                 <input id="netIncome" class="form-control" type="number" data-test-id="net-income"
-                                    formControlName="netIncome">
+                                    placeholder="What Is Your Net Income Goal?" formControlName="netIncome">
                                 <div class="hint">
                                     required
                                 </div>
@@ -52,7 +54,7 @@
                             <div class="mb-3" [ngClass]="{'has-error':(isInvalid(taxRateControl))}">
                                 <label for="taxRate">Tax Rate %</label>
                                 <input id="taxRate" class="form-control" type="number" data-test-id="tax-rate"
-                                    formControlName="taxRate">
+                                    formControlName="taxRate" placeholder="Tax Rate In Percent">
                                 <div class="hint">
                                     required: 1 to 99
                                 </div>
@@ -68,7 +70,7 @@
 
         </div>
 
-        <div *ngIf="incomeStatement" class="col-12 col-md-9 col-lg-7 col-xl-5 col-xxl-4 ">
+        <div *ngIf="incomeStatement" class="col-12 col-md-9 col-lg-6 col-xl-5 col-xxl-4 mb-5 ">
 
             <mat-card style="margin-bottom:15px;">
                 <mat-card-content>
@@ -151,15 +153,11 @@
             </mat-card>
         </div>
 
-        <div *ngIf="incomeStatement" class="col-12 col-md-9 col-lg-7 col-xl-5 col-xxl-4">
-
+        <div *ngIf="incomeStatement" class="col-12 col-md-9 col-lg-6 col-xl-5 col-xxl-4">            
             <mat-card>
-                <mat-card-content style="border:1px solid red ;">
-                    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
-                        style="width:300px !important;">
-
-                    </highcharts-chart>
-                </mat-card-content>
+                <div class="chart-container">
+                    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"></highcharts-chart>
+                </div>
             </mat-card>
 
         </div>
