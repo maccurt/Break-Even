@@ -21,9 +21,9 @@ export class BreakEvenComponent {
   chartRef: any;
 
   revenuePerUnitControl: FormControl<number | null> =
-    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
+    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(.1)] });
   variableExpenseControl: FormControl<number | null> =
-    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
+    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(.1)] });
   fixedExpenseControl: FormControl<number | null> =
     new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
   netIncomeControl: FormControl<number | null> =
@@ -83,9 +83,6 @@ export class BreakEvenComponent {
       ];
 
       this.chartOptions = this.chartService.pieChartOptions('Revenue Break-Down', data);
-
-
-
     }
     else {
       this.showErrors = true;
