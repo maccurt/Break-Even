@@ -15,35 +15,40 @@ export class BreakEvenComponent {
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions!: Highcharts.Options;
-
   incomeStatement!: UnitIncomeStatement;
   unitsToBreakEven?: number;
   showErrors = false;
-  //form set up
+  chartRef: any;
+
+  revenuePerUnitControl: FormControl<number | null> =
+    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
+  variableExpenseControl: FormControl<number | null> =
+    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
+  fixedExpenseControl: FormControl<number | null> =
+    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
+  netIncomeControl: FormControl<number | null> =
+    new FormControl<number | null>(null, { validators: [Validators.required, Validators.min(1)] });
+  taxRateControl: FormControl<number | null> =
+    new FormControl<number | null>(35, { validators: [Validators.required, Validators.min(1), Validators.max(99)] });
+
   formGroup: FormGroup<{
-    revenuePerUnit: FormControl<number>;
-    variableExpense: FormControl<number>;
-    fixedExpense: FormControl<number>;
-    netIncome: FormControl<number>;
-    taxRate: FormControl<number>;
+    revenuePerUnit: FormControl<number | null>;
+    variableExpense: FormControl<number | null>;
+    fixedExpense: FormControl<number | null>;
+    netIncome: FormControl<number | null>;
+    taxRate: FormControl<number | null>;
   }>;
 
   constructor(private formBuilder: FormBuilder,
     private unitService: UnitService,
     private chartService: ProfitDreamerChartService) {
 
-    //TODO can you make this better? Can you make the form controls be in the declare above. Can you remove the use of 
-    //magic strings in the HTML, create controls for this, so they can be referenced in the template
-    //make video, branch and test to make sure it all works
     this.formGroup = this.formBuilder.group({
-      revenuePerUnit: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
-      variableExpense: new FormControl(0, {
-        nonNullable: true,
-        validators: [Validators.required, Validators.min(1)]
-      }),
-      fixedExpense: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
-      netIncome: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
-      taxRate: new FormControl(35, { nonNullable: true, validators: [Validators.required, Validators.min(1), Validators.max(99)] })
+      revenuePerUnit: this.revenuePerUnitControl,
+      variableExpense: this.variableExpenseControl,
+      fixedExpense: this.fixedExpenseControl,
+      netIncome: this.netIncomeControl,
+      taxRate: this.taxRateControl,
     });
 
     this.formGroup.addValidators(revenueVariableExpenseValidator());
@@ -77,11 +82,26 @@ export class BreakEvenComponent {
         { name: 'Net Income', y: this.incomeStatement.netIncome, color: '#000000', sliced: true }
       ];
 
-      this.chartOptions = this.chartService.pieChartOptions('Revenue Break-Down', data);     
-      
+      this.chartOptions = this.chartService.pieChartOptions('Revenue Break-Down', data);
+
+
+
     }
     else {
       this.showErrors = true;
     }
+  };
+
+  reflow = () => {    
+    this.chartRef.reflow();
+
+  };
+
+  chartCallback: Highcharts.ChartCallbackFunction = (chart) => {
+    this.chartRef = chart;
+    setTimeout(() => {
+      chart.reflow();
+    }, 0);
+
   };
 }
