@@ -1,3 +1,4 @@
+import { MaterialModule } from './material/material.module';
 import { IconModule } from './icon/icon.module';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -6,8 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BreakEvenComponent } from './break-even/break-even.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
 import { HomeComponent } from './home/home.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 
@@ -22,8 +21,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatCardModule,
-    MatChipsModule,
+    MaterialModule,
     HighchartsChartModule,
     IconModule
   ],
