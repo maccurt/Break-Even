@@ -80,13 +80,15 @@ export class BreakEvenComponent {
       this.incomeStatement = this.unitService.unitsIncomeStatementNetIcome(rpu, ve, fe, ni, taxRate);
 
       let data: PieChartData[] = [
+        
         { name: 'Variable Expense', y: this.incomeStatement.variableExpense, color: '#ffcccc' },
         { name: 'Fixed Expense', y: this.incomeStatement.fixedExpense, color: '#ffe6cc' },
         { name: 'Taxes', y: this.incomeStatement.incomeTax, color: '#cce0ff' },
-        { name: 'Net Income', y: this.incomeStatement.netIncome, color: '#000000', sliced: true }
+        { name: 'Net Income', y: this.incomeStatement.netIncome, color: '#4d4d4d', sliced: true },
+        
       ];
 
-      this.chartOptions = this.chartService.pieChartOptions('Revenue Break-Down', data);
+      this.chartOptions = this.chartService.pieChartOptions('Revenue Break Down', data);
       
     }
     else {
