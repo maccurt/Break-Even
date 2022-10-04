@@ -1,3 +1,5 @@
+import { IconService } from './../icon/icon.service';
+import { IconModule } from './../icon/icon.module';
 import { UnitIncomeStatement } from './../unit-income-statement.class';
 import { UnitService } from './../unit.service';
 import { Component } from '@angular/core';
@@ -5,7 +7,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { revenueVariableExpenseValidator } from '../validators/revenue-variable-expense.validator';
 import { PieChartData, ProfitDreamerChartService } from '../chart.service';
 import * as Highcharts from 'highcharts';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-break-even',
@@ -14,7 +16,6 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 })
 export class BreakEvenComponent {
 
-  faCoffee = faCoffee;
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions!: Highcharts.Options;
   incomeStatement!: UnitIncomeStatement;
@@ -43,7 +44,8 @@ export class BreakEvenComponent {
 
   constructor(private formBuilder: FormBuilder,
     private unitService: UnitService,
-    private chartService: ProfitDreamerChartService) {
+    private chartService: ProfitDreamerChartService,
+    public icons: IconService) {
 
     this.formGroup = this.formBuilder.group({
       revenuePerUnit: this.revenuePerUnitControl,
@@ -91,7 +93,7 @@ export class BreakEvenComponent {
     }
   };
 
-  reflow = () => {    
+  reflow = () => {
     this.chartRef.reflow();
 
   };

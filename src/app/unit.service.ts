@@ -42,7 +42,6 @@ export class UnitService {
     statement.incomeTax = this.round(statement.grossProfit * (taxRatePercent / 100));
     statement.taxRatePercent = taxRatePercent;
 
-
     statement.netIncome = this.round(statement.grossProfit - statement.incomeTax);
 
     statement.units = units;

@@ -1,3 +1,4 @@
+import { IconService } from './../icon/icon.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent {
 
-  constructor() { }
-
+  constructor(public icons:IconService) { }
 
 }

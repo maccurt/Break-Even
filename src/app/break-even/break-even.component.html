@@ -1,4 +1,5 @@
 <div class="container">
+
     <div class="row">
         <div class="col-12 col-md-9 col-lg-6 col-xl-5 col-xxl-4 mb-5">
 
@@ -11,6 +12,9 @@
                             <div class="mb-3" [ngClass]="{'has-error':(isInvalid(revenuePerUnitControl))}">
 
                                 <label for="revenuePerUnit" class="form-label">Revenue Per Unit</label>
+                                <div style="float:right;">
+                                    <fa-icon [icon]="icons.information"></fa-icon>
+                                </div>
                                 <input id="revenuePerUnit" class="form-control" type="number"
                                     data-test-id="revenue-per-unit" formControlName="revenuePerUnit"
                                     placeholder="What Do You Sell Each Unit For?">
@@ -66,7 +70,6 @@
 
                 </mat-card-content>
             </mat-card>
-
         </div>
 
         <div *ngIf="incomeStatement" class="col-12 col-md-9 col-lg-6 col-xl-5 col-xxl-4 mb-5 ">
@@ -162,5 +165,4 @@
         </div>
     </div>
     <br>
-
 </div>

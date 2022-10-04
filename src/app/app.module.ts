@@ -1,3 +1,4 @@
+import { IconModule } from './icon/icon.module';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,8 +10,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { HomeComponent } from './home/home.component';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 
 @NgModule({
   declarations: [
@@ -26,8 +25,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatCardModule,
     MatChipsModule,
     HighchartsChartModule,
-    FontAwesomeModule
-
+    IconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

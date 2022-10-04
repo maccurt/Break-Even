@@ -20,6 +20,7 @@
       ],
       "rules": {
         "no-console": "error",
+        "no-multiple-empty-lines": [2, {"max": 1}],
         "semi": [
           2,
           "always"
