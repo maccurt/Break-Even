@@ -1,6 +1,10 @@
 @import "./styles/variables";
 @import "./styles/chart.styles.scss";
 
+.tool-tip-help{
+    font-size: large;
+}
+
 table {
     .total {
         font-size: larger;

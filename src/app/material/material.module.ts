@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
@@ -11,6 +12,7 @@ import { MatChipsModule } from '@angular/material/chips';
   exports: [
     MatCardModule,
     MatChipsModule,
+    MatTooltipModule,
   ]
 })
 export class MaterialModule { }
