@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-//TODO is this blowing up the package size? check
-// import * as Highcharts from 'highcharts';
+import * as Highcharts from 'highcharts'; //TODO is this blowing up the package check
 
 export class PieChartData {
     name!: string;
@@ -10,7 +9,7 @@ export class PieChartData {
 }
 
 export class ChartOptions {
-    slicedOffset = 20;
+    slicedOffset = 10;
 }
 
 @Injectable({
@@ -18,7 +17,10 @@ export class ChartOptions {
 })
 export class ProfitDreamerChartService {
 
-    constructor() { }
+    constructor() {
+
+        Highcharts.setOptions({ lang: { thousandsSep: ',' } });
+    }
 
     pieChartOptions(title: string, pieChartDataList: PieChartData[], chartOptions: ChartOptions = new ChartOptions()): Highcharts.Options {
 
@@ -27,6 +29,10 @@ export class ProfitDreamerChartService {
         });
 
         let options: Highcharts.Options = {
+            lang: {
+                thousandsSep: ','
+            },
+            tooltip: { valueDecimals: 2, valuePrefix: '$', },
             chart: {
                 type: 'pie'
             },
@@ -46,16 +52,16 @@ export class ProfitDreamerChartService {
                     borderColor: 'black',
                     dataLabels: {
                         enabled: true,
-                        distance: 10
-                    }
+                        distance: 30
+                    },
+
                 }
             },
             series: [
                 {
                     type: 'pie' as any,
                     name: '',
-                    data: pieChartDataList,
-                    slicedOffset: chartOptions.slicedOffset
+                    data: pieChartDataList
                 }
             ]
         };

@@ -87,22 +87,10 @@ export class BreakEvenComponent {
       ];
 
       this.chartOptions = this.chartService.pieChartOptions('Revenue Break-Down', data);
+      
     }
     else {
       this.showErrors = true;
     }
-  };
-
-  reflow = () => {
-    this.chartRef.reflow();
-
-  };
-
-  chartCallback: Highcharts.ChartCallbackFunction = (chart) => {
-    this.chartRef = chart;
-    setTimeout(() => {
-      chart.reflow();
-    }, 0);
-
-  };
+  };   
 }
