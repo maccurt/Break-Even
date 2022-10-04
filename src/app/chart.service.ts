@@ -49,10 +49,10 @@ export class ProfitDreamerChartService {
                     allowPointSelect: false,
                     cursor: 'pointer',
                     showInLegend: false,
-                    borderColor: 'black',
+                    borderColor: 'black',                    
                     dataLabels: {
                         enabled: true,
-                        distance: 30
+                        distance: 15
                     },
 
                 }
