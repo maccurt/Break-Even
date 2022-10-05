@@ -9,8 +9,7 @@
                     <div class="form-wrapper">
                         <form class="calculator-form" [formGroup]="formGroup" (submit)="submit()">
 
-                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(revenuePerUnitControl))}">
-
+                            <div class="mb-3" [ngClass]="{'has-error':(isInvalid(revenuePerUnitControl))}">                                
                                 <label for="revenuePerUnit" class="form-label">Revenue Per Unit</label>
                                 <span class="icon-container">
                                     <fa-icon [icon]="icons.tooltipHelp" matTooltipClass="tool-tip-help"

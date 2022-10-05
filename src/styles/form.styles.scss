@@ -1,0 +1,9 @@
+@import "../styles/variables";
+
+.icon-container {
+    fa-icon {
+        @include for-xsmall() {
+            font-size: medium;
+        }
+    }
+}
