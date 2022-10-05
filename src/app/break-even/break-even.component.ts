@@ -1,7 +1,7 @@
 import { IconService } from './../icon/icon.service';
 import { IconModule } from './../icon/icon.module';
 import { UnitIncomeStatement } from './../unit-income-statement.class';
-import { UnitService } from './../unit.service';
+import { ProfitAnalysisService } from '../profitAnalysis.service';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { revenueVariableExpenseValidator } from '../validators/revenue-variable-expense.validator';
@@ -43,7 +43,7 @@ export class BreakEvenComponent {
   }>;
 
   constructor(private formBuilder: FormBuilder,
-    private unitService: UnitService,
+    private unitService: ProfitAnalysisService,
     private chartService: ProfitDreamerChartService,
     public icons: IconService) {
 
