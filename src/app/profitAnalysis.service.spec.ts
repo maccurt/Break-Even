@@ -20,6 +20,7 @@ describe('UnitService', () => {
       expect(incomeStatement.fixedExpense).toEqual(45000);
       expect(incomeStatement.expenseTotal).toEqual(163800);
       expect(incomeStatement.grossProfit).toEqual(100200);
+      expect(incomeStatement.grossProfitPercent).toEqual(37.95); //TODO verify this math
       expect(incomeStatement.incomeTax).toEqual(35070);
       expect(incomeStatement.netIncome).toEqual(65130);
     });
