@@ -3,6 +3,11 @@
 @import "./styles/form.styles.scss";
 
 .stat-formula {
+
+    fa-icon{
+        font-size: x-large;
+    }
+
     hr {
         margin-bottom: 2px;
     }
@@ -17,10 +22,13 @@
         font-size: xx-large;
         font-weight: bold;
         text-align: center;
+        font-weight: 450;
     }
 
     .formula {
+        margin-bottom: 4px;
         text-align: center;
+        font-weight: 300;
     }
 }
 
