@@ -1,5 +1,10 @@
 @import "./styles/variables";
 @import "./styles/chart.styles.scss";
+@import "./styles/form.styles.scss";
+
+.tool-tip-help {
+    font-size: large;
+}
 
 table {
     .total {
@@ -39,8 +44,6 @@ table {
     background-color: #e6ecff;
 }
 
-
-
 .calculator-wrapper {
     background-color: #e6ecff;
     border: 1px solid #cccccc;
@@ -72,5 +75,11 @@ table {
     }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

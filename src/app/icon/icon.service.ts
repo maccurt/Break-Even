@@ -3,7 +3,7 @@ import {
     faCheckSquare, faTrashAlt, faArrowAltCircleLeft,
     faArrowAltCircleRight, faPlusSquare, faSmile,
     faCalendarCheck,
-    faWindowClose
+    faWindowClose, faQuestionCircle
 } from '@fortawesome/free-regular-svg-icons';
 import {
     faGraduationCap, faFrog, faChalkboardTeacher,
@@ -39,6 +39,7 @@ export class IconService {
     test = faVial;
     moveTaskToGoal = faExpandArrowsAlt;
     information = faInfoCircle;
+    tooltipHelp = faQuestionCircle;
     noTaskBackground = faClipboardList;
     completeGoal = faWindowClose;
     noPieChartData = faChartPie; 
