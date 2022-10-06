@@ -14,8 +14,8 @@ const getDataTestId = (subject: JQuery<HTMLElement>, attribValue: string): Cypre
         return cy.wrap(subject).find(`[data-test-id=${attribValue}]`);
     }
     return cy.get(`[data-test-id=${attribValue}]`);
-}
+};
 
 Cypress.Commands.add('getDataTestId', { prevSubject: ['optional'] } as any, getDataTestId);
 
-export { }
+export { };

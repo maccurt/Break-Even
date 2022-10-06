@@ -4,9 +4,13 @@ export class ExpectedIncomeStatement {
     fixedExpense: string | number;
     expenseTotal: string | number;
     grossProfit: string | number;
-    netIncome:string;
-    incomeTax:string;
-    taxRate:string;
+    netIncome: string;
+    incomeTax: string;
+    taxRate: string;
+}
+
+export function enterProfitAnalysisForm() {
+    return baselineBreakEven(400, 325, 45000, 60000, 35);
 }
 
 export function baselineBreakEven(revenuPerUnit: number, variableExpense: number,
