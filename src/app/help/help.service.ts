@@ -18,11 +18,11 @@ export class HelpService {
 
   grossProfitPercent = new Help('Gross Profit Percent',
     'Indicates amount of revenue left after subtracting variable expense. expressed as a percentage of total revenue.',
-    'gross profit % = ( revenue - expense) / revenue');
+    '(revenue - expense) / revenue');
 
   breakEvenUnits  = new Help('Break Even Units',
     'The break-even point is the point at which total cost and total revenue are equal, meaning there is no loss or gain for your business.',
-    'break even units =  Fixed Expense / (Revenue Per Unit - Variable Expense)');
+    'fixed expense / (revenue per Unit - variable Expense)');
 
   constructor(icons:IconService) {     
     //set the icons

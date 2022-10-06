@@ -34,7 +34,7 @@ describe('gross-profit-percent-section', () => {
 
     it('formula from help should be correct', () => {
         cy.get('@section').getDataTestId('formula').invoke('text').then((text) => {
-            expect(text.trim()).to.eq('gross profit % = ( revenue - expense) / revenue');
+            expect(text.trim()).to.eq('(revenue - expense) / revenue');
         });
     });
 });
