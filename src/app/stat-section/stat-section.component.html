@@ -1,0 +1,33 @@
+<mat-card>    
+    <mat-card-content >
+        <div class="stat-formula">
+
+            <div data-test-id="title"
+                 class="title">
+                <fa-icon [icon]="help.icon"
+                         matTooltipClass="tool-tip-help"
+                         matTooltip={{help.defintion}}>
+                </fa-icon>
+                {{help.name}}
+            </div>
+            <hr>
+
+            <div data-test-id="stat"
+                 class="stat"
+                 matTooltipClass="tool-tip-help"
+                 matTooltip={{help.defintion}}>
+                {{stat}}<span *ngIf="help.showPercent">%</span>
+            </div>
+
+            <div data-test-id="formula-expanded"
+                 class="formula">
+                <ng-content></ng-content>
+            </div>
+
+            <div data-test-id="formula"
+                 class="formula">{{help.formula}}</div>
+
+        </div>
+
+    </mat-card-content>
+</mat-card>

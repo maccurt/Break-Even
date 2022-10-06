@@ -2,9 +2,19 @@
 @import "./styles/chart.styles.scss";
 @import "./styles/form.styles.scss";
 
-.stat-formula {
+.gross-profit-percent-section {
+    fa-icon {
+        color: green;
+    }
+}
+.break-even-units-section {
+    fa-icon {
+        color: blue;
+    }
+}
 
-    fa-icon{
+.stat-formula {
+    fa-icon {
         font-size: x-large;
     }
 

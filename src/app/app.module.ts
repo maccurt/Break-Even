@@ -9,12 +9,14 @@ import { BreakEvenComponent } from './break-even/break-even.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { StatSectionComponent } from './stat-section/stat-section.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BreakEvenComponent,
-    HomeComponent
+    HomeComponent,
+    StatSectionComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,5 @@
 import { HelpService } from './../help/help.service';
 import { IconService } from './../icon/icon.service';
-import { IconModule } from './../icon/icon.module';
 import { UnitIncomeStatement } from './../unit-income-statement.class';
 import { ProfitAnalysisService } from '../profitAnalysis.service';
 import { Component } from '@angular/core';
@@ -8,7 +7,6 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { revenueVariableExpenseValidator } from '../validators/revenue-variable-expense.validator';
 import { PieChartData, ProfitDreamerChartService } from '../chart.service';
 import * as Highcharts from 'highcharts';
-import { faHouse } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-break-even',
@@ -86,12 +84,10 @@ export class BreakEvenComponent {
         { name: 'Variable Expense', y: this.incomeStatement.variableExpense, color: '#ffcccc' },
         { name: 'Fixed Expense', y: this.incomeStatement.fixedExpense, color: '#ffe6cc' },
         { name: 'Taxes', y: this.incomeStatement.incomeTax, color: '#cce0ff' },
-        { name: 'Net Income', y: this.incomeStatement.netIncome, color: '#4d4d4d', sliced: true },
-
+        { name: 'Net Income', y: this.incomeStatement.netIncome, color: '#4d4d4d', sliced: true }
       ];
 
       this.chartOptions = this.chartService.pieChartOptions('Revenue Break Down', data);
-
     }
     else {
       this.showErrors = true;
