@@ -1,12 +1,10 @@
-<mat-card>
-    <!--TODO make this a compoment -->
-    <mat-card-content data-test-id="gross-profit-percent-section">
-
+<mat-card>    
+    <mat-card-content >
         <div class="stat-formula">
 
             <div data-test-id="title"
                  class="title">
-                <fa-icon [icon]="icon"
+                <fa-icon [icon]="help.icon"
                          matTooltipClass="tool-tip-help"
                          matTooltip={{help.defintion}}>
                 </fa-icon>
@@ -18,7 +16,7 @@
                  class="stat"
                  matTooltipClass="tool-tip-help"
                  matTooltip={{help.defintion}}>
-                {{stat}}%
+                {{stat}}<span *ngIf="help.showPercent">%</span>
             </div>
 
             <div data-test-id="formula-expanded"

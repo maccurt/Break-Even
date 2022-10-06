@@ -211,61 +211,33 @@
         <div *ngIf="incomeStatement"
              class="col-12 col-md-9 col-lg-6 col-xl-5 col-xxl-4">
             <div class="stat-container">
+
+                <app-stat-section class="gross-profit-percent-section"
+                                  data-test-id="gross-profit-percent-section"
+                                  [help]="help.grossProfitPercent"
+                                  [stat]="incomeStatement.grossProfitPercent">
+                    ({{incomeStatement.revenue |number:'1.2-2'}} -
+                    {{incomeStatement.expenseTotal |number:'1.2-2' }}) / {{incomeStatement.revenue
+                    |number:'1.2-2' }}
+                </app-stat-section>
+
+                <!-- TODO Write test for this -->
+                <app-stat-section class="break-even-units-section"
+                                  data-test-id="break-even-units-section"
+                                  [help]="help.breakEvenUnits"
+                                  [stat]="incomeStatement.breakEvenUnits">
+                    {{incomeStatement.fixedExpense |number:'1.2-2'}} /
+                    ({{incomeStatement.revenuePerUnit |number:'1.2-2' }} - {{incomeStatement.variableExpensePerUnit
+                    |number:'1.2-2' }})
+                </app-stat-section>
+
                 <mat-card>
                     <div class="chart-container">
                         <highcharts-chart [Highcharts]="Highcharts"
                                           [options]="chartOptions"></highcharts-chart>
                     </div>
                 </mat-card>
-
-                <app-stat-section data-test-id="gross-profit-section" [icon]="icons.grossProfitPercent"
-                                  [help]="help.grossProfitPercent"
-                                  [stat]="incomeStatement.grossProfitPercent">
-
-                    ({{incomeStatement.revenue |number:'1.2-2'}} -
-                    {{incomeStatement.expenseTotal |number:'1.2-2' }}) / {{incomeStatement.revenue
-                    |number:'1.2-2' }}
-                </app-stat-section>
-
-                <!-- <mat-card>
-                    <mat-card-content data-test-id="gross-profit-percent-section">
-
-                        <div class="stat-formula">
-
-                            <div data-test-id="title"
-                                 class="title">
-                                <fa-icon [icon]="icons.grossProfitPercent"
-                                         matTooltipClass="tool-tip-help"
-                                         matTooltip={{help.grossProfitPercent.defintion}}>
-                                </fa-icon>
-                                Gross Profit Percent
-                            </div>
-                            <hr>
-
-                            <div data-test-id="stat"
-                                 class="stat"
-                                 matTooltipClass="tool-tip-help"
-                                 matTooltip={{help.grossProfitPercent.defintion}}>
-                                {{incomeStatement.grossProfitPercent}}%
-                            </div>
-
-                            <div data-test-id="formula-expanded"
-                                 class="formula">
-                                ({{incomeStatement.revenue |number:'1.2-2'}} -
-                                {{incomeStatement.expenseTotal |number:'1.2-2' }}) / {{incomeStatement.revenue
-                                |number:'1.2-2' }}
-                            </div>
-
-                            <div data-test-id="formula"
-                                 class="formula">{{help.grossProfitPercent.formula}}</div>
-
-                        </div>
-
-                    </mat-card-content>
-                </mat-card> -->
-
             </div>
-
         </div>
     </div>
     <br>

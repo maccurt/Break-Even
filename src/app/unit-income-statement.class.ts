@@ -12,5 +12,7 @@ export class UnitIncomeStatement {
   incomeTax!: number;  
   netIncomeDesired!:number;
   netIncome!: number;
+  variableExpensePerUnit!: number;
+  revenuePerUnit!: number;
   
 }

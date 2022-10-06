@@ -31,6 +31,8 @@ export class ProfitAnalysisService {
     let breakEvenUnits = this.unitsForGrossProfit(revenuePerUnit, variableExpensePerUnit, fixedExpense, 0);
     const statement = new UnitIncomeStatement();
     statement.breakEvenUnits = breakEvenUnits;
+    statement.revenuePerUnit = revenuePerUnit;
+    statement.variableExpensePerUnit = variableExpensePerUnit;
     statement.revenue = this.round(units * revenuePerUnit);
     statement.variableExpense = this.round(units * variableExpensePerUnit);
     statement.fixedExpense = fixedExpense;

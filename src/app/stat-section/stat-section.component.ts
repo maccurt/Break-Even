@@ -6,11 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './stat-section.component.html',
   styleUrls: ['./stat-section.component.scss']
 })
-export class StatSectionComponent  {
-  @Input() icon:any;
+export class StatSectionComponent  {  
   @Input() help!:Help;
-  @Input() stat!:number;
-  @Input() formulaExpanded!:string;
+  @Input() stat!:number;  
   constructor() { 
 
   }  
