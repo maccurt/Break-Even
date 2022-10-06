@@ -1,7 +1,8 @@
+import { HelpService } from './../help/help.service';
 import { IconService } from './../icon/icon.service';
 import { IconModule } from './../icon/icon.module';
 import { UnitIncomeStatement } from './../unit-income-statement.class';
-import { UnitService } from './../unit.service';
+import { ProfitAnalysisService } from '../profitAnalysis.service';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { revenueVariableExpenseValidator } from '../validators/revenue-variable-expense.validator';
@@ -43,8 +44,9 @@ export class BreakEvenComponent {
   }>;
 
   constructor(private formBuilder: FormBuilder,
-    private unitService: UnitService,
+    private unitService: ProfitAnalysisService,
     private chartService: ProfitDreamerChartService,
+    public help: HelpService,
     public icons: IconService) {
 
     this.formGroup = this.formBuilder.group({
@@ -80,19 +82,19 @@ export class BreakEvenComponent {
       this.incomeStatement = this.unitService.unitsIncomeStatementNetIcome(rpu, ve, fe, ni, taxRate);
 
       let data: PieChartData[] = [
-        
+
         { name: 'Variable Expense', y: this.incomeStatement.variableExpense, color: '#ffcccc' },
         { name: 'Fixed Expense', y: this.incomeStatement.fixedExpense, color: '#ffe6cc' },
         { name: 'Taxes', y: this.incomeStatement.incomeTax, color: '#cce0ff' },
         { name: 'Net Income', y: this.incomeStatement.netIncome, color: '#4d4d4d', sliced: true },
-        
+
       ];
 
       this.chartOptions = this.chartService.pieChartOptions('Revenue Break Down', data);
-      
+
     }
     else {
       this.showErrors = true;
     }
-  };   
+  };
 }

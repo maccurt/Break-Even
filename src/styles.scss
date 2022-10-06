@@ -2,6 +2,36 @@
 @import "./styles/chart.styles.scss";
 @import "./styles/form.styles.scss";
 
+.stat-formula {
+
+    fa-icon{
+        font-size: x-large;
+    }
+
+    hr {
+        margin-bottom: 2px;
+    }
+    .title {
+        font-size: medium;
+        font-weight: 500;
+        fa-icon {
+            margin-right: 5px;
+        }
+    }
+    .stat {
+        font-size: xx-large;
+        font-weight: bold;
+        text-align: center;
+        font-weight: 450;
+    }
+
+    .formula {
+        margin-bottom: 4px;
+        text-align: center;
+        font-weight: 300;
+    }
+}
+
 .tool-tip-help {
     font-size: large;
 }

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class UnitService {
+export class ProfitAnalysisService {
 
   constructor() { }
 
@@ -63,10 +63,10 @@ export class UnitService {
     let cm = revenuePerUnit - variableExpensePerUnit;
     return cm;
   };
-
+  
   grofitPercent = (revenue: number, costOfGoodSold: number): number => {
     let gp = this.round(((revenue - costOfGoodSold) / revenue) * 100);
     return gp;
-  };
+  }; 
 
 }
