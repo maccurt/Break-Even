@@ -1,6 +1,5 @@
 import { HelpService } from './../help/help.service';
 import { IconService } from './../icon/icon.service';
-import { IconModule } from './../icon/icon.module';
 import { UnitIncomeStatement } from './../unit-income-statement.class';
 import { ProfitAnalysisService } from '../profitAnalysis.service';
 import { Component } from '@angular/core';
@@ -8,7 +7,6 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { revenueVariableExpenseValidator } from '../validators/revenue-variable-expense.validator';
 import { PieChartData, ProfitDreamerChartService } from '../chart.service';
 import * as Highcharts from 'highcharts';
-import { faHouse } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-break-even',

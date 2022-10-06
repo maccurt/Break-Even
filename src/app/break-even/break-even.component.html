@@ -218,8 +218,16 @@
                     </div>
                 </mat-card>
 
-                <mat-card>
-                    <!--TODO make this a compoment -->
+                <app-stat-section data-test-id="gross-profit-section" [icon]="icons.grossProfitPercent"
+                                  [help]="help.grossProfitPercent"
+                                  [stat]="incomeStatement.grossProfitPercent">
+
+                    ({{incomeStatement.revenue |number:'1.2-2'}} -
+                    {{incomeStatement.expenseTotal |number:'1.2-2' }}) / {{incomeStatement.revenue
+                    |number:'1.2-2' }}
+                </app-stat-section>
+
+                <!-- <mat-card>
                     <mat-card-content data-test-id="gross-profit-percent-section">
 
                         <div class="stat-formula">
@@ -254,7 +262,7 @@
                         </div>
 
                     </mat-card-content>
-                </mat-card>
+                </mat-card> -->
 
             </div>
 

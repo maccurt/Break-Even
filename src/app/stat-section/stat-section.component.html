@@ -1,0 +1,35 @@
+<mat-card>
+    <!--TODO make this a compoment -->
+    <mat-card-content data-test-id="gross-profit-percent-section">
+
+        <div class="stat-formula">
+
+            <div data-test-id="title"
+                 class="title">
+                <fa-icon [icon]="icon"
+                         matTooltipClass="tool-tip-help"
+                         matTooltip={{help.defintion}}>
+                </fa-icon>
+                {{help.name}}
+            </div>
+            <hr>
+
+            <div data-test-id="stat"
+                 class="stat"
+                 matTooltipClass="tool-tip-help"
+                 matTooltip={{help.defintion}}>
+                {{stat}}%
+            </div>
+
+            <div data-test-id="formula-expanded"
+                 class="formula">
+                <ng-content></ng-content>
+            </div>
+
+            <div data-test-id="formula"
+                 class="formula">{{help.formula}}</div>
+
+        </div>
+
+    </mat-card-content>
+</mat-card>
