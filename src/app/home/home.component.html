@@ -1,20 +1,35 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-12 col-xl-2 ">
-          
+        <div class="col-12 col-xl-4 ">
+
+            <mat-card>
+
+                <mat-card-title>
+                    Use What You Got!
+                </mat-card-title>
+
+                <mat-card-content>
+                    <p style="font-size:larger;line-height: 2">
+                        {{useWhatYouGot}}
+                    </p>
+                </mat-card-content>
+
+            </mat-card>
+
         </div>
 
-        <div class="col-12 col-lg-6 col-xl-5 ">
-          
+        <!-- <div class="col-12 col-lg-6 col-xl-5 ">
+
         </div>
 
         <div class="d-none d-md-block col-md-6 col-xl-5 ">
 
-        </div>
+        </div> -->
     </div>
 </div>
 
+<br><br>
 
 <div id="the-vision">
 
@@ -23,16 +38,17 @@
         <div class="row">
             <div class="offset-xl-0 col-11 col-md-6 col-xl-4 col-xxl-3">
 
-                <h3>Does It Have Value?</h3>
+                <h3>Use What You Got!</h3>
                 <hr>
                 <p class="p-wrapper">
-                    <fa-icon class="fa-4x" [icon]="icons.goalsTaskIcon"></fa-icon>
+                    <fa-icon class="fa-4x"
+                             [icon]="icons.useWhatYouGot"></fa-icon>
                     <br>
-                    Get off your ass to perform the tasks to complete your goals.
+                    {{useWhatYouGot}}
                 </p>
             </div>
 
-            <div class="col-11 col-md-6 col-xl-4 col-xxl-3">
+            <!-- <div class="col-11 col-md-6 col-xl-4 col-xxl-3">
                 <h3>The 20 Minute Rule!</h3>
                 <hr>
                 <p class="p-wrapper">
@@ -50,10 +66,10 @@
                     <br>
                     Try something, measure your progress and learn.
                 </p>
-            </div>
+            </div> -->
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="offset-xl-3 col-11 col-md-6 col-xl-4 col-xxl-3">
 
                 <h3>No Time Wasting</h3>
@@ -128,6 +144,6 @@
 
             </div>
 
-        </div>
+        </div> -->
     </div>
 </div>
