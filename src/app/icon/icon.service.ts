@@ -3,13 +3,13 @@ import {
     faCheckSquare, faTrashAlt, faArrowAltCircleLeft,
     faArrowAltCircleRight, faPlusSquare, faSmile,
     faCalendarCheck,
-    faWindowClose, faQuestionCircle
+    faWindowClose, faQuestionCircle, faClock, faCalendarTimes
 } from '@fortawesome/free-regular-svg-icons';
 import {
     faGraduationCap, faFrog, faChalkboardTeacher,
     faGlassCheers, faCircle, faArrowDown, faArrowUp, faEllipsisH,
     faTasks, faPencilAlt, faBug, faSearchDollar, faVial, faExpandArrowsAlt,
-    faBrain, faInfoCircle, faClipboardList, faChartPie,faSackDollar, faScaleBalanced, faScrewdriverWrench,
+    faBrain, faInfoCircle, faClipboardList, faChartPie,faSackDollar, faScaleBalanced, faScrewdriverWrench, faTicket,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
@@ -24,6 +24,7 @@ export class IconService {
     learnIcon = faGraduationCap;
     planning = faBrain;
     wartsAndAllIcon = faFrog;
+    twentyMinuteRule  = faCalendarTimes;
     experimentLearnIcon = faChalkboardTeacher;
     goalsTaskIcon = faCheckSquare;
     celebrate = faGlassCheers;
