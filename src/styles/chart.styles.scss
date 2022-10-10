@@ -6,6 +6,7 @@
         .highcharts-container,
         .highcharts-container svg {
             width: 425px;
+            height: 250px;           
 
             @include for-medium-and-below() {
                 width: 475px;

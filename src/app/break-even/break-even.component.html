@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container-float">
 
-    <div class="row">
-        <div class="col-12 col-md-9 col-lg-6 col-xl-5 col-xxl-4 mb-5">
+    <div class="row  justify-content-center">
+        <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
 
             <mat-card>
                 <mat-card-title>Unit Profit Analysis</mat-card-title>
@@ -122,121 +122,128 @@
             </mat-card>
         </div>
 
-        <div *ngIf="incomeStatement"
-             class="col-12 col-md-9 col-lg-6 col-xl-5 col-xxl-4 mb-5 ">
+        <div 
+             class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5 ">
 
-            <mat-card style="margin-bottom:15px;">
-                <mat-card-content>
-                    <div data-test-id="unit-profit-analysis-unit">
-                        <h3>
-                            <div *ngIf="incomeStatement.netIncomeDesired> 0">
-                                {{incomeStatement.units | number}} Units To Make A Net Income Of
-                                ${{incomeStatement.netIncomeDesired |number:'1.2-2' }}.
+            <div  *ngIf="incomeStatement">
 
-                            </div>
+                <mat-card style="margin-bottom:15px;">
+                    <mat-card-content>
+                        <div data-test-id="unit-profit-analysis-unit">
+                            <h3>
+                                <div *ngIf="incomeStatement.netIncomeDesired> 0">
+                                    {{incomeStatement.units | number}} Units To Make A Net Income Of
+                                    ${{incomeStatement.netIncomeDesired |number:'1.2-2' }}.
 
-                            <div *ngIf="incomeStatement.netIncomeDesired === 0">
-                                {{incomeStatement.units | number}} Units To Break Even.
-                            </div>
+                                </div>
 
-                        </h3>
-                    </div>
-                </mat-card-content>
-            </mat-card>
+                                <div *ngIf="incomeStatement.netIncomeDesired === 0">
+                                    {{incomeStatement.units | number}} Units To Break Even.
+                                </div>
 
-            <mat-card>
-                <mat-card-title>Income Statement</mat-card-title>
-                <mat-card-content>
-                    <table data-test-id="unit-income-statement"
-                           class="table table-striped">
-
-                        <tbody>
-                            <tr class="total border-2">
-                                <td>Revenue</td>
-                                <td> <span data-test-id="revenue"> ${{incomeStatement.revenue
-                                        |number:'1.2-2'}}</span>
-                                </td>
-
-                            </tr>
-                            <tr class="sub-total">
-                                <td class="indent">+ Variable Expense</td>
-                                <td><span data-test-id="variable-expense"> {{incomeStatement.variableExpense
-                                        |number:'1.2-2'}}</span></td>
-
-                            </tr>
-
-                            <tr class="sub-total border-2">
-                                <td class="indent">+ Fixed Expense</td>
-                                <td><span data-test-id="fixed-expense"> {{incomeStatement.fixedExpense
-                                        |number:'1.2-2'}}</span></td>
-
-                            </tr>
-
-                            <tr class="total border-2">
-                                <td>Expense</td>
-                                <td><span data-test-id="expense-total"> ${{incomeStatement.expenseTotal
-                                        |number:'1.2-2'}}</span></td>
-
-                            </tr>
-
-                            <tr class="total border-2 ">
-                                <td>Gross Profit</td>
-                                <td><span data-test-id="gross-profit">
-                                        ${{incomeStatement.grossProfit|number:'1.2-2'}}</span></td>
-                            </tr>
-
-
-                            <tr class="sub-total border-2">
-                                <td class="indent">
-                                    - Income Tax <span class="tax-rate-percent"
-                                          data-test-id="tax-rate-percent">
-                                        {{incomeStatement.taxRatePercent}}%</span> </td>
-                                <td><span data-test-id="income-tax">
-                                        {{incomeStatement.incomeTax|number:'1.2-2'}}</span></td>
-                            </tr>
-
-                            <tr class="total ">
-                                <td>Net Income</td>
-                                <td><span data-test-id="net-income">
-                                        ${{incomeStatement.netIncome|number:'1.2-2'}}</span></td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                </mat-card-content>
-
-            </mat-card>
-        </div>
-
-        <div *ngIf="incomeStatement"
-             class="col-12 col-md-9 col-lg-6 col-xl-5 col-xxl-4">
-            <div class="stat-container">
-
-                <app-stat-section class="gross-profit-percent-section"
-                                  data-test-id="gross-profit-percent-section"
-                                  [help]="help.grossProfitPercent"
-                                  [stat]="incomeStatement.grossProfitPercent">
-                    ({{incomeStatement.revenue |number:'1.2-2'}} -
-                    {{incomeStatement.expenseTotal |number:'1.2-2' }}) / {{incomeStatement.revenue
-                    |number:'1.2-2' }}
-                </app-stat-section>
-
-                <!-- TODO Write test for this -->
-                <app-stat-section class="break-even-units-section"
-                                  data-test-id="break-even-units-section"
-                                  [help]="help.breakEvenUnits"
-                                  [stat]="incomeStatement.breakEvenUnits">
-                    {{incomeStatement.fixedExpense |number:'1.2-2'}} /
-                    ({{incomeStatement.revenuePerUnit |number:'1.2-2' }} - {{incomeStatement.variableExpensePerUnit
-                    |number:'1.2-2' }})
-                </app-stat-section>
+                            </h3>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
 
                 <mat-card>
+                    <mat-card-title>Income Statement</mat-card-title>
+                    <mat-card-content>
+                        <table data-test-id="unit-income-statement"
+                               class="table table-striped">
+
+                            <tbody>
+                                <tr class="total border-2">
+                                    <td>Revenue</td>
+                                    <td> <span data-test-id="revenue"> ${{incomeStatement.revenue
+                                            |number:'1.2-2'}}</span>
+                                    </td>
+
+                                </tr>
+                                <tr class="sub-total">
+                                    <td class="indent">+ Variable Expense</td>
+                                    <td><span data-test-id="variable-expense"> {{incomeStatement.variableExpense
+                                            |number:'1.2-2'}}</span></td>
+
+                                </tr>
+
+                                <tr class="sub-total border-2">
+                                    <td class="indent">+ Fixed Expense</td>
+                                    <td><span data-test-id="fixed-expense"> {{incomeStatement.fixedExpense
+                                            |number:'1.2-2'}}</span></td>
+
+                                </tr>
+
+                                <tr class="total border-2">
+                                    <td>Expense</td>
+                                    <td><span data-test-id="expense-total"> ${{incomeStatement.expenseTotal
+                                            |number:'1.2-2'}}</span></td>
+
+                                </tr>
+
+                                <tr class="total border-2 ">
+                                    <td>Gross Profit</td>
+                                    <td><span data-test-id="gross-profit">
+                                            ${{incomeStatement.grossProfit|number:'1.2-2'}}</span></td>
+                                </tr>
+
+
+                                <tr class="sub-total border-2">
+                                    <td class="indent">
+                                        - Income Tax <span class="tax-rate-percent"
+                                              data-test-id="tax-rate-percent">
+                                            {{incomeStatement.taxRatePercent}}%</span> </td>
+                                    <td><span data-test-id="income-tax">
+                                            {{incomeStatement.incomeTax|number:'1.2-2'}}</span></td>
+                                </tr>
+
+                                <tr class="total ">
+                                    <td>Net Income</td>
+                                    <td><span data-test-id="net-income">
+                                            ${{incomeStatement.netIncome|number:'1.2-2'}}</span></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </mat-card-content>
+
+                </mat-card>
+
+                <mat-card style="height:275px; margin-top: 20px;">
                     <div class="chart-container">
                         <highcharts-chart [Highcharts]="Highcharts"
                                           [options]="chartOptions"></highcharts-chart>
                     </div>
                 </mat-card>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-3">
+            <div class="row"
+                 *ngIf="incomeStatement">
+
+                <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
+                    <app-stat-section class="gross-profit-percent-section"
+                                      data-test-id="gross-profit-percent-section"
+                                      [help]="help.grossProfitPercent"
+                                      [stat]="incomeStatement.grossProfitPercent">
+                        ({{incomeStatement.revenue |number:'1.2-2'}} -
+                        {{incomeStatement.expenseTotal |number:'1.2-2' }}) / {{incomeStatement.revenue
+                        |number:'1.2-2' }}
+                    </app-stat-section>
+                </div>
+
+                <div class="col-12 col-xl-6 col-md-12 col-lg-6 col-xl-12">
+                    <app-stat-section class="break-even-units-section"
+                                      data-test-id="break-even-units-section"
+                                      [help]="help.breakEvenUnits"
+                                      [stat]="incomeStatement.breakEvenUnits">
+                        {{incomeStatement.fixedExpense |number:'1.2-2'}} /
+                        ({{incomeStatement.revenuePerUnit |number:'1.2-2' }} - {{incomeStatement.variableExpensePerUnit
+                        |number:'1.2-2' }})
+                    </app-stat-section>
+                </div>
+
             </div>
         </div>
     </div>
