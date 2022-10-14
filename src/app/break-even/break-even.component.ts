@@ -64,6 +64,7 @@ export class BreakEvenComponent {
 
   isVariableExpenseValid = (control: AbstractControl): boolean => {
 
+    //TODO remove this magic string out of here
     return this.isInvalid(control) ||
       (control.touched && this.formGroup.errors && this.formGroup.errors['variableExpenseError']);
   };
@@ -71,6 +72,7 @@ export class BreakEvenComponent {
   submit = () => {
     if (this.formGroup.valid) {
       this.showErrors = false;
+      
       let rpu = this.formGroup.value.revenuePerUnit!;
       let ve = this.formGroup.value.variableExpense!;
       let fe = this.formGroup.value.fixedExpense!;

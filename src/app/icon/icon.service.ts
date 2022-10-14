@@ -9,7 +9,7 @@ import {
     faGraduationCap, faFrog, faChalkboardTeacher,
     faGlassCheers, faCircle, faArrowDown, faArrowUp, faEllipsisH,
     faTasks, faPencilAlt, faBug, faSearchDollar, faVial, faExpandArrowsAlt,
-    faBrain, faInfoCircle, faClipboardList, faChartPie,faSackDollar, faScaleBalanced, faScrewdriverWrench, faTicket,
+    faBrain, faInfoCircle, faClipboardList, faChartPie,faSackDollar, faScaleBalanced, faScrewdriverWrench, faTicket, faMagnifyingGlassDollar,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
@@ -24,7 +24,8 @@ export class IconService {
     learnIcon = faGraduationCap;
     planning = faBrain;
     wartsAndAllIcon = faFrog;
-    twentyMinuteRule  = faCalendarTimes;
+    twentyMinuteRule  = faClock;
+    doesItHaveValue = faMagnifyingGlassDollar;
     experimentLearnIcon = faChalkboardTeacher;
     goalsTaskIcon = faCheckSquare;
     celebrate = faGlassCheers;
