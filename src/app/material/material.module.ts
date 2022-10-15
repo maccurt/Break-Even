@@ -6,7 +6,7 @@ import { MatTooltipDefaultOptions, MatTooltipModule, MAT_TOOLTIP_DEFAULT_OPTIONS
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const toolTipDefault: MatTooltipDefaultOptions = {
-  showDelay: 500,
+  showDelay: 750,
   hideDelay: 500,
   touchendHideDelay: 100
 };

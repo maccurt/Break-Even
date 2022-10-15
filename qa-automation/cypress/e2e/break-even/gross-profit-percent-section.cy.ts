@@ -1,5 +1,4 @@
 import { enterProfitAnalysisForm } from "./baselineUnitAnalyisInput";
-
 describe('gross-profit-percent-section', () => {
 
     before(() => {
@@ -27,14 +26,12 @@ describe('gross-profit-percent-section', () => {
     });
 
     it('formula result', () => {
-        cy.get('@section').getDataTestId('formula-expanded').invoke('text').then((text) => {
-            expect(text.trim()).to.eq('(732,400.00 - 640,075.00) / 732,400.00');
-        });
+        cy.get('@section').getDataTestId('formula-expanded')
+            .textShouldEqual('(732,400.00 - 640,075.00) / 732,400.00');
     });
 
     it('formula from help should be correct', () => {
-        cy.get('@section').getDataTestId('formula').invoke('text').then((text) => {
-            expect(text.trim()).to.eq('(revenue - expense) / revenue');
-        });
+        cy.get('@section').getDataTestId('formula')
+            .textShouldEqual('(revenue - expense) / revenue');
     });
 });

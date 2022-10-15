@@ -1,3 +1,5 @@
+
+import { HomeModule } from './home-domain/home.module';
 import { MaterialModule } from './material/material.module';
 import { IconModule } from './icon/icon.module';
 import { NgModule } from '@angular/core';
@@ -7,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BreakEvenComponent } from './break-even/break-even.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
+
 import { HighchartsChartModule } from 'highcharts-angular';
 import { StatSectionComponent } from './stat-section/stat-section.component';
 
@@ -15,7 +17,6 @@ import { StatSectionComponent } from './stat-section/stat-section.component';
   declarations: [
     AppComponent,
     BreakEvenComponent,
-    HomeComponent,
     StatSectionComponent
   ],
   imports: [
@@ -25,7 +26,8 @@ import { StatSectionComponent } from './stat-section/stat-section.component';
     BrowserAnimationsModule,
     MaterialModule,
     HighchartsChartModule,
-    IconModule
+    IconModule, 
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
