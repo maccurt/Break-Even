@@ -4,9 +4,9 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'test', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },  
   { path: 'home', component: HomeComponent },
-  { path: 'break-even', component: BreakEvenComponent },
+  { path: 'unit-profit', component: BreakEvenComponent },  
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 

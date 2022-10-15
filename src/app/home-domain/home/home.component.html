@@ -1,27 +1,33 @@
 <div id="home-container">
 
-    <div class="container-fluid" id="home-top-container">
+    <div class="container-fluid"
+         id="home-top-container">
 
-        <div class="row">          
-
-
-            <div id="logo-container" class="offset-xl-1 offset-xxl-2 col-md-8 col-lg-6 ">                
+        <div class="row">
+            <div id="logo-container"
+                 class="offset-xl-1 offset-xxl-2 col-md-8 col-lg-6 ">
 
                 <br>
-                <div class="container-title">PROFIT DREAMER</div>                
+                <div class="container-title">PROFIT DREAMER</div>
                 <br>
                 <br>
-                <a id="ebay-profit-analysis-link" href="#"  class="btn btn-outline-primary"
-                    routerLink="/ebay-profit-analysis">Ebay Profit Analysis</a>
+                <a date-test-id="profit-analysis"
+                   href="#"
+                   class="btn btn-outline-primary"
+                   routerLink="/unit-profit">Unit Profit</a>
 
-                <a id="credit-card-link" href="#"  class="btn btn-outline-primary"
-                    routerLink="/credit-card-calculator">Credit Card
+                <!-- <a id="credit-card-link"
+                   href="#"
+                   class="btn btn-outline-primary"
+                   routerLink="/credit-card-calculator">Credit Card
                     Calculator</a>
 
-                <a id="mortgage-link" href="#"  class="btn btn-outline-primary"
-                    routerLink="/mortgage-payoff-calculator">Mortgage
+                <a id="mortgage-link"
+                   href="#"
+                   class="btn btn-outline-primary"
+                   routerLink="/mortgage-payoff-calculator">Mortgage
                     Payoff
-                    Calculator</a>
+                    Calculator</a> -->
             </div>
         </div>
 
@@ -33,7 +39,8 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-12" style="text-align: center;">
+            <div class="col-12"
+                 style="text-align: center;">
                 <br>
                 <div class="container-title">Press Toward The Mark</div>
             </div>
@@ -46,7 +53,9 @@
             <div class="offset-xl-3 col-11  col-md-6 col-xl-4 col-xxl-3 ">
                 <h3>Financial Emancipation</h3>
                 <p class="paragraph-wraper">
-                    <i class="fa fa-university fa-4x" aria-hidden="true"></i>
+                    <fa-icon [icon]="icons.financialEmancipation"
+                             size="4x"></fa-icon>
+
                     The rich rule over the poor, and the borrower is slave to the lender. Our goal is to help
                     individuals break the manacles of debt with online financial calculators designed to educate,
                     equip and encourage.We want to help you achieve financial emancipation
@@ -56,7 +65,9 @@
             <div class="col-12  col-md-6 col-xl-4 col-xxl-3">
                 <h3>Motivation </h3>
                 <p class="paragraph-wraper">
-                    <i class="fa fa-bullhorn fa-4x" aria-hidden="true"></i>
+                    <fa-icon [icon]="icons.motivation"
+                             size="4x"></fa-icon>
+
                     Our passion is educating, equipping and encouraging others to chase down their dreams. <b> “Press
                         Toward The Mark”</b> is our motivational battle cry when we charge into the fray. Arise, users
                     of Profit Dreamer. Fell tasks awake, fire and slaughter.
@@ -70,7 +81,10 @@
             <div class="offset-xl-3 col-12  col-md-6 col-xl-4 col-xxl-3 ">
                 <h3>Task Based Goals</h3>
                 <p class="paragraph-wraper">
-                    <i class="fa fa fa-cogs fa-4x" aria-hidden="true"></i>
+
+                    <fa-icon [icon]="icons.taskBasedGoals"
+                             size="4x"></fa-icon>
+
                     We are very task oriented and have an insatiable need to make incremental progress that leads to the
                     completion of a bigger goal. Expect a lot of ideas around finding ways to get stuff done and
                     released for feedback. Warts and all.
@@ -80,7 +94,10 @@
             <div class="col-12 col-md-6 col-xl-4 col-xxl-3 ">
                 <h3> Technology</h3>
                 <p class="paragraph-wraper">
-                    <i class="fa  fa-code fa-4x " aria-hidden="true"></i>
+
+                    <fa-icon [icon]="icons.technology"
+                             size="4x"></fa-icon>
+
                     Technology is how we communicate and deliver our products. Educating others in its use is
                     a priority for us. We will be transparent about our technology stack and will share our process from
                     design to implementation, Warts and all.

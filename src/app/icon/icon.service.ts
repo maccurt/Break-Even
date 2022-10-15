@@ -9,13 +9,17 @@ import {
     faGraduationCap, faFrog, faChalkboardTeacher,
     faGlassCheers, faCircle, faArrowDown, faArrowUp, faEllipsisH,
     faTasks, faPencilAlt, faBug, faSearchDollar, faVial, faExpandArrowsAlt,
-    faBrain, faInfoCircle, faClipboardList, faChartPie,faSackDollar, faScaleBalanced, faScrewdriverWrench, faTicket, faMagnifyingGlassDollar,
+    faBrain, faInfoCircle, faClipboardList, faChartPie,faSackDollar, faScaleBalanced, faScrewdriverWrench, faTicket, faMagnifyingGlassDollar, faCode, faCog, faBullhorn, faUniversity,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
     providedIn: 'root'
 })
 export class IconService {
+    financialEmancipation = faUniversity;
+    motivation = faBullhorn;
+    taskBasedGoals = faCog;
+    technology = faCode;
     useWhatYouGot = faScrewdriverWrench;
     breakEvenUnits = faScaleBalanced;
     grossProfitPercent =faSackDollar;
