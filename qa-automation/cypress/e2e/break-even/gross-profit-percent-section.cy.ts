@@ -1,5 +1,4 @@
 import { enterProfitAnalysisForm } from "./baselineUnitAnalyisInput";
-
 describe('gross-profit-percent-section', () => {
 
     before(() => {

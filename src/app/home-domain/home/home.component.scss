@@ -1,36 +1,98 @@
+@import '../../../styles/variables';
 
-.chart{
-    height: 250px;          
+.video-col{   
+
+    margin-bottom: 40px;
+
+    @include for-xsmall(){
+        text-align: center;
+
+        .video{
+            margin-bottom: 40px;
+        }
+    }     
+
 }
 
+.container-title{            
+        letter-spacing: 2px;
+        font-size: 3rem;
+        font-weight: bold;        
+        padding-bottom: 0px;
 
-.card-body{
-    padding: 0px;
+        @include for-xsmall(){
+            font-size: 2rem;
+        }    
 }
-.card-title{
-    background-color: #ff4dff;
+
+#home-top-container{
+
+    background-color:white;
+    display: block;
+    background-repeat: no-repeat;
+    background-position:right ;  
+    @include for-medium(){        
+        background-image: url( "../../assets/images/home/background/medium.jpg");
+    }    
+
+    @include for-large(){
+        background-image: url( "../../assets/images/home/background/medium.jpg");
+    }    
+
+    @include for-xl-large-and-above(){
+        background-image: url( "../../assets/images/home//background/xlarge.jpg");       
+    }           
+
+    #logo-container{
+        text-align: center;
+
+        a{
+            margin-bottom: 15px;
+            margin-right:20px
+        }
+        
+        @include for-medium(){
+            text-align:left;
+        }        
+
+        @include for-xsmall(){
+            a{
+                width: 100%;                
+            }
+        }            
+    }    
+
+    height: 350px;
+
+
+    @include for-xsmall(){
+        height:100%;
+        padding-bottom: 20px;
+    }
+
+    @include for-small(){
+        height:100%;        
+        padding-bottom: 20px;
+    }    
 }
 
+#container-1{
+    background-color: #2E8B57;
+    background-color: #2E8B57;
+    background-color: #0b68a1;    
+    color:white;
+    min-height: 700px;    
+}
 
-.sub-title{
-    font-size: 2.3rem;    
+#container-2{
+    // height: 100vh;
+    background-color:white;    
     color:white;
 }
 
-
-#the-vision{
-    background-color: #001a1a;
-    color: white;
-
+.paragraph-wraper{
+    i{
+        float:left;
+        margin:0px 15px 7px 0px ;
+    }
 }
-
-
-//TODO this if we are not using, move to title-paragraph
-// .p-wrapper{
-//     fa-icon{
-//         float:left;
-//         margin:0px 15px 7px 0px ;
-//         color:white;
-//         line-height:1.7em;
-//     }
-// }

@@ -1,3 +1,4 @@
+
 import { HomeModule } from './home-domain/home.module';
 import { MaterialModule } from './material/material.module';
 import { IconModule } from './icon/icon.module';
@@ -25,7 +26,8 @@ import { StatSectionComponent } from './stat-section/stat-section.component';
     BrowserAnimationsModule,
     MaterialModule,
     HighchartsChartModule,
-    IconModule, HomeModule
+    IconModule, 
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
