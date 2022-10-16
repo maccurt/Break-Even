@@ -1,4 +1,4 @@
-
+import { CreditCardModule } from './credit-card/credit-card.module';
 import { HomeModule } from './home-domain/home.module';
 import { MaterialModule } from './material/material.module';
 import { IconModule } from './icon/icon.module';
@@ -9,15 +9,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BreakEvenComponent } from './break-even/break-even.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { HighchartsChartModule } from 'highcharts-angular';
 import { StatSectionComponent } from './stat-section/stat-section.component';
+import { CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     BreakEvenComponent,
-    StatSectionComponent
+    StatSectionComponent    
   ],
   imports: [
     BrowserModule,
@@ -26,10 +26,11 @@ import { StatSectionComponent } from './stat-section/stat-section.component';
     BrowserAnimationsModule,
     MaterialModule,
     HighchartsChartModule,
-    IconModule, 
-    HomeModule
-  ],
-  providers: [],
+    IconModule,
+    HomeModule,
+    CreditCardModule
+  ],  
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

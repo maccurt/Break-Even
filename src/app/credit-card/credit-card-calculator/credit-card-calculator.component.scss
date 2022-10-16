@@ -1,0 +1,25 @@
+@import '../../../styles/variables';
+
+.card-body{        
+    padding-top:2px; 
+}
+
+#fixed-payment-container{
+    margin-top: 7px;
+}
+
+#minimum-payment-type{
+    width: 235px;
+}
+
+#payment-type-container{    
+    .form-check{
+        margin-bottom: 5px;
+    }
+    margin-bottom: 5px;    
+}
+#schedule-list-container
+{    
+    height: 621px !important;  
+    
+}

@@ -1,0 +1,11 @@
+<div class="form-group">
+    <label id="minimum-payment-type-label" for="minimum-payment-type">How is minimum payment
+        calculated?</label>
+    <select id='minimum-payment-type' formControlName="minimumPaymentType"
+        class='form-control'>
+        <option *ngFor='let m of minimumPaymentTypeList' [ngValue]='m'>{{m.text}}</option>
+    </select>
+    <div class='input-error'>
+        <!-- Just for space -->
+    </div>
+</div>
