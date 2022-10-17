@@ -18,8 +18,7 @@ const routes: Routes = [
     RouterModule    
   ],
   exports: [
-    HomeComponent,
-    
+    HomeComponent    
   ]
 })
 export class HomeModule { }

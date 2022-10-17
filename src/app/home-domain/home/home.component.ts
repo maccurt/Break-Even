@@ -9,7 +9,5 @@ import { IconService } from 'src/app/icon/icon.service';
 })
 export class HomeComponent {
 
-  
-
   constructor(public icons: IconService) { }
 }

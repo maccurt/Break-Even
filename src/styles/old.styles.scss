@@ -1,0 +1,33 @@
+// these are old styles you copied from the old profitdreamer
+//TODO consider where you to put them
+.size-1{      
+    font-size: 2.0rem;
+    @include for-small(){ }
+    @include for-medium(){}
+}
+
+.size-2{ 
+     font-size: 1.5rem;
+     @include for-medium(){
+        font-size: 1.3rem;        
+    }
+}
+
+.size-3{  
+    font-size: 1rem;
+}
+
+.result-displayed-here-container {
+    text-align: center;
+    color: #e6e6e6;
+}
+
+.total-label {
+    font-weight: bold;
+    color: #355610;
+    margin-bottom: 10px;
+}
+
+.card-value {
+    font-weight: bold;
+}

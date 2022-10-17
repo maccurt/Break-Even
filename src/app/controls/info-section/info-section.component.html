@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-content>
+        <div class="stat-formula">
+            <div data-test-id="title"
+                 class="title">
+                <fa-icon [icon]="help.icon"
+                         class={{help.iconClass}}
+                         matTooltipClass="tool-tip-help"
+                         matTooltip={{help.defintion}}>
+                </fa-icon>
+                {{help.name}}
+            </div>
+            <hr>
+
+            <div data-test-id="stat"
+                 class="stat"
+                 matTooltipClass="tool-tip-help"
+                 matTooltip={{help.defintion}}>
+                {{stat}}
+            </div>
+
+            <div data-test-id="text"
+                 class="text">
+                <ng-content></ng-content>
+            </div>
+
+        </div>
+
+    </mat-card-content>
+</mat-card>

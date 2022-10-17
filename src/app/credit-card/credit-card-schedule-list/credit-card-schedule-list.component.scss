@@ -1,0 +1,8 @@
+@import '../../../styles/variables';
+
+.table-schedule-list{
+    font-size:1.125rem;
+    @include for-xsmall(){
+        font-size: .90rem;    
+    }
+}

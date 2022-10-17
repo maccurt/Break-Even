@@ -1,12 +1,32 @@
 @import "../styles/variables";
 .chart-container {
     // https://github.com/highcharts/highcharts/issues/6427
+    height: 275px !important;
 
     highcharts-chart {
         .highcharts-container,
         .highcharts-container svg {
             width: 425px;
             height: 250px;           
+
+            @include for-medium-and-below() {
+                width: 475px;
+            }
+        }
+    }
+}
+
+
+.chart-container-2 {
+    // https://github.com/highcharts/highcharts/issues/6427
+    height: 175px;
+    border: 1px solid red;
+
+    highcharts-chart {
+        .highcharts-container,
+        .highcharts-container svg {
+             width: 300px;
+            height: 150px;           
 
             @include for-medium-and-below() {
                 width: 475px;

@@ -1,4 +1,4 @@
-import { Help } from './../help/help.service';
+import { Help } from "../../help/Help";
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

@@ -1,0 +1,20 @@
+<div *ngIf="scheduleList.length > 0">
+    <table class="table table-sm table-striped table-schedule-list">
+        <tbody>
+            <tr>
+                <th> Period </th>
+                <th> Interest </th>
+                <th> Principal </th>
+                <th>Payment</th>
+                <th> Balance </th>
+            </tr>
+            <tr *ngFor="let item of scheduleList;index as i">
+                <td>{{i+1}}</td>
+                <td>{{item.interest |number :'1.2-2' }}</td>
+                <td>{{item.principal |number :'1.2-2' }}</td>
+                <td>{{item.payment |number :'1.2-2' }}</td>
+                <td>{{item.balanceEnd  |number :'1.2-2'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

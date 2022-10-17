@@ -1,0 +1,47 @@
+<div>
+    <div id="schedule-card"
+         class="card">
+        <div class="card-header">
+            <span class="card-header-icon"><i class="fa fa-pie-chart fa-2x"
+                   aria-hidden="true"></i></span>
+            <span class="card-header-title">Schedule Summary</span>
+        </div>
+        <div class="card-body">
+
+            <div class="total-label size-2">Total Interest</div>
+
+            <div id="payment-total-original"
+                 class="card-value size-1">
+                {{schedule.interest | currency }}
+            </div>
+
+            <hr>
+            <div>
+                <highcharts-chart class="chart-container" >
+                    [options]="chart"
+                    [Highcarts]="Highcarts"
+                </highcharts-chart>
+                <!-- <div class="chart-container" [chart]="chart"></div> -->
+            </div>
+
+            <hr>
+            <div class="total-label size-2">Total Principal + Interest</div>
+
+            <div id="payment-total-original"
+                 class="card-value size-2">
+                {{schedule.paymentTotal | currency }}
+            </div>
+
+            <hr>
+            <div class="total-label size-2">Time To Pay Off Debt</div>
+            <div id="periods-text"
+                 class="card-value size-2">
+                {{schedule.periodsText}}
+            </div>
+            <div>
+                {{schedule.periods}} Months
+            </div>
+
+        </div>
+    </div>
+</div>

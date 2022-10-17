@@ -82,7 +82,6 @@ export class BreakEvenComponent {
       this.incomeStatement = this.unitService.unitsIncomeStatementNetIcome(rpu, ve, fe, ni, taxRate);
 
       let data: PieChartData[] = [
-
         { name: 'Variable Expense', y: this.incomeStatement.variableExpense, color: '#ffcccc' },
         { name: 'Fixed Expense', y: this.incomeStatement.fixedExpense, color: '#ffe6cc' },
         { name: 'Taxes', y: this.incomeStatement.incomeTax, color: '#cce0ff' },
