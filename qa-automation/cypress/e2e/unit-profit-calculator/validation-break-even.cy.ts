@@ -1,7 +1,7 @@
 describe('break-even validation', () => {
 
   before(() => {
-    cy.visit('/break-even');
+    cy.visit('/unit-profit');
   });
 
   describe('revenue per unit', () => {
@@ -111,8 +111,7 @@ describe('break-even validation', () => {
     });
   });
 
-
   it('calulate button should exist', () => {
-    cy.getDataTestId('calculate-break-even').should('exist');
+    cy.getDataTestId('calculate-unit-profit').should('exist');
   });
 });

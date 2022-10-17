@@ -1,7 +1,8 @@
+import { MathService } from './math/math.service';
 import { ProfitAnalysisService } from './profitAnalysis.service';
 
 describe('UnitService', () => {
-  let service = new ProfitAnalysisService();
+  let service = new ProfitAnalysisService(new MathService());
 
   describe('grossProfitByNetIncome', () => {
     it('should calculate correctly', () => {

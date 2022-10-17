@@ -1,3 +1,4 @@
+import { HelpService } from './../../help/help.service';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
@@ -50,7 +51,8 @@ export class CreditCardCalculatorComponent implements OnInit {
   constructor(
     private title: Title, private metaService: MetaService,
     private mathService: MathService, private paymentService: PaymentService,
-    private activatedRoute: ActivatedRoute, private chartService: ProfitDreamerChartService,) {
+    private activatedRoute: ActivatedRoute, private chartService: ProfitDreamerChartService
+    , public help: HelpService) {
     this.title.setTitle('Credit Card Calculator');
     this.metaService.addTitle('Credit Card Calculator');
     this.metaService.addDescription('Calculates your credit card interest and how many years it will take to pay off');
@@ -206,7 +208,7 @@ export class CreditCardCalculatorComponent implements OnInit {
       ];
 
       //TODO where are you using thisn?
-      this.principalInterestChartOriginal = this.chartService.pieChartOptions('',originalChartData);
+      this.principalInterestChartOriginal = this.chartService.pieChartOptions('', originalChartData);
 
       this.showResults = true;
       this.showSummary = true;

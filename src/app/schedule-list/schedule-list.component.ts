@@ -6,11 +6,7 @@ import { ScheduleItem } from '../shared/schedule-item';
   templateUrl: './schedule-list.component.html',
   styleUrls: ['./schedule-list.component.scss']
 })
-export class ScheduleListComponent implements OnInit {
+export class ScheduleListComponent  {
   @Input() scheduleList: ScheduleItem[] = [];
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor() { }  
 }
