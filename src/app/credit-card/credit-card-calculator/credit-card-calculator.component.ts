@@ -7,10 +7,9 @@ import { MetaService } from '../../shared/meta.service';
 import { PaymentService } from '../../shared/payment.service';
 import { ScheduleCompare } from '../../shared/schedule-compare.type';
 import { ActivatedRoute } from '@angular/router';
-import { ChartServiceDeprecated } from '../../shared/chart.service.deprecated';
-
 import { FormInput, FormInputType } from '../../controls/form-input';
-import { Chart } from 'highcharts';
+import * as Highcharts from 'highcharts';
+import { PieChartData, ProfitDreamerChartService } from 'src/app/chart.service';
 
 const extra = 'extra';
 export enum PaymentType {
@@ -25,12 +24,12 @@ export enum PaymentType {
   styleUrls: ['./credit-card-calculator.component.scss']
 })
 export class CreditCardCalculatorComponent implements OnInit {
-  principalInterestChartOriginal!: Chart;
+  principalInterestChartOriginal!: Highcharts.Options;
   // controls
   creditCardFormGroup!: FormGroup;
   balanceControl!: FormInput;
   interestRateControl!: FormControl<any>;
-  minimumPaymentTypeControl!: FormControl;  
+  minimumPaymentTypeControl!: FormControl;
   paymentTypeControl!: FormControl;
   extraPaymentControl!: FormControl;
   fixedPaymentControl!: FormControl;
@@ -51,7 +50,7 @@ export class CreditCardCalculatorComponent implements OnInit {
   constructor(
     private title: Title, private metaService: MetaService,
     private mathService: MathService, private paymentService: PaymentService,
-    private activatedRoute: ActivatedRoute, private chartService: ChartServiceDeprecated) {
+    private activatedRoute: ActivatedRoute, private chartService: ProfitDreamerChartService,) {
     this.title.setTitle('Credit Card Calculator');
     this.metaService.addTitle('Credit Card Calculator');
     this.metaService.addDescription('Calculates your credit card interest and how many years it will take to pay off');
@@ -61,7 +60,6 @@ export class CreditCardCalculatorComponent implements OnInit {
 
     this.minimumPaymentTypeList = this.paymentService.getMinimumPaymentTypeList();
     this.balanceControl = new FormInput(FormInputType.CreditCardBalance);
-    
     this.interestRateControl = new FormInput(FormInputType.CreditCardInterestRate);
     this.minimumPaymentTypeControl = new FormControl(this.minimumPaymentTypeList[0], [Validators.required]);
 
@@ -134,7 +132,7 @@ export class CreditCardCalculatorComponent implements OnInit {
       case PaymentType.MinimumPaymentPlusExtra:
         this.showPaymentInput = false;
         this.fixedPaymentControl.clearValidators();
-        this.fixedPaymentControl.updateValueAndValidity();        
+        this.fixedPaymentControl.updateValueAndValidity();
         this.extraPaymentControl.setValidators([Validators.min(1), Validators.max(99999), Validators.required]);
         this.extraPaymentControl.updateValueAndValidity();
         this.showExtraPayment = true;
@@ -202,7 +200,13 @@ export class CreditCardCalculatorComponent implements OnInit {
           minimumPaymentType.useInterest);
       this.scheduleCompare = this.paymentService.getScheduleCompare(s1, s2);
 
-      this.principalInterestChartOriginal = this.chartService.getPrincipalInterestChart(s1.balanceStart, s1.interest);
+      const originalChartData: PieChartData[] = [
+        { name: 'Interest', color: 'red', y: s1.interest },
+        { name: 'Principal', color: 'green', y: s1.balanceStart }
+      ];
+
+      //TODO where are you using thisn?
+      this.principalInterestChartOriginal = this.chartService.pieChartOptions('',originalChartData);
 
       this.showResults = true;
       this.showSummary = true;
@@ -246,7 +250,7 @@ export class CreditCardCalculatorComponent implements OnInit {
 
     const fixedPayment = this.mathService.getFloat(this.fixedPaymentControl.value);
 
-    if ( fixedPayment && fixedPayment < this.minimumPayment) {
+    if (fixedPayment && fixedPayment < this.minimumPayment) {
       this.fixedPaymentError = 'Must be greater than minimum payment.';
       error = { errorMessage: this.fixedPaymentError };
       return error;

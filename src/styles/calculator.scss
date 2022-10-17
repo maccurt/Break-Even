@@ -1,0 +1,62 @@
+@import './styles/variables';
+
+hr{    
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.calculate-button
+{
+    margin-top: 10px;
+    letter-spacing:2px;
+}
+
+#set-show-summary-container,
+#set-show-summary-container-xs-small {
+    margin:0px !important;
+}
+#set-show-summary,#set-show-summary-xs-small{
+ font-size:1rem; 
+}
+
+
+#schedule-list-container{
+    overflow: scroll;  
+    @include for-xsmall(){
+        overflow:visible;
+    }
+}
+   
+.calculated-field{    
+    font-size:1.3rem;
+    @include for-xsmall(){
+        font-size:1.2rem;
+    }
+    font-weight: bold;
+}
+
+.calculated-field-container{
+    min-height: 70px;
+    font-weight:bold;        
+    label{
+        font-size:1rem;
+    }
+    
+    .calculated-field{    
+        font-size:1.3rem;
+    }
+}
+
+.input-error{
+    visibility: hidden;
+}
+
+.has-error{
+    input{        
+        background-color:#ffe6e6;
+        border:1px solid red;
+    }
+    .input-error{
+        visibility:visible;
+    }
+}

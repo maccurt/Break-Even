@@ -1,3 +1,5 @@
+import { HelpService } from './../../help/help.service';
+import { IconService } from 'src/app/icon/icon.service';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ScheduleCompare } from '../../shared/schedule-compare.type';
 
@@ -10,7 +12,7 @@ export class TimeCardComponent implements OnChanges {
   @Input() scheduleCompare!: ScheduleCompare;
   @Input() minimumPaymentMode: boolean = false;
   showResults = false;
-  constructor() { }
+  constructor(public icons: IconService, public help: HelpService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.scheduleCompare) {

@@ -5,11 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './calculator-wrapper.component.html',
   styleUrls: ['./calculator-wrapper.component.scss']
 })
-export class CalculatorWrapperComponent implements OnInit {
+export class CalculatorWrapperComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

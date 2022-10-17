@@ -1,12 +1,14 @@
-
-<div *ngIf="!showResults" class="card">
-    <div class="total-interest-card card-header">
-        <span class="card-header-icon"><i class="fa fa-usd fa-2x" aria-hidden="true"></i></span>
+<mat-card *ngIf="!showResults"
+          class="card">
+    <mat-card-title class="total-interest-card card-header">
+        <span class="card-header-icon"><i class="fa fa-usd fa-2x"
+               aria-hidden="true"></i></span>
         <span class="card-header-title">Total Interest Savings </span>
-    </div>
-    <div class="card-body">
-        <p class="card-text"> <i style="float:left;margin-right:10px;"
-                class="fa fa-question-circle-o fa-4x" aria-hidden="true"></i>
+    </mat-card-title>
+    <mat-card-content>
+        <p class="card-text"> 
+            
+            <fa-icon class="float-icon" [icon]="icons.questionMark" size="3x"></fa-icon>            
             <b>Enter your credit card
                 information and we will show you how much interest and time you can save by
                 making extra
@@ -15,88 +17,96 @@
 
         <br><br><br>
         <div class="result-displayed-here-container">
-            <i class="fa fa-dollar fa-5x" aria-hidden="true"></i>
+            <i class="fa fa-dollar fa-5x"
+               aria-hidden="true"></i>
             <h1>Results Displayed Here</h1>
         </div>
-    </div>
+    </mat-card-content>
 
-</div>
+</mat-card>
 
-<div *ngIf="showResults && !minimumPaymentMode" class="total-interest-card card">
+<mat-card *ngIf="showResults && !minimumPaymentMode"
+          class="total-interest-card card">
     <div class="card-header calculator-header">
-        <span class="card-header-icon"><i class="fa fa-usd fa-2x" aria-hidden="true"></i></span>
+        <span class="card-header-icon"><i class="fa fa-usd fa-2x"
+               aria-hidden="true"></i></span>
         <span class="card-header-title">Total Interest Savings </span>
     </div>
-    <div class="card-body">
+    <mat-card-content class="card-body">
 
         <div class="total-label size-2">Interest Saved</div>
-        <div id="interest-difference" class="card-value size-1">
+        <div id="interest-difference"
+             class="card-value size-1">
             {{scheduleCompare.interestDifference | currency }}
         </div>
         <hr>
-        <div>
+        <div class="chart-container">
 
-            <highcharts-chart class="chart-container" >
-                [Highcharts]="originalLoanChart"
-            </highcharts-chart>
-            <!--TODO Why is this showing 2 orignal loan chart see below -->
-            <!-- <div class="chart-container" [chart]="originalLoanChart"></div> -->
-        </div>        
+            <highcharts-chart [options]="originalLoanChart"
+                              [Highcharts]="Highcharts">
 
-        <hr>
-        <div class="total-label size-2">Total Principal + Interest</div>        
-
-        <div> Original Principal + Interest </div>
-        <div id="payment-total-original" class="size-2">
-            {{scheduleCompare.schedule1.paymentTotal | currency }}
-        </div>
-        <br>
-        <div class="size-3"> New Principal + Interest </div>
-
-        <div  id="payment-total-extra-payments" class="size-2">
-            {{scheduleCompare.schedule2.paymentTotal | currency }}
-        </div>
-        <hr>
-        <div  id="interest-difference-percent">You will save
-            <b >{{scheduleCompare.interestDifferencePercent}}%</b> on interest.
-        </div>
-    </div>
-</div>
-
-
-<div *ngIf="showResults && minimumPaymentMode "  id="minimup-payment-card" class="card">
-    <div class="card-header">
-        <span class="card-header-icon"><i class="fa fa-usd fa-2x" aria-hidden="true"></i></span>
-        <span class="card-header-title">Minimum Payment Only </span>
-    </div>
-    <div class="card-body">
-
-        <div class="total-label size-2">Total Interest</div>
-
-        <div id="payment-total-original" class="size-1">
-            {{scheduleCompare.schedule1.interest | currency }}
-        </div>
-
-        <hr>
-        <div>
-
-            <highcharts-chart class="chart-container" >
-                [Highcharts]="originalLoanChart"
             </highcharts-chart>
 
-            <!-- <div class="chart-container" [chart]="originalLoanChart"></div> -->
         </div>
 
         <hr>
         <div class="total-label size-2">Total Principal + Interest</div>
 
-        <div id="payment-total-original" class="size-2">
+        <div> Original Principal + Interest </div>
+        <div id="payment-total-original"
+             class="size-2">
             {{scheduleCompare.schedule1.paymentTotal | currency }}
-        </div>        
-        
+        </div>
+        <br>
+        <div class="size-3"> New Principal + Interest </div>
+
+        <div id="payment-total-extra-payments"
+             class="size-2">
+            {{scheduleCompare.schedule2.paymentTotal | currency }}
+        </div>
         <hr>
-        <div  id="interest-difference-percent">You will pay
-            <b >{{scheduleCompare.schedule1.interestPercentTotal}}%</b> in interest.
-        </div> 
-    </div>
-</div>
+        <div id="interest-difference-percent">You will save
+            <b>{{scheduleCompare.interestDifferencePercent}}%</b> on interest.
+        </div>
+    </mat-card-content>
+</mat-card>
+
+
+<mat-card *ngIf="showResults && minimumPaymentMode "
+          id="minimup-payment-card"
+          class="card">
+    <mat-card-title>
+
+        <span>Minimum Payment Only</span>
+    </mat-card-title>
+    <mat-card-content>
+
+        <div class="total-label size-2">Total Interest</div>
+
+        <div id="payment-total-original"
+             class="size-1">
+            {{scheduleCompare.schedule1.interest | currency }}
+        </div>
+        <hr>
+
+        <div class="chart-container"
+             style="height:275px">
+
+            <highcharts-chart [options]="originalLoanChart"
+                              [Highcharts]="Highcharts">
+            </highcharts-chart>
+        </div>
+        <hr>
+        <div class="total-label size-2">Total Principal + Interest</div>
+
+        <div id="payment-total-original"
+             class="size-2">
+            {{scheduleCompare.schedule1.paymentTotal | currency }}
+        </div>
+
+        <hr>
+        <div id="interest-difference-percent">You will pay
+            <b>{{scheduleCompare.schedule1.interestPercentTotal}}%</b> in interest.
+        </div>
+    </mat-card-content>
+</mat-card>

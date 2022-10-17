@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },  
   { path: 'home', component: HomeComponent },
   { path: 'unit-profit', component: BreakEvenComponent },  
-  { path: 'credit-card-calculator', component: CreditCardCalculatorComponent },  
+  { path: 'credit-card', component: CreditCardCalculatorComponent },  
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 

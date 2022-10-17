@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .tax-rate-percent {
     font-size: medium;
     font-weight: normal;
@@ -10,5 +12,21 @@
 .stat-container {
     mat-card {
         margin-bottom: 7px;
+    }
+}
+
+.chart-container {
+    // https://github.com/highcharts/highcharts/issues/6427
+
+    highcharts-chart {
+        .highcharts-container,
+        .highcharts-container svg {
+            width: 425px;
+            height: 250px;           
+
+            @include for-medium-and-below() {
+                width: 475px;
+            }
+        }
     }
 }

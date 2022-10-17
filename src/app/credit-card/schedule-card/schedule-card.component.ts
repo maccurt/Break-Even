@@ -1,8 +1,10 @@
-import { ChartServiceDeprecated } from '../../shared/chart.service.deprecated';
+import { ProfitDreamerChartService } from 'src/app/chart.service';
+import { ChartServiceDeprecated, PieChartData } from '../../shared/chart.service.deprecated';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from 'highcharts';
 import { ScheduleCompare } from '../../shared/schedule-compare.type';
 import { Schedule } from '../../shared/schedule.type';
+import * as Highcharts from 'highcharts';
 
 //TODO what module should this be in
 @Component({
@@ -13,9 +15,10 @@ import { Schedule } from '../../shared/schedule.type';
 export class ScheduleCardComponent implements OnChanges {
   @Input() scheduleCompare!: ScheduleCompare;
   @Input() minimumPaymentMode = false;
-  chart!: Chart;
+  Highcharts: typeof Highcharts = Highcharts;
+  chart!: Highcharts.Options;
   schedule!: Schedule;
-  constructor(private chartService: ChartServiceDeprecated) { }
+  constructor(private chartService: ProfitDreamerChartService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -24,9 +27,11 @@ export class ScheduleCardComponent implements OnChanges {
     }
     else {
       this.schedule = this.scheduleCompare.schedule2;
-    }
-    this.chart = this.chartService
-      .getPrincipalInterestChart(this.schedule.balanceStart, this.schedule.interest);
-
+      const originalChartData: PieChartData[] = [
+        { name: 'Interest', color: 'red', y: this.schedule.interest },
+        { name: 'Principal', color: 'green', y: this.schedule.balanceStart }
+      ];
+      this.chart = this.chartService.pieChartOptions('', originalChartData);
+    };
   }
 }

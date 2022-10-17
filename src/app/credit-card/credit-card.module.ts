@@ -1,3 +1,4 @@
+import { MaterialModule } from './../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreditCardCalculatorComponent } from './credit-card-calculator/credit-card-calculator.component';
@@ -10,6 +11,7 @@ import { ControlsModule } from '../controls/controls.module';
 import { TimeCardComponent } from './time-card/time-card.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ScheduleCardComponent } from './schedule-card/schedule-card.component';
+import { IconModule } from '../icon/icon.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { ScheduleCardComponent } from './schedule-card/schedule-card.component';
     ControlsModule,
     RouterModule,
     HighchartsChartModule,
+    MaterialModule,
+    IconModule
   ],
   exports: [
     CreditCardCalculatorComponent,

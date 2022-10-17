@@ -1,7 +1,9 @@
-<div id="credit-card" class="container-fluid">
-    <div class="row">
+<div class="container-float">
+
+
+    <!-- <div class="row justify-content-center">
         <div class="col-md-4 col-xl-4 col-xxxl-3 ">
-            <!-- this is just here for space -->
+            
         </div>
         <div class="d-none d-md-block col-md-8 col-xl-8 ">
 
@@ -13,35 +15,37 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="row">
+    <div class="row  justify-content-center">
 
         <!-- Calculator Form -->
-        <div class="col-md-5 col-xl-4 col-xxxl-3">
+        <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
 
-            <div class="card ">
+            <mat-card>
+                <mat-card-title>Credit Card Information</mat-card-title>
 
-                <div class="card-header">
-                    <span class="card-header-icon"><i class="fa fa-home fa-2x" aria-hidden="true"></i></span>
-                    <span class="card-header-title">Credit Card Information</span>
-                </div>
-
-                <div  class="card-body input-card-body">
-                    <div class="form-container">
+                <mat-card-content data-test-id="credit-card-calculator">
+                    <div class="form-wrapper">
                         <form [formGroup]="creditCardFormGroup">
 
+                            <app-form-group-input name='balance'
+                                                  [showErrors]=showErrors
+                                                  [onBlur]="calculateMinimumPayment"></app-form-group-input>
+                            <app-form-group-input name='interestRate'
+                                                  [showErrors]=showErrors
+                                                  [onBlur]="calculateMinimumPayment"></app-form-group-input>
 
-                            <app-form-group-input name='balance' [showErrors]=showErrors [onBlur]="calculateMinimumPayment"  ></app-form-group-input>
-                            <app-form-group-input name='interestRate' [showErrors]=showErrors [onBlur]="calculateMinimumPayment"  ></app-form-group-input>
-                            
-                            
+
                             <div class="form-group">
-                                <label id="minimum-payment-type-label" for="minimum-payment-type">How is minimum payment
+                                <label id="minimum-payment-type-label"
+                                       for="minimum-payment-type">How is minimum payment
                                     calculated?</label>
-                                <select id='minimum-payment-type' formControlName="minimumPaymentType"
-                                    class='form-control'>
-                                    <option *ngFor='let m of minimumPaymentTypeList' [ngValue]='m'>{{m.text}}</option>
+                                <select id='minimum-payment-type'
+                                        formControlName="minimumPaymentType"
+                                        class='form-control'>
+                                    <option *ngFor='let m of minimumPaymentTypeList'
+                                            [ngValue]='m'>{{m.text}}</option>
                                 </select>
                                 <div class='input-error'>
                                     <!-- Just for space -->
@@ -52,49 +56,86 @@
                                 <label>What Monthly Payment Can You Make?</label>
                                 <!-- <hr> -->
                                 <div class="form-check">
-                                    <input class="form-check-input" formControlName="paymentType" type="radio"
-                                        name="paymentType" id="payment-type-minimum" value="1">
-                                    <label class="form-check-label" for="exampleRadios1">
+                                    <input class="form-check-input"
+                                           formControlName="paymentType"
+                                           type="radio"
+                                           name="paymentType"
+                                           id="payment-type-minimum"
+                                           value="1">
+                                    <label class="form-check-label"
+                                           for="exampleRadios1">
                                         Minimum Payment Only
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" formControlName="paymentType" type="radio"
-                                        name="paymentType" id="payment-type-extra" value="2">
-                                    <label class="form-check-label" for="exampleRadios1">
+                                    <input class="form-check-input"
+                                           formControlName="paymentType"
+                                           type="radio"
+                                           name="paymentType"
+                                           id="payment-type-extra"
+                                           value="2">
+                                    <label class="form-check-label"
+                                           for="exampleRadios1">
                                         Minimum Payment + Extra Payment
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" formControlName="paymentType"
-                                        name="paymentType" id="payment-type-fixed" value="3">
-                                    <label class="form-check-label" for="exampleRadios2">
+                                    <input class="form-check-input"
+                                           type="radio"
+                                           formControlName="paymentType"
+                                           name="paymentType"
+                                           id="payment-type-fixed"
+                                           value="3">
+                                    <label class="form-check-label"
+                                           for="exampleRadios2">
                                         Fixed Payment
                                     </label>
                                 </div>
                             </div>
 
                             <div id='payment-input-container'
-                                [style.visibility]="showPaymentInput ? 'hidden':'visible'">
-                                <div [ngClass]="{'has-error':(isInvalid(extraPaymentControl))}" *ngIf="showExtraPayment"
-                                    class="form-group">
-                                    <input type="text" autocomplete="off" formControlName="extraPayment" maxlength="5"
-                                        numeric-input [min]="1" [max]="99999" class="form-control" id="extra-payment"
-                                        aria-describedby="interest-rate-label" placeholder="Extra Payment"
-                                        inputmode="decimal" (blur)="calculatePayment()">
-                                    <div id="extra-payment-error" class='input-error'>
+                                 [style.visibility]="showPaymentInput ? 'hidden':'visible'">
+                                <div [ngClass]="{'has-error':(isInvalid(extraPaymentControl))}"
+                                     *ngIf="showExtraPayment"
+                                     class="form-group">
+                                    <input type="text"
+                                           autocomplete="off"
+                                           formControlName="extraPayment"
+                                           maxlength="5"
+                                           numeric-input
+                                           [min]="1"
+                                           [max]="99999"
+                                           class="form-control"
+                                           id="extra-payment"
+                                           aria-describedby="interest-rate-label"
+                                           placeholder="Extra Payment"
+                                           inputmode="decimal"
+                                           (blur)="calculatePayment()">
+                                    <div id="extra-payment-error"
+                                         class='input-error'>
                                         1 to 99999
                                     </div>
                                 </div>
 
                                 <div [ngClass]="{'has-error':(isInvalid(fixedPaymentControl))}"
-                                    *ngIf="!showExtraPayment" class="form-group">
-                                    <input type="text" autocomplete="off" formControlName="fixedPayment" maxlength="7"
-                                        numeric-input [min]="1" [max]="9999" class="form-control" id="fixed-payment"
-                                        aria-describedby="fixed-payment-label" placeholder="Fixed Payment"
-                                        inputmode="decimal" (blur)="calculatePayment()">
-                                    <div id="fixed-payment-error" class='input-error'>
+                                     *ngIf="!showExtraPayment"
+                                     class="form-group">
+                                    <input type="text"
+                                           autocomplete="off"
+                                           formControlName="fixedPayment"
+                                           maxlength="7"
+                                           numeric-input
+                                           [min]="1"
+                                           [max]="9999"
+                                           class="form-control"
+                                           id="fixed-payment"
+                                           aria-describedby="fixed-payment-label"
+                                           placeholder="Fixed Payment"
+                                           inputmode="decimal"
+                                           (blur)="calculatePayment()">
+                                    <div id="fixed-payment-error"
+                                         class='input-error'>
                                         {{fixedPaymentError}}
                                     </div>
                                 </div>
@@ -105,68 +146,88 @@
 
                                 <div class="col-5">
 
-                                    <label id="minimum-payment-label" for="minimum-payment">Minimum Payment</label>
-                                    <div class="calculated-field" id="minimum-payment">
+                                    <label id="minimum-payment-label"
+                                           for="minimum-payment">Minimum Payment</label>
+                                    <div class="calculated-field"
+                                         id="minimum-payment">
                                         ${{minimumPayment |number:'1.2-2' }}</div>
 
                                 </div>
 
                                 <div class="col-7">
-                                    <label id="payment-label" for="payment">Monthly Payment</label>
-                                    <div class="calculated-field" id="payment"
-                                        title="Payment = Minimum Payment + Extra Payment">
+                                    <label id="payment-label"
+                                           for="payment">Monthly Payment</label>
+                                    <div class="calculated-field"
+                                         id="payment"
+                                         title="Payment = Minimum Payment + Extra Payment">
                                         ${{payment |number:'1.2-2' }}
                                     </div>
                                 </div>
                             </div>
                         </form>
 
-                        <button id='calculate' (click)="calculate()" class="calculate-button btn btn-primary"><b>
+                        <button id='calculate'
+                                (click)="calculate()"
+                                class="calculate-button btn btn-primary"><b>
                                 Calculate
                                 Results</b>
                         </button>
 
                     </div>
-                </div>
-            </div>
+                </mat-card-content>
+            </mat-card>
         </div>
 
-        <div class="d-block d-md-none col-12" id='set-show-summary-container-xs-small'
+        <!-- <div class="d-block d-md-none col-12" id='set-show-summary-container-xs-small'
             [style.visibility]="showResults ? 'visible':'hidden'">
 
             <a id='set-show-summary-xs-small' [routerLink]="" (click)="setShowSummary()"><span *ngIf="showSummary">View
                     Full Payment Schedule</span>
                 <span *ngIf="!showSummary">View Summary</span> </a>
-        </div>
+        </div> -->
         <!-- Summary Card -->
-        <div *ngIf="showSummary" id='scroll-to-container' class="col-12 col-md-7 col-xl-8 col-xxxl-8">
+        <div *ngIf="showSummary"
+             id='scroll-to-container'
+             class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
 
-            <div>
+            <app-interest-savings [minimumPaymentMode]="minimumPaymentMode"
+                                  [scheduleCompare]="scheduleCompare">
+            </app-interest-savings>
 
-                <div class="summary-container" id="summary-container">
+            <!-- <div>
+                <div class="summary-container"
+                     id="summary-container">
 
                     <div class="row">
-                        <div class="col-md-6 col-xl-6 col-xxxl-4">
+                        <div class="col-md-6 col-xl-6 col-xxl-6">
                             <app-interest-savings [minimumPaymentMode]="minimumPaymentMode"
-                                [scheduleCompare]="scheduleCompare">
+                                                  [scheduleCompare]="scheduleCompare">
                             </app-interest-savings>
                         </div>
 
-                        <div class="col-md-6 col-xl-6 col-xxxl-4">
+                        <div class="col-md-6 col-xl-6 col-xxl-6">
 
                             <app-time-card [scheduleCompare]="scheduleCompare"
-                                [minimumPaymentMode]="minimumPaymentMode">
+                                           [minimumPaymentMode]="minimumPaymentMode">
                             </app-time-card>
                         </div>
                     </div>
                 </div>
 
-            </div>
+            </div> -->
+
+        </div>
+
+        <div *ngIf="showSummary" class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-3">
+
+            <app-time-card [scheduleCompare]="scheduleCompare"
+                           [minimumPaymentMode]="minimumPaymentMode">
+            </app-time-card>
 
         </div>
 
         <!-- Schedule List -->
-        <div class="col-md-6 col-xxl-5" id="schedule-list-container" *ngIf="!showSummary">
+        <!-- <div class="col-md-6 col-xxl-5" id="schedule-list-container" *ngIf="!showSummary">
             <app-credit-card-schedule-list *ngIf="!minimumPaymentMode"
                 [scheduleList]="scheduleCompare.schedule2.scheduleList"></app-credit-card-schedule-list>
             <app-credit-card-schedule-list *ngIf="minimumPaymentMode"
@@ -178,7 +239,7 @@
             <app-schedule-card [minimumPaymentMode]='minimumPaymentMode' [scheduleCompare]="scheduleCompare">
             </app-schedule-card>
 
-        </div>
+        </div> -->
 
     </div>
 </div>
