@@ -1,8 +1,8 @@
 describe('break-even validation', () => {
 
     before(() => {
-        cy.visit('/break-even');
-        cy.getDataTestId('calculate-break-even').click();
+        cy.visit('/unit-profit');        
+        cy.getDataTestId('calculate-unit-profit').click();
         cy.wait(1000);
     });
 

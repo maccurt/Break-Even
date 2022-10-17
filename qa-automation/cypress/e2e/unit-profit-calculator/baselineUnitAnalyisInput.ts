@@ -15,14 +15,14 @@ export function enterProfitAnalysisForm() {
 
 export function baselineBreakEven(revenuPerUnit: number, variableExpense: number,
     fixedExpense: number, netIncome: number, taxRate: number) {
-    cy.visit('break-even');
+    cy.visit('unit-profit');
     cy.getDataTestId('unit-analysis-calculator').as('calculator');
     cy.get('@calculator').getDataTestId('revenue-per-unit').clear().type(revenuPerUnit.toString()).blur();
     cy.get('@calculator').getDataTestId('variable-expense').clear().type(variableExpense.toString()).blur();
     cy.get('@calculator').getDataTestId('fixed-expense').clear().type(fixedExpense.toString()).blur();
     cy.get('@calculator').getDataTestId('net-income').clear().type(netIncome.toString()).blur();
     cy.get('@calculator').getDataTestId('tax-rate').clear().type(taxRate.toString()).blur();
-    cy.get('@calculator').getDataTestId('calculate-break-even').click();
+    cy.get('@calculator').getDataTestId('calculate-unit-profit').click();
 }
 
 export function breakEvenTest(expectedIncomeStatement: ExpectedIncomeStatement) {
