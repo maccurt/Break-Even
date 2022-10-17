@@ -1,3 +1,4 @@
+ /* eslint-disable */
 import {
     Directive, ElementRef, OnInit,
     Input, ChangeDetectorRef, Output, EventEmitter,
@@ -5,8 +6,7 @@ import {
     OnChanges
 } from '@angular/core';
 
-@Directive({
-    // tslint:disable-next-line:directive-selector
+@Directive({        
     selector: '[numeric-input]' 
 })
 export class NumericInputDirective implements OnInit {
