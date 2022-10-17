@@ -10,10 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalculatorWrapperComponent } from './calculator-wrapper/calculator-wrapper.component';
 import { StatSectionComponent } from './stat-section/stat-section.component';
 import { InfoSectionComponent } from './info-section/info-section.component';
+import { FormInputComponent } from './form-input copy/form-input.component';
 
 @NgModule({
   declarations: [
     FormGroupInputComponent,
+    FormInputComponent,
     NumericInputDirective,
     CalculatorWrapperComponent,
     StatSectionComponent,
@@ -32,7 +34,8 @@ import { InfoSectionComponent } from './info-section/info-section.component';
     NumericInputDirective,
     CalculatorWrapperComponent,
     StatSectionComponent,
-    InfoSectionComponent
+    InfoSectionComponent,
+    FormInputComponent
   ]
 })
 export class ControlsModule { }

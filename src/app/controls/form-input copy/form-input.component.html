@@ -1,10 +1,19 @@
-<div [ngClass]="{'has-error':(isInvalid())}"
-     class="form-group">
+<div class="mb-3"
+     [ngClass]="{'has-error':(isInvalid())}">
 
-    <label *ngIf="options.showLabel"
+    <label class="form-label"
+           *ngIf="options.showLabel"
            id="{{options.labelId}}"
            title="{{options.labelTitle}}"
            for="{{options.labelFor}}">{{options.labelText}}</label>
+
+    <span class="icon-container">
+        <fa-icon [icon]="help.icon"
+                 matTooltipClass="tool-tip-help"
+                 matTooltip="{{help.defintion}}">
+        </fa-icon>
+    </span>
+
     <input id="{{inputId}}"
            type="text"
            autocomplete="off"
@@ -23,6 +32,11 @@
            (blur)="blurHandler()"
            (ngModelChange)="modelChange($event)">
 
+    <!-- <input id="revenuePerUnit"
+           class="form-control"
+           type="number"
+           data-test-id="revenue-per-unit"
+           formControlName="revenuePerUnit"> -->
     <div id="{{inputId}}-error-message"
          class='input-error'>
         {{errrorMessageToDisplay()}}
