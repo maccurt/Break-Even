@@ -12,7 +12,7 @@ describe('credit-card-summary-schedule.cy.ts', () => {
         });
 
         it('summary container should exist', () => {
-            cy.get('#summary-container').should('exist');
+            cy.getDataTestId('summary-container').should('exist');
         });
 
         it('schedule list container should NOT exist', () => {
@@ -41,7 +41,7 @@ describe('credit-card-summary-schedule.cy.ts', () => {
             });
 
             it('summary container should exist', () => {
-                cy.get('#summary-container').should('exist');
+                cy.getDataTestId('summary-container').should('exist');
             });
 
             it('schedule list container should NOT exist', () => {
@@ -57,7 +57,7 @@ describe('credit-card-summary-schedule.cy.ts', () => {
             });
 
             it('summary container should exist', () => {
-                cy.get('#summary-container').should('exist');
+                cy.getDataTestId('summary-container').should('exist');
             });
 
             it('schedule list container should NOT exist', () => {
