@@ -22,8 +22,6 @@ describe('break-even validation', () => {
 
         it('net income', () => {
             cy.getDataTestId('net-income').parent().should('have.class', 'has-error');
-        });
-        
+        });        
     });   
-
 });

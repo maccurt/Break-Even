@@ -16,19 +16,19 @@ export class MathService {
     };
   };
 
-  round = (value: number, precision: number): number => {
+  round = (value: number, precision: number = 2): number => {
     const decimals = Math.pow(10, precision);
     return Math.round(value * decimals) / decimals;
   };
 
   getPercent = (amount: number, total: number): number => {
-    if (amount == 0 || total === 0){
+    if (amount == 0 || total === 0) {
       return 0;
     }
     return this.round(amount / total * 100, 2);
   };
 
-  getFloat = (value: any, ifNotNumberValue: any = null): number |null => {
+  getFloat = (value: any, ifNotNumberValue: any = null): number | null => {
 
     if (value !== null && !isNaN(value) && value.toString().trim() !== '') {
       return parseFloat(value.toString());

@@ -1,3 +1,4 @@
+import { MathService } from 'src/app/math/math.service';
 import { UnitIncomeStatement } from './unit-income-statement.class';
 import { Injectable } from '@angular/core';
 
@@ -6,13 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class ProfitAnalysisService {
 
-  constructor() { }
-
-  //TODO move to math service
-  round = (value: number, precision: number = 2): number => {
-    const decimals = Math.pow(10, precision);
-    return Math.round(value * decimals) / decimals;
-  };
+  constructor(private mathService:MathService) { }  
 
   unitsIncomeStatementNetIcome = (revenuePerUnit: number, variableExpensePerUnit: number,
     fixedExpense: number, netIncome: number, taxRatePercent: number = 35): UnitIncomeStatement => {
@@ -33,19 +28,19 @@ export class ProfitAnalysisService {
     statement.breakEvenUnits = breakEvenUnits;
     statement.revenuePerUnit = revenuePerUnit;
     statement.variableExpensePerUnit = variableExpensePerUnit;
-    statement.revenue = this.round(units * revenuePerUnit);
-    statement.variableExpense = this.round(units * variableExpensePerUnit);
+    statement.revenue = this.mathService.round(units * revenuePerUnit);
+    statement.variableExpense = this.mathService.round(units * variableExpensePerUnit);
     statement.fixedExpense = fixedExpense;
-    statement.expenseTotal = this.round(statement.variableExpense + statement.fixedExpense, 2);
+    statement.expenseTotal = this.mathService.round(statement.variableExpense + statement.fixedExpense, 2);
 
-    statement.grossProfit = this.round(statement.revenue - statement.expenseTotal);
+    statement.grossProfit = this.mathService.round(statement.revenue - statement.expenseTotal);
     statement.grossProfitPercent = this.grofitPercent(statement.revenue, statement.expenseTotal);
     statement.contributionMargin = contributionMargin;
 
-    statement.incomeTax = this.round(statement.grossProfit * (taxRatePercent / 100));
+    statement.incomeTax = this.mathService.round(statement.grossProfit * (taxRatePercent / 100));
     statement.taxRatePercent = taxRatePercent;
 
-    statement.netIncome = this.round(statement.grossProfit - statement.incomeTax);
+    statement.netIncome = this.mathService.round(statement.grossProfit - statement.incomeTax);
 
     statement.units = units;
     return statement;
@@ -68,8 +63,7 @@ export class ProfitAnalysisService {
   };
 
   grofitPercent = (revenue: number, costOfGoodSold: number): number => {
-    let gp = this.round(((revenue - costOfGoodSold) / revenue) * 100);
+    let gp = this.mathService.round(((revenue - costOfGoodSold) / revenue) * 100);
     return gp;
   };
-
 }
