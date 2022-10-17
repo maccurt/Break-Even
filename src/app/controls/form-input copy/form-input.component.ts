@@ -21,7 +21,7 @@ interface FormInputOptions {
 }
 
 @Component({
-  selector: 'app-form-input-',
+  selector: 'app-form-input',
   templateUrl: './form-input.component.html',
   styleUrls: ['./form-input.component.scss'],
   viewProviders: [
@@ -39,15 +39,15 @@ export class FormInputComponent implements OnInit {
   @Input() onBlur!: any; //TODO why is this any, fix it
   @Input() text = '';
   @Input() showErrors = false;
-  @Input() help!:Help;
-  options!: FormInputOptions;  
+  @Input() help!: Help;
+  options!: FormInputOptions;
 
   inputId = '';
   constructor(private controlContainer: FormGroupDirective, private formInputService: FormInputService) {
   }
 
   //TODO why is this any fix it
-  modelChange = (value:any) => {
+  modelChange = (value: any) => {
 
     // This prevented a nasty but that is you tried to type over the max (9999)
     // it would not re-set the contorl value and the control would remain
@@ -59,6 +59,13 @@ export class FormInputComponent implements OnInit {
   };
 
   ngOnInit(): void {
+
+    if (!this.help) {
+      //This means you have not put a help attribute on the form-input, DO SO!!
+      // eslint-disable-next-line no-console      
+      console.log('WARNING:******',this.name,':has no help (icons, tooltip,etc).');
+    }
+
     this.control = this.controlContainer.control.controls[this.name] as FormInput;
     if (this.control) {
       this.typeInputOptions = this.formInputService.getFormGroupTypeInputOptions(this.control.type)!;
@@ -83,7 +90,7 @@ export class FormInputComponent implements OnInit {
 
     if (this.control.type !== FormInputType.None) {
       this.setFromType();
-    }    
+    }
   }
 
   setFromType = () => {
@@ -101,7 +108,7 @@ export class FormInputComponent implements OnInit {
 
     this.options.placeholder = this.typeInputOptions.placeholder ?
       this.typeInputOptions.placeholder : this.typeInputOptions.text;
-    
+
     this.options.errorMessage = this.typeInputOptions.min.toString() + ' to ' + this.typeInputOptions.max.toString();
     // Can you derive this
     if (this.typeInputOptions.decimals > 0) {
@@ -116,14 +123,12 @@ export class FormInputComponent implements OnInit {
   };
 
   blurHandler = () => {
-
     if (this.onBlur) {
       this.onBlur();
     }
   };
 
   isInvalid = (): boolean => {
-
     return (this.control.touched && this.control.invalid) || (this.control.invalid && this.showErrors);
   };
 

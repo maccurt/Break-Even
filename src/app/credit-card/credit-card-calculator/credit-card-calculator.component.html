@@ -29,12 +29,19 @@
                     <div class="form-wrapper">
                         <form [formGroup]="creditCardFormGroup">
 
-                            <app-form-group-input name='balance'
+
+                            <app-form-input name='balance'
                                                   [showErrors]=showErrors
-                                                  [onBlur]="calculateMinimumPayment"></app-form-group-input>
-                            <app-form-group-input name='interestRate'
+                                                  [onBlur]="calculateMinimumPayment"
+                                                  [help]="help.creditCardBalance"
+                                                  ></app-form-input>
+                            
+
+                            <app-form-input name='interestRate'
                                                   [showErrors]=showErrors
-                                                  [onBlur]="calculateMinimumPayment"></app-form-group-input>
+                                                  [onBlur]="calculateMinimumPayment"
+                                                  [help]="help.creditCardInterestRate"
+                                                  ></app-form-input>
 
 
                             <div class="form-group">

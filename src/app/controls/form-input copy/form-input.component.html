@@ -7,7 +7,7 @@
            title="{{options.labelTitle}}"
            for="{{options.labelFor}}">{{options.labelText}}</label>
 
-    <span class="icon-container">
+    <span *ngIf="help" class="icon-container">
         <fa-icon [icon]="help.icon"
                  matTooltipClass="tool-tip-help"
                  matTooltip="{{help.defintion}}">

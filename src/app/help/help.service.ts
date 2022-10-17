@@ -7,6 +7,12 @@ import { Help } from './Help';
 })
 export class HelpService {
 
+  creditCardBalance = new Help('Balance',
+    'The balance you owe on your credit card', '');
+
+  creditCardInterestRate = new Help('Interes Rate',
+    'The interest rate you are charged on your credit card.', '');
+
   minimumPaymentTrap = new Help('Minimum Payment Trap',
     'put some sort of text here', '', 'danger-icon');
 
@@ -14,13 +20,13 @@ export class HelpService {
     'put some sort of text here', '', 'danger-icon');
 
   totalTimeSavings = new Help('Total Time Savings',
-    'put some sort of text here','','icon-color-1');
+    'put some sort of text here', '', 'icon-color-1');
 
   timeSavedByPayingExtra = new Help('Time Saved By Paying Extra',
-    'put some sort of text here','','icon-color-1');
+    'put some sort of text here', '', 'icon-color-1');
 
   timeToPayOfDebt = new Help('Time To Pay Off Debt',
-    'put some sort of text here','','icon-color-2');
+    'put some sort of text here', '', 'icon-color-2');
 
   grossProfitPercent = new Help('Gross Profit Percent',
     'Indicates amount of revenue left after subtracting variable expense. expressed as a percentage of total revenue.',
