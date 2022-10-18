@@ -1,14 +1,13 @@
-<mat-card *ngIf="!showResults"
-          class="card">
-    <mat-card-title class="total-interest-card card-header">
-        <span class="card-header-icon"><i class="fa fa-usd fa-2x"
-               aria-hidden="true"></i></span>
-        <span class="card-header-title">Total Interest Savings </span>
+<mat-card *ngIf="!showResults">
+    <mat-card-title>
+        Total Interest Savings
     </mat-card-title>
     <mat-card-content>
-        <p class="card-text"> 
-            
-            <fa-icon class="float-icon" [icon]="icons.questionMark" size="3x"></fa-icon>            
+        <p class="card-text">
+
+            <fa-icon class="float-icon"
+                     [icon]="icons.questionMark"
+                     size="3x"></fa-icon>
             <b>Enter your credit card
                 information and we will show you how much interest and time you can save by
                 making extra
@@ -27,12 +26,9 @@
 
 <mat-card *ngIf="showResults && !minimumPaymentMode"
           class="total-interest-card card">
-    <div class="card-header calculator-header">
-        <span class="card-header-icon"><i class="fa fa-usd fa-2x"
-               aria-hidden="true"></i></span>
-        <span class="card-header-title">Total Interest Savings </span>
-    </div>
-    <mat-card-content class="card-body">
+    <mat-card-title>Total Interest Savings</mat-card-title>
+
+    <mat-card-content>
 
         <div class="total-label size-2">Interest Saved</div>
         <div id="interest-difference"

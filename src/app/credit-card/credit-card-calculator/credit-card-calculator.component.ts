@@ -9,7 +9,6 @@ import { PaymentService } from '../../shared/payment.service';
 import { ScheduleCompare } from '../../shared/schedule-compare.type';
 import { ActivatedRoute } from '@angular/router';
 import { FormInput, FormInputType } from '../../controls/form-input';
-import * as Highcharts from 'highcharts';
 import { PieChartData, ProfitDreamerChartService } from 'src/app/chart.service';
 
 const extra = 'extra';
@@ -25,7 +24,7 @@ export enum PaymentType {
   styleUrls: ['./credit-card-calculator.component.scss']
 })
 export class CreditCardCalculatorComponent implements OnInit {
-  principalInterestChartOriginal!: Highcharts.Options;
+
   // controls
   creditCardFormGroup!: FormGroup;
   balanceControl!: FormInput;
@@ -93,10 +92,7 @@ export class CreditCardCalculatorComponent implements OnInit {
       if (demo === '2') {
         this.demoExtraPayment();
       }
-    });
-
-    // this.demoExtraPayment()
-    // this.showSummary = false;
+    });    
   }
 
   demoExtraPayment = (): void => {
@@ -205,10 +201,7 @@ export class CreditCardCalculatorComponent implements OnInit {
       const originalChartData: PieChartData[] = [
         { name: 'Interest', color: 'red', y: s1.interest },
         { name: 'Principal', color: 'green', y: s1.balanceStart }
-      ];
-
-      //TODO where are you using thisn?
-      this.principalInterestChartOriginal = this.chartService.pieChartOptions('', originalChartData);
+      ];      
 
       this.showResults = true;
       this.showSummary = true;
