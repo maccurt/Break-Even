@@ -5,8 +5,9 @@
 @import "./styles/old.styles.scss";
 @import "./styles/icon.styles.scss";
 
-
-
+.section{    
+    min-height: 175px;
+}
 
 .gross-profit-percent-section {
     fa-icon {

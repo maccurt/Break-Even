@@ -16,7 +16,21 @@
     }
 }
 
+.chart-label-container{
+    margin-left: 5px;
+    .chart-label{
+        font-size: 14px;
+        margin-right:5px;    
+        letter-spacing: 1px;
+    }
+    .chart-value{
+      font-size: 17px;    
+      font-weight:900;   
+      color:black;
+    }
+}
 
+//TODO remove this if we are not using. CHECK IT FIRST!
 .chart-container-2 {
     // https://github.com/highcharts/highcharts/issues/6427
     height: 175px;

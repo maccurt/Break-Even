@@ -3,24 +3,32 @@ import {
     faCheckSquare, faTrashAlt, faArrowAltCircleLeft,
     faArrowAltCircleRight, faPlusSquare, faSmile,
     faCalendarCheck,
-    faWindowClose, faQuestionCircle, faClock, faCalendarTimes, faFrown
+    faWindowClose, faQuestionCircle, faClock, faCalendarTimes, faFrown, faCreditCard
 } from '@fortawesome/free-regular-svg-icons';
 import {
     faGraduationCap, faFrog, faChalkboardTeacher,
     faGlassCheers, faCircle, faArrowDown, faArrowUp, faEllipsisH,
     faTasks, faPencilAlt, faBug, faSearchDollar, faVial, faExpandArrowsAlt,
-    faBrain, faInfoCircle, faClipboardList, faChartPie,faSackDollar, faScaleBalanced, faScrewdriverWrench, faTicket, faMagnifyingGlassDollar, faCode, faCog, faBullhorn, faUniversity, faExclamationTriangle,
+    faBrain, faInfoCircle, faClipboardList, faChartPie,faSackDollar, faScaleBalanced, faScrewdriverWrench, faTicket, faMagnifyingGlassDollar, faCode, faCog, faBullhorn, faUniversity, faExclamationTriangle, faHandHoldingDollar, faPeopleRobbery, faPiggyBank, faSackXmark,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
     providedIn: 'root'
 })
 export class IconService {    
+    interest = faSackXmark;
+    principalAndInterest = faMagnifyingGlassDollar;
+    minimumPaymentInterest = faPeopleRobbery;
+    minPayPlusExtraInterest = faPiggyBank;
+    creditCardMinPayInterest = faCreditCard;
+    creditCard = faCreditCard;
+    fixedPayment = faPiggyBank;
     creditCardDevil = faFrown;
     time = faClock;
     questionMark = faQuestionCircle;
     unhappy = faFrown;
     trap = faExclamationTriangle;
+    interestSaved = faSackDollar;
     financialEmancipation = faUniversity;
     motivation = faBullhorn;
     taskBasedGoals = faCog;

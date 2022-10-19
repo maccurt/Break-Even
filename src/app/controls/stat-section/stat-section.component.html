@@ -1,10 +1,11 @@
-<mat-card>    
-    <mat-card-content >
+<mat-card class="section">
+    <mat-card-content>
         <div class="stat-formula">
 
             <div data-test-id="title"
                  class="title">
                 <fa-icon [icon]="help.icon"
+                         class={{help.iconClass}}
                          matTooltipClass="tool-tip-help"
                          matTooltip={{help.defintion}}>
                 </fa-icon>
@@ -16,7 +17,8 @@
                  class="stat"
                  matTooltipClass="tool-tip-help"
                  matTooltip={{help.defintion}}>
-                {{stat}}<span *ngIf="help.showPercent">%</span>
+                <span class="sign"
+                      *ngIf="sign">{{sign}}</span>{{stat |number:'1.2-2'}}
             </div>
 
             <div data-test-id="formula-expanded"
@@ -27,6 +29,9 @@
             <div data-test-id="formula"
                  class="formula">{{help.formula}}</div>
 
+            <div>                
+                <ng-content [select]="content-2" ></ng-content>
+            </div>
         </div>
 
     </mat-card-content>

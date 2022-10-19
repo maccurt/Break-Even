@@ -9,7 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class StatSectionComponent  {  
   @Input() help!:Help;
   @Input() stat!:number;  
+  @Input() sign!:string;
+  @Input() notes!:string;
   constructor() { 
-
   }  
 }

@@ -1,6 +1,6 @@
 <div class="container-float">
-
-    <div class="row justify-content-center">
+    <!-- TODO put this back, it has value, but not needed to release -->
+    <!-- <div class="row justify-content-center">
         <div class="col-md-4 col-xl-4 col-xxxl-3 ">
 
         </div>
@@ -17,14 +17,14 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="row  justify-content-center">
 
         <!-- Calculator Form -->
         <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
 
-            <mat-card>
+            <mat-card style="min-height: 710px;">
                 <mat-card-title>Credit Card Information</mat-card-title>
 
                 <mat-card-content data-test-id="credit-card-calculator">
@@ -196,11 +196,13 @@
                 <span *ngIf="!showSummary">View Summary</span> </a>
         </div>
         <!-- Summary Card -->
-        <div data-test-id="summary-container" *ngIf="showSummary"
+        <div data-test-id="summary-container"
+             *ngIf="showSummary"
              id='scroll-to-container'
              class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
 
-            <app-interest-savings [minimumPaymentMode]="minimumPaymentMode"
+            <app-interest-savings [isFixedPayment]="isFixedPayment"
+                                  [minimumPaymentMode]="minimumPaymentMode"
                                   [scheduleCompare]="scheduleCompare">
             </app-interest-savings>
 
@@ -217,12 +219,12 @@
                                            [scheduleList]="scheduleCompare.schedule1.scheduleList">
             </app-credit-card-schedule-list>
         </div>
-        
+
         <div class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-3">
             <app-time-card [scheduleCompare]="scheduleCompare"
                            [minimumPaymentMode]="minimumPaymentMode">
             </app-time-card>
         </div>
-        
+
     </div>
 </div>

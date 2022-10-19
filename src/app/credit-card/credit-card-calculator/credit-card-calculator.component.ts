@@ -24,7 +24,6 @@ export enum PaymentType {
   styleUrls: ['./credit-card-calculator.component.scss']
 })
 export class CreditCardCalculatorComponent implements OnInit {
-
   // controls
   creditCardFormGroup!: FormGroup;
   balanceControl!: FormInput;
@@ -40,6 +39,7 @@ export class CreditCardCalculatorComponent implements OnInit {
   showSummary = true;
   showExtraPayment = true;
   minimumPaymentMode = false;
+  isFixedPayment = false;
   //
   scheduleCompare!: ScheduleCompare;
   minimumPayment = 0;
@@ -171,7 +171,7 @@ export class CreditCardCalculatorComponent implements OnInit {
       const interest = this.mathService.getFloat(this.interestRateControl.value, 0);
       const minimumPaymentType = this.minimumPaymentTypeControl.value as MinimumPaymentType;
       let payment = 0;
-      let isFixedPayment = false;
+      this.isFixedPayment  = false;
 
       switch (this.mathService.getFloat(this.paymentTypeControl.value)) {
         case PaymentType.MinimumPaymentOnly:
@@ -184,7 +184,7 @@ export class CreditCardCalculatorComponent implements OnInit {
           break;
         case PaymentType.FixedPayment:
           payment = this.mathService.getFloat(this.fixedPaymentControl.value, 0)!;
-          isFixedPayment = true;
+          this.isFixedPayment  = true;
           this.minimumPaymentMode = false;
           break;
       }
@@ -194,7 +194,7 @@ export class CreditCardCalculatorComponent implements OnInit {
           minimumPaymentType.useInterest);
 
       const s2 = this.paymentService
-        .creditCardSchedule(balance!, interest!, minimumPaymentType.percentOfBalance, payment, isFixedPayment,
+        .creditCardSchedule(balance!, interest!, minimumPaymentType.percentOfBalance, payment, this.isFixedPayment,
           minimumPaymentType.useInterest);
       this.scheduleCompare = this.paymentService.getScheduleCompare(s1, s2);
 
