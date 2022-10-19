@@ -31,7 +31,6 @@
                     <div class="form-wrapper">
                         <form [formGroup]="creditCardFormGroup">
 
-
                             <app-form-input name='balance'
                                             [showErrors]=showErrors
                                             [onBlur]="calculateMinimumPayment"
@@ -60,10 +59,7 @@
                             </div>
 
                             <div id="payment-type-container">
-                                <label class="p-t-c-label">What Monthly Payment Can You Make?</label>
-                                <span class="icon-container">
-
-                                </span>
+                                <label class="p-t-c-label">What Monthly Payment Can You Make?</label>                                
 
                                 <div class="form-check">
                                     <input class="form-check-input"
@@ -149,7 +145,7 @@
                                     <input type="text"
                                            autocomplete="off"
                                            formControlName="fixedPayment"
-                                           maxlength="7"
+                                           maxlength="4"
                                            numeric-input
                                            [min]="1"
                                            [max]="9999"
