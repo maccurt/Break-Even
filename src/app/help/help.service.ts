@@ -40,7 +40,6 @@ export class HelpService {
   creditTotalPrincipalAndInterestFixedPayment = new Help('Total Principal & Interest With Fixed Payment',
     'put something here', '', 'icon-color-1');
 
-
   creditCardInterestRate = new Help('Interes Rate',
     'The interest rate you are charged on your credit card.', '');
 

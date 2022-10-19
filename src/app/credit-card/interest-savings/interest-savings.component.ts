@@ -28,7 +28,6 @@ export class InterestSavingsComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    
 
     if (this.scheduleCompare) {
       this.showResults = true;
