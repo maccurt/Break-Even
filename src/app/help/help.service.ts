@@ -7,6 +7,15 @@ import { Help } from './Help';
 })
 export class HelpService {
 
+  creditCardMinimumPayment = new Help('Minimum Payment',
+    'Pay the minimum payment calculated by the credit card company', '');
+
+  creditCardMinimumPaymentPlusExtra = new Help('Minimum Payment + Extra',
+    'Pay the minimum payment calculated by the credit card company + Extra', '');
+
+  creditCardFixedPayment = new Help('Fixed Payment',
+    'Pay the same fixed amount each month', '');
+
   creditCardBalance = new Help('Balance',
     'The balance you owe on your credit card', '');
 

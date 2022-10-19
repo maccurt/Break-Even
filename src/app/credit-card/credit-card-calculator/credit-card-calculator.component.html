@@ -44,7 +44,7 @@
                                             [help]="help.creditCardInterestRate"></app-form-input>
 
 
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label id="minimum-payment-type-label"
                                        for="minimum-payment-type">How is minimum payment
                                     calculated?</label>
@@ -60,8 +60,11 @@
                             </div>
 
                             <div id="payment-type-container">
-                                <label>What Monthly Payment Can You Make?</label>
-                                <!-- <hr> -->
+                                <label class="p-t-c-label">What Monthly Payment Can You Make?</label>
+                                <span class="icon-container">
+
+                                </span>
+
                                 <div class="form-check">
                                     <input class="form-check-input"
                                            formControlName="paymentType"
@@ -72,6 +75,11 @@
                                     <label class="form-check-label"
                                            for="exampleRadios1">
                                         Minimum Payment Only
+                                        <fa-icon class="label-icon"
+                                                 [icon]="help.creditCardMinimumPayment.icon"
+                                                 matTooltipClass="tool-tip-help"
+                                                 matTooltip="{{help.creditCardMinimumPayment.defintion}}">
+                                        </fa-icon>
                                     </label>
                                 </div>
 
@@ -85,6 +93,11 @@
                                     <label class="form-check-label"
                                            for="exampleRadios1">
                                         Minimum Payment + Extra Payment
+                                        <fa-icon class="label-icon"
+                                                 [icon]="help.creditCardMinimumPaymentPlusExtra.icon"
+                                                 matTooltipClass="tool-tip-help"
+                                                 matTooltip="{{help.creditCardMinimumPaymentPlusExtra.defintion}}">
+                                        </fa-icon>
                                     </label>
                                 </div>
                                 <div class="form-check">
@@ -97,6 +110,11 @@
                                     <label class="form-check-label"
                                            for="exampleRadios2">
                                         Fixed Payment
+                                        <fa-icon class="label-icon"
+                                                 [icon]="help.creditCardFixedPayment.icon"
+                                                 matTooltipClass="tool-tip-help"
+                                                 matTooltip="{{help.creditCardFixedPayment.defintion}}">
+                                        </fa-icon>
                                     </label>
                                 </div>
                             </div>

@@ -48,10 +48,12 @@ export class CreditCardCalculatorComponent implements OnInit {
   showPaymentInput!: boolean;
 
   constructor(
-    private title: Title, private metaService: MetaService,
-    private mathService: MathService, private paymentService: PaymentService,
-    private activatedRoute: ActivatedRoute, private chartService: ProfitDreamerChartService
-    , public help: HelpService) {
+    private title: Title,
+    private metaService: MetaService,
+    private mathService: MathService,
+    private paymentService: PaymentService,
+    private activatedRoute: ActivatedRoute,
+    public help: HelpService) {
     this.title.setTitle('Credit Card Calculator');
     this.metaService.addTitle('Credit Card Calculator');
     this.metaService.addDescription('Calculates your credit card interest and how many years it will take to pay off');
@@ -92,7 +94,7 @@ export class CreditCardCalculatorComponent implements OnInit {
       if (demo === '2') {
         this.demoExtraPayment();
       }
-    });    
+    });
   }
 
   demoExtraPayment = (): void => {
@@ -171,7 +173,7 @@ export class CreditCardCalculatorComponent implements OnInit {
       const interest = this.mathService.getFloat(this.interestRateControl.value, 0);
       const minimumPaymentType = this.minimumPaymentTypeControl.value as MinimumPaymentType;
       let payment = 0;
-      this.isFixedPayment  = false;
+      this.isFixedPayment = false;
 
       switch (this.mathService.getFloat(this.paymentTypeControl.value)) {
         case PaymentType.MinimumPaymentOnly:
@@ -184,7 +186,7 @@ export class CreditCardCalculatorComponent implements OnInit {
           break;
         case PaymentType.FixedPayment:
           payment = this.mathService.getFloat(this.fixedPaymentControl.value, 0)!;
-          this.isFixedPayment  = true;
+          this.isFixedPayment = true;
           this.minimumPaymentMode = false;
           break;
       }
@@ -201,7 +203,7 @@ export class CreditCardCalculatorComponent implements OnInit {
       const originalChartData: PieChartData[] = [
         { name: 'Interest', color: 'red', y: s1.interest },
         { name: 'Principal', color: 'green', y: s1.balanceStart }
-      ];      
+      ];
 
       this.showResults = true;
       this.showSummary = true;
