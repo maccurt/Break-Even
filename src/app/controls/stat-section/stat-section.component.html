@@ -6,8 +6,7 @@
                  class="title">
                 <fa-icon [icon]="help.icon"
                          class={{help.iconClass}}
-                         matTooltipClass="tool-tip-help"                         
-                         >
+                         matTooltipClass="tool-tip-help">
                 </fa-icon>
                 <!-- TO Do revisit this you removed the tooltips, they were to much -->
                 <!-- matTooltip={{help.defintion}} -->
@@ -16,9 +15,7 @@
             <hr>
 
             <div data-test-id="stat"
-                 class="stat"
-                 matTooltipClass="tool-tip-help"
-                 matTooltip={{help.defintion}}>
+                 class="stat">
                 <span class="sign"
                       *ngIf="sign">{{sign}}</span>{{stat |number:'1.2-2'}}
             </div>
@@ -31,8 +28,8 @@
             <div data-test-id="formula"
                  class="formula">{{help.formula}}</div>
 
-            <div>                
-                <ng-content [select]="content-2" ></ng-content>
+            <div>
+                <ng-content [select]="content-2"></ng-content>
             </div>
         </div>
 
