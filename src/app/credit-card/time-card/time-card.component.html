@@ -1,13 +1,15 @@
-<div *ngIf="showResults && minimumPaymentMode">
+<div data-test-id="time-card-min-pay-section"
+     *ngIf="showResults && minimumPaymentMode">
 
     <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
-        <app-info-section [help]="help.timeToPayOfDebt"
+        <app-info-section data-test-id="time-to-pay-debt-section"
+                          [help]="help.timeToPayOfDebt"
                           stat="{{scheduleCompare.schedule1.periodsText}}">
         </app-info-section>
     </div>
 
     <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
-        <app-info-section [help]="help.creditCardDevil">
+        <app-info-section data-test-id="credit-card-devil-section"  [help]="help.creditCardDevil">
             High interest credit cards are designed to trap you into a cycle of debt
             and impulsive spending.
             We highly suggest you pay off your credit cards as soon and you can and stop
@@ -17,7 +19,7 @@
 
 
     <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
-        <app-info-section [help]="help.minimumPaymentTrap">
+        <app-info-section data-test-id="min-payment-trap" [help]="help.minimumPaymentTrap">
             Paying only the minimum payment is a dangerous strategy that will cost you greatly in interest. We highly
             suggest you pay more than the minimum payment each month.
         </app-info-section>

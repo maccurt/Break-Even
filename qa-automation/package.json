@@ -2,7 +2,8 @@
     "scripts": {
         "open": "cypress open",
         "prod": "cypress open --config baseUrl=https://breakeven.profitdreamer.com/",
-        "run": "cypress run --config video=false " 
+        "run": "cypress run --config video=false ",
+        "credit-card": "cypress run --config video=false --spec cypress/e2e/credit-card-calculator"
     },
     "devDependencies": {
         "@angular-eslint/schematics": "^14.1.2",

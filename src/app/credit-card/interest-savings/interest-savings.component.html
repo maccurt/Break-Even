@@ -1,29 +1,3 @@
-<!-- <mat-card style="min-height: 710px;" *ngIf="!showResults">
-    <mat-card-title>
-        Total Interest Savings
-    </mat-card-title>
-    <mat-card-content>
-        <p class="card-text">
-
-            <fa-icon class="float-icon"
-                     [icon]="icons.questionMark"
-                     size="3x"></fa-icon>
-            <b>Enter your credit card
-                information and we will show you how much interest and time you can save by
-                making extra
-                payments </b>
-        </p>
-
-        <br><br><br>
-        <div class="result-displayed-here-container">
-            <i class="fa fa-dollar fa-5x"
-               aria-hidden="true"></i>
-            <h1>Results Displayed Here</h1>
-        </div>
-    </mat-card-content>
-
-</mat-card> -->
-
 <!-- THIS IS FOR MINIMUM PAYMENT ONLY -->
 <div data-test-id="minimum-payment-mode"
      *ngIf="showResults && minimumPaymentMode ">
@@ -48,7 +22,6 @@
                           [stat]="scheduleCompare.schedule1.interest">
 
             <div style="text-align:center"
-                 content-2
                  data-test-id="interest-percent-total">
 
                 You will pay <b>{{scheduleCompare.schedule1.interestPercentTotal}}%</b> in interest.
@@ -77,7 +50,7 @@
         </div>
 
         <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
-            <app-stat-section data-test-id="total-principal-interest-min-pay"
+            <app-stat-section data-test-id="total-principal-interest-min-payment"
                               [help]="help.creditTotalPrincipalAndInterestMinimumPayment"
                               [sign]="'$'"
                               [stat]="scheduleCompare.schedule1.paymentTotal">
@@ -97,7 +70,10 @@
                 <div style="text-align: center;">
                     ${{scheduleCompare.schedule1.paymentTotal | number:'1.2-2' }} -
                     ${{scheduleCompare.schedule2.paymentTotal | number:'1.2-2' }}
-                    <br>
+                </div>
+
+                <div content-2
+                     style="margin-top:4px">
                     You Will Save <b>{{scheduleCompare.interestDifferencePercent}}%</b> In interest.
                 </div>
             </app-stat-section>

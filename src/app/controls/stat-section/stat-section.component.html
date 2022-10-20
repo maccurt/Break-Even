@@ -22,15 +22,15 @@
 
             <div data-test-id="formula-expanded"
                  class="formula">
-                <ng-content></ng-content>
+                <ng-content  ></ng-content>
+            </div>
+
+            <div style="text-align:center" data-test-id="content-2">
+                <ng-content select="[content-2]" ></ng-content>
             </div>
 
             <div data-test-id="formula"
                  class="formula">{{help.formula}}</div>
-
-            <div>
-                <ng-content [select]="content-2"></ng-content>
-            </div>
         </div>
 
     </mat-card-content>

@@ -50,8 +50,7 @@ export class InterestSavingsComponent implements OnChanges {
         const originalChartData: any[] = [
           { name: 'Original Interest', color: '#cccccc', y: this.scheduleCompare.schedule1.interest },
           { name: 'New Interest', color: '#85996A', y: this.scheduleCompare.schedule2.interest }
-        ];
-        //this.originalLoanChart = this.chartService.getBarChart('', originalChartData, [original, extraPayment]);
+        ]; 
         this.originalLoanChart = this.chartService.getBarChart('', originalChartData, ['orginal Interest', 'New Interest']);
       }
     }

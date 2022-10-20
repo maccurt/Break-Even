@@ -1,19 +1,16 @@
 describe('cc-payment-input-visibility.cy.ts', () => {
 
     before(() => {
-
         cy.visit('/credit-card');
         cy.get('#payment-type-extra').click();
     });
 
     describe('Default baseline', () => {
-
         it('payment input container should be visible', () => {
             cy.get('#fixed-payment').should('not.exist');
             cy.get('#extra-payment').should('be.enabled');
             cy.get("#payment-input-container").should('be.visible');
         });
-
     });
 
     describe('click Fixed Payment', () => {
