@@ -45,9 +45,14 @@
 
                             <div class="mb-3">
                                 <label id="minimum-payment-type-label"
-                                       for="minimum-payment-type">How is minimum payment
-                                    calculated?</label>
-                                <select id='minimum-payment-type'
+                                       for="minimum-payment-type">How is your minimum payment
+                                    calculated? <fa-icon class="label-icon"
+                                             [icon]="help.minimumPaymentCalculation.icon"
+                                             matTooltipClass="tool-tip-help"
+                                             matTooltip="{{help.minimumPaymentCalculation.defintion}}">
+                                    </fa-icon>
+                                </label>
+                                <select style="margin-top:7px;"  id='minimum-payment-type'
                                         formControlName="minimumPaymentType"
                                         class='form-control'>
                                     <option *ngFor='let m of minimumPaymentTypeList'
@@ -59,7 +64,7 @@
                             </div>
 
                             <div id="payment-type-container">
-                                <label class="p-t-c-label">What Monthly Payment Can You Make?</label>                                
+                                <label class="p-t-c-label">What Monthly Payment Can You Make?</label>
 
                                 <div class="form-check">
                                     <input class="form-check-input"

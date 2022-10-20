@@ -60,7 +60,6 @@ export class CreditCardCalculatorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.minimumPaymentTypeList = this.paymentService.getMinimumPaymentTypeList();
     this.balanceControl = new FormInput(FormInputType.CreditCardBalance);
     this.interestRateControl = new FormInput(FormInputType.CreditCardInterestRate);
@@ -152,8 +151,6 @@ export class CreditCardCalculatorComponent implements OnInit {
 
   calculatePayment = () => {
 
-    console.log('calculate payment');
-
     switch (this.mathService.getFloat(this.paymentTypeControl.value)) {
       case PaymentType.MinimumPaymentOnly:
         this.payment = this.minimumPayment;
@@ -163,9 +160,7 @@ export class CreditCardCalculatorComponent implements OnInit {
         this.payment = this.minimumPayment + extraPayment!;
         break;
       case PaymentType.FixedPayment:
-        console.log('calculate payment control value', this.fixedPaymentControl.value);
         this.payment = this.mathService.getFloat(this.fixedPaymentControl.value, 0)!;
-        console.log('payment',this.payment);
         break;
     }
   };

@@ -2,10 +2,16 @@ import { IconService } from './../icon/icon.service';
 import { Injectable } from '@angular/core';
 import { Help } from './Help';
 
+const totalPrinicpalAndInterest: string =
+  'How much you will pay in principal and interest to pay off the credit card balance.';
+
 @Injectable({
   providedIn: 'root'
 })
 export class HelpService {
+
+  minimumPaymentCalculation = new Help('Minimum Payment Calculation',
+    'How is the minimum payment calculated on your credit card?', '');
 
   creditCardMinimumPayment = new Help('Minimum Payment',
     'Pay the minimum payment calculated by the credit card company', '');
@@ -41,13 +47,13 @@ export class HelpService {
     'add some text here', '', 'good-icon-2');
 
   creditTotalPrincipalAndInterestMinimumPayment = new Help('Total Principal & Interest Minium Payment Only',
-    'How much you will save in interest by making more than the minimum payment', '', 'danger-icon');
+    totalPrinicpalAndInterest, 'danger-icon');
 
   creditTotalPrincipalAndInterestByPayingExtra = new Help('Total Principal & Interest By Paying Extra',
-    'How much you will save in interest by making more than the minimum payment', '', 'icon-color-1');
+    totalPrinicpalAndInterest, '', 'icon-color-1');
 
   creditTotalPrincipalAndInterestFixedPayment = new Help('Total Principal & Interest With Fixed Payment',
-    'put something here', '', 'icon-color-1');
+    totalPrinicpalAndInterest, '', 'icon-color-1');
 
   creditCardInterestRate = new Help('Interes Rate',
     'The interest rate you are charged on your credit card.', '');
