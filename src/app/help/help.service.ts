@@ -47,7 +47,7 @@ export class HelpService {
     'add some text here', '', 'good-icon-2');
 
   creditTotalPrincipalAndInterestMinimumPayment = new Help('Total Principal & Interest Minium Payment Only',
-    totalPrinicpalAndInterest, 'danger-icon');
+    totalPrinicpalAndInterest,'', 'danger-icon');
 
   creditTotalPrincipalAndInterestByPayingExtra = new Help('Total Principal & Interest By Paying Extra',
     totalPrinicpalAndInterest, '', 'icon-color-1');
