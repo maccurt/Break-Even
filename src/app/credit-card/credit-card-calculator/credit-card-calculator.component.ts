@@ -9,7 +9,6 @@ import { PaymentService } from '../../shared/payment.service';
 import { ScheduleCompare } from '../../shared/schedule-compare.type';
 import { ActivatedRoute } from '@angular/router';
 import { FormInput, FormInputType } from '../../controls/form-input';
-import * as Highcharts from 'highcharts';
 import { PieChartData, ProfitDreamerChartService } from 'src/app/chart.service';
 
 const extra = 'extra';
@@ -25,7 +24,6 @@ export enum PaymentType {
   styleUrls: ['./credit-card-calculator.component.scss']
 })
 export class CreditCardCalculatorComponent implements OnInit {
-  principalInterestChartOriginal!: Highcharts.Options;
   // controls
   creditCardFormGroup!: FormGroup;
   balanceControl!: FormInput;
@@ -41,6 +39,7 @@ export class CreditCardCalculatorComponent implements OnInit {
   showSummary = true;
   showExtraPayment = true;
   minimumPaymentMode = false;
+  isFixedPayment = false;
   //
   scheduleCompare!: ScheduleCompare;
   minimumPayment = 0;
@@ -49,17 +48,18 @@ export class CreditCardCalculatorComponent implements OnInit {
   showPaymentInput!: boolean;
 
   constructor(
-    private title: Title, private metaService: MetaService,
-    private mathService: MathService, private paymentService: PaymentService,
-    private activatedRoute: ActivatedRoute, private chartService: ProfitDreamerChartService
-    , public help: HelpService) {
+    private title: Title,
+    private metaService: MetaService,
+    private mathService: MathService,
+    private paymentService: PaymentService,
+    private activatedRoute: ActivatedRoute,
+    public help: HelpService) {
     this.title.setTitle('Credit Card Calculator');
     this.metaService.addTitle('Credit Card Calculator');
     this.metaService.addDescription('Calculates your credit card interest and how many years it will take to pay off');
   }
 
   ngOnInit(): void {
-
     this.minimumPaymentTypeList = this.paymentService.getMinimumPaymentTypeList();
     this.balanceControl = new FormInput(FormInputType.CreditCardBalance);
     this.interestRateControl = new FormInput(FormInputType.CreditCardInterestRate);
@@ -94,9 +94,6 @@ export class CreditCardCalculatorComponent implements OnInit {
         this.demoExtraPayment();
       }
     });
-
-    // this.demoExtraPayment()
-    // this.showSummary = false;
   }
 
   demoExtraPayment = (): void => {
@@ -175,7 +172,7 @@ export class CreditCardCalculatorComponent implements OnInit {
       const interest = this.mathService.getFloat(this.interestRateControl.value, 0);
       const minimumPaymentType = this.minimumPaymentTypeControl.value as MinimumPaymentType;
       let payment = 0;
-      let isFixedPayment = false;
+      this.isFixedPayment = false;
 
       switch (this.mathService.getFloat(this.paymentTypeControl.value)) {
         case PaymentType.MinimumPaymentOnly:
@@ -188,7 +185,7 @@ export class CreditCardCalculatorComponent implements OnInit {
           break;
         case PaymentType.FixedPayment:
           payment = this.mathService.getFloat(this.fixedPaymentControl.value, 0)!;
-          isFixedPayment = true;
+          this.isFixedPayment = true;
           this.minimumPaymentMode = false;
           break;
       }
@@ -198,7 +195,7 @@ export class CreditCardCalculatorComponent implements OnInit {
           minimumPaymentType.useInterest);
 
       const s2 = this.paymentService
-        .creditCardSchedule(balance!, interest!, minimumPaymentType.percentOfBalance, payment, isFixedPayment,
+        .creditCardSchedule(balance!, interest!, minimumPaymentType.percentOfBalance, payment, this.isFixedPayment,
           minimumPaymentType.useInterest);
       this.scheduleCompare = this.paymentService.getScheduleCompare(s1, s2);
 
@@ -206,9 +203,6 @@ export class CreditCardCalculatorComponent implements OnInit {
         { name: 'Interest', color: 'red', y: s1.interest },
         { name: 'Principal', color: 'green', y: s1.balanceStart }
       ];
-
-      //TODO where are you using thisn?
-      this.principalInterestChartOriginal = this.chartService.pieChartOptions('', originalChartData);
 
       this.showResults = true;
       this.showSummary = true;

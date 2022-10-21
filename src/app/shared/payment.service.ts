@@ -28,7 +28,7 @@ export class PaymentService {
     let monthlyPayment = 0;
     let principalPaid = 0;
     let balanceStart = balance;
-    const orginalBalance = balance;
+    const orginalBalance = balance;    
 
     while (balance > 0) {
 
@@ -57,7 +57,7 @@ export class PaymentService {
         balanceEnd: balance,
         interest: monthlyInterest,
         principal: principalPaid,
-        extraPrincipal: extraPayment!
+        extraPrincipal: extraPayment!      
       };
       scheduleList.push(scheduleItem);
     }
@@ -75,9 +75,9 @@ export class PaymentService {
       interestRatePercent: annualPercentageRate,
       principal: principalPaid,
       paymentTotal,
-      extraPrincipal: 0,
+      extraPrincipal: 0,      
       periods: scheduleList.length,
-      extraPrincipalPayment: 0,
+      extraPrincipalPayment: extraPayment!,
       years,
       months,
       periodsText: this.getPeriodsText(scheduleList.length),

@@ -7,4 +7,5 @@ export class Help {
   //TODO this will default it to question circle, is that correct?
   icon: IconDefinition = faQuestionCircle; 
   showPercent: boolean = false;
+  notes!:string;
 }

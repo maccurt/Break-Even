@@ -1,15 +1,17 @@
 <div class="container-float">
-
-
+    <!-- TODO put this back, it has value, but not needed to release -->
     <!-- <div class="row justify-content-center">
         <div class="col-md-4 col-xl-4 col-xxxl-3 ">
-            
+
         </div>
         <div class="d-none d-md-block col-md-8 col-xl-8 ">
 
-            <div id='set-show-summary-container' [style.visibility]="showResults ? 'visible':'hidden'">
+            <div id='set-show-summary-container'
+                 [style.visibility]="showResults ? 'visible':'hidden'">
 
-                <a id='set-show-summary' [routerLink]="" (click)="setShowSummary()"><span *ngIf="showSummary">View Full
+                <a id='set-show-summary'
+                   [routerLink]=""
+                   (click)="setShowSummary()"><span *ngIf="showSummary">View Full
                         Payment Schedule</span>
                     <span *ngIf="!showSummary">View Summary</span>
                 </a>
@@ -17,38 +19,41 @@
         </div>
     </div> -->
 
-    <div class="row  justify-content-center">
+    <div class="row justify-content-center">
 
         <!-- Calculator Form -->
         <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
 
-            <mat-card>
+            <mat-card style="min-height: 710px;">
                 <mat-card-title>Credit Card Information</mat-card-title>
 
                 <mat-card-content data-test-id="credit-card-calculator">
                     <div class="form-wrapper">
                         <form [formGroup]="creditCardFormGroup">
 
-
                             <app-form-input name='balance'
-                                                  [showErrors]=showErrors
-                                                  [onBlur]="calculateMinimumPayment"
-                                                  [help]="help.creditCardBalance"
-                                                  ></app-form-input>
-                            
+                                            [showErrors]=showErrors
+                                            [onBlur]="calculateMinimumPayment"
+                                            [help]="help.creditCardBalance"></app-form-input>
+
 
                             <app-form-input name='interestRate'
-                                                  [showErrors]=showErrors
-                                                  [onBlur]="calculateMinimumPayment"
-                                                  [help]="help.creditCardInterestRate"
-                                                  ></app-form-input>
+                                            [showErrors]=showErrors
+                                            [onBlur]="calculateMinimumPayment"
+                                            [help]="help.creditCardInterestRate"></app-form-input>
 
 
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label id="minimum-payment-type-label"
-                                       for="minimum-payment-type">How is minimum payment
-                                    calculated?</label>
-                                <select id='minimum-payment-type'
+                                       for="minimum-payment-type">How is your minimum payment
+                                    calculated? <fa-icon class="label-icon"
+                                             [icon]="help.minimumPaymentCalculation.icon"
+                                             matTooltipClass="tool-tip-help"
+                                             matTooltip="{{help.minimumPaymentCalculation.defintion}}">
+                                    </fa-icon>
+                                </label>
+                                <select style="margin-top:7px;"
+                                        id='minimum-payment-type'
                                         formControlName="minimumPaymentType"
                                         class='form-control'>
                                     <option *ngFor='let m of minimumPaymentTypeList'
@@ -60,8 +65,8 @@
                             </div>
 
                             <div id="payment-type-container">
-                                <label>What Monthly Payment Can You Make?</label>
-                                <!-- <hr> -->
+                                <label class="p-t-c-label">What Monthly Payment Can You Make?</label>
+
                                 <div class="form-check">
                                     <input class="form-check-input"
                                            formControlName="paymentType"
@@ -72,6 +77,11 @@
                                     <label class="form-check-label"
                                            for="exampleRadios1">
                                         Minimum Payment Only
+                                        <fa-icon class="label-icon"
+                                                 [icon]="help.creditCardMinimumPayment.icon"
+                                                 matTooltipClass="tool-tip-help"
+                                                 matTooltip="{{help.creditCardMinimumPayment.defintion}}">
+                                        </fa-icon>
                                     </label>
                                 </div>
 
@@ -85,6 +95,11 @@
                                     <label class="form-check-label"
                                            for="exampleRadios1">
                                         Minimum Payment + Extra Payment
+                                        <fa-icon class="label-icon"
+                                                 [icon]="help.creditCardMinimumPaymentPlusExtra.icon"
+                                                 matTooltipClass="tool-tip-help"
+                                                 matTooltip="{{help.creditCardMinimumPaymentPlusExtra.defintion}}">
+                                        </fa-icon>
                                     </label>
                                 </div>
                                 <div class="form-check">
@@ -97,6 +112,11 @@
                                     <label class="form-check-label"
                                            for="exampleRadios2">
                                         Fixed Payment
+                                        <fa-icon class="label-icon"
+                                                 [icon]="help.creditCardFixedPayment.icon"
+                                                 matTooltipClass="tool-tip-help"
+                                                 matTooltip="{{help.creditCardFixedPayment.defintion}}">
+                                        </fa-icon>
                                     </label>
                                 </div>
                             </div>
@@ -131,7 +151,7 @@
                                     <input type="text"
                                            autocomplete="off"
                                            formControlName="fixedPayment"
-                                           maxlength="7"
+                                           maxlength="4"
                                            numeric-input
                                            [min]="1"
                                            [max]="9999"
@@ -185,68 +205,46 @@
             </mat-card>
         </div>
 
-        <!-- <div class="d-block d-md-none col-12" id='set-show-summary-container-xs-small'
-            [style.visibility]="showResults ? 'visible':'hidden'">
+        <!-- <div class="d-block d-md-none col-12"
+             id='set-show-summary-container-xs-small'
+             [style.visibility]="showResults ? 'visible':'hidden'">
 
-            <a id='set-show-summary-xs-small' [routerLink]="" (click)="setShowSummary()"><span *ngIf="showSummary">View
+            <a id='set-show-summary-xs-small'
+               [routerLink]=""
+               (click)="setShowSummary()"><span *ngIf="showSummary">View
                     Full Payment Schedule</span>
                 <span *ngIf="!showSummary">View Summary</span> </a>
         </div> -->
         <!-- Summary Card -->
-        <div *ngIf="showSummary"
+        <div data-test-id="summary-container"
+             *ngIf="showSummary"
              id='scroll-to-container'
              class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
 
-            <app-interest-savings [minimumPaymentMode]="minimumPaymentMode"
+            <app-interest-savings [isFixedPayment]="isFixedPayment"
+                                  [minimumPaymentMode]="minimumPaymentMode"
                                   [scheduleCompare]="scheduleCompare">
             </app-interest-savings>
-
-            <!-- <div>
-                <div class="summary-container"
-                     id="summary-container">
-
-                    <div class="row">
-                        <div class="col-md-6 col-xl-6 col-xxl-6">
-                            <app-interest-savings [minimumPaymentMode]="minimumPaymentMode"
-                                                  [scheduleCompare]="scheduleCompare">
-                            </app-interest-savings>
-                        </div>
-
-                        <div class="col-md-6 col-xl-6 col-xxl-6">
-
-                            <app-time-card [scheduleCompare]="scheduleCompare"
-                                           [minimumPaymentMode]="minimumPaymentMode">
-                            </app-time-card>
-                        </div>
-                    </div>
-                </div>
-
-            </div> -->
-
-        </div>
-
-        <div *ngIf="showSummary" class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-3">
-
-            <app-time-card [scheduleCompare]="scheduleCompare"
-                           [minimumPaymentMode]="minimumPaymentMode">
-            </app-time-card>
 
         </div>
 
         <!-- Schedule List -->
-        <!-- <div class="col-md-6 col-xxl-5" id="schedule-list-container" *ngIf="!showSummary">
+        <!-- <div class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-3"
+             id="schedule-list-container"
+             *ngIf="!showSummary">
             <app-credit-card-schedule-list *ngIf="!minimumPaymentMode"
-                [scheduleList]="scheduleCompare.schedule2.scheduleList"></app-credit-card-schedule-list>
+                                           [scheduleList]="scheduleCompare.schedule2.scheduleList">
+            </app-credit-card-schedule-list>
             <app-credit-card-schedule-list *ngIf="minimumPaymentMode"
-                [scheduleList]="scheduleCompare.schedule1.scheduleList"></app-credit-card-schedule-list>
-        </div>
-
-        <div *ngIf="!showSummary" class="d-none d-xxl-block col-xxl-3  ">
-
-            <app-schedule-card [minimumPaymentMode]='minimumPaymentMode' [scheduleCompare]="scheduleCompare">
-            </app-schedule-card>
-
+                                           [scheduleList]="scheduleCompare.schedule1.scheduleList">
+            </app-credit-card-schedule-list>
         </div> -->
+
+        <div class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-3">
+            <app-time-card [scheduleCompare]="scheduleCompare"
+                           [minimumPaymentMode]="minimumPaymentMode">
+            </app-time-card>
+        </div>
 
     </div>
 </div>

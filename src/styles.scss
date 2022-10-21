@@ -3,10 +3,12 @@
 @import "./styles/form.styles.scss";
 @import "./styles/title-paragraph.styles.scss";
 @import "./styles/old.styles.scss";
+@import "./styles/calculator.styles.scss";
 @import "./styles/icon.styles.scss";
 
-
-
+.section{    
+    min-height: 175px;
+}
 
 .gross-profit-percent-section {
     fa-icon {

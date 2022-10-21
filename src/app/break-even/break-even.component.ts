@@ -7,6 +7,8 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { revenueVariableExpenseValidator } from '../validators/revenue-variable-expense.validator';
 import { PieChartData, ProfitDreamerChartService } from '../chart.service';
 import * as Highcharts from 'highcharts';
+import { MetaService } from '../shared/meta.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-break-even',
@@ -45,7 +47,13 @@ export class BreakEvenComponent {
     private unitService: ProfitAnalysisService,
     private chartService: ProfitDreamerChartService,
     public help: HelpService,
-    public icons: IconService) {
+    public icons: IconService,
+    private title: Title,
+    private metaService: MetaService) {
+
+    this.title.setTitle('Unit Profit');
+    this.metaService.addTitle('Unit Profit Calculator');
+    this.metaService.addDescription('Calculate How Many Units You Need To Sell To Reach A Certain Net Income');
 
     this.formGroup = this.formBuilder.group({
       revenuePerUnit: this.revenuePerUnitControl,
@@ -72,7 +80,7 @@ export class BreakEvenComponent {
   submit = () => {
     if (this.formGroup.valid) {
       this.showErrors = false;
-      
+
       let rpu = this.formGroup.value.revenuePerUnit!;
       let ve = this.formGroup.value.variableExpense!;
       let fe = this.formGroup.value.fixedExpense!;

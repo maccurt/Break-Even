@@ -1,33 +1,36 @@
-<mat-card *ngIf="!showResults">
-    <mat-card-title class="card-header">
-        <span class="card-header-icon"><i class="fa fa-calendar fa-2x"
-               aria-hidden="true"></i></span>
-        <span class="card-header-title">Total Time Savings</span>
+<div class="row" data-test-id="time-card-min-pay-section"
+     *ngIf="showResults && minimumPaymentMode">
 
-    </mat-card-title>
-    <mat-card-content class="card-body">
+    <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
+        <app-info-section data-test-id="time-to-pay-debt-section"
+                          [help]="help.timeToPayOfDebt"
+                          stat="{{scheduleCompare.schedule1.periodsText}}">
+        </app-info-section>
+    </div>
 
-        <p>
+    <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
+        <app-info-section data-test-id="credit-card-devil-section"
+                          [help]="help.creditCardDevil">
+            High interest credit cards are designed to trap you into a cycle of debt
+            and impulsive spending.
+            We highly suggest you pay off your credit cards as soon and you can and stop
+            using them.
+        </app-info-section>
+    </div>
 
-            <fa-icon [icon]="icons.tooltipHelp"
-                     size="3x">
-            </fa-icon>
 
-            <b>
-                Making an extra payment will reduce your
-                number of payment periods
-            </b>
-        </p>
+    <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
+        <app-info-section data-test-id="min-payment-trap"
+                          [help]="help.minimumPaymentTrap">
+            Paying only the minimum payment is a dangerous strategy that will cost you greatly in interest. We highly
+            suggest you pay more than the minimum payment each month.
+        </app-info-section>
+    </div>
 
-        <br><br><br><br>
-        <div class="result-displayed-here-container">
+</div>
 
-            <h1>Results Displayed Here</h1>
-        </div>
-    </mat-card-content>
-</mat-card>
-
-<div *ngIf="showResults && !minimumPaymentMode">
+<div class="row"
+     *ngIf="showResults && !minimumPaymentMode">
 
     <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
         <app-info-section [help]="help.timeToPayOfDebt"
@@ -52,76 +55,3 @@
     </div>
 
 </div>
-<div *ngIf="showResults && minimumPaymentMode">
-
-    <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
-        <app-info-section [help]="help.timeToPayOfDebt"
-                          stat="{{scheduleCompare.schedule2.periodsText}}">
-        </app-info-section>
-    </div>
-
-    <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
-        <app-info-section [help]="help.creditCardDevil">
-            High interest credit cards are designed to trap you into a cycle of debt
-            and impulsive spending.
-            We highly suggest you pay off your credit cards as soon and you can and stop
-            using them.
-        </app-info-section>
-    </div>
-
-
-    <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
-        <app-info-section [help]="help.minimumPaymentTrap">
-            Paying only the minimum payment is a dangerous strategy that will cost you greatly in interest. We highly
-            suggest you pay more than the minimum payment each month.
-        </app-info-section>
-    </div>
-
-</div>
-
-<!-- <mat-card *ngIf="showResults && minimumPaymentMode"
-          id="minimum-time-card">
-    <mat-card-title class="card-header">
-        <span class="card-header-icon"><i class="fa fa-calendar fa-2x"
-               aria-hidden="true"></i></span>
-        <span class="card-header-title">Total Time</span>
-
-    </mat-card-title>
-    <mat-card-content class="card-body">
-        <div class="total-label size-2">Time To Pay Off Debt</div>
-        <div id="periods-text"
-             class="card-value size-2">
-            {{scheduleCompare.schedule1.periodsText}}
-        </div>
-
-        <hr>
-        <div>
-            <div class="size-2"><b>Credit Cards Are The Devil</b></div>
-            <p class="card-text">
-
-                <fa-icon [icon]="icons.unhappy"
-                         size="3x"
-                         style="color:red;">
-                </fa-icon>
-
-                High interest credit cards are designed to trap you into a cycle of debt
-                and impulsive spending.
-                We highly suggest you pay off your credit cards as soon as you can and stop
-                using them.
-            </p>
-        </div>
-        <hr>
-        <div class="size-2"><b>Minimum Payment Is A Trap</b></div>
-        <p class="card-text">
-
-            <fa-icon [icon]="icons.trap"
-                     size="3x"
-                     style="color:red;">
-            </fa-icon>
-            Paying only the minimum payment is a dangerous strategy that will cost you greatly in interest. We highly
-            suggest you pay more than the minimum payment each month.
-
-        </p>
-
-    </mat-card-content>
-</mat-card> -->

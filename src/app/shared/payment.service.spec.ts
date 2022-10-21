@@ -35,6 +35,9 @@ describe('PaymentService', () => {
     it('$100,000 15% 1%+interest $100 extra payment', () => {
       // What happens about the 15 minimum payment
       const schedule = service.creditCardSchedule(10000, 15, 1, 100, false, true);
+
+      expect(schedule.extraPrincipalPayment).toBe(100);
+
       expect(schedule.scheduleList.length).toBe(69);
       const s69 = schedule.scheduleList[68];
       expect(s69.balanceStart).toBe(68.17);

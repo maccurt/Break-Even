@@ -40,16 +40,17 @@ export class ProfitDreamerChartService {
             xAxis: {
                 categories: xAxisCategories,
                 labels: {
-                    useHTML: true,
-                    align: 'left',
-                    x: 0,
-                    y: -25, /* to be adjusted according to number of bars*/
-                    style: {
-                        width: 350
-                        // fontWeight: 'bold',
-                        // fontSize: '14px',
-                        // color: 'black'
-                    }
+                    // useHTML: true,
+                    // align: 'left',
+                    // x: 0,
+                    // y: -50, /* to be adjusted according to number of bars*/
+                    // //reserveSpace: false,
+                    // style: {
+                    //     width: 350
+                    //     // fontWeight: 'bold',
+                    //     // fontSize: '14px',
+                    //     // color: 'black'
+                    // }
                 }
             },
             yAxis: {
