@@ -14,6 +14,15 @@ export function minimumPaymentPlusExtra() {
     });
 };
 
+export function fixPayment() {
+    before(() => {
+        enterBaselineCreditCardInfo();
+        cy.get('#payment-type-fixed').click();
+        cy.get('#fixed-payment').clear().type('500').blur();
+        cy.get('#calculate').click();
+    });
+};
+
 function enterBaselineCreditCardInfo() {
     cy.visit('/credit-card');
     cy.get('#balance').type('10000');

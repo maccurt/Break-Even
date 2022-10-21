@@ -10,6 +10,7 @@ export class StatSectionComponent  {
   @Input() help!:Help;
   @Input() stat!:number;  
   @Input() sign!:string;
+  @Input() endSign!:string;
   @Input() notes!:string;
   constructor() { 
   }  

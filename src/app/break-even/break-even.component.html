@@ -120,7 +120,7 @@
                 </mat-card-content>
             </mat-card>
         </div>
-
+to
         <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5 ">
 
             <div  *ngIf="incomeStatement">
@@ -224,7 +224,10 @@
                     <app-stat-section class="gross-profit-percent-section"
                                       data-test-id="gross-profit-percent-section"
                                       [help]="help.grossProfitPercent"
-                                      [stat]="incomeStatement.grossProfitPercent">
+                                      [stat]="incomeStatement.grossProfitPercent"
+                                      [endSign]="'%'"                                      
+                                      >
+                                      
                         ({{incomeStatement.revenue |number:'1.2-2'}} -
                         {{incomeStatement.expenseTotal |number:'1.2-2' }}) / {{incomeStatement.revenue
                         |number:'1.2-2' }}

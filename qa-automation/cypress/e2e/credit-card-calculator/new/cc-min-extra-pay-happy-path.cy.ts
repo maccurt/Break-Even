@@ -40,6 +40,6 @@ describe('credit card minimum payment extra payment happy path', () => {
         'Interest Saved By Paying Extra',
         '$8,100.88',
         '$21,979.18 - $13,878.30',
-        'You Will Save 67.62% In interest.'
+        'You Will Save 67.62% In Interest.'
     );
 });

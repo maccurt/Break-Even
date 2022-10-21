@@ -29,7 +29,7 @@ describe('minimum payment happy path', () => {
     statSectionTest('minimum-payment-interest',
         'Minimum Payment Interest',
         '$11,979.18',
-        'You will pay 119.79% in interest.');
+        'You Will Pay 119.79% In Interest.');
 
     it('minimum payment interest should exist', () => {
         cy.getDataTestId('time-card-min-pay-section').getDataTestId('time-to-pay-debt-section').should('exist');

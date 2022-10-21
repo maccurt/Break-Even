@@ -24,7 +24,7 @@
             <div style="text-align:center"
                  data-test-id="interest-percent-total">
 
-                You will pay <b>{{scheduleCompare.schedule1.interestPercentTotal}}%</b> in interest.
+                You Will Pay <b>{{scheduleCompare.schedule1.interestPercentTotal}}%</b> In Interest.
             </div>
         </app-stat-section>
     </div>
@@ -74,14 +74,14 @@
 
                 <div content-2
                      style="margin-top:4px">
-                    You Will Save <b>{{scheduleCompare.interestDifferencePercent}}%</b> In interest.
+                     You Will Save <b>{{scheduleCompare.interestDifferencePercent}}%</b> In Interest.
                 </div>
             </app-stat-section>
         </div>
-
     </div>
 
-    <div *ngIf="isFixedPayment">
+    <div data-test-id="fix-pay-mode"
+         *ngIf="isFixedPayment">
 
         <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
             <app-stat-section data-test-id="total-principal-interest-fixed-payment"
@@ -97,7 +97,7 @@
         </div>
 
         <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
-            <app-stat-section data-test-id="total-principal-interest-min-pay"
+            <app-stat-section data-test-id="total-principal-interest-min-payment"
                               [help]="help.creditTotalPrincipalAndInterestMinimumPayment"
                               [sign]="'$'"
                               [stat]="scheduleCompare.schedule1.paymentTotal">
@@ -111,15 +111,17 @@
 
 
         <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
-            <app-stat-section data-test-id="interest-saved-by-paying-extra"
-                              [help]="help.interestSavedByPayingExtra"
+            <app-stat-section data-test-id="interest-saved-by-paying-fixed"
+                              [help]="help.interestSavedByPayingFixedPayment"
                               [sign]="'$'"
                               [stat]="scheduleCompare.interestDifference">
                 <div style="text-align: center;">
                     ${{scheduleCompare.schedule1.paymentTotal | number:'1.2-2' }} -
                     ${{scheduleCompare.schedule2.paymentTotal | number:'1.2-2' }}
-                    <br>
-                    You Will Save <b>{{scheduleCompare.interestDifferencePercent}}%</b> In interest.
+                </div>
+                <div content-2
+                     style="margin-top:4px">
+                    You Will Save <b>{{scheduleCompare.interestDifferencePercent}}%</b> In Interest.
                 </div>
             </app-stat-section>
         </div>

@@ -17,7 +17,7 @@
             <div data-test-id="stat"
                  class="stat">
                 <span class="sign"
-                      *ngIf="sign">{{sign}}</span>{{stat |number:'1.2-2'}}
+                      *ngIf="sign">{{sign}}</span>{{stat |number:'1.2-2'}}<span *ngIf="endSign" class="end-sign">{{endSign}}</span>
             </div>
 
             <div data-test-id="formula-expanded"
