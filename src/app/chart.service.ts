@@ -45,12 +45,12 @@ export class ProfitDreamerChartService {
                     // x: 0,
                     // y: -50, /* to be adjusted according to number of bars*/
                     // //reserveSpace: false,
-                    // style: {
-                    //     width: 350
-                    //     // fontWeight: 'bold',
-                    //     // fontSize: '14px',
-                    //     // color: 'black'
-                    // }
+                    style: {
+                        //width: 350
+                        fontWeight: 'bold',
+                        fontSize: '16px',
+                        color: 'black'
+                    }
                 }
             },
             yAxis: {

@@ -1,14 +1,14 @@
-<div class="row" data-test-id="time-card-min-pay-section"
+<div  class="row" data-test-id="time-card-min-pay-section"
      *ngIf="showResults && minimumPaymentMode">
 
-    <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
+     <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
         <app-info-section data-test-id="time-to-pay-debt-section"
                           [help]="help.timeToPayOfDebt"
                           stat="{{scheduleCompare.schedule1.periodsText}}">
         </app-info-section>
     </div>
 
-    <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
+    <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
         <app-info-section data-test-id="credit-card-devil-section"
                           [help]="help.creditCardDevil">
             High interest credit cards are designed to trap you into a cycle of debt
@@ -17,7 +17,6 @@
             using them.
         </app-info-section>
     </div>
-
 
     <div class="col-12 col-xl-6 col-md-12  col-lg-6 col-xl-12">
         <app-info-section data-test-id="min-payment-trap"
