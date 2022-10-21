@@ -19,7 +19,7 @@
         </div>
     </div> -->
 
-    <div class="row  justify-content-center">
+    <div class="row justify-content-center">
 
         <!-- Calculator Form -->
         <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
@@ -52,7 +52,8 @@
                                              matTooltip="{{help.minimumPaymentCalculation.defintion}}">
                                     </fa-icon>
                                 </label>
-                                <select style="margin-top:7px;"  id='minimum-payment-type'
+                                <select style="margin-top:7px;"
+                                        id='minimum-payment-type'
                                         formControlName="minimumPaymentType"
                                         class='form-control'>
                                     <option *ngFor='let m of minimumPaymentTypeList'
@@ -204,7 +205,7 @@
             </mat-card>
         </div>
 
-        <div class="d-block d-md-none col-12"
+        <!-- <div class="d-block d-md-none col-12"
              id='set-show-summary-container-xs-small'
              [style.visibility]="showResults ? 'visible':'hidden'">
 
@@ -213,7 +214,7 @@
                (click)="setShowSummary()"><span *ngIf="showSummary">View
                     Full Payment Schedule</span>
                 <span *ngIf="!showSummary">View Summary</span> </a>
-        </div>
+        </div> -->
         <!-- Summary Card -->
         <div data-test-id="summary-container"
              *ngIf="showSummary"
@@ -228,7 +229,7 @@
         </div>
 
         <!-- Schedule List -->
-        <div class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-3"
+        <!-- <div class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-3"
              id="schedule-list-container"
              *ngIf="!showSummary">
             <app-credit-card-schedule-list *ngIf="!minimumPaymentMode"
@@ -237,7 +238,7 @@
             <app-credit-card-schedule-list *ngIf="minimumPaymentMode"
                                            [scheduleList]="scheduleCompare.schedule1.scheduleList">
             </app-credit-card-schedule-list>
-        </div>
+        </div> -->
 
         <div class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-3">
             <app-time-card [scheduleCompare]="scheduleCompare"
