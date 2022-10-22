@@ -2,7 +2,6 @@ import { Schedule } from './../../shared/schedule.type';
 import { HelpService } from './../../help/help.service';
 import { IconService } from 'src/app/icon/icon.service';
 import { ProfitDreamerChartService } from './../../chart.service';
-import { ChartServiceDeprecated } from '../../shared/chart.service.deprecated';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ScheduleCompare } from 'src/app/shared/schedule-compare.type';
@@ -29,7 +28,6 @@ export class InterestSavingsComponent implements OnChanges {
   }
 
   interestPieChart(schedule: Schedule): Highcharts.Options {
-
     const originalChartData: any[] = [
       { name: 'Interest', color: 'red', y: schedule.interest },
       { name: 'Principal', color: 'green', y: schedule.balanceStart }

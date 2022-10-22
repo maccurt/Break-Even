@@ -1,5 +1,5 @@
 import { ProfitDreamerChartService } from 'src/app/chart.service';
-import { ChartServiceDeprecated, PieChartData } from '../../shared/chart.service.deprecated';
+import { PieChartData } from "../../shared/PieChartData";
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from 'highcharts';
 import { ScheduleCompare } from '../../shared/schedule-compare.type';
