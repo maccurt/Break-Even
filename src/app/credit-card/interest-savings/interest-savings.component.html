@@ -29,6 +29,15 @@
         </app-stat-section>
     </div>
 
+    <div class="col-12 col-xl-6 col-md-12 col-xl-12">
+        <mat-card style="height:275px; margin-top: 20px;">
+            <div class="chart-container">
+                <highcharts-chart [Highcharts]="Highcharts"
+                                  [options]="chartOptions"></highcharts-chart>
+            </div>
+        </mat-card>
+    </div>
+
 </div>
 
 <div *ngIf="showResults && !minimumPaymentMode">
@@ -124,6 +133,16 @@
                     You Will Save <b>{{scheduleCompare.interestDifferencePercent}}%</b> In Interest.
                 </div>
             </app-stat-section>
-        </div>
+        </div>        
     </div>
+
+    <div class="col-12 col-xl-6 col-md-12 col-xl-12">
+        <mat-card style="height:275px; margin-top: 20px;">
+            <div class="chart-container">
+                <highcharts-chart [Highcharts]="Highcharts"
+                                  [options]="chartOptions"></highcharts-chart>
+            </div>
+        </mat-card>
+    </div>
+
 </div>
