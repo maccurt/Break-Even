@@ -1,5 +1,18 @@
 :host {
-    margin-bottom: 15px;
-    display: block;
+    margin-bottom: 15px !important;
+    // display: block;
+    // border: 1px solid red;
+    // background-color: #ffe6e6;
+    // background-color:red !important;
+
+    // .danger {
+    //     border: 1px solid green !important;
+    // }
 }
 
+.danger {
+    margin-bottom: 15px !important;
+    .stat {
+        color: red;
+    }
+}

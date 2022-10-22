@@ -5,6 +5,8 @@
 @import "./styles/old.styles.scss";
 @import "./styles/calculator.styles.scss";
 @import "./styles/icon.styles.scss";
+@import "./styles/icon.styles.scss";
+@import "./styles/table.styles.scss";
 
 .section{    
     min-height: 175px;
@@ -54,33 +56,7 @@
     font-size: large;
 }
 
-table {
-    .total {
-        font-size: larger;
-        font-weight: 700;
-    }
-    .total-xl {
-        font-size: x-large;
-        font-weight: 800;
-    }
 
-    .sub-total {
-        font-size: large;
-        font-weight: 600;
-    }
-
-    tr.border-1 {
-        border-bottom: 1px solid #cccccc;
-    }
-
-    tr.border-2 {
-        border-bottom: 2px solid black;
-    }
-
-    td.indent {
-        padding-left: 15px;
-    }
-}
 
 .section-wrapper {
     border: 1px solid #cccccc;

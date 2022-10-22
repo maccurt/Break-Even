@@ -1,3 +1,4 @@
+import { Schedule } from './../../shared/schedule.type';
 import { HelpService } from './../../help/help.service';
 import { IconService } from 'src/app/icon/icon.service';
 import { ProfitDreamerChartService } from './../../chart.service';
@@ -27,17 +28,22 @@ export class InterestSavingsComponent implements OnChanges {
     public help: HelpService) {
   }
 
+  interestPieChart(schedule: Schedule): Highcharts.Options {
+
+    const originalChartData: any[] = [
+      { name: 'Interest', color: 'red', y: schedule.interest },
+      { name: 'Principal', color: 'green', y: schedule.balanceStart }
+    ];
+    return this.chartService.pieChartOptions('Principal & Interest', originalChartData);
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
 
     if (this.scheduleCompare) {
       this.showResults = true;
 
       if (this.minimumPaymentMode) {
-        const originalChartData: any[] = [
-          { name: 'Interest', color: 'red', y: this.scheduleCompare.schedule1.interest },
-          { name: 'Principal', color: 'green', y: this.scheduleCompare.schedule1.balanceStart }
-        ];
-        this.chartOptions = this.chartService.pieChartOptions('Principal & Interest', originalChartData);
+        this.chartOptions = this.interestPieChart(this.scheduleCompare.schedule1);
       }
       else {
 
