@@ -1,0 +1,59 @@
+<div class="col-12 col-xl-6 col-md-12 col-xl-12">
+
+    <mat-card>
+        <mat-card-title>
+            Put Something Here
+        </mat-card-title>
+        <mat-card-content>
+            <table style="margin-bottom:7px"
+                   class="table table-striped">
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            Principal
+                        </td>
+                        <td>
+                            {{schedule.balanceStart |number:'1.2-2' }}
+                        </td>
+                    </tr>
+
+                    <tr class=" border-2">
+                        <td>
+                            Interest
+                        </td>
+                        <td>
+                            {{schedule.interest |number:'1.2-2' }}
+                        </td>
+                    </tr>
+
+
+                    <tr class="total ">
+                        <td>
+                            Total
+                        </td>
+                        <td>
+                            {{schedule.paymentTotal |number:'1.2-2' }}
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card style="height:275px; margin-top: 20px;">
+        <div class="chart-container">
+            <highcharts-chart [Highcharts]="Highcharts"
+                              [options]="chartOptions"></highcharts-chart>
+        </div>
+    </mat-card>
+
+
+    <app-info-section style="margin-top:7px" data-test-id="time-to-pay-debt-section"
+                      [help]="help.timeToPayOfDebt"
+                      stat="{{schedule.periodsText}}">
+    </app-info-section>
+
+</div>

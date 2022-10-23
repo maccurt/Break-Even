@@ -6,6 +6,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { CurrencyPipe } from '@angular/common';
 import { ScheduleCompare } from 'src/app/shared/schedule-compare.type';
 import * as Highcharts from 'highcharts';
+import { CreditCardChartService } from '../credit-card-chart.service';
 
 //TODO can this be moved to it's own module
 @Component({
@@ -21,18 +22,11 @@ export class InterestSavingsComponent implements OnChanges {
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions!: Highcharts.Options;
-  constructor(private chartService: ProfitDreamerChartService,
+  constructor(private creditCardChartService: CreditCardChartService,
+    private chartService:ProfitDreamerChartService,
     private currency: CurrencyPipe,
     public icons: IconService,
     public help: HelpService) {
-  }
-
-  interestPieChart(schedule: Schedule): Highcharts.Options {
-    const originalChartData: any[] = [
-      { name: 'Interest', color: 'red', y: schedule.interest },
-      { name: 'Principal', color: 'green', y: schedule.balanceStart }
-    ];
-    return this.chartService.pieChartOptions('Principal & Interest', originalChartData);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -41,10 +35,11 @@ export class InterestSavingsComponent implements OnChanges {
       this.showResults = true;
 
       if (this.minimumPaymentMode) {
-        this.chartOptions = this.interestPieChart(this.scheduleCompare.schedule1);
+        this.chartOptions = this.creditCardChartService.interestPieChart(this.scheduleCompare.schedule1);
       }
       else {
 
+        //put all this in the cc chart service
         const interestTypeLabel = this.isFixedPayment ? 'Fixed Payment' : 'Extra Payment';
         const original =
           '<div class="chart-label-container"><span class="chart-label">Original Total Interest:</span><span class="chart-value">' +

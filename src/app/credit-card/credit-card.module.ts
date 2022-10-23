@@ -12,7 +12,7 @@ import { TimeCardComponent } from './time-card/time-card.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ScheduleCardComponent } from './schedule-card/schedule-card.component';
 import { IconModule } from '../icon/icon.module';
-import { CreditCardSummaryComponent } from './credit-card-summary/credit-card-summary.component';
+import { CreditCardScheduleComponent } from './credit-card-schedule/credit-card-schedule.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +21,8 @@ import { CreditCardSummaryComponent } from './credit-card-summary/credit-card-su
     CreditCardScheduleListComponent,
     InterestSavingsComponent,
     TimeCardComponent,
-    ScheduleCardComponent,
-    CreditCardSummaryComponent
+    ScheduleCardComponent,    
+    CreditCardScheduleComponent
   ],
   imports: [
     CommonModule,

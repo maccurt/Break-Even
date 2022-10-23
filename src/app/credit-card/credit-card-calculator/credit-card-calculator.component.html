@@ -188,6 +188,23 @@
         <div class="col-xxl-9">
 
             <mat-tab-group>
+
+                <mat-tab label="Compare">
+                    <div class="row"
+                         *ngIf="scheduleCompare">
+
+
+                        <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
+                            <app-credit-card-schedule [schedule]="scheduleCompare.schedule2"></app-credit-card-schedule>
+
+                        </div>
+
+                        <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
+                            <app-credit-card-schedule [schedule]="scheduleCompare.schedule1"></app-credit-card-schedule>
+                        </div>
+                    </div>
+                </mat-tab>
+
                 <mat-tab label="Summary">
 
                     <div class="row">
@@ -234,25 +251,7 @@
 
                 </mat-tab>
 
-                <mat-tab label="Compare">
 
-                    <div class="row" *ngIf="scheduleCompare">
-                        <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-
-                            <app-credit-card-summary [schedule]="scheduleCompare.schedule1" ></app-credit-card-summary>
-
-                        </div>
-
-                        <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-
-                            <app-credit-card-summary [schedule]="scheduleCompare.schedule2" ></app-credit-card-summary>
-
-                        </div>
-
-                    </div>
-
-
-                </mat-tab>
 
             </mat-tab-group>
 
