@@ -7,10 +7,8 @@
 @import "./styles/icon.styles.scss";
 @import "./styles/icon.styles.scss";
 @import "./styles/table.styles.scss";
+@import "./styles/section.styles.scss";
 
-.section{    
-    min-height: 175px;
-}
 
 .gross-profit-percent-section {
     fa-icon {
@@ -23,35 +21,7 @@
     }
 }
 
-.stat-formula {
-    fa-icon {
-        font-size: x-large;
-    }
 
-    hr {
-        margin-bottom: 15px;
-
-    }
-    .title {
-        font-size: medium;
-        font-weight: 500;
-        fa-icon {
-            margin-right: 5px;
-        }
-    }
-    .stat {
-        font-size: xx-large;
-        font-weight: bold;
-        text-align: center;
-        font-weight: 450;
-    }
-
-    .formula {
-        margin-bottom: 4px;
-        text-align: center;
-        font-weight: 300;
-    }
-}
 
 .tool-tip-help {
     font-size: large;
