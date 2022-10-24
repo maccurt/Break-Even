@@ -13,7 +13,7 @@ export class CreditCardScheduleComponent implements OnChanges {
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions!: Highcharts.Options;
-  @Input() title!: string;
+  
   @Input() schedule!: Schedule;
 
   constructor(private creditCartChartService: CreditCardChartService,
@@ -21,14 +21,7 @@ export class CreditCardScheduleComponent implements OnChanges {
 
     }
 
-  ngOnChanges(): void {
-
-    if (!this.title){
-      if (this.schedule.isFixedPayment && this.schedule.payment > 0){
-        this.title = this.schedule.payment.toString() + 'fixed payment';
-      }
-    }
-
+  ngOnChanges(): void {  
     this.chartOptions = this.creditCartChartService.interestPieChart(this.schedule);
   }
 }

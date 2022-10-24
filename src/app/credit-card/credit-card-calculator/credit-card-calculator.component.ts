@@ -177,7 +177,7 @@ export class CreditCardCalculatorComponent implements OnInit {
       switch (this.mathService.getFloat(this.paymentTypeControl.value)) {
         case PaymentType.MinimumPaymentOnly:
           payment = this.minimumPayment;
-          this.minimumPaymentMode = true;
+          this.minimumPaymentMode = true;          
           break;
         case PaymentType.MinimumPaymentPlusExtra:
           payment = this.mathService.getFloat(this.extraPaymentControl.value, 0)!;

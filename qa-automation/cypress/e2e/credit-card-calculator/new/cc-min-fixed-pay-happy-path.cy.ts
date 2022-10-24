@@ -3,6 +3,9 @@ import { fixPayment } from "./minimum-payment-function";
 describe('credit card minimum payment extra payment happy path', () => {
 
     fixPayment();
+    before(() => {
+        cy.get('div[role=tab]').eq(1).click();    
+    });
 
     beforeEach(() => {
         cy.getDataTestId('fix-pay-mode').as('mode');

@@ -9,6 +9,10 @@
 @import "./styles/table.styles.scss";
 @import "./styles/section.styles.scss";
 
+//TODO should this be here
+mat-tab-header {
+    margin-bottom: 15px;
+}
 
 .gross-profit-percent-section {
     fa-icon {
@@ -21,13 +25,9 @@
     }
 }
 
-
-
 .tool-tip-help {
     font-size: large;
 }
-
-
 
 .section-wrapper {
     border: 1px solid #cccccc;

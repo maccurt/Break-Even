@@ -187,23 +187,27 @@
 
         <div class="col-xxl-9">
 
+
             <mat-tab-group>
 
-                <mat-tab label="Compare">
+                <mat-tab data-test-id="cc-compare-tab"
+                         label="Compare">
                     <div class="row"
                          *ngIf="scheduleCompare">
 
-                        <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-                            <app-credit-card-schedule [title]="'Hello World'" [schedule]="scheduleCompare.schedule2"></app-credit-card-schedule>
 
+                        <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
+                            <app-credit-card-schedule [schedule]="scheduleCompare.schedule2"></app-credit-card-schedule>
+                        </div>
+
+                        <div *ngIf="!minimumPaymentMode"
+                             class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
+                            <app-credit-card-schedule [schedule]="scheduleCompare.schedule1"></app-credit-card-schedule>
                         </div>
 
                         <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-                            <app-credit-card-schedule [title]="'Minimum Payment'"  [schedule]="scheduleCompare.schedule1"></app-credit-card-schedule>
-                        </div>
-
-                        <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-                            <app-stat-section data-test-id="interest-saved-by-paying-extra"
+                            <app-stat-section *ngIf="!minimumPaymentMode"
+                                              data-test-id="interest-saved-by-paying-extra"
                                               [help]="help.interestSavedByPayingExtra"
                                               [sign]="'$'"
                                               [stat]="scheduleCompare.interestDifference">
@@ -218,19 +222,18 @@
                                 </div>
                             </app-stat-section>
 
-                            <app-info-section [help]="help.timeSavedByPayingExtra"
+
+
+                            <app-info-section *ngIf="!minimumPaymentMode"
+                                              [help]="help.timeSavedByPayingExtra"
                                               stat="{{scheduleCompare.periodsSavedText}}">
 
                             </app-info-section>
 
+                            <app-credit-card-devil-section></app-credit-card-devil-section>
 
-                            <app-info-section data-test-id="credit-card-devil-section"
-                                              [help]="help.creditCardDevil">
-                                High interest credit cards are designed to trap you into a cycle of debt
-                                and impulsive spending.
-                                We highly suggest you pay off your credit cards as soon and you can and stop
-                                using them.
-                            </app-info-section>
+                            <app-minimum-payment-trap-section *ngIf="minimumPaymentMode">
+                            </app-minimum-payment-trap-section>
 
                         </div>
 

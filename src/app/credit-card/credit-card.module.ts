@@ -13,6 +13,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { ScheduleCardComponent } from './schedule-card/schedule-card.component';
 import { IconModule } from '../icon/icon.module';
 import { CreditCardScheduleComponent } from './credit-card-schedule/credit-card-schedule.component';
+import { MinimumPaymentTrapSectionComponent } from './minimum-payment-trap-section/minimum-payment-trap-section.component';
+import { CreditCardDevilSectionComponent } from './credit-card-devil-section/credit-card-devil-section.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import { CreditCardScheduleComponent } from './credit-card-schedule/credit-card-
     InterestSavingsComponent,
     TimeCardComponent,
     ScheduleCardComponent,    
-    CreditCardScheduleComponent
+    CreditCardScheduleComponent, MinimumPaymentTrapSectionComponent, CreditCardDevilSectionComponent
   ],
   imports: [
     CommonModule,

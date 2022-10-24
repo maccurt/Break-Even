@@ -9,6 +9,10 @@ describe('minimum payment happy path', () => {
         cy.getDataTestId('minimum-payment-mode').as('mode');
     });
 
+    before(() => {
+        cy.get('div[role=tab]').eq(1).click();    
+    });
+
     it('minimum payment mode should exist', () => {
         cy.get('@mode').should('exist');
     });

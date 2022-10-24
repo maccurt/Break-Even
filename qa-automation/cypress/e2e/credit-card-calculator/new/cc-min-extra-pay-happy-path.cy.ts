@@ -3,6 +3,10 @@ import { minimumPaymentPlusExtra } from "./minimum-payment-function";
 describe('credit card minimum payment extra payment happy path', () => {
 
     minimumPaymentPlusExtra();
+    before(() => {
+        cy.get('div[role=tab]').eq(1).click();    
+    });
+    
 
     beforeEach(() => {
         cy.getDataTestId('min-pay-plus-exta-pay-mode').as('mode');
