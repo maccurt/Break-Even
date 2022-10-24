@@ -2,14 +2,12 @@
 
     <mat-card>
         <mat-card-title>
-            Put Something Here
+            {{schedule.title}}
         </mat-card-title>
         <mat-card-content>
             <table style="margin-bottom:7px"
                    class="table table-striped">
-
                 <tbody>
-
                     <tr>
                         <td>
                             Principal
@@ -51,7 +49,8 @@
     </mat-card>
 
 
-    <app-info-section style="margin-top:7px" data-test-id="time-to-pay-debt-section"
+    <app-info-section style="margin-top:7px"
+                      data-test-id="time-to-pay-debt-section"
                       [help]="help.timeToPayOfDebt"
                       stat="{{schedule.periodsText}}">
     </app-info-section>

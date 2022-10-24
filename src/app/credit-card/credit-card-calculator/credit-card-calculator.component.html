@@ -193,16 +193,14 @@
                     <div class="row"
                          *ngIf="scheduleCompare">
 
-
                         <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-                            <app-credit-card-schedule [schedule]="scheduleCompare.schedule2"></app-credit-card-schedule>
+                            <app-credit-card-schedule [title]="'Hello World'" [schedule]="scheduleCompare.schedule2"></app-credit-card-schedule>
 
                         </div>
 
                         <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-                            <app-credit-card-schedule [schedule]="scheduleCompare.schedule1"></app-credit-card-schedule>
+                            <app-credit-card-schedule [title]="'Minimum Payment'"  [schedule]="scheduleCompare.schedule1"></app-credit-card-schedule>
                         </div>
-
 
                         <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
                             <app-stat-section data-test-id="interest-saved-by-paying-extra"
