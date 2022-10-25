@@ -187,7 +187,6 @@
 
         <div class="col-xxl-9">
 
-
             <mat-tab-group>
 
                 <mat-tab label="Compare">
@@ -195,15 +194,19 @@
                          data-test-id="cc-compare-tab"
                          *ngIf="scheduleCompare">
 
+                         <div *ngIf="!minimumPaymentMode && !isFixedPayment"
+                             class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
+                            <app-credit-card-schedule data-test-id="min-pay-extra-schedule" [schedule]="scheduleCompare.schedule2"></app-credit-card-schedule>
+                        </div>
+
+                        <div *ngIf="!minimumPaymentMode && isFixedPayment"
+                             class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
+                            <app-credit-card-schedule data-test-id="fixed-pay-schedule" [schedule]="scheduleCompare.schedule2"></app-credit-card-schedule>
+                        </div>
 
                         <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-                            <app-credit-card-schedule [schedule]="scheduleCompare.schedule2"></app-credit-card-schedule>
-                        </div>
-
-                        <div *ngIf="!minimumPaymentMode"
-                             class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-                            <app-credit-card-schedule [schedule]="scheduleCompare.schedule1"></app-credit-card-schedule>
-                        </div>
+                            <app-credit-card-schedule  data-test-id="min-pay-schedule"  [schedule]="scheduleCompare.schedule1"></app-credit-card-schedule>
+                        </div>                        
 
                         <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
                             <app-stat-section *ngIf="!minimumPaymentMode"
