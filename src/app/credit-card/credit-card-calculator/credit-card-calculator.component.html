@@ -190,9 +190,9 @@
 
             <mat-tab-group>
 
-                <mat-tab data-test-id="cc-compare-tab"
-                         label="Compare">
+                <mat-tab label="Compare">
                     <div class="row"
+                         data-test-id="cc-compare-tab"
                          *ngIf="scheduleCompare">
 
 
@@ -242,7 +242,7 @@
 
                 <mat-tab label="Summary">
 
-                    <div class="row">
+                    <div class="row" data-test-id="cc-summary-tab" >
 
                         <div data-test-id="summary-container"
                              *ngIf="showSummary"

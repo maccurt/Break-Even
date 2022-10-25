@@ -21,7 +21,7 @@ describe('minimum payment happy path', () => {
         cy.get('@mode').getDataTestId('total-principal-interest').should('exist');
     });
 
-    statSectionTest('total-principal-interest',
+    statSectionTest('cc-summary-tab', 'total-principal-interest',
         'Total Principal & Interest Minium Payment Only',
         '$21,979.18',
         '10,000.00 balance + 11,979.18 interest');
@@ -30,7 +30,7 @@ describe('minimum payment happy path', () => {
         cy.get('@mode').getDataTestId('minimum-payment-interest').should('exist');
     });
 
-    statSectionTest('minimum-payment-interest',
+    statSectionTest('cc-summary-tab','minimum-payment-interest',
         'Minimum Payment Interest',
         '$11,979.18',
         'You Will Pay 119.79% In Interest.');
