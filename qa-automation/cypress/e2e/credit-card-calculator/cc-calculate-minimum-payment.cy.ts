@@ -1,12 +1,10 @@
+import { minimumPayment } from "./new/minimum-payment-function";
+
 describe('cc-calculate-minimum-payment.cy.ts', () => {
 
     describe('$10,000 15% Interest + 1% of balance', () => {
 
-        before(() => {
-            cy.visit('/credit-card');
-            cy.get('#balance').type('10000');
-            cy.get('#interestRate').type('15').blur();                        
-        });
+        minimumPayment();
 
         it('Minimum Payment should be $225.00', () => {
             cy.get('#minimum-payment').invoke('text').then((text) => {

@@ -11,14 +11,18 @@ describe('credit card schedule minimum pay + extra', () => {
     beforeEach(() => {
         cy.getDataTestId('cc-compare-tab').as('parent');
     });
-
-    // it('minimum payment trap should exist', () => {
-    //     cy.get('@parent').getDataTestId('min-payment-trap').should('exist');
-    // });
-
+    
     it('credit card are devil should exist', () => {
         cy.get('@parent').getDataTestId('credit-card-devil-section').should('exist');
     });
+
+    it('credit are the devil should exist', () => {
+        cy.get('@parent').getDataTestId('credit-card-devil-section').should('exist');
+    });
+
+    it('credit are the devil should exist', () => {
+        cy.get('@parent').getDataTestId('credit-card-devil-section').should('exist');
+    });    
     
     creditCardScheduleMinExtraPayBase();
     creditCardScheduleMinPayBase();
