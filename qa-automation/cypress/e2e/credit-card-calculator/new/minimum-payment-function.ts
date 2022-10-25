@@ -1,13 +1,13 @@
 import { Scenario1, ICreditCardBase } from "../../helper/input-output-constant";
 
-export function minimumPayment() {
+export function enterMinimumPaymentForCreditCard() {
     before(() => {
         enterBaselineCreditCardInfo();
         cy.get('#calculate').click();
     });
 };
 
-export function minimumPaymentPlusExtra(scenario:ICreditCardBase = new Scenario1()) {
+export function enterExtraPaymentForCreditCard(scenario:ICreditCardBase = new Scenario1()) {
     before(() => {
         enterBaselineCreditCardInfo();
         cy.get('#payment-type-extra').click();
@@ -16,7 +16,7 @@ export function minimumPaymentPlusExtra(scenario:ICreditCardBase = new Scenario1
     });
 };
 
-export function fixPayment(scenario:ICreditCardBase = new Scenario1()) {
+export function enterFixedPaymentForCreditCard(scenario:ICreditCardBase = new Scenario1()) {
     before(() => {
         enterBaselineCreditCardInfo();
         cy.get('#payment-type-fixed').click();

@@ -1,9 +1,9 @@
-import { creditCardScheduleFixedPayBase, creditCardScheduleMinExtraPayBase, creditCardScheduleMinPayBase } from "../../helper/cc-schedule-test";
-import { fixPayment, minimumPayment, minimumPaymentPlusExtra } from "../new/minimum-payment-function";
+import { creditCardScheduleFixedPay, creditCardScheduleExtraPay, creditCardScheduleMininumPay } from "../../helper/cc-schedule-test";
+import { enterFixedPaymentForCreditCard, enterMinimumPaymentForCreditCard, enterExtraPaymentForCreditCard } from "../new/minimum-payment-function";
 
 describe('credit card schedule minimum pay + extra', () => {
 
-    fixPayment();
+    enterFixedPaymentForCreditCard();
     before(() => {
         cy.get('div[role=tab]').eq(0).click();        
     });
@@ -20,6 +20,6 @@ describe('credit card schedule minimum pay + extra', () => {
         cy.get('@parent').getDataTestId('credit-card-devil-section').should('exist');
     });
     
-    creditCardScheduleFixedPayBase();
-    creditCardScheduleMinPayBase();
+    creditCardScheduleFixedPay();
+    creditCardScheduleMininumPay();
 });

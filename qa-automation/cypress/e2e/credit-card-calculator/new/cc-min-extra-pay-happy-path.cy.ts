@@ -1,8 +1,8 @@
 import { statSectionTest } from "../../helper/section-test-helpers";
-import { minimumPaymentPlusExtra } from "./minimum-payment-function";
+import { enterExtraPaymentForCreditCard } from "./minimum-payment-function";
 describe('credit card minimum payment extra payment happy path', () => {
 
-    minimumPaymentPlusExtra();
+    enterExtraPaymentForCreditCard();
     before(() => {
         cy.get('div[role=tab]').eq(1).click();
     });

@@ -1,13 +1,14 @@
 import { ICreditCardResult, Scenario1 } from './input-output-constant';
-export function creditCardScheduleMinPayBase(result: ICreditCardResult = new Scenario1().miniumPayResult) {
+import { timeToPayOffDebtTest } from './time-to-pay-off-debt-test';
+export function creditCardScheduleMininumPay(result: ICreditCardResult = new Scenario1().miniumPayResult) {
     creditCardScheduleTest('min-pay-schedule', result);
 }
 
-export function creditCardScheduleMinExtraPayBase(result: ICreditCardResult = new Scenario1().extraPayResult) {
-    creditCardScheduleTest('min-pay-extra-schedule', result);
+export function creditCardScheduleExtraPay(result: ICreditCardResult = new Scenario1().extraPayResult) {
+    creditCardScheduleTest('extra-pay-schedule', result);
 }
 
-export function creditCardScheduleFixedPayBase(result: ICreditCardResult = new Scenario1().fixedPayResult) {
+export function creditCardScheduleFixedPay(result: ICreditCardResult = new Scenario1().fixedPayResult) {
     creditCardScheduleTest('fixed-pay-schedule', result);
 }
 
@@ -19,8 +20,8 @@ export function creditCardScheduleTest(parentId: string, result: ICreditCardResu
             cy.getDataTestId(parentId).getDataTestId('credit-card-table').as('table');
         });
 
-        it('title should be', () => {
-
+        it('title should be ' + result.title, () => {
+            cy.getDataTestId(parentId).getDataTestId('schedule-title').textShouldEqual(result.title);
         });
 
         it('principal should equal ' + result.principal, () => {
@@ -32,7 +33,9 @@ export function creditCardScheduleTest(parentId: string, result: ICreditCardResu
         });
 
         it('total should equal ' + result.total, () => {
-            cy.get('@table').getDataTestId('total').textShouldEqual('$'+result.total);
+            cy.get('@table').getDataTestId('total').textShouldEqual('$' + result.total);
         });
+
+        timeToPayOffDebtTest(parentId, result);
     });
 }

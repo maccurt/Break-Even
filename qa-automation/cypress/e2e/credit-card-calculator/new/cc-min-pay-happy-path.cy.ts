@@ -1,9 +1,9 @@
 import { statSectionTest } from "../../helper/section-test-helpers";
-import { minimumPayment } from "./minimum-payment-function";
+import { enterMinimumPaymentForCreditCard } from "./minimum-payment-function";
 
 describe('minimum payment happy path', () => {
 
-    minimumPayment();
+    enterMinimumPaymentForCreditCard();
 
     beforeEach(() => {
         cy.getDataTestId('minimum-payment-mode').as('mode');
@@ -35,7 +35,7 @@ describe('minimum payment happy path', () => {
         '$11,979.18',
         'You Will Pay 119.79% In Interest.');
 
-    it('minimum payment interest should exist', () => {
+    it('time to pay off debt', () => {
         cy.getDataTestId('time-card-min-pay-section').getDataTestId('time-to-pay-debt-section').should('exist');
     });
 
