@@ -16,6 +16,7 @@ import { CreditCardScheduleComponent } from './credit-card-schedule/credit-card-
 import { MinimumPaymentTrapSectionComponent } from './minimum-payment-trap-section/minimum-payment-trap-section.component';
 import { CreditCardDevilSectionComponent } from './credit-card-devil-section/credit-card-devil-section.component';
 import { InterestSavedSectionComponent } from './interest-saved-section/interest-saved-section.component';
+import { TimeSavedSectionComponent } from './time-saved-section/time-saved-section.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { InterestSavedSectionComponent } from './interest-saved-section/interest
     InterestSavingsComponent,
     TimeCardComponent,
     ScheduleCardComponent,    
-    CreditCardScheduleComponent, MinimumPaymentTrapSectionComponent, CreditCardDevilSectionComponent, InterestSavedSectionComponent
+    CreditCardScheduleComponent, MinimumPaymentTrapSectionComponent, CreditCardDevilSectionComponent, InterestSavedSectionComponent, TimeSavedSectionComponent
   ],
   imports: [
     CommonModule,

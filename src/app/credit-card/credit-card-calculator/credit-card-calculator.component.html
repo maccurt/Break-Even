@@ -227,11 +227,14 @@
                                                         [help]="help.interestSavedByPayingFixedPayment">
                             </app-interest-saved-section>
 
-                            <app-info-section *ngIf="!minimumPaymentMode"
-                                              [help]="help.timeSavedByPayingExtra"
-                                              stat="{{scheduleCompare.periodsSavedText}}">
+                            <!-- TODO Find a way to do this with component see above -->
+                            <app-time-saved-section [scheduleCompare]="scheduleCompare"
+                                                    *ngIf="!minimumPaymentMode && !isFixedPayment"
+                                                    [help]="help.timeSavedByPayingExtra"></app-time-saved-section>
 
-                            </app-info-section>
+                            <app-time-saved-section [scheduleCompare]="scheduleCompare"
+                                                    *ngIf="!minimumPaymentMode && isFixedPayment"
+                                                    [help]="help.timeSavedFixedPayment"></app-time-saved-section>
 
                             <app-credit-card-devil-section></app-credit-card-devil-section>
 
