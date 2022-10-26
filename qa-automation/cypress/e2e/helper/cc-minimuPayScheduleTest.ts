@@ -1,4 +1,4 @@
-import { creditCardScheduleMininumPay } from "./cc-schedule-test";
+import { creditCardScheduleMininumPayTest } from "./cc-schedule-test";
 
 export function minimuPayScheduleTest() {
 
@@ -13,6 +13,6 @@ export function minimuPayScheduleTest() {
             cy.getDataTestId('cc-compare-tab').as('parent');
         });        
 
-        creditCardScheduleMininumPay();
+        creditCardScheduleMininumPayTest();
     });
 }

@@ -1,6 +1,6 @@
-import { minimuPayScheduleTest } from "../../helper/cc-minimuPayScheduleTest";
-import { creditCardScheduleExtraPay, creditCardScheduleFixedPay, creditCardScheduleMininumPay } from "../../helper/cc-schedule-test";
-import { enterExtraPaymentForCreditCard as enterExtraPaymentForCreditCard, enterFixedPaymentForCreditCard } from "../new/minimum-payment-function";
+import { creditCardScheduleFixedPayTest, creditCardScheduleMininumPayTest } from "../../helper/cc-schedule-test";
+import { InterestSavedByPayingFixedTest } from "../../helper/interest-saved-test";
+import { enterFixedPaymentForCreditCard } from "../new/minimum-payment-function";
 
 describe('credit card fixed pay page test', () => {
 
@@ -8,8 +8,8 @@ describe('credit card fixed pay page test', () => {
         cy.getDataTestId('cc-compare-tab').as('parent');
     });
     enterFixedPaymentForCreditCard();
-    creditCardScheduleFixedPay();
-    creditCardScheduleMininumPay();
+    creditCardScheduleFixedPayTest();
+    creditCardScheduleMininumPayTest();
 
     it('minimum payment trap should NOT exist', () => {
         cy.get('@parent').getDataTestId('min-payment-trap').should('not.exist');
@@ -18,4 +18,6 @@ describe('credit card fixed pay page test', () => {
     it('credit card are devil should exist', () => {
         cy.get('@parent').getDataTestId('credit-card-devil-section').should('exist');
     });
+
+    InterestSavedByPayingFixedTest('cc-compare-tab');
 });

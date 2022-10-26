@@ -1,14 +1,14 @@
 import { ICreditCardResult, Scenario1 } from './input-output-constant';
 import { timeToPayOffDebtTest } from './time-to-pay-off-debt-test';
-export function creditCardScheduleMininumPay(result: ICreditCardResult = new Scenario1().miniumPayResult) {
+export function creditCardScheduleMininumPayTest(result: ICreditCardResult = new Scenario1().miniumPayResult) {
     creditCardScheduleTest('min-pay-schedule', result);
 }
 
-export function creditCardScheduleExtraPay(result: ICreditCardResult = new Scenario1().extraPayResult) {
+export function creditCardScheduleExtraPayTest(result: ICreditCardResult = new Scenario1().extraPayResult) {
     creditCardScheduleTest('extra-pay-schedule', result);
 }
 
-export function creditCardScheduleFixedPay(result: ICreditCardResult = new Scenario1().fixedPayResult) {
+export function creditCardScheduleFixedPayTest(result: ICreditCardResult = new Scenario1().fixedPayResult) {
     creditCardScheduleTest('fixed-pay-schedule', result);
 }
 

@@ -34,12 +34,11 @@ export function statSectionTest(parentId: string, datatestId: string,
         });
 
         it('title should equal ' + title, () => {
-            cy.get('@section').getDataTestId('title').textShouldEqual(title);
-            //cy.getDataTestId(datatestId).getDataTestId('title').textShouldEqual(title);
+            cy.get('@section').getDataTestId('title').textShouldEqual(title);           
         });
 
         it('stat should equal ' + stat, () => {
-            cy.get('@section').getDataTestId('stat').textShouldEqual(stat);
+            cy.get('@section').getDataTestId('stat').textShouldEqual('$'+stat);
         });
 
         it('content 1 should equal ' + content1, () => {

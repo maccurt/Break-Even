@@ -1,4 +1,4 @@
-import { creditCardScheduleMininumPay } from "../../helper/cc-schedule-test";
+import { creditCardScheduleMininumPayTest } from "../../helper/cc-schedule-test";
 import { enterMinimumPaymentForCreditCard } from "../new/minimum-payment-function";
 
 describe('credit card schedule minimum pay', () => {
@@ -22,5 +22,5 @@ describe('credit card schedule minimum pay', () => {
         cy.get('@parent').getDataTestId('credit-card-devil-section').should('exist');
     });
 
-    creditCardScheduleMininumPay();
+    creditCardScheduleMininumPayTest();
 });

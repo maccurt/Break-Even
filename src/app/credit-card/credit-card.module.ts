@@ -15,6 +15,7 @@ import { IconModule } from '../icon/icon.module';
 import { CreditCardScheduleComponent } from './credit-card-schedule/credit-card-schedule.component';
 import { MinimumPaymentTrapSectionComponent } from './minimum-payment-trap-section/minimum-payment-trap-section.component';
 import { CreditCardDevilSectionComponent } from './credit-card-devil-section/credit-card-devil-section.component';
+import { InterestSavedSectionComponent } from './interest-saved-section/interest-saved-section.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { CreditCardDevilSectionComponent } from './credit-card-devil-section/cre
     InterestSavingsComponent,
     TimeCardComponent,
     ScheduleCardComponent,    
-    CreditCardScheduleComponent, MinimumPaymentTrapSectionComponent, CreditCardDevilSectionComponent
+    CreditCardScheduleComponent, MinimumPaymentTrapSectionComponent, CreditCardDevilSectionComponent, InterestSavedSectionComponent
   ],
   imports: [
     CommonModule,

@@ -194,38 +194,38 @@
                          data-test-id="cc-compare-tab"
                          *ngIf="scheduleCompare">
 
-                         <div *ngIf="!minimumPaymentMode && !isFixedPayment"
+                        <div *ngIf="!minimumPaymentMode && !isFixedPayment"
                              class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-                            <app-credit-card-schedule data-test-id="extra-pay-schedule" [schedule]="scheduleCompare.schedule2"></app-credit-card-schedule>
+                            <app-credit-card-schedule data-test-id="extra-pay-schedule"
+                                                      [schedule]="scheduleCompare.schedule2"></app-credit-card-schedule>
                         </div>
 
                         <div *ngIf="!minimumPaymentMode && isFixedPayment"
                              class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-                            <app-credit-card-schedule data-test-id="fixed-pay-schedule" [schedule]="scheduleCompare.schedule2"></app-credit-card-schedule>
+                            <app-credit-card-schedule data-test-id="fixed-pay-schedule"
+                                                      [schedule]="scheduleCompare.schedule2"></app-credit-card-schedule>
                         </div>
 
                         <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-                            <app-credit-card-schedule  data-test-id="min-pay-schedule"  [schedule]="scheduleCompare.schedule1"></app-credit-card-schedule>
-                        </div>                        
+                            <app-credit-card-schedule data-test-id="min-pay-schedule"
+                                                      [schedule]="scheduleCompare.schedule1"></app-credit-card-schedule>
+                        </div>
 
                         <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-                            <app-stat-section *ngIf="!minimumPaymentMode"
-                                              data-test-id="interest-saved-by-paying-extra"
-                                              [help]="help.interestSavedByPayingExtra"
-                                              [sign]="'$'"
-                                              [stat]="scheduleCompare.interestDifference">
-                                <div style="text-align: center;">
-                                    ${{scheduleCompare.schedule1.paymentTotal | number:'1.2-2' }} -
-                                    ${{scheduleCompare.schedule2.paymentTotal | number:'1.2-2' }}
-                                </div>
 
-                                <div content-2
-                                     style="margin-top:4px">
-                                    You Will Save <b>{{scheduleCompare.interestDifferencePercent}}%</b> In Interest.
-                                </div>
-                            </app-stat-section>
+                            <!-- TODO Find a way to do this with component -->
+                            <app-interest-saved-section data-test-id="interest-saved-by-paying-extra"
+                                                        *ngIf="!minimumPaymentMode && !isFixedPayment"
+                                                        [scheduleCompare]="scheduleCompare"
+                                                        [help]="help.interestSavedByPayingExtra">
+                            </app-interest-saved-section>
 
-
+                            <!-- TODO Find a way to do this with component see above -->
+                            <app-interest-saved-section data-test-id="interest-saved-by-paying-fixed"
+                                                        *ngIf="!minimumPaymentMode && isFixedPayment"
+                                                        [scheduleCompare]="scheduleCompare"
+                                                        [help]="help.interestSavedByPayingFixedPayment">
+                            </app-interest-saved-section>
 
                             <app-info-section *ngIf="!minimumPaymentMode"
                                               [help]="help.timeSavedByPayingExtra"
@@ -245,7 +245,8 @@
 
                 <mat-tab label="Summary">
 
-                    <div class="row" data-test-id="cc-summary-tab" >
+                    <div class="row"
+                         data-test-id="cc-summary-tab">
 
                         <div data-test-id="summary-container"
                              *ngIf="showSummary"
