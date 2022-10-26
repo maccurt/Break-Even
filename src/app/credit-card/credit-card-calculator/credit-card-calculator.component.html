@@ -228,11 +228,13 @@
                             </app-interest-saved-section>
 
                             <!-- TODO Find a way to do this with component see above -->
-                            <app-time-saved-section [scheduleCompare]="scheduleCompare"
+                            <app-time-saved-section data-test-id="time-saved-extra-payment"
+                                                    [scheduleCompare]="scheduleCompare"
                                                     *ngIf="!minimumPaymentMode && !isFixedPayment"
                                                     [help]="help.timeSavedByPayingExtra"></app-time-saved-section>
 
-                            <app-time-saved-section [scheduleCompare]="scheduleCompare"
+                            <app-time-saved-section data-test-id="time-saved-fixed-payment"
+                                                    [scheduleCompare]="scheduleCompare"
                                                     *ngIf="!minimumPaymentMode && isFixedPayment"
                                                     [help]="help.timeSavedFixedPayment"></app-time-saved-section>
 

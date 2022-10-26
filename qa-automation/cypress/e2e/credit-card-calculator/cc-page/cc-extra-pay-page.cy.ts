@@ -1,5 +1,6 @@
 import { creditCardScheduleExtraPayTest, creditCardScheduleMininumPayTest } from "../../helper/cc-schedule-test";
 import { InterestSavedByPayingExtraTest } from "../../helper/interest-saved-test";
+import { timeSavedExtraPayment } from "../../helper/time-saved-test";
 import { enterExtraPaymentForCreditCard } from "../new/minimum-payment-function";
 
 describe('credit card min pay page test', () => {
@@ -21,5 +22,6 @@ describe('credit card min pay page test', () => {
     });
 
     InterestSavedByPayingExtraTest('cc-compare-tab');
+    timeSavedExtraPayment('cc-compare-tab');
 
 });

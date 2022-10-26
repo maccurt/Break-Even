@@ -1,4 +1,4 @@
-import { ICreditCardResult } from './input-output-constant';
+import { ICreditCardResult } from './credit-card-scenario-1';
 import { appInfoTest, statSectionTest } from './section-test-helpers';
 
 export function timeToPayOffDebtTest(parentId: string, result: ICreditCardResult) {

@@ -1,5 +1,6 @@
 import { creditCardScheduleFixedPayTest, creditCardScheduleMininumPayTest } from "../../helper/cc-schedule-test";
-import { InterestSavedByPayingFixedTest } from "../../helper/interest-saved-test";
+import { interestSavedByPayingFixedTest } from "../../helper/interest-saved-test";
+import { timeSavedFixedPay } from "../../helper/time-saved-test";
 import { enterFixedPaymentForCreditCard } from "../new/minimum-payment-function";
 
 describe('credit card fixed pay page test', () => {
@@ -19,5 +20,6 @@ describe('credit card fixed pay page test', () => {
         cy.get('@parent').getDataTestId('credit-card-devil-section').should('exist');
     });
 
-    InterestSavedByPayingFixedTest('cc-compare-tab');
+    interestSavedByPayingFixedTest('cc-compare-tab');
+    timeSavedFixedPay('cc-compare-tab');
 });
