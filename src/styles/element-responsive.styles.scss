@@ -1,0 +1,6 @@
+@import "../styles/variables";
+.title-responsive {
+    @include for-large-and-below() {
+        color: red;
+    }
+}

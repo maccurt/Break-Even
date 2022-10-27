@@ -1,7 +1,6 @@
 import { HelpModule } from './../help/help.module';
 import { IconModule } from './../icon/icon.module';
 import { MaterialModule } from './../material/material.module';
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroupInputComponent } from './form-group-input/form-group-input.component';
@@ -11,15 +10,17 @@ import { CalculatorWrapperComponent } from './calculator-wrapper/calculator-wrap
 import { StatSectionComponent } from './stat-section/stat-section.component';
 import { InfoSectionComponent } from './info-section/info-section.component';
 import { FormInputComponent } from './form-input copy/form-input.component';
+import { ColumnResponsiveDirective } from './directives/colum-directives/column-responsive.directive';
 
 @NgModule({
   declarations: [
     FormGroupInputComponent,
     FormInputComponent,
     NumericInputDirective,
+    ColumnResponsiveDirective,
     CalculatorWrapperComponent,
     StatSectionComponent,
-    InfoSectionComponent,    
+    InfoSectionComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +33,7 @@ import { FormInputComponent } from './form-input copy/form-input.component';
   exports: [
     FormGroupInputComponent,
     NumericInputDirective,
+    ColumnResponsiveDirective,
     CalculatorWrapperComponent,
     StatSectionComponent,
     InfoSectionComponent,
