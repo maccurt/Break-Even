@@ -185,18 +185,17 @@
             </mat-card>
         </div>
 
-        <div 
-             class="col-12 offset-md-1 col-md-10  offset-lg-0  col-lg-7 col-xl-8  col-xxl-9">
+        <div class="col-12 offset-md-1 col-md-10  offset-lg-0  col-lg-7 col-xl-8  col-xxl-9">
 
             <mat-tab-group>
 
                 <mat-tab label="Result">
 
-                    <div  class="row"
+                    <div class="row"
                          data-test-id="cc-compare-tab"
                          *ngIf="scheduleCompare">
 
-                         <div class="col-6  col-xxl-4 mb-5">
+                        <div class="col-6  col-xxl-4 mb-5">
 
                             <app-credit-card-schedule *ngIf="!minimumPaymentMode && !isFixedPayment"
                                                       data-test-id="extra-pay-schedule"
@@ -221,8 +220,7 @@
 
                         <div class="col-12 col-xxl-4">
 
-                            <div style="background-color:green;"
-                                 class="row">
+                            <div class="row">
 
                                 <div class="col-12 col-xl-6 col-xxl-12">
                                     <!-- TODO Find a way to do this with component -->
