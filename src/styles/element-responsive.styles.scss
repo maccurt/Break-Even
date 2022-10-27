@@ -3,4 +3,9 @@
     @include for-large-and-below() {        
         font-size:medium
     }
+
+    @include for-xsmall{
+        font-size: small;
+        color:red;
+    }
 }

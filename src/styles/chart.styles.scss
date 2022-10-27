@@ -1,32 +1,42 @@
 @import "../styles/variables";
 .chart-container {
     // https://github.com/highcharts/highcharts/issues/6427
-    height: 275px !important;
-
+    // notice you altered it
+    height: 250px !important;  
+    margin-bottom: 10px;  
+    margin-top: 10px;      
     highcharts-chart {
-        .highcharts-container,
         .highcharts-container svg {
-            width: 425px;
-            height: 250px;           
+            width: 430px;
+            height: 225px;                  
+            //TODO play with these more to make them more precise for each size
+            //it was good enough so you moved on, but we could make it for each break point
+            @include for-xlarge{
+                width: 350px;                
+            }
 
-            @include for-medium-and-below() {
-                width: 475px;
+            @include for-large-and-below {
+                width: 240px;                
+            }
+
+            @include for-xsmall{
+                width: 200px;                                
             }
         }
     }
 }
 
-.chart-label-container{
+.chart-label-container {
     margin-left: 5px;
-    .chart-label{
+    .chart-label {
         font-size: 14px;
-        margin-right:5px;    
+        margin-right: 5px;
         letter-spacing: 1px;
     }
-    .chart-value{
-      font-size: 17px;    
-      font-weight:900;   
-      color:black;
+    .chart-value {
+        font-size: 17px;
+        font-weight: 900;
+        color: black;
     }
 }
 
@@ -39,8 +49,8 @@
     highcharts-chart {
         .highcharts-container,
         .highcharts-container svg {
-             width: 300px;
-            height: 150px;           
+            width: 300px;
+            height: 150px;
 
             @include for-medium-and-below() {
                 width: 475px;

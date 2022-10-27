@@ -101,13 +101,19 @@ export class ProfitDreamerChartService {
         });
 
         let options: Highcharts.Options = {
+            chart: {
+                type: 'pie',
+                // margin: [0, 0, 0, 0],
+                // spacingTop: 0,
+                // spacingBottom: 0,
+                // spacingLeft: 0,
+                // spacingRight: 0
+            },
             lang: {
                 thousandsSep: ','
             },
             tooltip: { valueDecimals: 2, valuePrefix: '$', },
-            chart: {
-                type: 'pie'
-            },
+            
             title: {
                 text: title === '' ? undefined : title,
                 style: { fontWeight: 'bold' }
@@ -117,6 +123,7 @@ export class ProfitDreamerChartService {
             },
             plotOptions: {
                 pie: {
+                    
                     innerSize: 0,
                     allowPointSelect: false,
                     cursor: 'pointer',
