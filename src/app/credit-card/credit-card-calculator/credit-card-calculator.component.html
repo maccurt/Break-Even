@@ -202,9 +202,12 @@
                                                       [schedule]="scheduleCompare.schedule2">
                             </app-credit-card-schedule>
 
-
-
                             <app-credit-card-schedule *ngIf="!minimumPaymentMode && isFixedPayment"
+                                                      data-test-id="fixed-pay-schedule"
+                                                      [schedule]="scheduleCompare.schedule2">
+                            </app-credit-card-schedule>
+
+                            <app-credit-card-schedule *ngIf="minimumPaymentMode"
                                                       data-test-id="fixed-pay-schedule"
                                                       [schedule]="scheduleCompare.schedule2">
                             </app-credit-card-schedule>
@@ -233,7 +236,7 @@
 
 
                                     <app-interest-saved-section data-test-id="interest-saved-by-paying-fixed"
-                                                                *ngIf="!minimumPaymentMode && isFixedPayment"
+                                                                *ngIf="isFixedPayment"
                                                                 [scheduleCompare]="scheduleCompare"
                                                                 [help]="help.interestSavedByPayingFixedPayment">
                                     </app-interest-saved-section>
@@ -250,7 +253,7 @@
 
                                     <app-time-saved-section data-test-id="time-saved-fixed-payment"
                                                             [scheduleCompare]="scheduleCompare"
-                                                            *ngIf="!minimumPaymentMode && isFixedPayment"
+                                                            *ngIf="isFixedPayment"
                                                             [help]="help.timeSavedFixedPayment">
                                     </app-time-saved-section>
 

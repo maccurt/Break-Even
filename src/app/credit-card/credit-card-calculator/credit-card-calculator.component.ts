@@ -94,6 +94,8 @@ export class CreditCardCalculatorComponent implements OnInit {
         this.demoExtraPayment();
       }
     });
+    this.calculateMinimumPayment();
+    this.calculatePayment();    
   }
 
   demoExtraPayment = (): void => {
@@ -106,8 +108,8 @@ export class CreditCardCalculatorComponent implements OnInit {
     this.calculate();
 
   };
-  demoMinimumPaymentOnly = (): void => {
 
+  demoMinimumPaymentOnly = (): void => {
     this.paymentTypeControl.setValue(PaymentType.MinimumPaymentOnly.toString());
     this.balanceControl.setValue(10000);
     this.interestRateControl.setValue(15);
@@ -177,7 +179,9 @@ export class CreditCardCalculatorComponent implements OnInit {
       switch (this.mathService.getFloat(this.paymentTypeControl.value)) {
         case PaymentType.MinimumPaymentOnly:
           payment = this.minimumPayment;
-          this.minimumPaymentMode = true;          
+          this.minimumPaymentMode = true;
+          this.isFixedPayment = true;
+          payment = this.minimumPayment;
           break;
         case PaymentType.MinimumPaymentPlusExtra:
           payment = this.mathService.getFloat(this.extraPaymentControl.value, 0)!;

@@ -29,11 +29,11 @@ export class CreditCardScenario1 implements ICreditCardBase {
         principal: '10,000.00',
         interest: '11,979.18',
         total: '21,979.18',
-        interestSaved: '',
-        interestSavedFormula: '',
-        interestSavedPercent: '',
+        interestSaved: '$7,291.12',
+        interestSavedFormula: '$21,979.18 - $14,688.06',
+        interestSavedPercent: 'You Will Save 60.86% In Interest.',  
         timeToPayOfDebt: '27 Years, 11 Months',
-        timeSaved: '',
+        timeSaved: '22 Years, 5 Months',
     };
     extraPayResult = {
         title: 'Minimum Payment + $100.00',
