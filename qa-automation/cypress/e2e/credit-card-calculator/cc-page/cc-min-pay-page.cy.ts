@@ -1,4 +1,3 @@
-import { minimuPayScheduleTest } from "../../helper/cc-minimuPayScheduleTest";
 import { creditCardScheduleMininumPayTest } from "../../helper/cc-schedule-test";
 import { CreditCardScenario1 } from "../../helper/credit-card-scenario-1";
 import { interestSavedByPayingFixedTest } from "../../helper/interest-saved-test";

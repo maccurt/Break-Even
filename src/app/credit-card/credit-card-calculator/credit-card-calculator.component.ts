@@ -78,7 +78,7 @@ export class CreditCardCalculatorComponent implements OnInit {
       fixedPayment: this.fixedPaymentControl
     });
 
-    this.minimumPaymentTypeControl.valueChanges.subscribe(() => {
+    this.minimumPaymentTypeControl.valueChanges.subscribe(() => {      
       this.calculateMinimumPayment();
     });
 
@@ -94,8 +94,7 @@ export class CreditCardCalculatorComponent implements OnInit {
         this.demoExtraPayment();
       }
     });
-    this.calculateMinimumPayment();
-    this.calculatePayment();    
+    this.calculateMinimumPayment();    
   }
 
   demoExtraPayment = (): void => {
@@ -142,17 +141,17 @@ export class CreditCardCalculatorComponent implements OnInit {
         this.showPaymentInput = false;
         this.extraPaymentControl.clearValidators();
         this.extraPaymentControl.updateValueAndValidity();
-        this.fixedPaymentControl.setValidators(this.validateFixedPayment as any); //TODO does making this any break it
+        this.fixedPaymentControl.setValidators(this.validateFixedPayment as any); //TODO does making this 'any' break it
         this.fixedPaymentControl.updateValueAndValidity();
         this.showExtraPayment = false;
         break;
     }
-
+    
     this.calculatePayment();
   };
 
   calculatePayment = () => {
-
+    
     switch (this.mathService.getFloat(this.paymentTypeControl.value)) {
       case PaymentType.MinimumPaymentOnly:
         this.payment = this.minimumPayment;
