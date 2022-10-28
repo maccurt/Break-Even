@@ -151,18 +151,23 @@
                             <hr>
                             <div class="form-row">
 
-                                <div class="col-5">
-
-                                    <label id="minimum-payment-label"
+                                <!-- TODO re-thinkg this margin put it in styles -->
+                                <div style="margin-bottom:7px;"
+                                     class="col-5">
+                                     
+                                    <label style="margin-bottom:3px;"
+                                           id="minimum-payment-label"
                                            for="minimum-payment">Minimum Payment</label>
                                     <div class="calculated-field"
                                          id="minimum-payment">
                                         ${{minimumPayment |number:'1.2-2' }}</div>
-
                                 </div>
 
-                                <div class="col-7">
-                                    <label id="payment-label"
+                                <!-- TODO re-thinkg this margin put it in styles -->
+                                <div style="margin-bottom:7px;"
+                                     class="col-7">
+                                    <label style="margin-bottom:3px;"
+                                           id="payment-label"
                                            for="payment">Monthly Payment</label>
                                     <div class="calculated-field"
                                          id="payment"

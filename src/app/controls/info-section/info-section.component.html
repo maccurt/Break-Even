@@ -5,8 +5,7 @@
                  class="title">
                 <fa-icon [icon]="help.icon"
                          class={{help.iconClass}}
-                         matTooltipClass="tool-tip-help"
-                         matTooltip={{help.defintion}}>
+                         matTooltipClass="tool-tip-help">
                 </fa-icon>
                 {{help.name}}
             </div>
@@ -14,8 +13,9 @@
 
             <div data-test-id="stat"
                  class="stat title-responsive"
-                 matTooltipClass="tool-tip-help"
-                 matTooltip={{help.defintion}}>
+                 matTooltipClass="tool-tip-help">
+                <!-- TODO we removed tooltip, put back -->
+                <!-- matTooltip={{help.defintion}}> -->
                 {{stat}}
             </div>
 

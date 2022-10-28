@@ -145,8 +145,7 @@ export class CreditCardCalculatorComponent implements OnInit {
         this.fixedPaymentControl.updateValueAndValidity();
         this.showExtraPayment = false;
         break;
-    }
-    
+    }    
     this.calculatePayment();
   };
 
