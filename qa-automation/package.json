@@ -3,7 +3,10 @@
         "open": "cypress open",
         "prod": "cypress open --config baseUrl=https://breakeven.profitdreamer.com/",
         "run": "cypress run --config video=false ",
-        "credit-card": "cypress run --config video=false --spec cypress/e2e/credit-card-calculator"
+        "credit-card": "cypress run --config video=false --spec cypress/e2e/credit-card-calculator",
+        "cc-schedule": "cypress run --config video=false --spec cypress/e2e/credit-card-calculator/schedule",
+        "cc-page": "cypress run --config video=false --spec cypress/e2e/credit-card-calculator/cc-page",
+        "issue": "cypress run --config video=false --spec cypress/e2e/credit-card-calculator/new/cc-min-extra-pay-happy-path.cy.ts"
     },
     "devDependencies": {
         "@angular-eslint/schematics": "^14.1.2",

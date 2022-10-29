@@ -1,11 +1,12 @@
+import { Schedule } from './../../shared/schedule.type';
 import { HelpService } from './../../help/help.service';
 import { IconService } from 'src/app/icon/icon.service';
 import { ProfitDreamerChartService } from './../../chart.service';
-import { ChartServiceDeprecated } from '../../shared/chart.service.deprecated';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ScheduleCompare } from 'src/app/shared/schedule-compare.type';
 import * as Highcharts from 'highcharts';
+import { CreditCardChartService } from '../credit-card-chart.service';
 
 //TODO can this be moved to it's own module
 @Component({
@@ -21,7 +22,8 @@ export class InterestSavingsComponent implements OnChanges {
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions!: Highcharts.Options;
-  constructor(private chartService: ProfitDreamerChartService,
+  constructor(private creditCardChartService: CreditCardChartService,
+    private chartService:ProfitDreamerChartService,
     private currency: CurrencyPipe,
     public icons: IconService,
     public help: HelpService) {
@@ -33,14 +35,11 @@ export class InterestSavingsComponent implements OnChanges {
       this.showResults = true;
 
       if (this.minimumPaymentMode) {
-        const originalChartData: any[] = [
-          { name: 'Interest', color: 'red', y: this.scheduleCompare.schedule1.interest },
-          { name: 'Principal', color: 'green', y: this.scheduleCompare.schedule1.balanceStart }
-        ];
-        this.chartOptions = this.chartService.pieChartOptions('Principal & Interest', originalChartData);
+        this.chartOptions = this.creditCardChartService.interestPieChart(this.scheduleCompare.schedule1);
       }
       else {
 
+        //put all this in the cc chart service
         const interestTypeLabel = this.isFixedPayment ? 'Fixed Payment' : 'Extra Payment';
         const original =
           '<div class="chart-label-container"><span class="chart-label">Original Total Interest:</span><span class="chart-value">' +

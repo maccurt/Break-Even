@@ -3,7 +3,7 @@
      *ngIf="showResults && minimumPaymentMode ">
 
     <div class="col-12 col-xl-6 col-md-12 col-xl-12">
-        <app-stat-section data-test-id="total-principal-interest"
+        <app-stat-section class="danger"  [sectionClass]="'danger'"  data-test-id="total-principal-interest"
                           [help]="help.creditTotalPrincipalAndInterestMinimumPayment"
                           [sign]="'$'"
                           [stat]="scheduleCompare.schedule1.paymentTotal">
@@ -46,7 +46,7 @@
          *ngIf="!isFixedPayment">
 
         <div class="col-12 col-xl-6 col-md-12   col-xl-12">
-            <app-stat-section data-test-id="total-principal-interest-by-paying-extra"
+            <app-stat-section [sectionClass]="'danger'"  data-test-id="total-principal-interest-by-paying-extra"
                               [help]="help.creditTotalPrincipalAndInterestByPayingExtra"
                               [sign]="'$'"
                               [stat]="scheduleCompare.schedule2.paymentTotal">

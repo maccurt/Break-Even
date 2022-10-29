@@ -1,28 +1,36 @@
-@import '../../../styles/variables';
+@import "../../../styles/variables";
 
-.card-body{        
-    padding-top:2px; 
+::ng-deep .cc-schedule {
+    app-info-section {
+    }
 }
 
-#fixed-payment-container{
+// Had to do this to remove the horz scroll in the tabs
+::ng-deep .mat-tab-body-content {
+    overflow: hidden !important;
+}
+
+.card-body {
+    padding-top: 2px;
+}
+
+#fixed-payment-container {
     margin-top: 7px;
 }
 
-#minimum-payment-type{
+#minimum-payment-type {
     width: 235px;
 }
 
-#payment-type-container{    
-    .p-t-c-label{
+#payment-type-container {
+    .p-t-c-label {
         margin-bottom: 10px;
-        
     }
-    .form-check{
+    .form-check {
         margin-bottom: 5px;
     }
-    margin-bottom: 5px;    
+    margin-bottom: 5px;
 }
-#schedule-list-container
-{    
-    height: 621px !important;      
+#schedule-list-container {
+    height: 621px !important;
 }

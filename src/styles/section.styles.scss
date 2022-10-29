@@ -1,0 +1,36 @@
+.section {
+    margin-bottom: 15px;
+    //min-height: 175px; //TODO re-visit this make smaller if possible, it was done to keep mat-cards aligned
+    fa-icon {
+        font-size: x-large;
+    }
+
+    hr {
+        margin-bottom: 15px;
+    }
+    .formula {
+        margin-top: 7px;
+    }
+
+    .title {
+        font-size: medium;
+        font-weight: 500;
+        fa-icon {
+            margin-right: 5px;
+        }
+    }
+    .stat {
+        font-size: xx-large;
+        line-height: 1.4em;
+
+        font-weight: bold;
+        text-align: center;
+        font-weight: 450;
+    }
+
+    .formula {
+        margin-bottom: 4px;
+        text-align: center;
+        font-weight: 300;
+    }
+}

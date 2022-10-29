@@ -69,6 +69,9 @@ export class HelpService {
 
   timeSavedByPayingExtra = new Help('Time Saved By Paying Extra',
     'put some sort of text here', '', 'icon-color-1');
+    
+  timeSavedFixedPayment = new Help('Time Saved By Making Fixed Payment',
+  'put some sort of text here', '', 'icon-color-1');
 
   timeToPayOfDebt = new Help('Time To Pay Off Debt',
     'put some sort of text here', '', 'icon-color-2');
@@ -89,6 +92,7 @@ export class HelpService {
     this.totalTimeSavings.icon = icons.time;
     this.timeToPayOfDebt.icon = icons.time;
     this.timeSavedByPayingExtra.icon = icons.time;
+    this.timeSavedFixedPayment.icon = icons.time;
     this.creditCardDevil.icon = icons.creditCardDevil;
     this.minimumPaymentTrap.icon = icons.trap;
     this.creditCardInterestSavings.icon = icons.interestSaved;

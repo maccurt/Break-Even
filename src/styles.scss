@@ -5,9 +5,25 @@
 @import "./styles/old.styles.scss";
 @import "./styles/calculator.styles.scss";
 @import "./styles/icon.styles.scss";
+@import "./styles/icon.styles.scss";
+@import "./styles/table.styles.scss";
+@import "./styles/section.styles.scss";
+@import "./styles/element-responsive.styles.scss";
 
-.section{    
-    min-height: 175px;
+
+
+.position-1 {
+    border:1px dotted red;
+}
+
+.position-3 {
+    border:1px dotted blue;
+}
+
+
+//TODO should this be here
+mat-tab-header {
+    margin-bottom: 15px;
 }
 
 .gross-profit-percent-section {
@@ -21,65 +37,8 @@
     }
 }
 
-.stat-formula {
-    fa-icon {
-        font-size: x-large;
-    }
-
-    hr {
-        margin-bottom: 2px;
-    }
-    .title {
-        font-size: medium;
-        font-weight: 500;
-        fa-icon {
-            margin-right: 5px;
-        }
-    }
-    .stat {
-        font-size: xx-large;
-        font-weight: bold;
-        text-align: center;
-        font-weight: 450;
-    }
-
-    .formula {
-        margin-bottom: 4px;
-        text-align: center;
-        font-weight: 300;
-    }
-}
-
 .tool-tip-help {
     font-size: large;
-}
-
-table {
-    .total {
-        font-size: larger;
-        font-weight: 700;
-    }
-    .total-xl {
-        font-size: x-large;
-        font-weight: 800;
-    }
-
-    .sub-total {
-        font-size: large;
-        font-weight: 600;
-    }
-
-    tr.border-1 {
-        border-bottom: 1px solid #cccccc;
-    }
-
-    tr.border-2 {
-        border-bottom: 2px solid black;
-    }
-
-    td.indent {
-        padding-left: 15px;
-    }
 }
 
 .section-wrapper {

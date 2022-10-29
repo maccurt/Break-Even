@@ -1,37 +1,17 @@
 <div class="container-float">
-    <!-- TODO put this back, it has value, but not needed to release -->
-    <!-- <div class="row justify-content-center">
-        <div class="col-md-4 col-xl-4 col-xxxl-3 ">
 
-        </div>
-        <div class="d-none d-md-block col-md-8 col-xl-8 ">
+    <div class="row ">
 
-            <div id='set-show-summary-container'
-                 [style.visibility]="showResults ? 'visible':'hidden'">
-
-                <a id='set-show-summary'
-                   [routerLink]=""
-                   (click)="setShowSummary()"><span *ngIf="showSummary">View Full
-                        Payment Schedule</span>
-                    <span *ngIf="!showSummary">View Summary</span>
-                </a>
-            </div>
-        </div>
-    </div> -->
-
-    <div class="row justify-content-center">
-
-        <!-- Calculator Form -->
-        <div class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
+        <div class="col-12 offset-md-1 col-md-10 offset-lg-0  col-lg-5 col-xl-4 col-xxl-3 mb-5">
 
             <mat-card style="min-height: 710px;">
                 <mat-card-title>Credit Card Information</mat-card-title>
 
                 <mat-card-content data-test-id="credit-card-calculator">
                     <div class="form-wrapper">
-                        <form [formGroup]="creditCardFormGroup">
+                        <form   [formGroup]="creditCardFormGroup">
 
-                            <app-form-input name='balance'
+                            <app-form-input name='balance'                                            
                                             [showErrors]=showErrors
                                             [onBlur]="calculateMinimumPayment"
                                             [help]="help.creditCardBalance"></app-form-input>
@@ -171,18 +151,23 @@
                             <hr>
                             <div class="form-row">
 
-                                <div class="col-5">
+                                <!-- TODO re-thinkg this margin put it in styles -->
+                                <div style="margin-bottom:7px;"
+                                     class="col-5">
 
-                                    <label id="minimum-payment-label"
+                                    <label style="margin-bottom:3px;"
+                                           id="minimum-payment-label"
                                            for="minimum-payment">Minimum Payment</label>
                                     <div class="calculated-field"
                                          id="minimum-payment">
                                         ${{minimumPayment |number:'1.2-2' }}</div>
-
                                 </div>
 
-                                <div class="col-7">
-                                    <label id="payment-label"
+                                <!-- TODO re-thinkg this margin put it in styles -->
+                                <div style="margin-bottom:7px;"
+                                     class="col-7">
+                                    <label style="margin-bottom:3px;"
+                                           id="payment-label"
                                            for="payment">Monthly Payment</label>
                                     <div class="calculated-field"
                                          id="payment"
@@ -205,46 +190,139 @@
             </mat-card>
         </div>
 
-        <!-- <div class="d-block d-md-none col-12"
-             id='set-show-summary-container-xs-small'
-             [style.visibility]="showResults ? 'visible':'hidden'">
+        <div class="col-12 offset-md-1 col-md-10  offset-lg-0  col-lg-7 col-xl-8  col-xxl-9">
 
-            <a id='set-show-summary-xs-small'
-               [routerLink]=""
-               (click)="setShowSummary()"><span *ngIf="showSummary">View
-                    Full Payment Schedule</span>
-                <span *ngIf="!showSummary">View Summary</span> </a>
-        </div> -->
-        <!-- Summary Card -->
-        <div data-test-id="summary-container"
-             *ngIf="showSummary"
-             id='scroll-to-container'
-             class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-3 mb-5">
+            <mat-tab-group>
 
-            <app-interest-savings [isFixedPayment]="isFixedPayment"
-                                  [minimumPaymentMode]="minimumPaymentMode"
-                                  [scheduleCompare]="scheduleCompare">
-            </app-interest-savings>
+                <mat-tab label="Result">
 
-        </div>
+                    <div class="row"
+                         data-test-id="cc-compare-tab"
+                         *ngIf="scheduleCompare">
 
-        <!-- Schedule List -->
-        <!-- <div class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-3"
-             id="schedule-list-container"
-             *ngIf="!showSummary">
-            <app-credit-card-schedule-list *ngIf="!minimumPaymentMode"
-                                           [scheduleList]="scheduleCompare.schedule2.scheduleList">
-            </app-credit-card-schedule-list>
-            <app-credit-card-schedule-list *ngIf="minimumPaymentMode"
-                                           [scheduleList]="scheduleCompare.schedule1.scheduleList">
-            </app-credit-card-schedule-list>
-        </div> -->
+                        <div class="col-6  col-xxl-4 mb-5">
 
-        <div class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-3">
-            <app-time-card [scheduleCompare]="scheduleCompare"
-                           [minimumPaymentMode]="minimumPaymentMode">
-            </app-time-card>
+                            <app-credit-card-schedule *ngIf="!minimumPaymentMode && !isFixedPayment"
+                                                      data-test-id="extra-pay-schedule"
+                                                      [schedule]="scheduleCompare.schedule2">
+                            </app-credit-card-schedule>
+
+                            <app-credit-card-schedule *ngIf="!minimumPaymentMode && isFixedPayment"
+                                                      data-test-id="fixed-pay-schedule"
+                                                      [schedule]="scheduleCompare.schedule2">
+                            </app-credit-card-schedule>
+
+                            <app-credit-card-schedule *ngIf="minimumPaymentMode"
+                                                      data-test-id="fixed-pay-schedule"
+                                                      [schedule]="scheduleCompare.schedule2">
+                            </app-credit-card-schedule>
+
+                        </div>
+                        <div class="col-6  col-xxl-4 mb-5">
+
+                            <app-credit-card-schedule data-test-id="min-pay-schedule"
+                                                      [schedule]="scheduleCompare.schedule1">
+                            </app-credit-card-schedule>
+
+                        </div>
+
+                        <div class="col-12 col-xxl-4">
+
+                            <div class="row">
+
+                                <div class="col-12 col-xl-6 col-xxl-12">
+                                    <!-- TODO Find a way to do this with component -->
+                                    <app-interest-saved-section data-test-id="interest-saved-by-paying-extra"
+                                                                *ngIf="!minimumPaymentMode && !isFixedPayment"
+                                                                [scheduleCompare]="scheduleCompare"
+                                                                [help]="help.interestSavedByPayingExtra">
+                                    </app-interest-saved-section>
+
+
+
+                                    <app-interest-saved-section data-test-id="interest-saved-by-paying-fixed"
+                                                                *ngIf="isFixedPayment"
+                                                                [scheduleCompare]="scheduleCompare"
+                                                                [help]="help.interestSavedByPayingFixedPayment">
+                                    </app-interest-saved-section>
+                                </div>
+
+                                <div class="col-12 col-xl-6 col-xxl-12">
+                                    <!-- TODO Find a way to do this with component see above -->
+                                    <app-time-saved-section data-test-id="time-saved-extra-payment"
+                                                            [scheduleCompare]="scheduleCompare"
+                                                            *ngIf="!minimumPaymentMode && !isFixedPayment"
+                                                            [help]="help.timeSavedByPayingExtra">
+                                    </app-time-saved-section>
+
+
+                                    <app-time-saved-section data-test-id="time-saved-fixed-payment"
+                                                            [scheduleCompare]="scheduleCompare"
+                                                            *ngIf="isFixedPayment"
+                                                            [help]="help.timeSavedFixedPayment">
+                                    </app-time-saved-section>
+
+                                </div>
+
+                                <div class="col-12 col-xl-6 col-xxl-12">
+                                    <app-credit-card-devil-section></app-credit-card-devil-section>
+                                </div>
+
+                                <div class="col-12 col-xl-6 col-xxl-12">
+                                    <app-minimum-payment-trap-section *ngIf="minimumPaymentMode">
+                                    </app-minimum-payment-trap-section>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+
+                <!-- <mat-tab label="Summary">
+                    <div class="row"
+                         data-test-id="cc-summary-tab">
+
+                        <div data-test-id="summary-container"
+                             *ngIf="showSummary"
+                             id='scroll-to-container'
+                             class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
+
+                            <app-interest-savings [isFixedPayment]="isFixedPayment"
+                                                  [minimumPaymentMode]="minimumPaymentMode"
+                                                  [scheduleCompare]="scheduleCompare">
+                            </app-interest-savings>
+                        </div>
+
+
+                        <div class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-4">
+                            <app-time-card [scheduleCompare]="scheduleCompare"
+                                           [minimumPaymentMode]="minimumPaymentMode">
+                            </app-time-card>
+                        </div>
+                    </div>
+                </mat-tab> -->
+
+                <!-- <mat-tab label="Schedule">
+                    <div class="row"
+                         *ngIf="scheduleCompare">
+
+                        <div class="col-xxl-6">
+
+                            <app-credit-card-schedule-list *ngIf="!minimumPaymentMode"
+                                                           [scheduleList]="scheduleCompare.schedule2.scheduleList">
+                            </app-credit-card-schedule-list>
+
+                            <app-credit-card-schedule-list *ngIf="minimumPaymentMode"
+                                                           [scheduleList]="scheduleCompare.schedule1.scheduleList">
+                            </app-credit-card-schedule-list>
+                        </div>
+                    </div>
+                </mat-tab> -->
+
+            </mat-tab-group>
+
         </div>
 
     </div>
+
 </div>

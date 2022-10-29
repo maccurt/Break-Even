@@ -1,8 +1,7 @@
+import { CurrencyPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { MinimumPaymentType } from '../credit-card/credit-card-calculator/credit-card.types';
 import { MathService } from '../math/math.service';
-// import { MinimumPaymentType } from '../credit-card-calculator/credit-card.types';
-
 import { ScheduleCompare } from './schedule-compare.type';
 import { ScheduleItem } from './schedule-item';
 import { Schedule } from './schedule.type';
@@ -12,12 +11,20 @@ import { Schedule } from './schedule.type';
 })
 export class PaymentService {
 
-  constructor(private mathService: MathService) { }
+  constructor(private mathService: MathService, private currency: CurrencyPipe) { }
 
   creditCardSchedule = (
     balance: number, annualPercentageRate: number,
     financeChargePercent: number, extraPayment?: number,
     isFixedPayment: boolean = false, includeApr: boolean = true): Schedule => {
+
+    if (balance <= 0) {
+      throw new Error('input error: balance 0');
+    }
+
+    if (annualPercentageRate <= 0) {
+      throw new Error('input error: annualPercentageRate');   
+    }
 
     const monthlyPercentageRate = annualPercentageRate / 100 / 12;
     let monthlyInterest = 0;
@@ -28,13 +35,13 @@ export class PaymentService {
     let monthlyPayment = 0;
     let principalPaid = 0;
     let balanceStart = balance;
-    const orginalBalance = balance;    
+    const orginalBalance = balance;
 
+    //TODO we have a memory leak here????
     while (balance > 0) {
-
       balanceStart = balance;
-      const fixePayment = isFixedPayment ? extraPayment : 0;
-      monthlyPayment = this.determineMinimumPayment(fixePayment!, financeChargePercent, balance, annualPercentageRate, includeApr);
+      const fixedPayment = isFixedPayment ? extraPayment : 0;
+      monthlyPayment = this.determineMinimumPayment(fixedPayment!, financeChargePercent, balance, annualPercentageRate, includeApr);
       if (!isFixedPayment) {
         monthlyPayment += extraPayment!;
       }
@@ -57,7 +64,7 @@ export class PaymentService {
         balanceEnd: balance,
         interest: monthlyInterest,
         principal: principalPaid,
-        extraPrincipal: extraPayment!      
+        extraPrincipal: extraPayment!
       };
       scheduleList.push(scheduleItem);
     }
@@ -70,12 +77,13 @@ export class PaymentService {
     const schedule: Schedule = {
       balanceStart: orginalBalance,
       scheduleList,
-      payment: 0,
+      payment: isFixedPayment ? extraPayment! : 0,
+      isFixedPayment: isFixedPayment,
       interest: interestTotal,
       interestRatePercent: annualPercentageRate,
       principal: principalPaid,
       paymentTotal,
-      extraPrincipal: 0,      
+      extraPrincipal: 0,
       periods: scheduleList.length,
       extraPrincipalPayment: extraPayment!,
       years,
@@ -83,6 +91,16 @@ export class PaymentService {
       periodsText: this.getPeriodsText(scheduleList.length),
       interestPercentTotal: this.mathService.round(interestTotal / orginalBalance * 100, 2)
     };
+
+    if (schedule.isFixedPayment && schedule.payment > 0) {
+      schedule.title = this.currency.transform(schedule.payment)! + ' Fixed Payment';
+    }
+    else if (extraPayment && extraPayment > 0) {
+      schedule.title = 'Minimum Payment + ' + this.currency.transform(extraPayment);
+    }
+    else {
+      schedule.title = 'Minimum Payment';
+    }
 
     return schedule;
 

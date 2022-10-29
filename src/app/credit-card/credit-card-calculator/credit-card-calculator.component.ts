@@ -1,5 +1,5 @@
 import { HelpService } from './../../help/help.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { MinimumPaymentType } from './credit-card.types';
@@ -9,7 +9,8 @@ import { PaymentService } from '../../shared/payment.service';
 import { ScheduleCompare } from '../../shared/schedule-compare.type';
 import { ActivatedRoute } from '@angular/router';
 import { FormInput, FormInputType } from '../../controls/form-input';
-import { PieChartData, ProfitDreamerChartService } from 'src/app/chart.service';
+import { PieChartData } from 'src/app/chart.service';
+import { Subscription } from 'rxjs';
 
 const extra = 'extra';
 export enum PaymentType {
@@ -23,7 +24,7 @@ export enum PaymentType {
   templateUrl: './credit-card-calculator.component.html',
   styleUrls: ['./credit-card-calculator.component.scss']
 })
-export class CreditCardCalculatorComponent implements OnInit {
+export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
   // controls
   creditCardFormGroup!: FormGroup;
   balanceControl!: FormInput;
@@ -46,6 +47,8 @@ export class CreditCardCalculatorComponent implements OnInit {
   payment = 0;
   fixedPaymentError = '';
   showPaymentInput!: boolean;
+
+  subList$: Subscription[] = [];
 
   constructor(
     private title: Title,
@@ -78,14 +81,14 @@ export class CreditCardCalculatorComponent implements OnInit {
       fixedPayment: this.fixedPaymentControl
     });
 
-    this.minimumPaymentTypeControl.valueChanges.subscribe(() => {
+    this.subList$.push(this.minimumPaymentTypeControl.valueChanges.subscribe(() => {
       this.calculateMinimumPayment();
-    });
+    }));
 
-    this.paymentTypeControl.valueChanges.subscribe(this.setPaymentType);
+    this.subList$.push(this.paymentTypeControl.valueChanges.subscribe(this.setPaymentType));
     this.paymentTypeControl.setValue(PaymentType.MinimumPaymentOnly.toString());
 
-    this.activatedRoute.queryParams.subscribe(params => {
+    this.subList$.push(this.activatedRoute.queryParams.subscribe(params => {
       const { demo } = params;
       if (demo === '1') {
         this.demoMinimumPaymentOnly();
@@ -93,7 +96,8 @@ export class CreditCardCalculatorComponent implements OnInit {
       if (demo === '2') {
         this.demoExtraPayment();
       }
-    });
+    }));    
+    this.calculateMinimumPayment();
   }
 
   demoExtraPayment = (): void => {
@@ -104,10 +108,9 @@ export class CreditCardCalculatorComponent implements OnInit {
     this.extraPaymentControl.setValue(100);
     this.calculateMinimumPayment();
     this.calculate();
-
   };
-  demoMinimumPaymentOnly = (): void => {
 
+  demoMinimumPaymentOnly = (): void => {
     this.paymentTypeControl.setValue(PaymentType.MinimumPaymentOnly.toString());
     this.balanceControl.setValue(10000);
     this.interestRateControl.setValue(15);
@@ -140,17 +143,15 @@ export class CreditCardCalculatorComponent implements OnInit {
         this.showPaymentInput = false;
         this.extraPaymentControl.clearValidators();
         this.extraPaymentControl.updateValueAndValidity();
-        this.fixedPaymentControl.setValidators(this.validateFixedPayment as any); //TODO does making this any break it
+        this.fixedPaymentControl.setValidators(this.validateFixedPayment as any); //TODO does making this 'any' break it
         this.fixedPaymentControl.updateValueAndValidity();
         this.showExtraPayment = false;
         break;
     }
-
-    this.calculatePayment();
+    this.calculateMinimumPayment();
   };
 
-  calculatePayment = () => {
-
+  calculatePayment = () => {    
     switch (this.mathService.getFloat(this.paymentTypeControl.value)) {
       case PaymentType.MinimumPaymentOnly:
         this.payment = this.minimumPayment;
@@ -165,9 +166,10 @@ export class CreditCardCalculatorComponent implements OnInit {
     }
   };
 
-  calculate = () => {
-
+  calculate = () => {    
     if (this.creditCardFormGroup.valid) {
+      
+      this.calculateMinimumPayment(); //TODO This is hack to prevent the autofull from breaking remove it when you fix it 
       const balance = this.mathService.getFloat(this.balanceControl.value, 0);
       const interest = this.mathService.getFloat(this.interestRateControl.value, 0);
       const minimumPaymentType = this.minimumPaymentTypeControl.value as MinimumPaymentType;
@@ -178,6 +180,8 @@ export class CreditCardCalculatorComponent implements OnInit {
         case PaymentType.MinimumPaymentOnly:
           payment = this.minimumPayment;
           this.minimumPaymentMode = true;
+          this.isFixedPayment = true;
+          payment = this.minimumPayment;
           break;
         case PaymentType.MinimumPaymentPlusExtra:
           payment = this.mathService.getFloat(this.extraPaymentControl.value, 0)!;
@@ -211,15 +215,19 @@ export class CreditCardCalculatorComponent implements OnInit {
     else {
       this.showErrors = true;
     }
+
   };
 
   calculateMinimumPayment = () => {
+
     if (this.balanceControl.valid && this.interestRateControl.valid) {
+
       const balance = this.mathService.getFloat(this.balanceControl.value, 0);
       const minimumPaymentType = this.minimumPaymentTypeControl.value as MinimumPaymentType;
       const interest = this.mathService.getFloat(this.interestRateControl.value, 0);
+
       this.minimumPayment = this.paymentService.determineMinimumPayment(
-        0, minimumPaymentType.percentOfBalance, balance!, interest!, minimumPaymentType.useInterest);
+        0, minimumPaymentType.percentOfBalance, balance!, interest!, minimumPaymentType.useInterest);      
     }
 
     this.calculatePayment();
@@ -235,7 +243,7 @@ export class CreditCardCalculatorComponent implements OnInit {
     return (control.touched && control.invalid) || (control.invalid && this.showErrors);
   };
 
-  validateFixedPayment = (fg: FormGroup): ValidationErrors | null => {
+  validateFixedPayment = (fg: FormGroup): ValidationErrors | null => {   
 
     let error = null;
     if (!this.fixedPaymentControl.value) {
@@ -254,4 +262,11 @@ export class CreditCardCalculatorComponent implements OnInit {
 
     return null;
   };
+
+  ngOnDestroy(): void {
+
+    this.subList$.forEach((sub$) => {      
+      sub$.unsubscribe();
+    });
+  }
 }

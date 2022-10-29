@@ -1,10 +1,11 @@
 
+import { CurrencyPipe } from '@angular/common';
 import { MathService } from '../math/math.service';
 import { PaymentService } from './payment.service';
 import { ScheduleItem } from './schedule-item';
 
 describe('PaymentService', () => {
-  const service: PaymentService = new PaymentService(new MathService());
+  const service: PaymentService = new PaymentService(new MathService(), new CurrencyPipe('en-US'));
 
   describe('creditCardSchedule', () => {
 
@@ -12,6 +13,10 @@ describe('PaymentService', () => {
       // What happens about the 15 minimum payment
       const schedule = service.creditCardSchedule(1000, 15, 1, 100, true, true);
       expect(schedule.scheduleList.length).toBe(11);
+
+      expect(schedule.isFixedPayment).toBe(true);
+      expect(schedule.payment).toBe(100);
+
       const s11 = schedule.scheduleList[10];
       expect(s11.balanceStart).toBe(74.11);
       expect(s11.interest).toBe(.93);

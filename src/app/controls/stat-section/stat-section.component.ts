@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./stat-section.component.scss']
 })
 export class StatSectionComponent  {  
+  @Input() sectionClass!:string;
   @Input() help!:Help;
   @Input() stat!:number;  
   @Input() sign!:string;
