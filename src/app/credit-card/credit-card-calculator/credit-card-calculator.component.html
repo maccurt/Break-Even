@@ -9,9 +9,9 @@
 
                 <mat-card-content data-test-id="credit-card-calculator">
                     <div class="form-wrapper">
-                        <form [formGroup]="creditCardFormGroup">
+                        <form   [formGroup]="creditCardFormGroup">
 
-                            <app-form-input name='balance'
+                            <app-form-input name='balance'                                            
                                             [showErrors]=showErrors
                                             [onBlur]="calculateMinimumPayment"
                                             [help]="help.creditCardBalance"></app-form-input>
@@ -154,7 +154,7 @@
                                 <!-- TODO re-thinkg this margin put it in styles -->
                                 <div style="margin-bottom:7px;"
                                      class="col-5">
-                                     
+
                                     <label style="margin-bottom:3px;"
                                            id="minimum-payment-label"
                                            for="minimum-payment">Minimum Payment</label>

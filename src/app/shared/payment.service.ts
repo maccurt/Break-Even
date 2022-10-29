@@ -18,6 +18,14 @@ export class PaymentService {
     financeChargePercent: number, extraPayment?: number,
     isFixedPayment: boolean = false, includeApr: boolean = true): Schedule => {
 
+    if (balance <= 0) {
+      throw new Error('input error: balance 0');
+    }
+
+    if (annualPercentageRate <= 0) {
+      throw new Error('input error: annualPercentageRate');   
+    }
+
     const monthlyPercentageRate = annualPercentageRate / 100 / 12;
     let monthlyInterest = 0;
     let interestTotal = 0;
@@ -29,8 +37,8 @@ export class PaymentService {
     let balanceStart = balance;
     const orginalBalance = balance;
 
+    //TODO we have a memory leak here????
     while (balance > 0) {
-
       balanceStart = balance;
       const fixedPayment = isFixedPayment ? extraPayment : 0;
       monthlyPayment = this.determineMinimumPayment(fixedPayment!, financeChargePercent, balance, annualPercentageRate, includeApr);
@@ -87,11 +95,11 @@ export class PaymentService {
     if (schedule.isFixedPayment && schedule.payment > 0) {
       schedule.title = this.currency.transform(schedule.payment)! + ' Fixed Payment';
     }
-    else if (extraPayment && extraPayment > 0){
-      schedule.title =  'Minimum Payment + ' + this.currency.transform(extraPayment);
+    else if (extraPayment && extraPayment > 0) {
+      schedule.title = 'Minimum Payment + ' + this.currency.transform(extraPayment);
     }
-    else{
-      schedule.title =  'Minimum Payment';
+    else {
+      schedule.title = 'Minimum Payment';
     }
 
     return schedule;
