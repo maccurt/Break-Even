@@ -1,44 +1,42 @@
 <div class="mb-3"
      [ngClass]="{'has-error':(isInvalid())}">
 
-    <label class="form-label"
-           *ngIf="options.showLabel"
-           id="{{options.labelId}}"
-           title="{{options.labelTitle}}"
-           for="{{options.labelFor}}">{{options.labelText}}</label>
+       <label class="form-label"
+              *ngIf="options.showLabel"
+              id="{{options.labelId}}"
+              title="{{options.labelTitle}}"
+              for="{{options.labelFor}}">{{options.labelText}}</label>
 
-    <span *ngIf="help" class="icon-container">
-        <fa-icon [icon]="help.icon"
-                 matTooltipClass="tool-tip-help"
-                 matTooltip="{{help.defintion}}">
-        </fa-icon>
-    </span>
+       <span *ngIf="help"
+             class="icon-container">
+              <fa-icon [icon]="help.icon"
+                       matTooltipClass="tool-tip-help"
+                       matTooltip="{{help.defintion}}">
+              </fa-icon>
+       </span>
 
-    <input id="{{inputId}}"
-           type="text"
-           autocomplete="off"
-           name="whatever"
-           [name]="options.inputFormControlName"
-           formControlName={{options.inputFormControlName}}
-           attr.maxlength="{{options.maxlength}}"
-           numeric-input
-           [min]="options.min"
-           [max]="options.max"
-           class="form-control"
-           aria-describedby=""
-           placeholder="{{options.placeholder}}"
-           [decimals]="options.decimals"
-           inputmode="decimal"
-           (blur)="blurHandler()"
-           (ngModelChange)="modelChange($event)">
+       <input id="{{inputId}}"
+              type="text"
+              autocomplete="off"
+              name="whatever"
+              [name]="options.inputFormControlName"
+              formControlName={{options.inputFormControlName}}
+              attr.maxlength="{{options.maxlength}}"
+              numeric-input
+              [min]="options.min"
+              [max]="options.max"
+              class="form-control"
+              aria-describedby=""
+              placeholder="{{options.placeholder}}"
+              [decimals]="options.decimals"
+              inputmode="decimal"
+              (blur)="blurHandler()"
+              (ngModelChange)="modelChange($event)">
 
-    <!-- <input id="revenuePerUnit"
-           class="form-control"
-           type="number"
-           data-test-id="revenue-per-unit"
-           formControlName="revenuePerUnit"> -->
-    <div id="{{inputId}}-error-message"
-         class='input-error'>
-        {{errrorMessageToDisplay()}}
-    </div>
+       <div *ngIf="help.hint" data-test-id="input-hint"
+            class="form-text">{{help.hint}}</div>
+       <div id="{{inputId}}-error-message"
+            class='input-error'>
+              {{errrorMessageToDisplay()}}
+       </div>
 </div>

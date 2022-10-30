@@ -3,22 +3,7 @@ import { ControlContainer, FormGroupDirective, Validators } from '@angular/forms
 import { Help } from 'src/app/help/Help';
 import { FormInput, FormInputType } from '../form-input';
 import { FormGroupTypeInputOptions, FormInputService } from '../form-input.service';
-
-interface FormInputOptions {
-  min: number;
-  max: number;
-  labelId: string;
-  labelTitle: string;
-  labelText: string;
-  labelFor: string;
-  inputId: string;
-  inputFormControlName: string;
-  placeholder: string;
-  errorMessage: string;
-  maxlength: number;
-  decimals: number;
-  showLabel: boolean;
-}
+import { FormInputOptions } from './FormInputOptions';
 
 @Component({
   selector: 'app-form-input',
@@ -38,9 +23,10 @@ export class FormInputComponent implements OnInit {
   control!: FormInput;
   @Input() onBlur!: any; //TODO why is this any, fix it
   @Input() text = '';
+  @Input() hint?: string;
   @Input() showErrors = false;
   @Input() help!: Help;
-  options!: FormInputOptions;
+  @Input() options!: FormInputOptions;
 
   inputId = '';
   constructor(private controlContainer: FormGroupDirective, private formInputService: FormInputService) {
@@ -63,7 +49,7 @@ export class FormInputComponent implements OnInit {
     if (!this.help) {
       //This means you have not put a help attribute on the form-input, DO SO!!
       // eslint-disable-next-line no-console      
-      console.log('WARNING:******',this.name,':has no help (icons, tooltip,etc).');
+      console.log('WARNING:******', this.name, ':has no help (icons, tooltip,etc).');
     }
 
     this.control = this.controlContainer.control.controls[this.name] as FormInput;
@@ -105,6 +91,7 @@ export class FormInputComponent implements OnInit {
     this.options.labelFor = this.typeInputOptions.name;
     this.options.labelTitle = this.typeInputOptions.title;
     this.options.inputFormControlName = this.typeInputOptions.name;
+    
 
     this.options.placeholder = this.typeInputOptions.placeholder ?
       this.typeInputOptions.placeholder : this.typeInputOptions.text;
