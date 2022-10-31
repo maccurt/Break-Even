@@ -91,7 +91,6 @@ export class FormInputComponent implements OnInit {
     this.options.labelFor = this.typeInputOptions.name;
     this.options.labelTitle = this.typeInputOptions.title;
     this.options.inputFormControlName = this.typeInputOptions.name;
-    
 
     this.options.placeholder = this.typeInputOptions.placeholder ?
       this.typeInputOptions.placeholder : this.typeInputOptions.text;
