@@ -66,6 +66,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
     this.minimumPaymentTypeList = this.paymentService.getMinimumPaymentTypeList();
     this.balanceControl = new FormInput(FormInputType.CreditCardBalance);
     this.interestRateControl = new FormInput(FormInputType.CreditCardInterestRate);
+    this.interestRateControl.setValue(16.4);
     this.minimumPaymentTypeControl = new FormControl(this.minimumPaymentTypeList[0], [Validators.required]);
 
     this.paymentTypeControl = new FormControl(null, [Validators.required]);

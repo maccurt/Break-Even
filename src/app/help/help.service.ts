@@ -56,7 +56,7 @@ export class HelpService {
     totalPrinicpalAndInterest, '', 'icon-color-1');
 
   creditCardInterestRate = new Help('Interes Rate',
-    'The interest rate you are charged on your credit card.', '');
+    'The annual interest rate (APR) you are charged on your credit card. you can find it on your credit card bill statement.', '');
 
   minimumPaymentTrap = new Help('Minimum Payment Trap',
     'put some sort of text here', '', 'danger-icon');
@@ -105,5 +105,7 @@ export class HelpService {
     this.creditCardMinPayPlusExtraInterest.icon = icons.minPayPlusExtraInterest;
     this.creditCardFixedPaymentInterest.icon = icons.minPayPlusExtraInterest;
     this.creditCardMinPayInterest.icon = icons.interest;
+
+    this.creditCardInterestRate.hint = "Find your interest rate on your credit card bill.";
   }
 }

@@ -8,4 +8,5 @@ export class Help {
   icon: IconDefinition = faQuestionCircle; 
   showPercent: boolean = false;
   notes!:string;
+  hint?:string;
 }
