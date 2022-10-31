@@ -9,7 +9,8 @@
 
                 <mat-card-content data-test-id="credit-card-calculator">
                     <div class="form-wrapper">
-                        <form [formGroup]="creditCardFormGroup">
+                        <form class="pd-form"
+                              [formGroup]="creditCardFormGroup">
 
                             <app-form-input name='balance'
                                             [showErrors]=showErrors
@@ -33,7 +34,7 @@
                                 <select style="margin-top:7px;"
                                         id='minimum-payment-type'
                                         formControlName="minimumPaymentType"
-                                        class='form-control'>
+                                        class='form-control form-control-sm'>
                                     <option *ngFor='let m of minimumPaymentTypeList'
                                             [ngValue]='m'>{{m.text}}</option>
                                 </select>
@@ -99,6 +100,7 @@
                                 </div>
                             </div>
 
+                            <!-- TODO WHY IS HIT NOT USING the form compoment -->
                             <div id='payment-input-container'
                                  [style.visibility]="showPaymentInput ? 'hidden':'visible'">
                                 <div [ngClass]="{'has-error':(isInvalid(extraPaymentControl))}"
@@ -111,7 +113,7 @@
                                            numeric-input
                                            [min]="1"
                                            [max]="99999"
-                                           class="form-control"
+                                           class="form-control form-control-sm"
                                            id="extra-payment"
                                            aria-describedby="interest-rate-label"
                                            placeholder="Extra Payment"
@@ -133,7 +135,7 @@
                                            numeric-input
                                            [min]="1"
                                            [max]="9999"
-                                           class="form-control"
+                                           class="form-control form-control-sm"
                                            id="fixed-payment"
                                            aria-describedby="fixed-payment-label"
                                            placeholder="Fixed Payment"
