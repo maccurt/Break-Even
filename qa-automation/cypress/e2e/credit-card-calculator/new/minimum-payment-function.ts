@@ -29,5 +29,5 @@ function enterBaselineCreditCardInfo(scenario:ICreditCardBase = new CreditCardSc
     
     cy.visit('/credit-card');
     cy.get('#balance').type(scenario.balance);
-    cy.get('#interestRate').type('15').blur();
+    cy.get('#interestRate').clear().type('15').blur();
 }

@@ -1,10 +1,10 @@
 <div class="container-float">
 
-    <div class="row ">
+    <div class="row">
 
         <div class="col-12 offset-md-1 col-md-10 offset-lg-0  col-lg-5 col-xl-4 col-xxl-3 mb-5">
 
-            <mat-card >
+            <mat-card>
                 <mat-card-title>Credit Card Information</mat-card-title>
 
                 <mat-card-content data-test-id="credit-card-calculator">
@@ -151,10 +151,83 @@
                             <hr>
 
                             <div class="row">
+                                <div class="col-12">
+
+                                    <table style="background-color:white;width:100%;"
+                                           class="table table-striped">
+                                        <!-- <thead>
+                                            <tr>
+                                                <th style="border-bottom:1px solid black"
+                                                    colspan="2">
+                                                    Monthly Payment Calculation
+                                                </th>
+                                            </tr>
+                                        </thead> -->
+
+                                        <tbody>
+                                            <tr *ngIf="!isFixedPaymentType"
+                                                style="font-weight:500">
+                                                <td style="width:40%">
+                                                    Minimum Payment
+                                                </td>
+                                                <td>
+                                                    + ${{minimumPayment |number:'1.2-2' }}
+
+                                                </td>
+                                            </tr>
+
+                                            <tr *ngIf="isFixedPaymentType">
+                                                <td style="width:40%">
+                                                    Minimum Payment
+                                                </td>
+                                                <td>
+                                                    &nbsp; ${{minimumPayment |number:'1.2-2' }}
+                                                    <span style="float:right;font-style: oblique; font-size: small;"
+                                                          *ngIf="isFixedPaymentType">not in monthly payment</span>
+
+                                                </td>
+                                            </tr>
+
+                                            <tr style="font-weight:500"
+                                                *ngIf="!isFixedPaymentType">
+                                                <td>
+                                                    Extra Payment
+                                                </td>
+                                                <td>
+                                                    +<span *ngIf="isExtraPaymentType"> ${{extraPayment |number:'1.2-2'
+                                                        }}</span>
+                                                    <span *ngIf="!isExtraPaymentType"> $0.00</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr *ngIf="isFixedPaymentType"
+                                                style="font-weight:500">
+                                                <td>
+                                                    Fixed Payment
+                                                </td>
+                                                <td>+ ${{fixedPayment |number:'1.2-2' }}</td>
+                                            </tr>
+
+                                            <tr style="border-top:2px solid black;"
+                                                class="total">
+                                                <td>
+                                                    Monthly Payment
+                                                </td>
+                                                <td>
+                                                    ${{monthlyPayment |number:'1.2-2' }}
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div style="display:none;"
+                                 class="row">
 
                                 <!-- TODO re-thinkg this margin put it in styles -->
-                                <div style="margin-bottom:7px;"
-                                     class="col-6">
+                                <div style="margin-bottom:7px; border: 1px dotted red;"
+                                     class="col-5">
 
                                     <label style="margin-bottom:3px;"
                                            id="minimum-payment-label"
@@ -173,7 +246,7 @@
                                     <div class="calculated-field"
                                          id="payment"
                                          title="Payment = Minimum Payment + Extra Payment">
-                                        ${{payment |number:'1.2-2' }}
+                                        ${{monthlyPayment |number:'1.2-2' }}
                                     </div>
                                 </div>
                             </div>
@@ -182,8 +255,7 @@
                         <button id='calculate'
                                 (click)="calculate()"
                                 class="calculate-button btn btn-primary"><b>
-                                Calculate
-                                Results</b>
+                                Calculate Credit Card</b>
                         </button>
 
                     </div>
@@ -203,17 +275,17 @@
 
                         <div class="col-6  col-xxl-4 mb-5">
 
-                            <app-credit-card-schedule *ngIf="!minimumPaymentMode && !isFixedPayment"
+                            <app-credit-card-schedule *ngIf="!showMinimumPayment && !showFixedPayment"
                                                       data-test-id="extra-pay-schedule"
                                                       [schedule]="scheduleCompare.schedule2">
                             </app-credit-card-schedule>
 
-                            <app-credit-card-schedule *ngIf="!minimumPaymentMode && isFixedPayment"
+                            <app-credit-card-schedule *ngIf="!showMinimumPayment && showFixedPayment"
                                                       data-test-id="fixed-pay-schedule"
                                                       [schedule]="scheduleCompare.schedule2">
                             </app-credit-card-schedule>
 
-                            <app-credit-card-schedule *ngIf="minimumPaymentMode"
+                            <app-credit-card-schedule *ngIf="showMinimumPayment"
                                                       data-test-id="fixed-pay-schedule"
                                                       [schedule]="scheduleCompare.schedule2">
                             </app-credit-card-schedule>
@@ -234,7 +306,7 @@
                                 <div class="col-12 col-xl-6 col-xxl-12">
                                     <!-- TODO Find a way to do this with component -->
                                     <app-interest-saved-section data-test-id="interest-saved-by-paying-extra"
-                                                                *ngIf="!minimumPaymentMode && !isFixedPayment"
+                                                                *ngIf="!showMinimumPayment && !showFixedPayment"
                                                                 [scheduleCompare]="scheduleCompare"
                                                                 [help]="help.interestSavedByPayingExtra">
                                     </app-interest-saved-section>
@@ -242,7 +314,7 @@
 
 
                                     <app-interest-saved-section data-test-id="interest-saved-by-paying-fixed"
-                                                                *ngIf="isFixedPayment"
+                                                                *ngIf="showFixedPayment"
                                                                 [scheduleCompare]="scheduleCompare"
                                                                 [help]="help.interestSavedByPayingFixedPayment">
                                     </app-interest-saved-section>
@@ -252,14 +324,14 @@
                                     <!-- TODO Find a way to do this with component see above -->
                                     <app-time-saved-section data-test-id="time-saved-extra-payment"
                                                             [scheduleCompare]="scheduleCompare"
-                                                            *ngIf="!minimumPaymentMode && !isFixedPayment"
+                                                            *ngIf="!showMinimumPayment && !showFixedPayment"
                                                             [help]="help.timeSavedByPayingExtra">
                                     </app-time-saved-section>
 
 
                                     <app-time-saved-section data-test-id="time-saved-fixed-payment"
                                                             [scheduleCompare]="scheduleCompare"
-                                                            *ngIf="isFixedPayment"
+                                                            *ngIf="showFixedPayment"
                                                             [help]="help.timeSavedFixedPayment">
                                     </app-time-saved-section>
 
@@ -270,7 +342,7 @@
                                 </div>
 
                                 <div class="col-12 col-xl-6 col-xxl-12">
-                                    <app-minimum-payment-trap-section *ngIf="minimumPaymentMode">
+                                    <app-minimum-payment-trap-section *ngIf="showMinimumPayment">
                                     </app-minimum-payment-trap-section>
                                 </div>
 
