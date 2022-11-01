@@ -12,8 +12,8 @@ describe('credit-card-baseline.cy.ts', () => {
         cy.get('#balance').should('have.value', '');
     });
 
-    it('interest rate should have no value', () => {
-        cy.get('#interestRate').should('have.value', '');
+    it('interest rate should the default value 16.4', () => {
+        cy.get('#interestRate').should('have.value', '16.4');
     });
 
     it('minimum payment type should be the first item', () => {

@@ -1,48 +1,50 @@
-import { statSectionTest } from "../../helper/section-test-helpers";
-import { enterExtraPaymentForCreditCard } from "./minimum-payment-function";
-describe('credit card minimum payment extra payment happy path', () => {
+//remove this test because we removed the tab
 
-    enterExtraPaymentForCreditCard();
-    before(() => {
-        cy.get('div[role=tab]').eq(1).click();
-    });
+// import { statSectionTest } from "../../helper/section-test-helpers";
+// import { enterExtraPaymentForCreditCard } from "./minimum-payment-function";
+// describe('credit card minimum payment extra payment happy path', () => {
 
-    beforeEach(() => {
-        cy.getDataTestId('min-pay-plus-exta-pay-mode').as('mode');
-    });
+//     enterExtraPaymentForCreditCard();
+//     before(() => {
+//         cy.get('div[role=tab]').eq(1).click();
+//     });
 
-    it('minimum payment mode should not exist', () => {
-        cy.getDataTestId('minimum-payment-mode').should('not.exist');
-    });
+//     beforeEach(() => {
+//         cy.getDataTestId('min-pay-plus-exta-pay-mode').as('mode');
+//     });
 
-    it('total principal and interest section should exist', () => {
-        cy.get('@mode').getDataTestId('total-principal-interest-by-paying-extra').should('exist');
-    });
+//     it('minimum payment mode should not exist', () => {
+//         cy.getDataTestId('minimum-payment-mode').should('not.exist');
+//     });
 
-    statSectionTest('cc-summary-tab', 'total-principal-interest-by-paying-extra',
-        'Total Principal & Interest By Paying Extra',
-        '$13,878.30',
-        '10,000.00 balance + 3,878.30 interest'
-    );
+//     it('total principal and interest section should exist', () => {
+//         cy.get('@mode').getDataTestId('total-principal-interest-by-paying-extra').should('exist');
+//     });
 
-    it('total principal and interest minimum payement section should exist', () => {
-        cy.get('@mode').getDataTestId('total-principal-interest-min-payment').should('exist');
-    });
+//     statSectionTest('cc-summary-tab', 'total-principal-interest-by-paying-extra',
+//         'Total Principal & Interest By Paying Extra',
+//         '$13,878.30',
+//         '10,000.00 balance + 3,878.30 interest'
+//     );
 
-    statSectionTest('cc-summary-tab','total-principal-interest-min-payment',
-        'Total Principal & Interest Minium Payment Only',
-        '$21,979.18',
-        '10,000.00 balance + 11,979.18 interest'
-    );
+//     it('total principal and interest minimum payement section should exist', () => {
+//         cy.get('@mode').getDataTestId('total-principal-interest-min-payment').should('exist');
+//     });
 
-    it('interest saved by paying extra should exist', () => {
-        cy.get('@mode').getDataTestId('interest-saved-by-paying-extra').should('exist');
-    });
+//     statSectionTest('cc-summary-tab','total-principal-interest-min-payment',
+//         'Total Principal & Interest Minium Payment Only',
+//         '$21,979.18',
+//         '10,000.00 balance + 11,979.18 interest'
+//     );
 
-    statSectionTest('cc-summary-tab', 'interest-saved-by-paying-extra',
-        'Interest Saved By Paying Extra',
-        '$8,100.88',
-        '$21,979.18 - $13,878.30',
-        'You Will Save 67.62% In Interest.'
-    );
-});
+//     it('interest saved by paying extra should exist', () => {
+//         cy.get('@mode').getDataTestId('interest-saved-by-paying-extra').should('exist');
+//     });
+
+//     statSectionTest('cc-summary-tab', 'interest-saved-by-paying-extra',
+//         'Interest Saved By Paying Extra',
+//         '$8,100.88',
+//         '$21,979.18 - $13,878.30',
+//         'You Will Save 67.62% In Interest.'
+//     );
+// });

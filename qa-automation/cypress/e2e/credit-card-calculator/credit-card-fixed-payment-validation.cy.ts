@@ -8,7 +8,7 @@ describe('credit-card-fixed-payment-validation.cy.ts', () => {
         before(() => {
             cy.visit('/credit-card');
             cy.get('#balance').type('10000');
-            cy.get('#interestRate').type('15').blur();
+            cy.get('#interestRate').clear().type('15').blur();
             cy.get('#payment-type-fixed').click();
         });
 

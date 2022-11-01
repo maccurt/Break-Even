@@ -3,6 +3,7 @@ describe('credit-card-validation-calculate.cy.ts', () => {
     //All you are doing here is clicking calculate to make sure the error message shows up
     before(() => {
         cy.visit('/credit-card');
+        cy.get('#interestRate').clear();
         cy.get('#payment-type-extra').click();
         cy.wait(1000);
         cy.get('#calculate').click();
