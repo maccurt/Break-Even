@@ -1,3 +1,4 @@
+import { minMonthlyPaySectionTest } from "../../helper/cc-monthly-payment-test";
 import { creditCardScheduleMininumPayTest } from "../../helper/cc-schedule-test";
 import { CreditCardScenario1 } from "../../helper/credit-card-scenario-1";
 import { interestSavedByPayingFixedTest } from "../../helper/interest-saved-test";
@@ -12,6 +13,7 @@ describe('credit card min pay page test', () => {
     enterMinimumPaymentForCreditCard();
     //minimuPayScheduleTest();
     creditCardScheduleMininumPayTest();
+    minMonthlyPaySectionTest();
     it('minimum payment trap should exist', () => {
         cy.get('@parent').getDataTestId('min-payment-trap').should('exist');
     });

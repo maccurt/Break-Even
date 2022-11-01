@@ -1,3 +1,4 @@
+import { fixedMonthlyPaySectionTest } from "../../helper/cc-monthly-payment-test";
 import { creditCardScheduleFixedPayTest, creditCardScheduleMininumPayTest } from "../../helper/cc-schedule-test";
 import { interestSavedByPayingFixedTest } from "../../helper/interest-saved-test";
 import { timeSavedFixedPay } from "../../helper/time-saved-test";
@@ -9,6 +10,7 @@ describe('credit card fixed pay page test', () => {
         cy.getDataTestId('cc-compare-tab').as('parent');
     });
     enterFixedPaymentForCreditCard();
+    fixedMonthlyPaySectionTest();
     creditCardScheduleFixedPayTest();
     creditCardScheduleMininumPayTest();
 

@@ -1,3 +1,4 @@
+import { fixPayment } from 'qa-automation/cypress/e2e/credit-card-calculator/new/minimum-payment-function';
 export interface ICreditCardBase {
     balance: string;
     interest: string;
@@ -18,6 +19,14 @@ export interface ICreditCardResult {
     total: string;
     timeToPayOfDebt: string;
     timeSaved: string;
+    monthlyPaymentSection: IMonthlyPaymentSection;
+}
+
+export interface IMonthlyPaymentSection {
+    monthlyPayment: string;
+    minimumPayment: string;
+    extraPayment: string;
+    fixedPayment:string;
 }
 export class CreditCardScenario1 implements ICreditCardBase {
     balance = '10000';
@@ -31,9 +40,16 @@ export class CreditCardScenario1 implements ICreditCardBase {
         total: '21,979.18',
         interestSaved: '$7,291.12',
         interestSavedFormula: '$21,979.18 - $14,688.06',
-        interestSavedPercent: 'You Will Save 60.86% In Interest.',  
+        interestSavedPercent: 'You Will Save 60.86% In Interest.',
         timeToPayOfDebt: '27 Years, 11 Months',
         timeSaved: '22 Years, 5 Months',
+        monthlyPaymentSection: {
+            minimumPayment: "+ $225.00",
+            extraPayment: "+ $0.00",
+            monthlyPayment: "$225.00",
+            fixedPayment:'',
+        }
+
     };
     extraPayResult = {
         title: 'Minimum Payment + $100.00',
@@ -45,6 +61,12 @@ export class CreditCardScenario1 implements ICreditCardBase {
         total: '13,878.30',
         timeToPayOfDebt: '5 Years, 9 Months',
         timeSaved: '22 Years, 2 Months',
+        monthlyPaymentSection: {
+            minimumPayment: "+ $225.00",
+            extraPayment: "+ $100.00",
+            monthlyPayment: "$325.00",
+            fixedPayment:'',
+        }
     };
     fixedPayResult = {
         title: '$500.00 Fixed Payment',
@@ -56,5 +78,11 @@ export class CreditCardScenario1 implements ICreditCardBase {
         total: '11,579.48',
         timeToPayOfDebt: '2 Years, 0 Months',
         timeSaved: '25 Years, 11 Months',
+        monthlyPaymentSection: {
+            minimumPayment: "$225.00",
+            extraPayment: "+ $0.00",
+            fixedPayment:'+ $500.00',
+            monthlyPayment: "$500.00"
+        }
     };
 }

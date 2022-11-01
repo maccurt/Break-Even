@@ -153,24 +153,16 @@
                             <div class="row">
                                 <div class="col-12">
 
-                                    <table style="background-color:white;width:100%;"
+                                    <table data-test-id="monthly-payment-section"
+                                           style="background-color:white;width:100%;"
                                            class="table table-striped">
-                                        <!-- <thead>
-                                            <tr>
-                                                <th style="border-bottom:1px solid black"
-                                                    colspan="2">
-                                                    Monthly Payment Calculation
-                                                </th>
-                                            </tr>
-                                        </thead> -->
-
                                         <tbody>
                                             <tr *ngIf="!isFixedPaymentType"
                                                 style="font-weight:500">
                                                 <td style="width:40%">
                                                     Minimum Payment
                                                 </td>
-                                                <td>
+                                                <td data-test-id="minimum-payment">
                                                     + ${{minimumPayment |number:'1.2-2' }}
 
                                                 </td>
@@ -181,8 +173,9 @@
                                                     Minimum Payment
                                                 </td>
                                                 <td>
-                                                    &nbsp; ${{minimumPayment |number:'1.2-2' }}
-                                                    <span style="float:right;font-style: oblique; font-size: small;"
+                                                    <span data-test-id="minimum-payment">
+                                                        &nbsp; ${{minimumPayment |number:'1.2-2' }}</span>
+                                                    <span data-test-id="fix-pay-hint" style="float:right;font-style: oblique; font-size: small;"
                                                           *ngIf="isFixedPaymentType">not in monthly payment</span>
 
                                                 </td>
@@ -193,7 +186,7 @@
                                                 <td>
                                                     Extra Payment
                                                 </td>
-                                                <td>
+                                                <td data-test-id="extra-payment">
                                                     +<span *ngIf="isExtraPaymentType"> ${{extraPayment |number:'1.2-2'
                                                         }}</span>
                                                     <span *ngIf="!isExtraPaymentType"> $0.00</span>
@@ -205,7 +198,8 @@
                                                 <td>
                                                     Fixed Payment
                                                 </td>
-                                                <td>+ ${{fixedPayment |number:'1.2-2' }}</td>
+                                                <td data-test-id="fixed-payment">+ ${{fixedPayment |number:'1.2-2' }}
+                                                </td>
                                             </tr>
 
                                             <tr style="border-top:2px solid black;"
@@ -213,7 +207,7 @@
                                                 <td>
                                                     Monthly Payment
                                                 </td>
-                                                <td>
+                                                <td data-test-id="monthly-payment">
                                                     ${{monthlyPayment |number:'1.2-2' }}
                                                 </td>
                                             </tr>

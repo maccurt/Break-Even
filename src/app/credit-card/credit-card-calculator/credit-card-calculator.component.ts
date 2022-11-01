@@ -110,24 +110,6 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
     this.calculateMinimumPayment();
   }
 
-  demoExtraPayment = (): void => {
-    this.paymentTypeControl.setValue(PaymentType.MinimumPaymentPlusExtra.toString());
-    this.balanceControl.setValue(10000);
-    this.interestRateControl.setValue(15);
-    this.extraPaymentControl.setValue(100);
-    this.calculateMinimumPayment();
-    this.calculate();
-  };
-
-  demoMinimumPaymentOnly = (): void => {
-    this.paymentTypeControl.setValue(PaymentType.MinimumPaymentOnly.toString());
-    this.balanceControl.setValue(10000);
-    this.interestRateControl.setValue(15);
-    this.extraPaymentControl.setValue(100);
-    this.calculateMinimumPayment();
-    this.calculate();
-  };
-
   setPaymentType = () => {
 
     const paymentType = this.mathService.getFloat(this.paymentTypeControl.value);
@@ -177,7 +159,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
         this.monthlyPayment = this.minimumPayment + this.extraPayment!;
         break;
       case PaymentType.FixedPayment:
-        
+
         this.monthlyPayment = this.mathService.getFloat(this.fixedPaymentControl.value, 0)!;
         this.fixedPayment = this.monthlyPayment;
         break;
@@ -282,6 +264,24 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
     }
 
     return null;
+  };
+
+  demoExtraPayment = (): void => {
+    this.paymentTypeControl.setValue(PaymentType.MinimumPaymentPlusExtra.toString());
+    this.balanceControl.setValue(10000);
+    this.interestRateControl.setValue(15);
+    this.extraPaymentControl.setValue(100);
+    this.calculateMinimumPayment();
+    this.calculate();
+  };
+
+  demoMinimumPaymentOnly = (): void => {
+    this.paymentTypeControl.setValue(PaymentType.MinimumPaymentOnly.toString());
+    this.balanceControl.setValue(10000);
+    this.interestRateControl.setValue(15);
+    this.extraPaymentControl.setValue(100);
+    this.calculateMinimumPayment();
+    this.calculate();
   };
 
   ngOnDestroy(): void {
