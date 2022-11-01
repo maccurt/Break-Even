@@ -23,7 +23,7 @@ export class PaymentService {
     }
 
     if (annualPercentageRate <= 0) {
-      throw new Error('input error: annualPercentageRate');   
+      throw new Error('input error: annualPercentageRate');
     }
 
     const monthlyPercentageRate = annualPercentageRate / 100 / 12;
@@ -174,6 +174,9 @@ export class PaymentService {
     fixedPayment: number, financeChargePercent: number,
     balance: number, annualPercentageRate: number, includeApr = true) => {
 
+    if (!balance || balance === 0) {
+      return 0;
+    }
     let monthlyPayment = 0;
 
     if (fixedPayment > 0) {

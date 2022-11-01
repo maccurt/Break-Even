@@ -60,8 +60,8 @@ export function fixedMonthlyPaySectionTest(result: IMonthlyPaymentSection = new 
             cy.get('@section').getDataTestId('fixed-payment').textShouldEqual(result.fixedPayment);
         });
 
-        it('fix pay hint should equal', () => {
-            cy.get('@section').getDataTestId('fix-pay-hint').textShouldEqual('not in monthly payment');
-        });
+        // it('fix pay hint should equal', () => {
+        //     cy.get('@section').getDataTestId('fix-pay-hint').textShouldEqual('not in monthly payment');
+        // });
     });
 }

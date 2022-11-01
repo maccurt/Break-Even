@@ -221,7 +221,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
 
   };
 
-  calculateMinimumPayment = () => {
+  calculateMinimumPayment = () => {    
 
     if (this.balanceControl.valid && this.interestRateControl.valid) {
 

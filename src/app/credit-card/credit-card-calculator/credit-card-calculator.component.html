@@ -5,7 +5,7 @@
         <div class="col-12 offset-md-1 col-md-10 offset-lg-0  col-lg-5 col-xl-4 col-xxl-3 mb-5">
 
             <mat-card>
-                <mat-card-title>Credit Card Information</mat-card-title>
+                <!-- <mat-card-title>Credit Card Information</mat-card-title> -->
 
                 <mat-card-content data-test-id="credit-card-calculator">
                     <div class="form-wrapper">
@@ -98,7 +98,7 @@
                                         </fa-icon>
                                     </label>
                                 </div>
-                            </div>
+                            </div>                            
 
                             <!-- TODO WHY IS HIT NOT USING the form compoment -->
                             <div id='payment-input-container'
@@ -159,7 +159,7 @@
                                         <tbody>
                                             <tr *ngIf="!isFixedPaymentType"
                                                 style="font-weight:500">
-                                                <td style="width:40%">
+                                                <td style="width:50%">
                                                     Minimum Payment
                                                 </td>
                                                 <td data-test-id="minimum-payment">
@@ -169,14 +169,14 @@
                                             </tr>
 
                                             <tr *ngIf="isFixedPaymentType">
-                                                <td style="width:40%">
+                                                <td style="width:50%">
                                                     Minimum Payment
                                                 </td>
                                                 <td>
                                                     <span data-test-id="minimum-payment">
                                                         &nbsp; ${{minimumPayment |number:'1.2-2' }}</span>
-                                                    <span data-test-id="fix-pay-hint" style="float:right;font-style: oblique; font-size: small;"
-                                                          *ngIf="isFixedPaymentType">not in monthly payment</span>
+                                                    <!-- <span data-test-id="fix-pay-hint" style="float:right;font-style: oblique; font-size: small;"
+                                                          *ngIf="isFixedPaymentType">not in monthly payment</span> -->
 
                                                 </td>
                                             </tr>

@@ -13,15 +13,12 @@ export class CreditCardScheduleComponent implements OnChanges {
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions!: Highcharts.Options;
-  
+
   @Input() schedule!: Schedule;
 
-  constructor(private creditCartChartService: CreditCardChartService,
-    public help: HelpService) {      
+  constructor(private creditCartChartService: CreditCardChartService, public help: HelpService) { }
 
-    }
-
-  ngOnChanges(): void {  
+  ngOnChanges(): void {
     this.chartOptions = this.creditCartChartService.interestPieChart(this.schedule);
   }
 }
