@@ -42,5 +42,4 @@ export enum FormInputType {
     EbayFeePercent,
     EbayInsertionFee,
     AddCostToPackage
-
 }

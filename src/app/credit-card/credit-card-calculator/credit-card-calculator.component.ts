@@ -33,12 +33,13 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
   minimumPaymentTypeControl!: FormControl;
   paymentTypeControl!: FormControl;
   extraPaymentControl!: FormControl;
-  fixedPaymentControl!: FormControl;
+  fixedPaymentControl!: FormControl;  
 
-  //mode
-  isMiniumPaymentType = false;
-  isExtraPaymentType = false;
-  isFixedPaymentType = false;
+  paymentTypeList: { value: number, text: string }[] = [
+    { value: 1, text: 'Minimum Payment' },
+    { value: 2, text: 'Minimum Payment + Extra Payment' },
+    { value: 3, text: 'Fixed Payment' },
+  ];
 
   minimumPaymentTypeList: MinimumPaymentType[] = [];
   showErrors!: boolean;
@@ -47,6 +48,11 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
   showExtraPayment = true;
   showMinimumPayment = false;
   showFixedPayment = false;
+  //mode use this to hide things on the calculator form
+  isMiniumPaymentType = false;
+  isExtraPaymentType = false;
+  isFixedPaymentType = false;
+
   isMinModeWithFixedPayment = false;
   //
   scheduleCompare!: ScheduleCompare;
@@ -78,9 +84,11 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
     this.interestRateControl.setValue(16.4);
     this.minimumPaymentTypeControl = new FormControl(this.minimumPaymentTypeList[0], [Validators.required]);
 
-    this.paymentTypeControl = new FormControl(null, [Validators.required]);
-    this.extraPaymentControl = new FormControl('');
-    this.fixedPaymentControl = new FormControl('');
+    //this.paymentTypeControl = new FormControl(null, [Validators.required]);
+    this.paymentTypeControl = new FormControl(this.paymentTypeList[1].value, [Validators.required]);
+    //this.extraPaymentControl = new FormControl('');
+    this.extraPaymentControl = new FormInput(FormInputType.CreditCardExtraPayment);
+    this.fixedPaymentControl = new FormInput(FormInputType.CreditCardFixedPayment);
 
     this.creditCardFormGroup = new FormGroup({
       balance: this.balanceControl,
@@ -93,10 +101,11 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
 
     this.subList$.push(this.minimumPaymentTypeControl.valueChanges.subscribe(() => {
       this.calculateMinimumPayment();
-    }));
+    }));    
 
-    this.subList$.push(this.paymentTypeControl.valueChanges.subscribe(this.setPaymentType));
-    this.paymentTypeControl.setValue(PaymentType.MinimumPaymentOnly.toString());
+    this.subList$.push(this.paymentTypeControl.valueChanges.subscribe(this.setPaymentType));    
+    this.paymentTypeControl.setValue(this.paymentTypeList[1].value);
+    //this.paymentTypeControl.setValue(PaymentType.MinimumPaymentOnly.toString());
 
     this.subList$.push(this.activatedRoute.queryParams.subscribe(params => {
       const { demo } = params;
@@ -113,7 +122,6 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
   setPaymentType = () => {
 
     const paymentType = this.mathService.getFloat(this.paymentTypeControl.value);
-
     this.isMiniumPaymentType = false;
     this.isExtraPaymentType = false;
     this.isFixedPaymentType = false;
@@ -121,7 +129,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
     switch (paymentType) {
       case PaymentType.MinimumPaymentOnly:
         this.isMiniumPaymentType = true;
-        this.showPaymentInput = true;
+        this.showPaymentInput = false;
         this.extraPaymentControl.clearValidators();
         this.extraPaymentControl.updateValueAndValidity();
         this.fixedPaymentControl.clearValidators();
@@ -129,7 +137,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
         break;
       case PaymentType.MinimumPaymentPlusExtra:
         this.isExtraPaymentType = true;
-        this.showPaymentInput = false;
+        this.showPaymentInput = true;
         this.fixedPaymentControl.clearValidators();
         this.fixedPaymentControl.updateValueAndValidity();
         this.extraPaymentControl.setValidators([Validators.min(1), Validators.max(99999), Validators.required]);
@@ -138,7 +146,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
         break;
       case PaymentType.FixedPayment:
         this.isFixedPaymentType = true;
-        this.showPaymentInput = false;
+        this.showPaymentInput = true;
         this.extraPaymentControl.clearValidators();
         this.extraPaymentControl.updateValueAndValidity();
         this.fixedPaymentControl.setValidators(this.validateFixedPayment as any); //TODO does making this 'any' break it
@@ -221,7 +229,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
 
   };
 
-  calculateMinimumPayment = () => {    
+  calculateMinimumPayment = () => {
 
     if (this.balanceControl.valid && this.interestRateControl.valid) {
 
