@@ -33,7 +33,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
   minimumPaymentTypeControl!: FormControl;
   paymentTypeControl!: FormControl;
   extraPaymentControl!: FormControl;
-  fixedPaymentControl!: FormControl;  
+  fixedPaymentControl!: FormControl;
 
   paymentTypeList: { value: number, text: string }[] = [
     { value: 1, text: 'Minimum Payment' },
@@ -101,9 +101,9 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
 
     this.subList$.push(this.minimumPaymentTypeControl.valueChanges.subscribe(() => {
       this.calculateMinimumPayment();
-    }));    
+    }));
 
-    this.subList$.push(this.paymentTypeControl.valueChanges.subscribe(this.setPaymentType));    
+    this.subList$.push(this.paymentTypeControl.valueChanges.subscribe(this.setPaymentType));
     this.paymentTypeControl.setValue(this.paymentTypeList[1].value);
     //this.paymentTypeControl.setValue(PaymentType.MinimumPaymentOnly.toString());
 
@@ -222,6 +222,14 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
       this.showResults = true;
       this.showSummary = true;
       this.showErrors = false;
+
+      window.setTimeout(() => {
+        const element = document.querySelectorAll('#scroll-to-container')[0] as HTMLElement;
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 250);
+
     }
     else {
       this.showErrors = true;
