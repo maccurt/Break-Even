@@ -7,9 +7,10 @@
             <mat-card>
                 <!-- <mat-card-title>Credit Card Information</mat-card-title> -->
 
-                <mat-card-content  data-test-id="credit-card-calculator">
+                <mat-card-content data-test-id="credit-card-calculator">
                     <div class="form-wrapper">
-                        <form id="cc-form" class="pd-form"
+                        <form id="cc-form"
+                              class="pd-form"
                               [formGroup]="creditCardFormGroup">
 
                             <app-form-input name='balance'
@@ -88,7 +89,6 @@
                                 <div class="col-12">
 
                                     <table data-test-id="monthly-payment-section"
-                                           
                                            style="background-color:white;width:100%;"
                                            class="table table-striped cc-monthly-payment-section sum-table">
                                         <tbody>
@@ -97,7 +97,7 @@
                                                 <td style="width:50%">
                                                     Minimum Payment
                                                 </td>
-                                                <td   data-test-id="minimum-payment">
+                                                <td data-test-id="minimum-payment">
                                                     + ${{minimumPayment |number:'1.2-2' }}
                                                 </td>
                                             </tr>
@@ -132,7 +132,8 @@
                                                 <td>
                                                     Fixed Payment
                                                 </td>
-                                                <td class="number" data-test-id="fixed-payment">+ ${{fixedPayment |number:'1.2-2' }}
+                                                <td class="number"
+                                                    data-test-id="fixed-payment">+ ${{fixedPayment |number:'1.2-2' }}
                                                 </td>
                                             </tr>
 
@@ -201,7 +202,18 @@
                          data-test-id="cc-compare-tab"
                          *ngIf="scheduleCompare">
 
+                        
                         <div class="col-6  col-xxl-4 mb-5">
+                            <app-credit-card-schedule data-test-id="min-pay-schedule"
+                                                      [schedule]="scheduleCompare.schedule1">
+                            </app-credit-card-schedule>
+                        </div>
+
+                        <div class="col-6  col-xxl-4 mb-5">
+                            <app-credit-card-schedule *ngIf="showMinimumPayment"
+                                                      data-test-id="fixed-pay-schedule"
+                                                      [schedule]="scheduleCompare.schedule2">
+                            </app-credit-card-schedule>
 
                             <app-credit-card-schedule *ngIf="!showMinimumPayment && !showFixedPayment"
                                                       data-test-id="extra-pay-schedule"
@@ -212,19 +224,6 @@
                                                       data-test-id="fixed-pay-schedule"
                                                       [schedule]="scheduleCompare.schedule2">
                             </app-credit-card-schedule>
-
-                            <app-credit-card-schedule *ngIf="showMinimumPayment"
-                                                      data-test-id="fixed-pay-schedule"
-                                                      [schedule]="scheduleCompare.schedule2">
-                            </app-credit-card-schedule>
-
-                        </div>
-                        <div class="col-6  col-xxl-4 mb-5">
-
-                            <app-credit-card-schedule data-test-id="min-pay-schedule"
-                                                      [schedule]="scheduleCompare.schedule1">
-                            </app-credit-card-schedule>
-
                         </div>
 
                         <div class="col-12 col-xxl-4">

@@ -83,7 +83,6 @@ export class FormInputService {
     this.types.push(new FormInputTypeOptionKey(FormInputType.AddCostToPackage,
       { name: 'addCostToPackage', text: 'Add Cost To Package', min: 0, max: 99999, placeholder: 'add cost', title: 'Additional Cost To Add To Package', decimals: 2, showLabel: true }));
     /* tslint:enable */
-
   }
 
   getFormGroupTypeInputOptions = (type: FormInputType): FormGroupTypeInputOptions | null => {
