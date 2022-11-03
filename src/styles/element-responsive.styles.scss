@@ -6,7 +6,7 @@
 
     @include for-xsmall{
         font-size: small;
-        color:red;
+        height: 48px; //this keeps the title the same height not matter the length
     }
 }
 

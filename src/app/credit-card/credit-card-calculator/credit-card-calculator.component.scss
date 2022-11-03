@@ -1,8 +1,25 @@
 @import "../../../styles/variables";
 
-::ng-deep .cc-schedule {
-    app-info-section {
+::ng-deep {
+    #cc-form {
+        #balance,
+        #extraPayment, #fixedPayment {
+            width: 125px;
+        }
+
+        #interestRate {
+            width: 65px;
+        }
+
+        select {
+            width: 260px !important;
+        }
     }
+}
+
+#payment-type,
+#minimum-payment-type {
+    width: 325px;
 }
 
 // Had to do this to remove the horz scroll in the tabs
@@ -16,10 +33,6 @@
 
 #fixed-payment-container {
     margin-top: 7px;
-}
-
-#minimum-payment-type {
-    width: 235px;
 }
 
 #payment-type-container {

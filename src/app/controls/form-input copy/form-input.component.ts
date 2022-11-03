@@ -54,6 +54,10 @@ export class FormInputComponent implements OnInit {
 
     this.control = this.controlContainer.control.controls[this.name] as FormInput;
     if (this.control) {
+      if (!this.control.type) {
+        // eslint-disable-next-line no-console      
+        console.log('the control was not constructed with a type. use FormInput(type)');
+      }
       this.typeInputOptions = this.formInputService.getFormGroupTypeInputOptions(this.control.type)!;
     }
     else {
@@ -90,7 +94,8 @@ export class FormInputComponent implements OnInit {
     this.options.labelId = this.typeInputOptions.name + '-label';
     this.options.labelFor = this.typeInputOptions.name;
     this.options.labelTitle = this.typeInputOptions.title;
-    this.options.inputFormControlName = this.typeInputOptions.name;
+    this.options.inputFormControlName = this.typeInputOptions.name;    
+    this.options.placeholder = this.typeInputOptions.placeholder!;    
 
     this.options.placeholder = this.typeInputOptions.placeholder ?
       this.typeInputOptions.placeholder : this.typeInputOptions.text;

@@ -22,10 +22,14 @@
     .stat {
         font-size: xx-large;
         line-height: 1.4em;
-
+        height: auto;
         font-weight: bold;
         text-align: center;
         font-weight: 450;
+
+        @include for-xsmall {
+            font-size: large;
+        }
     }
 
     .formula {

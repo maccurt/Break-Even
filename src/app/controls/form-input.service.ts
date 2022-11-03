@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormInputType } from './form-input';
 
 class FormInputTypeOptionKey {
-  constructor(public type: FormInputType, public options: FormGroupTypeInputOptions) {
-  }
+  constructor(public type: FormInputType, public options: FormGroupTypeInputOptions) { }
 }
 
 export interface FormGroupTypeInputOptions {
@@ -37,10 +36,16 @@ export class FormInputService {
       { name: 'balanceTransferPercent', text: 'Balance Transfer Fee %', min: 1, max: 29.99, title: 'what percentageit will it cost to transfer balance', decimals: 2, showLabel: true }));
 
     this.types.push(new FormInputTypeOptionKey(FormInputType.CreditCardExtraPayment,
-      { name: 'extraPayment', text: 'Extra Payment', min: 1, max: 99999, title: 'Extra payment on top of minimum payment', decimals: 0, showLabel: false }));
+      {
+        name: 'extraPayment', text: 'What extra payment could you make monthly?', min: 1, max: 99999,
+        title: 'Extra payment on top of minimum payment', decimals: 0, showLabel: true, placeholder: 'Extra Payment'
+      }));
 
     this.types.push(new FormInputTypeOptionKey(FormInputType.CreditCardFixedPayment,
-      { name: 'fixedPayment', text: 'Fixed Payment', min: 1, max: 99999, title: 'Fixed Monthly Payment', decimals: 0, showLabel: false }));
+      {
+        name: 'fixedPayment', text: 'What fixed payment could you make monthly?', min: 1, max: 99999,
+        title: 'Fixed Monthly Payment', decimals: 0, showLabel: true, placeholder: 'Fixed Payment'
+      }));
 
     this.types.push(new FormInputTypeOptionKey(FormInputType.Units,
       { name: 'units', text: 'Units', min: 1, max: 99999, title: 'How many units are you buying', decimals: 0, showLabel: true }));
@@ -78,16 +83,15 @@ export class FormInputService {
     this.types.push(new FormInputTypeOptionKey(FormInputType.AddCostToPackage,
       { name: 'addCostToPackage', text: 'Add Cost To Package', min: 0, max: 99999, placeholder: 'add cost', title: 'Additional Cost To Add To Package', decimals: 2, showLabel: true }));
     /* tslint:enable */
-
   }
 
-  getFormGroupTypeInputOptions = (type: FormInputType): FormGroupTypeInputOptions |  null => {
+  getFormGroupTypeInputOptions = (type: FormInputType): FormGroupTypeInputOptions | null => {
 
     const key = this.types.find((i: FormInputTypeOptionKey) => {
       return i.type === type;
     });
 
-    if (!key) {      
+    if (!key) {
       return null;
     }
     return key.options;
