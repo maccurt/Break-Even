@@ -3,7 +3,7 @@ import {
     faCheckSquare, faTrashAlt, faArrowAltCircleLeft,
     faArrowAltCircleRight, faPlusSquare, faSmile,
     faCalendarCheck,
-    faWindowClose, faQuestionCircle, faClock, faCalendarTimes, faFrown, faCreditCard
+    faWindowClose, faQuestionCircle, faClock, faCalendarTimes, faFrown, faCreditCard, faFaceSmile
 } from '@fortawesome/free-regular-svg-icons';
 import {
     faGraduationCap, faFrog, faChalkboardTeacher,
@@ -27,6 +27,8 @@ export class IconService {
     time = faClock;
     questionMark = faQuestionCircle;
     unhappy = faFrown;
+    smile = faFaceSmile;
+    minimumPaymentType = faFrown;
     trap = faExclamationTriangle;
     interestSaved = faSackDollar;
     financialEmancipation = faUniversity;

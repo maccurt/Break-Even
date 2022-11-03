@@ -3,7 +3,7 @@ import { PieChartData } from "../../shared/PieChartData";
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from 'highcharts';
 import { ScheduleCompare } from '../../shared/schedule-compare.type';
-import { Schedule } from '../../shared/schedule.type';
+import { Schedule } from '../../shared/schedule.class';
 import * as Highcharts from 'highcharts';
 
 //TODO what module should this be in

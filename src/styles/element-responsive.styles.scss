@@ -1,5 +1,9 @@
 @import "../styles/variables";
 .title-responsive {
+
+    fa-icon{        
+        margin-right: 4px;
+    }
     @include for-large-and-below() {        
         font-size:medium
     }

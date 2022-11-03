@@ -1,5 +1,5 @@
 //TODO should this be in shared, rethink
-import { Schedule } from './schedule.type';
+import { Schedule } from './schedule.class';
 
 export class ScheduleCompare {
   schedule1!: Schedule;

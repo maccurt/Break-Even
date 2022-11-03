@@ -4,7 +4,7 @@ import { MinimumPaymentType } from '../credit-card/credit-card-calculator/credit
 import { MathService } from '../math/math.service';
 import { ScheduleCompare } from './schedule-compare.type';
 import { ScheduleItem } from './schedule-item';
-import { Schedule } from './schedule.type';
+import { Schedule } from './schedule.class';
 
 @Injectable({
   providedIn: 'root'
