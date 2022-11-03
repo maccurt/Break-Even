@@ -2,10 +2,19 @@
 
 ::ng-deep {
     #cc-form {
-        input,select {            
-            // width: 325px !important;
+        #balance,
+        #extraPayment {
+            width: 125px;
         }
-    }    
+
+        #interestRate {
+            width: 65px;
+        }
+
+        select {
+            width: 260px !important;
+        }
+    }
 }
 
 #payment-type,
