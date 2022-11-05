@@ -1,6 +1,7 @@
 <mat-card class="section">
     <mat-card-content>
         <div class="stat-formula">
+            <!-- TODO why is not in the title not in the content FIX THIS in your task list-->
             <div data-test-id="title"
                  class="title">
                 <fa-icon [icon]="help.icon"
@@ -17,6 +18,10 @@
                 <!-- TODO we removed tooltip, put back -->
                 <!-- matTooltip={{help.defintion}}> -->
                 {{stat}}
+            </div>
+
+            <div *ngIf="help.paragraph" data-test-id="paragraph" class="paragraph">
+                <p>{{help.paragraph}}</p>
             </div>
 
             <div data-test-id="text"

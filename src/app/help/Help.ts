@@ -9,4 +9,5 @@ export class Help {
   showPercent: boolean = false;
   notes!:string;
   hint?:string;
+  paragraph?:string;
 }

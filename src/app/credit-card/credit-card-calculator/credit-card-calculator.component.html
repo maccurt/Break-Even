@@ -196,13 +196,44 @@
 
             <mat-tab-group id="scroll-to-container">
 
-                <mat-tab label="Result">
+                <mat-tab label="Credit Card Pay Off Calculator">
+                    <div data-test-id="cc-instruction-help"
+                         *ngIf="!scheduleCompare">
 
-                    <div class="row"
-                         data-test-id="cc-compare-tab"
-                         *ngIf="scheduleCompare">
+                        <div class="row">
 
-                        
+                            <div class="col-12  col-xxl-4 mb-5">
+
+                                <app-info-section [help]="help.creditCardCalculatorInstruction1">
+
+                                    <p class="">
+                                        Paying off high interest debt faster will <b> save you time and money.</b> Our
+                                        credit card
+                                        calculator will show you the impact of only paying the minimum payment and how
+                                        you
+                                        can save money by paying more each month.
+                                    </p>
+
+                                </app-info-section>
+                            </div>
+
+
+                            <div class="col-12  col-xxl-4 mb-5">
+
+                                
+                                <app-credit-card-devil-section></app-credit-card-devil-section>
+                                
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div *ngIf="scheduleCompare"
+                         class="row"
+                         data-test-id="cc-compare-tab">
+
+
                         <div class="col-6  col-xxl-4 mb-5">
                             <app-credit-card-schedule data-test-id="min-pay-schedule"
                                                       [schedule]="scheduleCompare.schedule1">
