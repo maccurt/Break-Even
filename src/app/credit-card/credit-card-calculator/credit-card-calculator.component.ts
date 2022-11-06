@@ -179,14 +179,16 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
       this.showFixedPayment = false;
       let addFixedPayment = false;
 
-      const paymentType = this.mathService.getFloat(this.paymentTypeControl.value) as PaymentType;
-      switch (paymentType) {
+      const schedule1PaymentType = this.mathService.getFloat(this.paymentTypeControl.value) as PaymentType;
+      let schecule2PaymentType = schedule1PaymentType;
+      switch (schedule1PaymentType) {
         case PaymentType.MinimumPaymentOnly:
           this.showFixedPayment = true;
           payment = this.minimumPayment;
           this.showMinimumPayment = true;
           payment = this.minimumPayment;
           addFixedPayment = true;
+          schecule2PaymentType = PaymentType.FixedPaymentOfFirstMiniumPayment;
           break;
         case PaymentType.MinimumPaymentPlusExtra:
           payment = this.mathService.getFloat(this.extraPaymentControl.value, 0)!;
@@ -208,7 +210,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
       const s2 = this.paymentService
         .creditCardSchedule(balance!, interest!, minimumPaymentType.percentOfBalance, payment, addFixedPayment,
           minimumPaymentType.useInterest);
-      s2.paymentType = paymentType;
+      s2.paymentType = schecule2PaymentType;
       this.scheduleCompare = this.paymentService.getScheduleCompare(s1, s2);
 
       const originalChartData: PieChartData[] = [

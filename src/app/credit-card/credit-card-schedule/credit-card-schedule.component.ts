@@ -12,8 +12,8 @@ import { PaymentType } from '../credit-card-calculator/payment-type.enum';
   templateUrl: './credit-card-schedule.component.html',
   styleUrls: ['./credit-card-schedule.component.scss']
 })
-export class CreditCardScheduleComponent implements OnInit, OnChanges {  
-  paymentTypeIcon!:IconDefinition;
+export class CreditCardScheduleComponent implements OnInit, OnChanges {
+  paymentTypeIcon!: IconDefinition;
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions!: Highcharts.Options;
 
@@ -21,16 +21,23 @@ export class CreditCardScheduleComponent implements OnInit, OnChanges {
 
   constructor(private creditCartChartService: CreditCardChartService,
     public help: HelpService, public icons: IconService) {
-      
+
   }
-  
+
   ngOnInit(): void {
-      if (this.schedule.paymentType === PaymentType.MinimumPaymentOnly){
+
+    //TODO could this be used else where and could be in the icon service perhaps
+    //the icon service probably should not know about payment type?? CONSIDER THAT!
+    switch (this.schedule.paymentType) {
+      case PaymentType.MinimumPaymentOnly:
         this.paymentTypeIcon = this.icons.minimumPaymentType;
-      }
-      else{
+        break;
+      case PaymentType.FixedPaymentOfFirstMiniumPayment:
+        this.paymentTypeIcon = this.icons.faceMeh;
+        break;
+      default:
         this.paymentTypeIcon = this.icons.smile;
-      }
+    }
   }
 
   ngOnChanges(): void {
