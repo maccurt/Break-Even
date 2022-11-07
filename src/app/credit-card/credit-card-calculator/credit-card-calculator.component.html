@@ -5,12 +5,12 @@
         <div class="col-12 offset-md-1 col-md-10 offset-lg-0  col-lg-5 col-xl-4 col-xxl-3 mb-5">
 
             <mat-card>
-                <!-- <mat-card-title>Credit Card Information</mat-card-title> -->
-
                 <mat-card-content data-test-id="credit-card-calculator">
                     <div class="form-wrapper">
-                        <form id="cc-form"
+                        <form ga-id="credit-card-form"
+                              id="cc-form"
                               class="pd-form"
+                              (submit)="calculate()"
                               [formGroup]="creditCardFormGroup">
 
                             <app-form-input name='balance'
@@ -179,13 +179,15 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <button id='calculate'
+                                    type="submit"
+                                    class="calculate-button btn btn-primary"><b>
+                                    Calculate Credit Card</b>
+                            </button>
                         </form>
 
-                        <button id='calculate'
-                                (click)="calculate()"
-                                class="calculate-button btn btn-primary"><b>
-                                Calculate Credit Card</b>
-                        </button>
+
 
                     </div>
                 </mat-card-content>
@@ -220,9 +222,9 @@
 
                             <div class="col-12  col-xxl-4 mb-5">
 
-                                
+
                                 <app-credit-card-devil-section></app-credit-card-devil-section>
-                                
+
                             </div>
 
                         </div>

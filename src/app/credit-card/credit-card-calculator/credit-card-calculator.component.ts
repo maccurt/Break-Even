@@ -169,6 +169,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
   };
 
   calculate = () => {
+    
     if (this.creditCardFormGroup.valid) {
 
       this.calculateMinimumPayment(); //TODO This is hack to prevent the autofull from breaking remove it when you fix it 
