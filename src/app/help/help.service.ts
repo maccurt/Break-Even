@@ -10,6 +10,9 @@ const totalPrinicpalAndInterest: string =
 })
 export class HelpService {
 
+  creditCardCalculatorInstruction1 = new Help('Pay Off Debt Faster To Save Money',
+    '', '','good-icon-1');
+
   minimumPaymentCalculation = new Help('Minimum Payment Calculation',
     'How is the minimum payment calculated on your credit card?', '');
 
@@ -47,7 +50,7 @@ export class HelpService {
     'add some text here', '', 'good-icon-2');
 
   creditTotalPrincipalAndInterestMinimumPayment = new Help('Total Principal & Interest Minium Payment Only',
-    totalPrinicpalAndInterest,'', 'danger-icon');
+    totalPrinicpalAndInterest, '', 'danger-icon');
 
   creditTotalPrincipalAndInterestByPayingExtra = new Help('Total Principal & Interest By Paying Extra',
     totalPrinicpalAndInterest, '', 'icon-color-1');
@@ -69,9 +72,9 @@ export class HelpService {
 
   timeSavedByPayingExtra = new Help('Time Saved By Paying Extra',
     'put some sort of text here', '', 'icon-color-1');
-    
+
   timeSavedFixedPayment = new Help('Time Saved By Making Fixed Payment',
-  'put some sort of text here', '', 'icon-color-1');
+    'put some sort of text here', '', 'icon-color-1');
 
   timeToPayOfDebt = new Help('Time To Pay Off Debt',
     'put some sort of text here', '', 'icon-color-2');
@@ -106,6 +109,8 @@ export class HelpService {
     this.creditCardFixedPaymentInterest.icon = icons.minPayPlusExtraInterest;
     this.creditCardMinPayInterest.icon = icons.interest;
 
-    this.creditCardInterestRate.hint = "Find your interest rate on your credit card bill.";
+    this.creditCardInterestRate.hint = "Find your interest rate on your credit card bill.";    
+    this.creditCardCalculatorInstruction1.icon = icons.creditCardInstruction1;
+
   }
 }

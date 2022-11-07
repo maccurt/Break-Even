@@ -1,9 +1,19 @@
+
+//TODO reconsider putting this in here, what if they change then name using something more generic
+//like our own classed, bad, good , better, etc..
+.fa-face-frown {
+    color: red;
+}
+.fa-face-smile, .fa-face-meh {
+    color: green;
+}
+
 .float-icon {
     float: left;
     margin-right: 10px;
 }
 
-.label-icon{
+.label-icon {
     margin-left: 7px;
 }
 

@@ -11,15 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 import { FormInput, FormInputType } from '../../controls/form-input';
 import { PieChartData } from 'src/app/chart.service';
 import { Subscription } from 'rxjs';
-import { Schedule } from 'src/app/shared/schedule.type';
+import { PaymentType } from './payment-type.enum';
 
 const extra = 'extra';
-export enum PaymentType {
-  MinimumPaymentOnly = 1,
-  MinimumPaymentPlusExtra,
-  FixedPayment
-}
-
 @Component({
   selector: 'app-credit-card-calculator',
   templateUrl: './credit-card-calculator.component.html',
@@ -185,13 +179,16 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
       this.showFixedPayment = false;
       let addFixedPayment = false;
 
-      switch (this.mathService.getFloat(this.paymentTypeControl.value)) {
+      const schedule1PaymentType = this.mathService.getFloat(this.paymentTypeControl.value) as PaymentType;
+      let schecule2PaymentType = schedule1PaymentType;
+      switch (schedule1PaymentType) {
         case PaymentType.MinimumPaymentOnly:
           this.showFixedPayment = true;
           payment = this.minimumPayment;
           this.showMinimumPayment = true;
           payment = this.minimumPayment;
           addFixedPayment = true;
+          schecule2PaymentType = PaymentType.FixedPaymentOfFirstMiniumPayment;
           break;
         case PaymentType.MinimumPaymentPlusExtra:
           payment = this.mathService.getFloat(this.extraPaymentControl.value, 0)!;
@@ -208,10 +205,12 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
       const s1 = this.paymentService
         .creditCardSchedule(balance!, interest!, minimumPaymentType.percentOfBalance, 0, false,
           minimumPaymentType.useInterest);
+      s1.paymentType = PaymentType.MinimumPaymentOnly;
 
       const s2 = this.paymentService
         .creditCardSchedule(balance!, interest!, minimumPaymentType.percentOfBalance, payment, addFixedPayment,
           minimumPaymentType.useInterest);
+      s2.paymentType = schecule2PaymentType;
       this.scheduleCompare = this.paymentService.getScheduleCompare(s1, s2);
 
       const originalChartData: PieChartData[] = [

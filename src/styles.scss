@@ -10,6 +10,13 @@
 @import "./styles/section.styles.scss";
 @import "./styles/element-responsive.styles.scss";
 
+p {
+    text-align: justify;
+    font-size: larger;
+    line-height: 1.5rem;
+}
+
+
 .position-1 {
     border:1px dotted red;
 }

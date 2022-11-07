@@ -1,6 +1,6 @@
 import { ProfitDreamerChartService } from 'src/app/chart.service';
 import { Injectable } from '@angular/core';
-import { Schedule } from '../shared/schedule.type';
+import { Schedule } from '../shared/schedule.class';
 
 @Injectable({
   providedIn: 'root'

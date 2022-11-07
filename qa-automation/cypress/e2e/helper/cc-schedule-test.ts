@@ -20,6 +20,10 @@ export function creditCardScheduleTest(parentId: string, result: ICreditCardResu
             cy.getDataTestId(parentId).getDataTestId('credit-card-table').as('table');
         });
 
+        it('instructions should not be visible', () => {
+            cy.getDataTestId('cc-instruction-help').should('not.exist');
+        });
+
         it('title should be ' + result.title, () => {
             cy.getDataTestId(parentId).getDataTestId('schedule-title').textShouldEqual(result.title);
         });

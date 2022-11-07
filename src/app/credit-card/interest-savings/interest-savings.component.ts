@@ -1,4 +1,4 @@
-import { Schedule } from './../../shared/schedule.type';
+import { Schedule } from '../../shared/schedule.class';
 import { HelpService } from './../../help/help.service';
 import { IconService } from 'src/app/icon/icon.service';
 import { ProfitDreamerChartService } from './../../chart.service';
