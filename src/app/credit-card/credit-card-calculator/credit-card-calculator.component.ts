@@ -12,6 +12,7 @@ import { FormInput, FormInputType } from '../../controls/form-input';
 import { PieChartData } from 'src/app/chart.service';
 import { Subscription } from 'rxjs';
 import { PaymentType } from './payment-type.enum';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 const extra = 'extra';
 @Component({
@@ -65,7 +66,8 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
     private mathService: MathService,
     private paymentService: PaymentService,
     private activatedRoute: ActivatedRoute,
-    public help: HelpService) {
+    public help: HelpService,
+    private gaService: GoogleAnalyticsService) {
     this.title.setTitle('Credit Card Calculator');
     this.metaService.addTitle('Credit Card Calculator');
     this.metaService.addDescription('Calculates your credit card interest and how many years it will take to pay off');
@@ -169,7 +171,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
   };
 
   calculate = () => {
-    
+
     if (this.creditCardFormGroup.valid) {
 
       this.calculateMinimumPayment(); //TODO This is hack to prevent the autofull from breaking remove it when you fix it 
@@ -230,6 +232,8 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
         }
       }, 250);
 
+      this.gaService.event('cc-calculate-in-code', 'credit-card', 'balance', balance!);
+      this.gaService.event('cc-calculate-in-code', 'credit-card', 'interest', interest!);
     }
     else {
       this.showErrors = true;

@@ -11,8 +11,8 @@ import { AppComponent } from './app.component';
 import { BreakEvenComponent } from './break-even/break-even.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { StatSectionComponent } from './controls/stat-section/stat-section.component';
 import { CurrencyPipe } from '@angular/common';
+import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
 
 @NgModule({
   declarations: [
@@ -29,8 +29,10 @@ import { CurrencyPipe } from '@angular/common';
     IconModule,
     HomeModule,
     CreditCardModule,
-    ControlsModule
-  ],  
+    ControlsModule,
+    NgxGoogleAnalyticsModule.forRoot('G-NPS0X71K2S'),//TODO make this not do it on localhost?
+    NgxGoogleAnalyticsRouterModule
+  ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
