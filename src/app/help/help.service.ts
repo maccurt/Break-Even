@@ -10,8 +10,11 @@ const totalPrinicpalAndInterest: string =
 })
 export class HelpService {
 
+  creditCardLinkButton = new Help('Credit Card Pay Off Calculator',
+    '', '', 'good-icon-1');
+
   creditCardCalculatorInstruction1 = new Help('Pay Off Debt Faster To Save Money',
-    '', '','good-icon-1');
+    '', '', 'good-icon-1');
 
   minimumPaymentCalculation = new Help('Minimum Payment Calculation',
     'How is the minimum payment calculated on your credit card?', '');
@@ -87,6 +90,8 @@ export class HelpService {
     'The break-even point is the point at which total cost and total revenue are equal, meaning there is no loss or gain for your business.',
     'fixed expense / (revenue per Unit - variable Expense)');
 
+
+
   constructor(icons: IconService) {
     //set the icons
     this.grossProfitPercent.icon = icons.grossProfitPercent;
@@ -109,8 +114,10 @@ export class HelpService {
     this.creditCardFixedPaymentInterest.icon = icons.minPayPlusExtraInterest;
     this.creditCardMinPayInterest.icon = icons.interest;
 
-    this.creditCardInterestRate.hint = "Find your interest rate on your credit card bill.";    
+    this.creditCardInterestRate.hint = "Find your interest rate on your credit card bill.";
     this.creditCardCalculatorInstruction1.icon = icons.creditCardInstruction1;
+
+    this.creditCardLinkButton.icon = icons.creditCard;
 
   }
 }

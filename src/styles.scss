@@ -10,10 +10,18 @@
 @import "./styles/section.styles.scss";
 @import "./styles/element-responsive.styles.scss";
 
+
+a.no-style{
+    text-decoration:underline;
+    color:black;
+    // font-weight: 500;
+}
+
 p {
     text-align: justify;
     font-size: larger;
     line-height: 1.5rem;
+    
 }
 
 

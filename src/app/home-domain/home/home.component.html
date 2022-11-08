@@ -5,17 +5,42 @@
 
         <div class="row">
             <div id="logo-container"
-                 class="offset-xl-1 offset-xxl-2 col-md-8 col-lg-6 ">
+                 class="offset-xl-1 offset-xxl-2 col-md-8 col-lg-6">
 
                 <br>
                 <div class="container-title">PROFIT DREAMER</div>
                 <br>
                 <br>
-                <a date-test-id="profit-analysis"
+
+
+                <!-- <a date-test-id="credit-card-calculator"
                    href="#"
                    class="btn btn-outline-primary"
-                   routerLink="/credit-card">Credit Card Calculator</a>
+                   routerLink="/credit-card">Credit Card Calculator</a> -->
             </div>
+        </div>
+
+        <div class="row">
+
+            <div class="offset-1 offset-xl-1 offset-xxl-2 col-9 col-md-5 col-lg-6 col-xl-5 col-xxl-3">
+
+                <app-info-section [help]="help.creditCardLinkButton">
+
+                    <p style="margin-right:15px;margin-bottom:10px">
+                        Learn how your credit debt is costing you
+                        time and money and formlate a plan to get out of debt faster.
+                    </p>
+                    <hr>
+                    <a class="btn btn-primary"
+                       title="Go To Credit Card PayOff Calculator"
+                       date-test-id="credit-card-calculator"
+                       routerLink="/credit-card">Go To Credit Card Calculator</a>
+
+                </app-info-section>               
+
+            </div>
+
+
         </div>
     </div>
 </div>

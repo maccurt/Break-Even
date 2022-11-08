@@ -1,3 +1,4 @@
+import { ControlsModule } from './../controls/controls.module';
 import { IconModule } from './../icon/icon.module';
 import { MaterialModule } from './../material/material.module';
 import { HomeComponent } from './home/home.component';
@@ -15,10 +16,11 @@ const routes: Routes = [
     CommonModule,
     MaterialModule,
     IconModule,
-    RouterModule    
+    RouterModule,
+    ControlsModule
   ],
   exports: [
-    HomeComponent    
+    HomeComponent
   ]
 })
 export class HomeModule { }

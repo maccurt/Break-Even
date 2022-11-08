@@ -1,3 +1,4 @@
+import { HelpService } from './../../help/help.service';
 
 import { Component, OnInit } from '@angular/core';
 import { IconService } from 'src/app/icon/icon.service';
@@ -9,5 +10,5 @@ import { IconService } from 'src/app/icon/icon.service';
 })
 export class HomeComponent {
 
-  constructor(public icons: IconService) { }
+  constructor(public icons: IconService, public help: HelpService) { }
 }
