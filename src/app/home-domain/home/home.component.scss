@@ -1,96 +1,91 @@
-@import '../../../styles/variables';
+@import "../../../styles/variables";
 
-.video-col{   
-
+.video-col {
     margin-bottom: 40px;
 
-    @include for-xsmall(){
+    @include for-xsmall() {
         text-align: center;
 
-        .video{
+        .video {
             margin-bottom: 40px;
         }
-    }     
+    }
 }
-.container-title{            
-        letter-spacing: 2px;
-        font-size: 3rem;
-        font-weight: bold;        
-        padding-bottom: 0px;
+.container-title {
+    letter-spacing: 2px;
+    font-size: 3rem;
+    font-weight: bold;
+    padding-bottom: 0px;
 
-        @include for-xsmall(){
-            font-size: 2rem;
-        }    
+    @include for-medium-and-below() {
+        font-size: 2rem;
+    }
 }
 
-#home-top-container{
-
-    background-color:white;
+#home-top-container {
+    background-color: white;
     display: block;
     background-repeat: no-repeat;
-    background-position:right ;  
-    @include for-medium(){        
-        background-image: url( "../../../assets/images/home/background/medium.jpg");
-    }    
+    background-position: right;
+    // @include for-medium() {
+    //     background-image: url("../../../assets/images/home/background/medium.jpg");
+    // }
 
-    @include for-large(){
-        background-image: url( "../../../assets/images/home/background/medium.jpg");
-    }    
+    @include for-large() {
+        background-image: url("../../../assets/images/home/background/medium.jpg");
+    }
 
-    @include for-xl-large-and-above(){
-        background-image: url( "../../../assets/images/home//background/xlarge.jpg");       
-    }           
+    @include for-xl-large-and-above() {
+        background-image: url("../../../assets/images/home//background/xlarge.jpg");
+    }
 
-    #logo-container{
+    #logo-container {
         text-align: center;
 
-        a{
+        a {
             margin-bottom: 15px;
-            margin-right:20px
+            margin-right: 20px;
         }
-        
-        @include for-medium(){
-            text-align:left;
-        }        
 
-        @include for-xsmall(){
-            a{
-                width: 100%;                
+        // @include for-medium() {
+        //     text-align: left;
+        // }
+
+        @include for-xsmall() {
+            a {
+                width: 100%;
             }
-        }            
-    }    
+        }
+    }
 
     height: 350px;
 
-
-    @include for-xsmall(){
-        height:100%;
+    @include for-xsmall() {
+        height: 100%;
         padding-bottom: 20px;
     }
 
-    @include for-small(){
-        height:100%;        
+    @include for-small() {
+        height: 100%;
         padding-bottom: 20px;
-    }    
+    }
 }
 
-#container-1{
-    background-color: #2E8B57;
-    background-color: #2E8B57;
-    background-color: #0b68a1;    
-    color:white;
-    min-height: 700px;    
+#container-1 {
+    background-color: #0b68a1;
+    color: white;
+    min-height: 700px;
 }
 
-#container-2{
+#container-2 {
     // height: 100vh;
-    background-color:white;    
-    color:white;
+    background-color: white;
+    color: white;
 }
 
-.paragraph-wraper{
-    fa-icon{
-        float:left;
-        margin:0px 15px 7px 0px ;
+.paragraph-wraper {
+    fa-icon {
+        float: left;
+        margin: 0px 15px 7px 0px;
     }
 }
