@@ -5,10 +5,30 @@ import { Help } from './Help';
 const totalPrinicpalAndInterest: string =
   'How much you will pay in principal and interest to pay off the credit card balance.';
 
+export function HelpWithHtmlInParagraph(title:string,html:string): Help {
+  const help = new Help(title, '', '', '');
+  help.html = `<p>${html}<p>`;
+  return help;
+
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class HelpService {
+
+  twentyMinuteRule = HelpWithHtmlInParagraph("The 20 Minute Rule.",'Is a framework designed to help you make the time to <b> <u>execute</u></b> the tasks that will complete your goal.');
+  doesItHaveValue = new Help('Does It Have Value?', '', '', '');
+  wartsAndAll = new Help('Warts And All!', '', '', '');
+  whatDidYouLearn = new Help('What Did You Learn?', '', '', '');
+  useWhatYouGout = new Help('Use What You Got.', '', '', '');
+  noTimeWasting = new Help('To Time Wasting.', '', '', '');
+  restAndCelebrate = new Help('Rest & Celebrate!', '', '', '');
+
+  sevenHabits: Help[] = [this.twentyMinuteRule,
+  this.doesItHaveValue, this.wartsAndAll,
+  this.whatDidYouLearn, this.useWhatYouGout,
+  this.noTimeWasting, this.restAndCelebrate];
 
   creditCardLinkButton = new Help('Credit Card Pay Off Calculator',
     '', '', 'good-icon-1');
@@ -90,8 +110,6 @@ export class HelpService {
     'The break-even point is the point at which total cost and total revenue are equal, meaning there is no loss or gain for your business.',
     'fixed expense / (revenue per Unit - variable Expense)');
 
-
-
   constructor(icons: IconService) {
     //set the icons
     this.grossProfitPercent.icon = icons.grossProfitPercent;
@@ -116,7 +134,6 @@ export class HelpService {
 
     this.creditCardInterestRate.hint = "Find your interest rate on your credit card bill.";
     this.creditCardCalculatorInstruction1.icon = icons.creditCardInstruction1;
-
     this.creditCardLinkButton.icon = icons.creditCard;
 
   }

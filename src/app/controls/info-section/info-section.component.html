@@ -24,6 +24,10 @@
                 <p>{{help.paragraph}}</p>
             </div>
 
+            <div *ngIf="help.html" data-test-id="html" [innerHtml]="help.html" >
+                
+            </div>
+
             <div data-test-id="text"
                  class="text">
                 <ng-content></ng-content>
