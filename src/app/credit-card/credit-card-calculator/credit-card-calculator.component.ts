@@ -9,7 +9,7 @@ import { PaymentService } from '../../shared/payment.service';
 import { ScheduleCompare } from '../../shared/schedule-compare.type';
 import { ActivatedRoute } from '@angular/router';
 import { FormInput, FormInputType } from '../../controls/form-input';
-import { PieChartData } from 'src/app/chart.service';
+import { PieChartData } from 'src/app/chart/profit-dreamer-chart.service';
 import { Subscription } from 'rxjs';
 import { PaymentType } from './payment-type.enum';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
@@ -173,10 +173,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
 
   calculate = () => {
 
-    if (this.creditCardFormGroup.valid) {
-
-
-      console.log(JSON.stringify( this.creditCardFormGroup.value));
+    if (this.creditCardFormGroup.valid) {      
 
       this.calculateMinimumPayment(); //TODO This is hack to prevent the autofull from breaking remove it when you fix it 
       const balance = this.mathService.getFloat(this.balanceControl.value, 0);

@@ -1,4 +1,4 @@
-import { ProfitDreamerChartService } from 'src/app/chart.service';
+import { ProfitDreamerChartService } from 'src/app/chart/profit-dreamer-chart.service';
 import { PieChartData } from "../../shared/PieChartData";
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from 'highcharts';

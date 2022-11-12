@@ -1,7 +1,7 @@
 import { Schedule } from '../../shared/schedule.class';
 import { HelpService } from './../../help/help.service';
 import { IconService } from 'src/app/icon/icon.service';
-import { ProfitDreamerChartService } from './../../chart.service';
+import { ProfitDreamerChartService } from '../../chart/profit-dreamer-chart.service';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ScheduleCompare } from 'src/app/shared/schedule-compare.type';

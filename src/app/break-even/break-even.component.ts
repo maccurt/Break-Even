@@ -5,7 +5,7 @@ import { ProfitAnalysisService } from '../profitAnalysis.service';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { revenueVariableExpenseValidator } from '../validators/revenue-variable-expense.validator';
-import { PieChartData, ProfitDreamerChartService } from '../chart.service';
+import { PieChartData, ProfitDreamerChartService } from '../chart/profit-dreamer-chart.service';
 import * as Highcharts from 'highcharts';
 import { MetaService } from '../shared/meta.service';
 import { Title } from '@angular/platform-browser';

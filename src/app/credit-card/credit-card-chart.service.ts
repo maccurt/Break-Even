@@ -1,5 +1,5 @@
-import { ProfitDreamerChartService } from 'src/app/chart.service';
 import { Injectable } from '@angular/core';
+import { ProfitDreamerChartService } from '../chart/profit-dreamer-chart.service';
 import { Schedule } from '../shared/schedule.class';
 
 @Injectable({

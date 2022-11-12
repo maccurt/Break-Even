@@ -1,3 +1,4 @@
+import { ChartModule } from './chart/chart.module';
 import { ControlsModule } from './controls/controls.module';
 import { CreditCardModule } from './credit-card/credit-card.module';
 import { HomeModule } from './home-domain/home.module';
@@ -25,7 +26,8 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-go
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HighchartsChartModule,
+    HighchartsChartModule, //TODO you should be able to remove this soon
+    ChartModule,
     IconModule,
     HomeModule,
     CreditCardModule,
