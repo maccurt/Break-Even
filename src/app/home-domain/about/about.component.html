@@ -1,14 +1,107 @@
 <div class="container-fluid">
 
+    <div class="row">
+
+        <div class="col-xxl-5">
+
+            <mat-card>
+                <mat-card-content>
+
+                    <p>
+                        Today we are focusing on <a routerLink="/what-did-you-learn">“What Did You Learn?”</a>
+                    </p>
+
+                    
 
 
-    <div *ngFor="let help of help.sevenHabits"
-         class="row">
 
-        <div class="offset-4 col-xxl-3">
+                </mat-card-content>
+            </mat-card>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container-fluid ">
+
+
+    <div class="row mt-5 ">
+        <div class="col-12  d-flex justify-content-center">
+            <h1><b> Press Toward The Mark</b></h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div *ngFor="let help of help.pressTowardTheMarkList"
+             class="col-12 col-md-6 col-xxl-3">
             <app-info-section [help]="help">
+            </app-info-section>
+        </div>
+    </div>
+</div>
 
+<div class="container-fluid "
+     style="background-color:#e6f7ff;">
 
+    <div class="row mt-5 mb-5">
+        <hr>
+        <div class="col-12 mt-3  d-flex justify-content-center">
+            <h1><b> Our Products & Brands</b></h1>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-12 col-md-8 col-xxl-3">
+            <app-info-section [help]="help.sevenHabits">
+                <hr>
+                <ol>
+                    <li style="font-size:large;font-weight:500;margin-bottom:5px;"
+                        *ngFor="let habit of help.sevenHabitList">
+                        <fa-icon style="margin-left:15px;"
+                                 class={{habit.iconClass}}
+                                 [icon]="habit.icon"></fa-icon> <span style="margin-left:15px;"> {{habit.name}} </span>
+                    </li>
+                </ol>
+            </app-info-section>
+        </div>
+
+        <div class="col-12 col-md-8 col-xxl-3">
+            <app-info-section [help]="help.financialCalculators">
+                <hr>
+                <ol>
+                    <li style="font-size:large;font-weight:500;margin-bottom:5px;"
+                        *ngFor="let habit of help.calculatorList">
+                        <fa-icon style="margin-left:15px;"
+                                 class={{habit.iconClass}}
+                                 [icon]="habit.icon"></fa-icon> <span style="margin-left:15px;"> {{habit.name}} </span>
+                    </li>
+                </ol>
+            </app-info-section>
+        </div>
+
+        <div class="col-xxl-3">
+
+            <app-info-section>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem officiis recusandae error
+                maxime
+                numquam nisi doloribus obcaecati blanditiis? Quis fugit minus officiis soluta culpa velit
+                accusantium
+                commodi, odit sequi natus.
+            </app-info-section>
+        </div>
+
+        <div class="col-xxl-3">
+
+            <app-info-section>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem officiis recusandae error
+                maxime
+                numquam nisi doloribus obcaecati blanditiis? Quis fugit minus officiis soluta culpa velit
+                accusantium
+                commodi, odit sequi natus.
             </app-info-section>
         </div>
 

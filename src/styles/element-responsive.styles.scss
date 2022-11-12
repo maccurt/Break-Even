@@ -1,23 +1,31 @@
 @import "../styles/variables";
 .title-responsive {
-
-    fa-icon{        
-        margin-right: 4px;
+    a {
+        text-decoration: none;
+        color: black;
     }
-    @include for-large-and-below() {        
-        font-size:medium
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    fa-icon {
+        margin-right: 10px;
+    }
+    @include for-large-and-below() {
+        font-size: medium;
     }
 
-    @include for-xsmall{
+    @include for-xsmall {
         font-size: small;
         height: 48px; //this keeps the title the same height not matter the length
     }
 }
 
 //profit dreamer form
-.pd-form{
-
-    input[type=text],input[type=number],select{        
-        // width: 200px;     
+.pd-form {
+    input[type="text"],
+    input[type="number"],
+    select {
+        // width: 200px;
     }
 }

@@ -1,10 +1,39 @@
-
 //TODO reconsider putting this in here, what if they change then name using something more generic
 //like our own classed, bad, good , better, etc..
+
+.twenty-minute-rule,.motivation {
+    color: red;
+}
+
+.does-it-have-value, .financial-emanicipation{
+    color: green;
+}
+
+.warts-and-all{
+    color:#009900;
+}
+
+.what-did-you-learn{
+    color:black;
+}
+
+.use-what-you-got{    
+    color:orangered
+}
+
+.no-time-wasting, .task-based-goals{
+    color:blue;
+}
+
+.rest-and-celebrate{
+    color:purple;
+}
+
 .fa-face-frown {
     color: red;
 }
-.fa-face-smile, .fa-face-meh {
+.fa-face-smile,
+.fa-face-meh {
     color: green;
 }
 

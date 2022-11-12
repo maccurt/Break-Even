@@ -7,12 +7,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { BreakEvenComponent } from '../break-even/break-even.component';
 import { AboutComponent } from './about/about.component';
+import { SevenHabitsComponent } from './seven-habits/seven-habits.component';
 const routes: Routes = [
   { path: 'unit-profit', component: BreakEvenComponent }
 ];
 
 @NgModule({
-  declarations: [HomeComponent, AboutComponent],
+  declarations: [HomeComponent, AboutComponent, SevenHabitsComponent],
   imports: [
     CommonModule,
     MaterialModule,

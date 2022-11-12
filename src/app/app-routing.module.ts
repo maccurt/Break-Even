@@ -1,3 +1,4 @@
+import { SevenHabitsComponent } from './home-domain/seven-habits/seven-habits.component';
 import { CreditCardCalculatorComponent } from './credit-card/credit-card-calculator/credit-card-calculator.component';
 import { HomeComponent } from './home-domain/home/home.component';
 import { BreakEvenComponent } from './break-even/break-even.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'about-us', component: AboutComponent },
   { path: 'unit-profit', component: BreakEvenComponent },  
   { path: 'credit-card', component: CreditCardCalculatorComponent },  
+  { path: 'the-7-habits', component: SevenHabitsComponent },  
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 

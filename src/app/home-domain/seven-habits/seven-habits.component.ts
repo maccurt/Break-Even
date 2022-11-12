@@ -2,10 +2,11 @@ import { HelpService } from './../../help/help.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  selector: 'app-seven-habits',
+  templateUrl: './seven-habits.component.html',
+  styleUrls: ['./seven-habits.component.scss']
 })
-export class AboutComponent {  
+export class SevenHabitsComponent {
+
   constructor(public help: HelpService) { }
 }

@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { HelpModule } from './../help/help.module';
 import { IconModule } from './../icon/icon.module';
 import { MaterialModule } from './../material/material.module';
@@ -28,7 +29,8 @@ import { ColumnResponsiveDirective } from './directives/colum-directives/column-
     ReactiveFormsModule,
     MaterialModule,
     IconModule,
-    HelpModule
+    HelpModule,
+    RouterModule
   ],
   exports: [
     FormGroupInputComponent,

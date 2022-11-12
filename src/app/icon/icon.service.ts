@@ -3,21 +3,22 @@ import {
     faCheckSquare, faTrashAlt, faArrowAltCircleLeft,
     faArrowAltCircleRight, faPlusSquare, faSmile,
     faCalendarCheck,
-    faWindowClose, faQuestionCircle, faClock, faCalendarTimes, faFrown, faCreditCard, faFaceSmile, faFaceMeh
+    faWindowClose, faQuestionCircle, faClock, faCalendarTimes, faFrown, faCreditCard, faFaceSmile, faFaceMeh, faHourglassHalf
 } from '@fortawesome/free-regular-svg-icons';
 import {
     faGraduationCap, faFrog, faChalkboardTeacher,
     faGlassCheers, faCircle, faArrowDown, faArrowUp, faEllipsisH,
     faTasks, faPencilAlt, faBug, faSearchDollar, faVial, faExpandArrowsAlt,
-    faBrain, faInfoCircle, faClipboardList, faChartPie,faSackDollar, faScaleBalanced, faScrewdriverWrench, faTicket, faMagnifyingGlassDollar, faCode, faCog, faBullhorn, faUniversity, faExclamationTriangle, faHandHoldingDollar, faPeopleRobbery, faPiggyBank, faSackXmark, faPersonChalkboard,
+    faBrain, faInfoCircle, faClipboardList, faChartPie, faSackDollar, faScaleBalanced, faScrewdriverWrench, faTicket, faMagnifyingGlassDollar, faCode, faCog, faBullhorn, faUniversity, faExclamationTriangle, faHandHoldingDollar, faPeopleRobbery, faPiggyBank, faSackXmark, faPersonChalkboard, faBed, faBedPulse,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
     providedIn: 'root'
 })
-export class IconService {    
-    personChalkBoard = faPersonChalkboard;
-    creditCardInstruction1 = faCreditCard;
+export class IconService {
+
+    static personChalkBoard = faPersonChalkboard;
+    static creditCardInstruction1 = faCreditCard;
     interest = faSackXmark;
     principalAndInterest = faMagnifyingGlassDollar;
     minimumPaymentInterest = faPeopleRobbery;
@@ -26,6 +27,7 @@ export class IconService {
     creditCard = faCreditCard;
     fixedPayment = faPiggyBank;
     creditCardDevil = faFrown;
+    static clock = faClock;
     time = faClock;
     questionMark = faQuestionCircle;
     unhappy = faFrown;
@@ -34,20 +36,27 @@ export class IconService {
     minimumPaymentType = faFrown;
     trap = faExclamationTriangle;
     interestSaved = faSackDollar;
+    static sackDollar = faSackDollar;
     financialEmancipation = faUniversity;
+    static university = faUniversity;
     motivation = faBullhorn;
+    static motivation = faBullhorn;
     taskBasedGoals = faCog;
+    static taskBasedGoals = faCog;
+    static cog = faCog;
     technology = faCode;
-    useWhatYouGot = faScrewdriverWrench;
+    static technology = faCode;
+    static useWhatYouGot = faScrewdriverWrench;
     breakEvenUnits = faScaleBalanced;
-    grossProfitPercent =faSackDollar;
+    grossProfitPercent = faSackDollar;
     sackDollar = faSackDollar;
     priority = faCircle;
-    learnIcon = faGraduationCap;
+    static whatDidYouLearn = faGraduationCap;
     planning = faBrain;
-    wartsAndAllIcon = faFrog;
-    twentyMinuteRule  = faClock;
-    doesItHaveValue = faMagnifyingGlassDollar;
+    static wartsAndAllIcon = faFrog;
+    twentyMinuteRule = faClock;
+    static doesItHaveValue = faScaleBalanced;
+    static magnifyGlassDolar = faMagnifyingGlassDollar;
     experimentLearnIcon = faChalkboardTeacher;
     goalsTaskIcon = faCheckSquare;
     celebrate = faGlassCheers;
@@ -70,5 +79,7 @@ export class IconService {
     tooltipHelp = faQuestionCircle;
     noTaskBackground = faClipboardList;
     completeGoal = faWindowClose;
-    noPieChartData = faChartPie; 
+    noPieChartData = faChartPie;
+    static noTimeWasting = faHourglassHalf;
+    static restAndCelebrate = faBedPulse;
 }

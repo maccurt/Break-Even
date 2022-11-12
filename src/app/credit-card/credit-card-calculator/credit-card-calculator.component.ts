@@ -13,6 +13,7 @@ import { PieChartData } from 'src/app/chart.service';
 import { Subscription } from 'rxjs';
 import { PaymentType } from './payment-type.enum';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
+import { JsonPipe } from '@angular/common';
 
 const extra = 'extra';
 @Component({
@@ -173,6 +174,9 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
   calculate = () => {
 
     if (this.creditCardFormGroup.valid) {
+
+
+      console.log(JSON.stringify( this.creditCardFormGroup.value));
 
       this.calculateMinimumPayment(); //TODO This is hack to prevent the autofull from breaking remove it when you fix it 
       const balance = this.mathService.getFloat(this.balanceControl.value, 0);

@@ -11,4 +11,5 @@ export class Help {
   hint?:string;
   paragraph?:string;
   html?:string;
+  routeLink?:string;  
 }

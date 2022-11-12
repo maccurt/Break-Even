@@ -18,7 +18,6 @@ export class ChartOptions {
 export class ProfitDreamerChartService {
 
     constructor() {
-
         Highcharts.setOptions({ lang: { thousandsSep: ',' } });
     }
     getBarChart = (title: string, data: any[], xAxisCategories: any[] = []): Highcharts.Options => {
