@@ -112,7 +112,7 @@ export class ProfitDreamerChartService {
                 thousandsSep: ','
             },
             tooltip: { valueDecimals: 2, valuePrefix: '$', },
-            
+
             title: {
                 text: title === '' ? undefined : title,
                 style: { fontWeight: 'bold' }
@@ -122,7 +122,7 @@ export class ProfitDreamerChartService {
             },
             plotOptions: {
                 pie: {
-                    
+
                     innerSize: 0,
                     allowPointSelect: false,
                     cursor: 'pointer',
@@ -130,7 +130,10 @@ export class ProfitDreamerChartService {
                     borderColor: 'black',
                     dataLabels: {
                         enabled: true,
-                        distance: 15
+                        distance: 15,
+                        style: {
+                            fontSize: '20px' 
+                        }
                     },
 
                 }

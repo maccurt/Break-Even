@@ -2,23 +2,42 @@
 
     <div class="row">
 
-        <div class="col-xxl-5">
-
+        <div class="col-xxl-3">
             <mat-card>
+                <mat-card-title>
+                    <div class="title-responsive">
+                        What Is The Current Focus
+                    </div>
+                    <hr>
+                </mat-card-title>
                 <mat-card-content>
-
                     <p>
-                        Today we are focusing on <a routerLink="/what-did-you-learn">“What Did You Learn?”</a>
+                        Mastering Highcarts 10, Mobile First with Bootstrap 5.2 and the Redesign of our Home page.
                     </p>
 
-                    
-
-
-
+                    <app-basic-pie-chart [chart]="chart1"> </app-basic-pie-chart>
                 </mat-card-content>
             </mat-card>
+        </div>
 
+        <div class="col-xxl-4">
+            <mat-card>
+                <mat-card-title>
+                    <div class="title-responsive">
+                        This Is About Fruit
+                    </div>
+                    <hr>
+                </mat-card-title>
+                <mat-card-content>
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium tenetur quisquam, libero
+                        exercitationem dolore consectetur ipsa veritatis cupiditate iusto accusamus deserunt, tempora,
+                        omnis consequatur magnam magni? Eius expedita earum voluptate?
+                    </p>
 
+                    <app-basic-pie-chart [chart]="chart2"> </app-basic-pie-chart>
+                </mat-card-content>
+            </mat-card>
         </div>
 
     </div>
@@ -26,7 +45,6 @@
 
 
 <div class="container-fluid ">
-
 
     <div class="row mt-5 ">
         <div class="col-12  d-flex justify-content-center">

@@ -1,0 +1,7 @@
+
+//We can change the title of the font this way
+::ng-deep {
+    .highcharts-title {
+         font-size: 24px !important;         
+    }
+}

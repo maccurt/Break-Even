@@ -10,27 +10,25 @@
 @import "./styles/section.styles.scss";
 @import "./styles/element-responsive.styles.scss";
 
-
-a.no-style{
-    text-decoration:underline;
-    color:black;
+a.no-style {
+    text-decoration: underline;
+    color: black;
     // font-weight: 500;
 }
 
 p {
-    text-align: justify;
+    // text-align: justify;
     font-size: larger;
     line-height: 1.5rem;
     
 }
 
-
 .position-1 {
-    border:1px dotted red;
+    border: 1px dotted red;
 }
 
 .position-3 {
-    border:1px dotted blue;
+    border: 1px dotted blue;
 }
 
 //TODO should this be here

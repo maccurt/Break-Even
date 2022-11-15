@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BreakEvenComponent } from '../break-even/break-even.component';
 import { AboutComponent } from './about/about.component';
 import { SevenHabitsComponent } from './seven-habits/seven-habits.component';
+import { ChartModule } from '../chart/chart.module';
 const routes: Routes = [
   { path: 'unit-profit', component: BreakEvenComponent }
 ];
@@ -19,7 +20,8 @@ const routes: Routes = [
     MaterialModule,
     IconModule,
     RouterModule,
-    ControlsModule
+    ControlsModule,
+    ChartModule,
   ],
   exports: [
     HomeComponent
