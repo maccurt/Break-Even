@@ -78,7 +78,7 @@
                             </div>
 
                             <div class="row mt-2">
-                                <div class="col-6 d-flex align-items-center">
+                                <div class="col-6 col-sm-5 col-lg-6 d-flex align-items-center">
                                     <div class="form-check">
                                         <input class="form-check-input"
                                                formControlName="paymentType"
@@ -94,8 +94,8 @@
                                     </div>
                                 </div>
 
-                                <div class="col-4">
-                                    <app-input   name='extraPayment'
+                                <div class="col">
+                                    <app-input name='extraPayment'
                                                [showErrors]=showErrors
                                                [onBlur]="calculatePayment"
                                                [help]="help.creditCardBalance"></app-input>
@@ -106,12 +106,14 @@
                             <div style="height:10px;"
                                  class="row mb-3 ">
                                 <div class="col-10 d-flex  justify-content-end align-items-top  ">
-                                    <span *ngIf="isInvalid(extraPaymentControl)"  data-test-id="extra-payment-error" class="error ">required: 1-9999</span>
+                                    <span *ngIf="isInvalid(extraPaymentControl)"
+                                          data-test-id="extra-payment-error"
+                                          class="error ">required: 1-9999</span>
                                 </div>
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-6 d-flex align-items-center ">
+                                <div class="col-6 col-sm-5 col-lg-6  d-flex align-items-center ">
                                     <div class="form-check">
                                         <input class="form-check-input"
                                                formControlName="paymentType"
@@ -129,7 +131,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col">
                                     <app-input name='fixedPayment'
                                                [showErrors]=showErrors
                                                [onBlur]="calculatePayment"
@@ -140,7 +142,9 @@
                             <div style="height:10px;"
                                  class="row mb-3 ">
                                 <div class="col-10 d-flex  justify-content-end align-items-top  ">
-                                    <span  *ngIf="isInvalid(fixedPaymentControl)"  data-test-id="fixed-payment-error" class="error "> {{fixedPaymentError}}</span>
+                                    <span *ngIf="isInvalid(fixedPaymentControl)"
+                                          data-test-id="fixed-payment-error"
+                                          class="error "> {{fixedPaymentError}}</span>
                                 </div>
                             </div>
 
