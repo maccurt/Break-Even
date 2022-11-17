@@ -138,6 +138,8 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
         this.isExtraPaymentType = true;
         this.showPaymentInput = true;
         this.fixedPaymentControl.clearValidators();
+        //TODO re-consider this, this is clearing out the text so any previous error won't show
+        this.fixedPaymentError = '';
         this.fixedPaymentControl.updateValueAndValidity();
         this.extraPaymentControl.setValidators([Validators.min(1), Validators.max(99999), Validators.required]);
         this.extraPaymentControl.updateValueAndValidity();

@@ -58,7 +58,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row mb-2">
                                 <div class="col">
 
                                     <div class="form-check">
@@ -103,7 +103,7 @@
 
                             </div>
 
-                            <div style="height:15px;"
+                            <div style="height:10px;"
                                  class="row mb-3 ">
                                 <div class="col-10 d-flex  justify-content-end align-items-top  ">
                                     <span *ngIf="isInvalid(extraPaymentControl)"  data-test-id="extra-payment-error" class="error ">required: 1-9999</span>
@@ -137,10 +137,10 @@
                                 </div>
                             </div>
 
-                            <div style="height:20px;"
+                            <div style="height:10px;"
                                  class="row mb-3 ">
                                 <div class="col-10 d-flex  justify-content-end align-items-top  ">
-                                    <span data-test-id="fixed-payment-error" class="error "> {{fixedPaymentError}}</span>
+                                    <span  *ngIf="isInvalid(fixedPaymentControl)"  data-test-id="fixed-payment-error" class="error "> {{fixedPaymentError}}</span>
                                 </div>
                             </div>
 
