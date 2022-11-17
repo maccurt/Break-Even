@@ -44,7 +44,107 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <label id="payment-type-label"
+                                           for="payment-type">What Type Of Montly Payment Can You Make? <fa-icon
+                                                 class="label-icon"
+                                                 [icon]="help.minimumPaymentCalculation.icon">
+                                            matTooltipClass="tool-tip-help"
+                                            matTooltip="{{help.minimumPaymentCalculation.defintion}}">
+                                        </fa-icon>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input"
+                                               formControlName="paymentType"
+                                               type="radio"
+                                               name="paymentType"
+                                               id="minimumPaymentType"
+                                               data-test-id="mininum-payment-type"
+                                               value="1">
+                                        <label class="form-check-label"
+                                               for="minimumPaymentType">
+                                            Minimum Payment
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-6 d-flex align-items-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input"
+                                               formControlName="paymentType"
+                                               type="radio"
+                                               name="paymentType"
+                                               id="extraPaymentType"
+                                               data-test-id="extra-payment-type"
+                                               value="2">
+                                        <label class="form-check-label"
+                                               for="extraPaymentType">
+                                            Minium Payment + Extra
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <app-input   name='extraPayment'
+                                               [showErrors]=showErrors
+                                               [onBlur]="calculatePayment"
+                                               [help]="help.creditCardBalance"></app-input>
+                                </div>
+
+                            </div>
+
+                            <div style="height:15px;"
+                                 class="row mb-3 ">
+                                <div class="col-10 d-flex  justify-content-end align-items-top  ">
+                                    <span *ngIf="isInvalid(extraPaymentControl)"  data-test-id="extra-payment-error" class="error ">required: 1-9999</span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-6 d-flex align-items-center ">
+                                    <div class="form-check">
+                                        <input class="form-check-input"
+                                               formControlName="paymentType"
+                                               type="radio"
+                                               name="paymentType"
+                                               id="fixedPaymentType"
+                                               data-test-id="fixed-payment-type"
+                                               value="3">
+
+                                        <label class="form-check-label"
+                                               for="fixedPaymentType">
+                                            Fixed Payment
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <app-input name='fixedPayment'
+                                               [showErrors]=showErrors
+                                               [onBlur]="calculatePayment"
+                                               [help]="help.creditCardBalance"></app-input>
+                                </div>
+                            </div>
+
+                            <div style="height:20px;"
+                                 class="row mb-3 ">
+                                <div class="col-10 d-flex  justify-content-end align-items-top  ">
+                                    <span data-test-id="fixed-payment-error" class="error "> {{fixedPaymentError}}</span>
+                                </div>
+                            </div>
+
+                            <!-- <div class="mb-3">
                                 <label id="payment-type-label"
                                        for="payment-type">What Type Of Montly Payment Can You Make? <fa-icon
                                              class="label-icon"
@@ -61,8 +161,7 @@
                                     <option *ngFor='let m of paymentTypeList'
                                             [ngValue]='m.value'>{{m.text}}</option>
                                 </select>
-                                <div class='input-error'>
-                                    <!-- Just for space -->
+                                <div class='input-error'>                          
                                 </div>
                             </div>
 
@@ -81,9 +180,9 @@
                                                 [showErrors]=showErrors
                                                 [onBlur]="calculatePayment"
                                                 [help]="help.creditCardBalance"></app-form-input>
-                            </div>
+                            </div> -->
 
-                            <hr>
+                            <!-- <hr> -->
 
                             <div class="row">
                                 <div class="col-12">
@@ -109,9 +208,6 @@
                                                 <td>
                                                     <span data-test-id="minimum-payment">
                                                         &nbsp; ${{minimumPayment |number:'1.2-2' }}</span>
-                                                    <!-- <span data-test-id="fix-pay-hint" style="float:right;font-style: oblique; font-size: small;"
-                                                          *ngIf="isFixedPaymentType">not in monthly payment</span> -->
-
                                                 </td>
                                             </tr>
 
@@ -308,7 +404,7 @@
                     </div>
                 </mat-tab>
 
-                
+
             </mat-tab-group>
 
         </div>

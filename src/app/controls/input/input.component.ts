@@ -1,28 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ControlContainer, FormGroupDirective, Validators } from '@angular/forms';
+import { Help } from 'src/app/help/Help';
 import { FormInput, FormInputType } from '../form-input';
 import { FormGroupTypeInputOptions, FormInputService } from '../form-input.service';
-
-interface FormGroupInputOptions {
-  min: number;
-  max: number;
-  labelId: string;
-  labelTitle: string;
-  labelText: string;
-  labelFor: string;
-  inputId: string;
-  inputFormControlName: string;
-  placeholder: string;
-  errorMessage: string;
-  maxlength: number;
-  decimals: number;
-  showLabel: boolean;
-}
+import { FormInputOptions } from '../form-input/FormInputOptions';
 
 @Component({
-  selector: 'app-form-group-input',
-  templateUrl: './form-group-input.component.html',
-  styleUrls: ['./form-group-input.component.scss'],
+  selector: 'app-input',
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.scss'],
   viewProviders: [
     {
       provide: ControlContainer,
@@ -31,22 +17,23 @@ interface FormGroupInputOptions {
   ]
 })
 
-export class FormGroupInputComponent implements OnInit {
+export class InputComponent implements OnInit {
   typeInputOptions!: FormGroupTypeInputOptions;
   @Input() name!: string;
   control!: FormInput;
   @Input() onBlur!: any; //TODO why is this any, fix it
   @Input() text = '';
+  @Input() hint?: string;
   @Input() showErrors = false;
-
-  options!: FormGroupInputOptions;
+  @Input() help!: Help;
+  @Input() options!: FormInputOptions;
 
   inputId = '';
   constructor(private controlContainer: FormGroupDirective, private formInputService: FormInputService) {
   }
 
   //TODO why is this any fix it
-  modelChange = (value:any) => {
+  modelChange = (value: any) => {
 
     // This prevented a nasty but that is you tried to type over the max (9999)
     // it would not re-set the contorl value and the control would remain
@@ -58,8 +45,19 @@ export class FormGroupInputComponent implements OnInit {
   };
 
   ngOnInit(): void {
+
+    if (!this.help) {
+      //This means you have not put a help attribute on the form-input, DO SO!!
+      // eslint-disable-next-line no-console      
+      console.log('WARNING:******', this.name, ':has no help (icons, tooltip,etc).');
+    }
+
     this.control = this.controlContainer.control.controls[this.name] as FormInput;
     if (this.control) {
+      if (!this.control.type) {
+        // eslint-disable-next-line no-console      
+        console.log('the control was not constructed with a type. use FormInput(type)');
+      }
       this.typeInputOptions = this.formInputService.getFormGroupTypeInputOptions(this.control.type)!;
     }
     else {
@@ -82,7 +80,7 @@ export class FormGroupInputComponent implements OnInit {
 
     if (this.control.type !== FormInputType.None) {
       this.setFromType();
-    }    
+    }
   }
 
   setFromType = () => {
@@ -96,16 +94,11 @@ export class FormGroupInputComponent implements OnInit {
     this.options.labelId = this.typeInputOptions.name + '-label';
     this.options.labelFor = this.typeInputOptions.name;
     this.options.labelTitle = this.typeInputOptions.title;
-    this.options.inputFormControlName = this.typeInputOptions.name;
+    this.options.inputFormControlName = this.typeInputOptions.name;    
+    this.options.placeholder = this.typeInputOptions.placeholder!;    
 
     this.options.placeholder = this.typeInputOptions.placeholder ?
       this.typeInputOptions.placeholder : this.typeInputOptions.text;
-    // if (this.typeInputOptions.placeholder){
-    //   this.options.placeholder = this.typeInputOptions.placeholder
-    // }
-    // else{
-    //   this.options.placeholder = this.typeInputOptions.text
-    // }
 
     this.options.errorMessage = this.typeInputOptions.min.toString() + ' to ' + this.typeInputOptions.max.toString();
     // Can you derive this
@@ -121,14 +114,12 @@ export class FormGroupInputComponent implements OnInit {
   };
 
   blurHandler = () => {
-
     if (this.onBlur) {
       this.onBlur();
     }
   };
 
   isInvalid = (): boolean => {
-
     return (this.control.touched && this.control.invalid) || (this.control.invalid && this.showErrors);
   };
 

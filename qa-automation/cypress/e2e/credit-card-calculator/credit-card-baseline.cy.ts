@@ -24,10 +24,5 @@ describe('credit-card-baseline.cy.ts', () => {
         cy.get('#minimum-payment-type').find(':selected').invoke('text').then((text) => {
             expect(text).to.eq('Interest + 1% of balance');
         });
-    });
-
-    it('fixed payment input should NOT be visible', () => {
-        cy.get('#payment-input-container').should('exist');
-        cy.get('#payment-input-container').should('not.be.visible');
-    });
+    });    
 });

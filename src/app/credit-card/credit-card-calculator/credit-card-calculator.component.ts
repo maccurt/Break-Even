@@ -13,7 +13,7 @@ import { PieChartData } from 'src/app/chart/profit-dreamer-chart.service';
 import { Subscription } from 'rxjs';
 import { PaymentType } from './payment-type.enum';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { JsonPipe } from '@angular/common';
+import { faThumbsDown } from '@fortawesome/free-regular-svg-icons';
 
 const extra = 'extra';
 @Component({
@@ -28,8 +28,8 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
   interestRateControl!: FormControl<any>;
   minimumPaymentTypeControl!: FormControl;
   paymentTypeControl!: FormControl;
-  extraPaymentControl!: FormControl;
-  fixedPaymentControl!: FormControl;
+  extraPaymentControl!: FormInput;
+  fixedPaymentControl!: FormInput;
 
   paymentTypeList: { value: number, text: string }[] = [
     { value: 1, text: 'Minimum Payment' },
@@ -81,8 +81,8 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
     this.interestRateControl.setValue(16.4);
     this.minimumPaymentTypeControl = new FormControl(this.minimumPaymentTypeList[0], [Validators.required]);
 
-    //this.paymentTypeControl = new FormControl(null, [Validators.required]);
-    this.paymentTypeControl = new FormControl(this.paymentTypeList[1].value, [Validators.required]);
+    this.paymentTypeControl = new FormControl(null, [Validators.required]);
+    //this.paymentTypeControl = new FormControl(this.paymentTypeList[1].value, [Validators.required]);
     //this.extraPaymentControl = new FormControl('');
     this.extraPaymentControl = new FormInput(FormInputType.CreditCardExtraPayment);
     this.fixedPaymentControl = new FormInput(FormInputType.CreditCardFixedPayment);
@@ -101,8 +101,8 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
     }));
 
     this.subList$.push(this.paymentTypeControl.valueChanges.subscribe(this.setPaymentType));
-    this.paymentTypeControl.setValue(this.paymentTypeList[1].value);
-    //this.paymentTypeControl.setValue(PaymentType.MinimumPaymentOnly.toString());
+    //this.paymentTypeControl.setValue(this.paymentTypeList[1].value);
+    this.paymentTypeControl.setValue(PaymentType.MinimumPaymentOnly.toString());
 
     this.subList$.push(this.activatedRoute.queryParams.subscribe(params => {
       const { demo } = params;
@@ -123,6 +123,8 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
     this.isExtraPaymentType = false;
     this.isFixedPaymentType = false;
 
+    this.extraPaymentControl.disable();
+    this.fixedPaymentControl.disable();
     switch (paymentType) {
       case PaymentType.MinimumPaymentOnly:
         this.isMiniumPaymentType = true;
@@ -139,6 +141,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
         this.fixedPaymentControl.updateValueAndValidity();
         this.extraPaymentControl.setValidators([Validators.min(1), Validators.max(99999), Validators.required]);
         this.extraPaymentControl.updateValueAndValidity();
+        this.extraPaymentControl.enable();
         this.showExtraPayment = true;
         break;
       case PaymentType.FixedPayment:
@@ -148,6 +151,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
         this.extraPaymentControl.updateValueAndValidity();
         this.fixedPaymentControl.setValidators(this.validateFixedPayment as any); //TODO does making this 'any' break it
         this.fixedPaymentControl.updateValueAndValidity();
+        this.fixedPaymentControl.enable();
         this.showExtraPayment = false;
         break;
     }
@@ -158,13 +162,13 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
     switch (this.mathService.getFloat(this.paymentTypeControl.value)) {
       case PaymentType.MinimumPaymentOnly:
         this.monthlyPayment = this.minimumPayment;
+
         break;
       case PaymentType.MinimumPaymentPlusExtra:
         this.extraPayment = this.mathService.getFloat(this.extraPaymentControl.value, 0)!;
         this.monthlyPayment = this.minimumPayment + this.extraPayment!;
         break;
       case PaymentType.FixedPayment:
-
         this.monthlyPayment = this.mathService.getFloat(this.fixedPaymentControl.value, 0)!;
         this.fixedPayment = this.monthlyPayment;
         break;
@@ -173,7 +177,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
 
   calculate = () => {
 
-    if (this.creditCardFormGroup.valid) {      
+    if (this.creditCardFormGroup.valid) {
 
       this.calculateMinimumPayment(); //TODO This is hack to prevent the autofull from breaking remove it when you fix it 
       const balance = this.mathService.getFloat(this.balanceControl.value, 0);
@@ -283,7 +287,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
       error = { errorMessage: this.fixedPaymentError };
       return error;
     }
-
+    this.fixedPaymentError = '';
     return null;
   };
 

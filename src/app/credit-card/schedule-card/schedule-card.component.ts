@@ -1,7 +1,6 @@
 import { ProfitDreamerChartService } from 'src/app/chart/profit-dreamer-chart.service';
 import { PieChartData } from "../../chart/pie-chart-data.class";
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Chart } from 'highcharts';
 import { ScheduleCompare } from '../../shared/schedule-compare.type';
 import { Schedule } from '../../shared/schedule.class';
 import * as Highcharts from 'highcharts';

@@ -1,12 +1,11 @@
-import { fixPayment } from 'qa-automation/cypress/e2e/credit-card-calculator/new/minimum-payment-function';
 export interface ICreditCardBase {
     balance: string;
     interest: string;
-    extraPay: string;
-    fixedPay: string;
-    miniumPayResult: ICreditCardResult;
-    extraPayResult: ICreditCardResult;
-    fixedPayResult: ICreditCardResult;
+    extraPay?: string;
+    fixedPay?: string;
+    miniumPayResult?: ICreditCardResult;
+    extraPayResult?: ICreditCardResult;
+    fixedPayResult?: ICreditCardResult;
 }
 
 export interface ICreditCardResult {
