@@ -5,7 +5,6 @@ import { ProfitDreamerChart } from '../chart-data.class.';
 import { PieChartData } from '../pie-chart-data.class';
 import { ProfitDreamerChartService } from '../profit-dreamer-chart.service';
 
-
 @Component({
   selector: 'app-basic-pie-chart',
   templateUrl: './basic-pie-chart.component.html',
