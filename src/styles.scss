@@ -9,6 +9,7 @@
 @import "./styles/table.styles.scss";
 @import "./styles/section.styles.scss";
 @import "./styles/element-responsive.styles.scss";
+@import "./styles/material-override.styles.scss";
 
 a.no-style {
     text-decoration: underline;
@@ -20,7 +21,6 @@ p {
     // text-align: justify;
     font-size: larger;
     line-height: 1.5rem;
-    
 }
 
 .position-1 {
