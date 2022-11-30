@@ -15,6 +15,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { CurrencyPipe } from '@angular/common';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
 import { TesterComponent } from './tester/tester.component';
+import { StoreModule } from '@ngrx/store';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import { TesterComponent } from './tester/tester.component';
     CreditCardModule,
     ControlsModule,
     NgxGoogleAnalyticsModule.forRoot('G-NPS0X71K2S'),//TODO make this not do it on localhost?
-    NgxGoogleAnalyticsRouterModule
+    NgxGoogleAnalyticsRouterModule, StoreModule.forRoot({}, {}), FontAwesomeModule
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]
