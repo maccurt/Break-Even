@@ -4,8 +4,7 @@ import { CreditCardModule } from './credit-card/credit-card.module';
 import { HomeModule } from './home-domain/home.module';
 import { MaterialModule } from './material/material.module';
 import { IconModule } from './icon/icon.module';
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +16,12 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-go
 import { TesterComponent } from './tester/tester.component';
 import { StoreModule } from '@ngrx/store';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { EntityDataModule } from '@ngrx/data';
+import { entityConfig } from './entity-metadata';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,7 +42,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CreditCardModule,
     ControlsModule,
     NgxGoogleAnalyticsModule.forRoot('G-NPS0X71K2S'),//TODO make this not do it on localhost?
-    NgxGoogleAnalyticsRouterModule, StoreModule.forRoot({}, {}), FontAwesomeModule
+    NgxGoogleAnalyticsRouterModule,
+    StoreModule.forRoot({}, {}),
+    FontAwesomeModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([]),
+    EntityDataModule.forRoot(entityConfig),
+    HttpClientModule
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]

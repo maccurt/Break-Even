@@ -28,7 +28,11 @@
     "@fortawesome/free-brands-svg-icons": "^6.2.0",
     "@fortawesome/free-regular-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@ngrx/data": "^15.0.0",
+    "@ngrx/effects": "^15.0.0",
+    "@ngrx/entity": "^15.0.0",
     "@ngrx/store": "^15.0.0",
+    "@ngrx/store-devtools": "^15.0.0",
     "add": "^2.0.6",
     "bootstrap": "^5.2.1",
     "highcharts": "^10.2.1",
@@ -40,7 +44,7 @@
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
-  
+  "devDependencies": {
     "@angular-devkit/build-angular": "^15.0.1",
     "@angular-eslint/builder": "14.1.2",
     "@angular-eslint/eslint-plugin": "14.1.2",
@@ -50,6 +54,7 @@
     "@angular/cli": "^15.0.1",
     "@angular/compiler-cli": "^15.0.1",
     "@ngrx/eslint-plugin": "^15.0.0",
+    "@ngrx/schematics": "^14.3.2",
     "@types/jasmine": "~4.0.0",
     "@typescript-eslint/eslint-plugin": "5.37.0",
     "@typescript-eslint/parser": "5.37.0",
