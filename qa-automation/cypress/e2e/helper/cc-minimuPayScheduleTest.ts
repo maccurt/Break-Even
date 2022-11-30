@@ -6,7 +6,7 @@ export function minimuPayScheduleTest() {
 
         before(() => {
             //TODO find better way to get to tab or remove in future;       
-            cy.get('div[role=tab]').eq(0).click();
+            //cy.get('div[role=tab]').eq(0).click();
         });
 
         beforeEach(() => {

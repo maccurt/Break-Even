@@ -5,7 +5,7 @@ describe('credit card schedule minimum pay', () => {
 
     enterMinimumPaymentForCreditCard();
     before(() => {
-        cy.get('div[role=tab]').eq(0).click();
+        //cy.get('div[role=tab]').eq(0).click();
         //TODO fix this or figure it out
         //https://stackoverflow.com/questions/62775815/changing-tabs-in-angular-material-using-cypress
     });
