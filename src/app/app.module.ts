@@ -14,11 +14,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { CurrencyPipe } from '@angular/common';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
+import { TesterComponent } from './tester/tester.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BreakEvenComponent
+    BreakEvenComponent,
+    TesterComponent
   ],
   imports: [
     BrowserModule,

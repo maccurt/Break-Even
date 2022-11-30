@@ -5,7 +5,7 @@ describe('credit card schedule minimum pay + extra', () => {
 
     enterExtraPaymentForCreditCard();
     before(() => {
-        cy.get('div[role=tab]').eq(0).click();        
+        //cy.get('div[role=tab]').eq(0).click();        
     });
 
     beforeEach(() => {

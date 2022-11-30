@@ -1,10 +1,10 @@
 <div class="container-float overflow-hidden">
 
-    <div class="row">
+    <div class="row mt-3">
 
-        <div class="col-12 offset-md-1 col-md-10 offset-lg-0  col-lg-5 col-xl-4 col-xxl-3 mb-5">
+        <div class="col-12 offset-md-1 col-md-10 offset-lg-0  col-lg-5 col-xl-4 col-xxl-3 mb-5 ps-4">
 
-            <mat-card>
+            <mat-card appearance="outlined">
                 <mat-card-content data-test-id="credit-card-calculator">
                     <div class="form-wrapper">
                         <form ga-id="credit-card-form"
@@ -294,122 +294,119 @@
             </mat-card>
         </div>
 
-        <div class="col-12 offset-md-1 col-md-10  offset-lg-0  col-lg-7 col-xl-8  col-xxl-9">
+        <div id="scroll-to-container"
+             class="col-12 offset-md-1 col-md-10  offset-lg-0  col-lg-7 col-xl-8  col-xxl-9">
 
-            <mat-tab-group id="scroll-to-container">
 
-                <mat-tab label="Credit Card Pay Off Calculator">
 
-                    <div data-test-id="cc-instruction-help"
-                         *ngIf="!scheduleCompare">
 
-                        <div class="row">
 
-                            <div class="col-12 col-xl-6  col-xxl-4 mb-5">
+            <div data-test-id="cc-instruction-help"
+                 *ngIf="!scheduleCompare">
 
-                                <app-info-section [help]="help.creditCardCalculatorInstruction1">
+                <div class="row">
 
-                                    <p class="">
-                                        Paying off high interest debt faster will <b> save you time and money.</b> Our
-                                        credit card
-                                        calculator will show you the impact of only paying the minimum payment and how
-                                        you
-                                        can save money by paying more each month.
-                                    </p>
+                    <div class="col-12 col-xl-6  col-xxl-4 mb-5">
 
-                                </app-info-section>
-                            </div>
+                        <app-info-section [help]="help.creditCardCalculatorInstruction1">
 
-                            <div class="col-12 col-xl-6  col-xxl-4 mb-5">
-                                <app-credit-card-devil-section></app-credit-card-devil-section>
-                            </div>
+                            <p class="">
+                                Paying off high interest debt faster will <b> save you time and money.</b> Our
+                                credit card
+                                calculator will show you the impact of only paying the minimum payment and how
+                                you
+                                can save money by paying more each month.
+                            </p>
 
+                        </app-info-section>
+                    </div>
+
+                    <div class="col-12 col-xl-6  col-xxl-4 mb-5">
+                        <app-credit-card-devil-section></app-credit-card-devil-section>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div *ngIf="scheduleCompare"
+                 class="row"
+                 data-test-id="cc-compare-tab">
+
+
+                <div class="col-6  col-xxl-4 mb-5">
+                    <app-credit-card-schedule data-test-id="min-pay-schedule"
+                                              [schedule]="scheduleCompare.schedule1">
+                    </app-credit-card-schedule>
+                </div>
+
+                <div class="col-6  col-xxl-4 mb-5">
+                    <app-credit-card-schedule *ngIf="showMinimumPayment"
+                                              data-test-id="fixed-pay-schedule"
+                                              [schedule]="scheduleCompare.schedule2">
+                    </app-credit-card-schedule>
+
+                    <app-credit-card-schedule *ngIf="!showMinimumPayment && !showFixedPayment"
+                                              data-test-id="extra-pay-schedule"
+                                              [schedule]="scheduleCompare.schedule2">
+                    </app-credit-card-schedule>
+
+                    <app-credit-card-schedule *ngIf="!showMinimumPayment && showFixedPayment"
+                                              data-test-id="fixed-pay-schedule"
+                                              [schedule]="scheduleCompare.schedule2">
+                    </app-credit-card-schedule>
+                </div>
+
+                <div class="col-12 col-xxl-4">
+
+                    <div class="row">
+
+                        <div class="col-12 col-xl-6 col-xxl-12">
+                            <!-- TODO Find a way to do this with component -->
+                            <app-interest-saved-section data-test-id="interest-saved-by-paying-extra"
+                                                        *ngIf="!showMinimumPayment && !showFixedPayment"
+                                                        [scheduleCompare]="scheduleCompare"
+                                                        [help]="help.interestSavedByPayingExtra">
+                            </app-interest-saved-section>
+
+
+
+                            <app-interest-saved-section data-test-id="interest-saved-by-paying-fixed"
+                                                        *ngIf="showFixedPayment"
+                                                        [scheduleCompare]="scheduleCompare"
+                                                        [help]="help.interestSavedByPayingFixedPayment">
+                            </app-interest-saved-section>
+                        </div>
+
+                        <div class="col-12 col-xl-6 col-xxl-12">
+                            <!-- TODO Find a way to do this with component see above -->
+                            <app-time-saved-section data-test-id="time-saved-extra-payment"
+                                                    [scheduleCompare]="scheduleCompare"
+                                                    *ngIf="!showMinimumPayment && !showFixedPayment"
+                                                    [help]="help.timeSavedByPayingExtra">
+                            </app-time-saved-section>
+
+
+                            <app-time-saved-section data-test-id="time-saved-fixed-payment"
+                                                    [scheduleCompare]="scheduleCompare"
+                                                    *ngIf="showFixedPayment"
+                                                    [help]="help.timeSavedFixedPayment">
+                            </app-time-saved-section>
+
+                        </div>
+
+                        <div class="col-12 col-xl-6 col-xxl-12">
+                            <app-credit-card-devil-section></app-credit-card-devil-section>
+                        </div>
+
+                        <div class="col-12 col-xl-6 col-xxl-12">
+                            <app-minimum-payment-trap-section *ngIf="showMinimumPayment">
+                            </app-minimum-payment-trap-section>
                         </div>
 
                     </div>
-
-                    <div *ngIf="scheduleCompare"
-                         class="row"
-                         data-test-id="cc-compare-tab">
-
-
-                        <div class="col-6  col-xxl-4 mb-5">
-                            <app-credit-card-schedule data-test-id="min-pay-schedule"
-                                                      [schedule]="scheduleCompare.schedule1">
-                            </app-credit-card-schedule>
-                        </div>
-
-                        <div class="col-6  col-xxl-4 mb-5">
-                            <app-credit-card-schedule *ngIf="showMinimumPayment"
-                                                      data-test-id="fixed-pay-schedule"
-                                                      [schedule]="scheduleCompare.schedule2">
-                            </app-credit-card-schedule>
-
-                            <app-credit-card-schedule *ngIf="!showMinimumPayment && !showFixedPayment"
-                                                      data-test-id="extra-pay-schedule"
-                                                      [schedule]="scheduleCompare.schedule2">
-                            </app-credit-card-schedule>
-
-                            <app-credit-card-schedule *ngIf="!showMinimumPayment && showFixedPayment"
-                                                      data-test-id="fixed-pay-schedule"
-                                                      [schedule]="scheduleCompare.schedule2">
-                            </app-credit-card-schedule>
-                        </div>
-
-                        <div class="col-12 col-xxl-4">
-
-                            <div class="row">
-
-                                <div class="col-12 col-xl-6 col-xxl-12">
-                                    <!-- TODO Find a way to do this with component -->
-                                    <app-interest-saved-section data-test-id="interest-saved-by-paying-extra"
-                                                                *ngIf="!showMinimumPayment && !showFixedPayment"
-                                                                [scheduleCompare]="scheduleCompare"
-                                                                [help]="help.interestSavedByPayingExtra">
-                                    </app-interest-saved-section>
-
-
-
-                                    <app-interest-saved-section data-test-id="interest-saved-by-paying-fixed"
-                                                                *ngIf="showFixedPayment"
-                                                                [scheduleCompare]="scheduleCompare"
-                                                                [help]="help.interestSavedByPayingFixedPayment">
-                                    </app-interest-saved-section>
-                                </div>
-
-                                <div class="col-12 col-xl-6 col-xxl-12">
-                                    <!-- TODO Find a way to do this with component see above -->
-                                    <app-time-saved-section data-test-id="time-saved-extra-payment"
-                                                            [scheduleCompare]="scheduleCompare"
-                                                            *ngIf="!showMinimumPayment && !showFixedPayment"
-                                                            [help]="help.timeSavedByPayingExtra">
-                                    </app-time-saved-section>
-
-
-                                    <app-time-saved-section data-test-id="time-saved-fixed-payment"
-                                                            [scheduleCompare]="scheduleCompare"
-                                                            *ngIf="showFixedPayment"
-                                                            [help]="help.timeSavedFixedPayment">
-                                    </app-time-saved-section>
-
-                                </div>
-
-                                <div class="col-12 col-xl-6 col-xxl-12">
-                                    <app-credit-card-devil-section></app-credit-card-devil-section>
-                                </div>
-
-                                <div class="col-12 col-xl-6 col-xxl-12">
-                                    <app-minimum-payment-trap-section *ngIf="showMinimumPayment">
-                                    </app-minimum-payment-trap-section>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </mat-tab>
-
-
-            </mat-tab-group>
+                </div>
+            </div>
 
         </div>
 

@@ -9,6 +9,7 @@
 @import "./styles/table.styles.scss";
 @import "./styles/section.styles.scss";
 @import "./styles/element-responsive.styles.scss";
+@import "./styles/material-override.styles.scss";
 
 a.no-style {
     text-decoration: underline;
@@ -20,7 +21,6 @@ p {
     // text-align: justify;
     font-size: larger;
     line-height: 1.5rem;
-    
 }
 
 .position-1 {
@@ -32,6 +32,7 @@ p {
 }
 
 //TODO should this be here
+/* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version.*/
 mat-tab-header {
     margin-bottom: 15px;
 }
@@ -56,9 +57,10 @@ mat-tab-header {
     padding: 15px;
 }
 .form-wrapper {
-    border: 1px solid #cccccc;
-    padding: 15px 25px 25px 15px;
+    border: 1px solid #cccccc;    
+    padding: 10px 20px 15px 20px;
     background-color: #e6ecff;
+    
 }
 
 .calculator-wrapper {
