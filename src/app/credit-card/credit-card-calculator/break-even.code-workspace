@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "break-even",
+			"path": "../../../.."
+		}
+	],
+	"settings": {
+		"html.format.wrapAttributes": "force-aligned"
+	}
+}
