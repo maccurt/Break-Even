@@ -1,10 +1,12 @@
+import { PaymentTypeForTest, setPaymentType } from "./new/minimum-payment-function";
+
 describe('credit-card-validation-calculate.cy.ts', () => {
 
     //All you are doing here is clicking calculate to make sure the error message shows up
     before(() => {
         cy.visit('/credit-card');
-        cy.get('#interestRate').clear();
-        cy.get('#payment-type-extra').click();
+        cy.get('#interestRate').clear();        
+        setPaymentType(PaymentTypeForTest.extra);
         cy.wait(1000);
         cy.get('#calculate').click();
     });
@@ -24,6 +26,6 @@ describe('credit-card-validation-calculate.cy.ts', () => {
     });
 
     it('extra payment error should be visible', () => {
-        cy.get('#extra-payment-error').should('be.visible');
+        cy.getDataTestId('extra-payment-error').should('be.visible');
     });
 });

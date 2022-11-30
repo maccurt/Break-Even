@@ -1,0 +1,21 @@
+<div class="container-fluid "
+     style="background-color:#e6f7ff;">
+
+    <div class="row mb-5 mt-5 ">
+        <hr>
+        <div class="col-12 mt-3  d-flex justify-content-center">
+            <h1><b> The Seven Habits</b></h1>
+        </div>
+    </div>
+
+    <div class="row ">
+
+        <div *ngFor="let help of help.sevenHabitList"
+             class="col-12 col-md-6 col-xxl-3">
+            <app-info-section [help]="help">
+            </app-info-section>
+        </div>
+
+    </div>
+
+</div>

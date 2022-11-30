@@ -1,4 +1,4 @@
-import { ProfitDreamerChartService } from 'src/app/chart.service';
+import { ProfitDreamerChart } from 'src/app/chart/chart-data.class.';
 import { Injectable } from '@angular/core';
 import { Schedule } from '../shared/schedule.class';
 
@@ -7,13 +7,14 @@ import { Schedule } from '../shared/schedule.class';
 })
 export class CreditCardChartService {
 
-  constructor(private chartService: ProfitDreamerChartService) { }
+  constructor() { }
 
-  interestPieChart(schedule: Schedule): Highcharts.Options {
-    const originalChartData: any[] = [
-      { name: 'Interest', color: 'red', y: schedule.interest },
-      { name: 'Principal', color: 'green', y: schedule.balanceStart }
-    ];
-    return this.chartService.pieChartOptions('Principal & Interest', originalChartData);
+  interestPieChart(schedule: Schedule): ProfitDreamerChart {
+
+    const chart = new ProfitDreamerChart();
+    // chart.title = 'Principal & Interest';
+    chart.data.push({ name: 'Interest', color: 'red', y: schedule.interest });
+    chart.data.push({ name: 'Principal', color: 'green', y: schedule.balanceStart });
+    return chart;
   }
 }

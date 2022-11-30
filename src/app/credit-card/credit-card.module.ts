@@ -1,10 +1,11 @@
+import { ChartModule } from './../chart/chart.module';
 import { MaterialModule } from './../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreditCardCalculatorComponent } from './credit-card-calculator/credit-card-calculator.component';
 import { CreditCardMinimumPaymentComponent } from './credit-card-minimum-payment/credit-card-minimum-payment.component';
 import { CreditCardScheduleListComponent } from './credit-card-schedule-list/credit-card-schedule-list.component';
-import { InterestSavingsComponent } from './interest-savings/interest-savings.component';
+// import { InterestSavingsComponent } from './interest-savings/interest-savings.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ControlsModule } from '../controls/controls.module';
@@ -23,7 +24,7 @@ import { TimeSavedSectionComponent } from './time-saved-section/time-saved-secti
     CreditCardCalculatorComponent,
     CreditCardMinimumPaymentComponent,
     CreditCardScheduleListComponent,
-    InterestSavingsComponent,
+    // InterestSavingsComponent,
     TimeCardComponent,
     ScheduleCardComponent,    
     CreditCardScheduleComponent, MinimumPaymentTrapSectionComponent, CreditCardDevilSectionComponent, InterestSavedSectionComponent, TimeSavedSectionComponent
@@ -36,13 +37,14 @@ import { TimeSavedSectionComponent } from './time-saved-section/time-saved-secti
     RouterModule,
     HighchartsChartModule,
     MaterialModule,
-    IconModule
+    IconModule,
+    ChartModule
   ],
   exports: [
     CreditCardCalculatorComponent,
     CreditCardMinimumPaymentComponent,    
     CreditCardScheduleListComponent,
-    InterestSavingsComponent,
+    // InterestSavingsComponent,
     TimeCardComponent
   ]
 })

@@ -10,4 +10,6 @@ export class Help {
   notes!:string;
   hint?:string;
   paragraph?:string;
+  html?:string;
+  routeLink?:string;  
 }

@@ -1,27 +1,39 @@
 <mat-card class="section">
+
+    <mat-card-title>
+
+        <div data-test-id="title"
+             class="title-responsive">
+            <fa-icon [icon]="help.icon"
+                     class={{help.iconClass}}
+                     matTooltipClass="tool-tip-help">
+            </fa-icon>
+            <span *ngIf="help.routeLink">                
+                <a routerLink="/{{help.routeLink}}">{{help.name}}</a>
+            </span>
+            <span *ngIf="!help.routeLink">{{help.name}}</span>            
+        </div>        
+        <hr>
+
+    </mat-card-title>
     <mat-card-content>
         <div class="stat-formula">
-            <!-- TODO why is not in the title not in the content FIX THIS in your task list-->
-            <div data-test-id="title"
-                 class="title">
-                <fa-icon [icon]="help.icon"
-                         class={{help.iconClass}}
-                         matTooltipClass="tool-tip-help">
-                </fa-icon>
-                {{help.name}}
-            </div>
-            <hr>
 
             <div data-test-id="stat"
-                 class="stat title-responsive"
-                 matTooltipClass="tool-tip-help">
-                <!-- TODO we removed tooltip, put back -->
-                <!-- matTooltip={{help.defintion}}> -->
+                 class="stat title-responsive">
                 {{stat}}
             </div>
 
-            <div *ngIf="help.paragraph" data-test-id="paragraph" class="paragraph">
+            <div *ngIf="help.paragraph"
+                 data-test-id="paragraph"
+                 class="paragraph">
                 <p>{{help.paragraph}}</p>
+            </div>
+
+            <div *ngIf="help.html"
+                 data-test-id="html"
+                 [innerHtml]="help.html">
+
             </div>
 
             <div data-test-id="text"

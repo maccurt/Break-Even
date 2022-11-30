@@ -1,3 +1,5 @@
+import { PaymentTypeForTest, setPaymentType } from "./new/minimum-payment-function";
+
 describe('credit-card-fixed-payment-validation.cy.ts', () => {
 
     const requiredMessage = '1 to 9999';
@@ -9,16 +11,15 @@ describe('credit-card-fixed-payment-validation.cy.ts', () => {
             cy.visit('/credit-card');
             cy.get('#balance').type('10000');
             cy.get('#interestRate').clear().type('15').blur();
-            cy.get('#payment-type-fixed').click();
+            setPaymentType(PaymentTypeForTest.fixed);
         });
 
         describe('focus on fixed payment and blur off', () => {
 
             it('required error message should be visibile and shown', () => {
 
-                cy.get('#fixed-payment').focus().blur();
-                cy.get('#fixed-payment-error').should('be.visible');
-                cy.get('#fixed-payment-error').invoke('text').then((text) => {
+                cy.get('#fixedPayment').focus().blur();
+                cy.getDataTestId('fixed-payment-error').invoke('text').then((text) => {
                     expect(text.trim()).to.eq(requiredMessage);
                 });
             });
@@ -27,30 +28,28 @@ describe('credit-card-fixed-payment-validation.cy.ts', () => {
         describe('set fixed payment to 224', () => {
 
             it('must be greater than min payment should visibile and shown', () => {
-
-                cy.get('#fixed-payment').clear().type('224').blur();
-                cy.get('#fixed-payment-error').should('be.visible');
-                cy.get('#fixed-payment-error').invoke('text').then((text) => {
+                cy.get('#fixedPayment').clear().type('224').blur();
+                cy.getDataTestId('fixed-payment-error').invoke('text').then((text) => {
                     expect(text.trim()).to.eq(greaterThanMinPaymentMessage);
                 });
             });
         });
 
         describe('set fixed payment to 225', () => {
-
             it('must be greater than min payment should visibile and shown', () => {
-                cy.get('#fixed-payment').clear().type('225').blur();
-                cy.get('#fixed-payment-error').should('not.be.visible');
+                cy.get('#fixedPayment').clear().type('225').blur();
+                cy.getDataTestId('fixed-payment-error').should('not.exist');
+                // cy.getDataTestId('fixed-payment-error').invoke('text').then((text) => {
+                //     expect(text.trim()).to.eq('');
+                // });
             });
         });
 
         describe('set balance to 11000', () => {
 
             it('must be greater than min payment should visibile and shown', () => {
-
                 cy.get('#balance').clear().type('11000').blur();
-                cy.get('#fixed-payment-error').should('be.visible');
-                cy.get('#fixed-payment-error').invoke('text').then((text) => {
+                cy.getDataTestId('fixed-payment-error').invoke('text').then((text) => {
                     expect(text.trim()).to.eq(greaterThanMinPaymentMessage);
                 });
             });
@@ -58,19 +57,17 @@ describe('credit-card-fixed-payment-validation.cy.ts', () => {
 
         describe('set interest rate to 10', () => {
 
-            it('must be greater than min payment should visibile and shown', () => {
+            it('must be greater than min payment should NOT visibile and shown', () => {
                 cy.get('#interestRate').clear().type('10').blur();
-                cy.get('#fixed-payment').clear().type('225').blur();
-                cy.get('#fixed-payment-error').should('not.be.visible');
+                cy.get('#fixedPayment').clear().type('225').blur();
+                cy.getDataTestId('fixed-payment-error').should('not.exist');                
             });
         });
 
         describe('change minimum payment to 4%', () => {
-
             it('must be greater than min payment should visibile and shown', () => {
-                cy.get('#minimum-payment-type').select('4% of balance');
-                cy.get('#fixed-payment-error').should('be.visible');
-                cy.get('#fixed-payment-error').invoke('text').then((text) => {
+                cy.get('#minimum-payment-type').select('4% of balance');                
+                cy.getDataTestId('fixed-payment-error').invoke('text').then((text) => {
                     expect(text.trim()).to.eq(greaterThanMinPaymentMessage);
                 });
             });

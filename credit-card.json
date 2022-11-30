@@ -1,0 +1,16 @@
+{
+    "value": [
+        {
+            "balance": "20000",
+            "interestRate": 16.4,
+            "minimumPaymentType": {
+                "useInterest": true,
+                "percentOfBalance": 1,
+                "text": "Interest + 1% of balance"
+            },
+            "extraPayment": "100",
+            "paymentType": 2,
+            "fixedPayment": null
+        }
+    ]
+}

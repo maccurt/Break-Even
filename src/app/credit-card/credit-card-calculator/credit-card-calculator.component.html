@@ -1,16 +1,16 @@
-<div class="container-float">
+<div class="container-float overflow-hidden">
 
     <div class="row">
 
         <div class="col-12 offset-md-1 col-md-10 offset-lg-0  col-lg-5 col-xl-4 col-xxl-3 mb-5">
 
             <mat-card>
-                <!-- <mat-card-title>Credit Card Information</mat-card-title> -->
-
                 <mat-card-content data-test-id="credit-card-calculator">
                     <div class="form-wrapper">
-                        <form id="cc-form"
+                        <form ga-id="credit-card-form"
+                              id="cc-form"
                               class="pd-form"
+                              (submit)="calculate()"
                               [formGroup]="creditCardFormGroup">
 
                             <app-form-input name='balance'
@@ -44,7 +44,111 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <label id="payment-type-label"
+                                           for="payment-type">What Type Of Montly Payment Can You Make? <fa-icon
+                                                 class="label-icon"
+                                                 [icon]="help.minimumPaymentCalculation.icon">
+                                            matTooltipClass="tool-tip-help"
+                                            matTooltip="{{help.minimumPaymentCalculation.defintion}}">
+                                        </fa-icon>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input"
+                                               formControlName="paymentType"
+                                               type="radio"
+                                               name="paymentType"
+                                               id="minimumPaymentType"
+                                               data-test-id="mininum-payment-type"
+                                               value="1">
+                                        <label class="form-check-label"
+                                               for="minimumPaymentType">
+                                            Minimum Payment
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-6 col-sm-5 col-lg-6 d-flex align-items-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input"
+                                               formControlName="paymentType"
+                                               type="radio"
+                                               name="paymentType"
+                                               id="extraPaymentType"
+                                               data-test-id="extra-payment-type"
+                                               value="2">
+                                        <label class="form-check-label"
+                                               for="extraPaymentType">
+                                            Minium Payment + Extra
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <app-input name='extraPayment'
+                                               [showErrors]=showErrors
+                                               [onBlur]="calculatePayment"
+                                               [help]="help.creditCardBalance"></app-input>
+                                </div>
+
+                            </div>
+
+                            <div style="height:10px;"
+                                 class="row mb-3 ">
+                                <div class="col-10 d-flex  justify-content-end align-items-top  ">
+                                    <span *ngIf="isInvalid(extraPaymentControl)"
+                                          data-test-id="extra-payment-error"
+                                          class="error ">required: 1-9999</span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-6 col-sm-5 col-lg-6  d-flex align-items-center ">
+                                    <div class="form-check">
+                                        <input class="form-check-input"
+                                               formControlName="paymentType"
+                                               type="radio"
+                                               name="paymentType"
+                                               id="fixedPaymentType"
+                                               data-test-id="fixed-payment-type"
+                                               value="3">
+
+                                        <label class="form-check-label"
+                                               for="fixedPaymentType">
+                                            Fixed Payment
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <app-input name='fixedPayment'
+                                               [showErrors]=showErrors
+                                               [onBlur]="calculatePayment"
+                                               [help]="help.creditCardBalance"></app-input>
+                                </div>
+                            </div>
+
+                            <div style="height:10px;"
+                                 class="row mb-3 ">
+                                <div class="col-10 d-flex  justify-content-end align-items-top  ">
+                                    <span *ngIf="isInvalid(fixedPaymentControl)"
+                                          data-test-id="fixed-payment-error"
+                                          class="error "> {{fixedPaymentError}}</span>
+                                </div>
+                            </div>
+
+                            <!-- <div class="mb-3">
                                 <label id="payment-type-label"
                                        for="payment-type">What Type Of Montly Payment Can You Make? <fa-icon
                                              class="label-icon"
@@ -61,8 +165,7 @@
                                     <option *ngFor='let m of paymentTypeList'
                                             [ngValue]='m.value'>{{m.text}}</option>
                                 </select>
-                                <div class='input-error'>
-                                    <!-- Just for space -->
+                                <div class='input-error'>                          
                                 </div>
                             </div>
 
@@ -81,9 +184,9 @@
                                                 [showErrors]=showErrors
                                                 [onBlur]="calculatePayment"
                                                 [help]="help.creditCardBalance"></app-form-input>
-                            </div>
+                            </div> -->
 
-                            <hr>
+                            <!-- <hr> -->
 
                             <div class="row">
                                 <div class="col-12">
@@ -109,9 +212,6 @@
                                                 <td>
                                                     <span data-test-id="minimum-payment">
                                                         &nbsp; ${{minimumPayment |number:'1.2-2' }}</span>
-                                                    <!-- <span data-test-id="fix-pay-hint" style="float:right;font-style: oblique; font-size: small;"
-                                                          *ngIf="isFixedPaymentType">not in monthly payment</span> -->
-
                                                 </td>
                                             </tr>
 
@@ -179,13 +279,15 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <button id='calculate'
+                                    type="submit"
+                                    class="calculate-button btn btn-primary"><b>
+                                    Calculate Credit Card</b>
+                            </button>
                         </form>
 
-                        <button id='calculate'
-                                (click)="calculate()"
-                                class="calculate-button btn btn-primary"><b>
-                                Calculate Credit Card</b>
-                        </button>
+
 
                     </div>
                 </mat-card-content>
@@ -197,12 +299,13 @@
             <mat-tab-group id="scroll-to-container">
 
                 <mat-tab label="Credit Card Pay Off Calculator">
+
                     <div data-test-id="cc-instruction-help"
                          *ngIf="!scheduleCompare">
 
                         <div class="row">
 
-                            <div class="col-12  col-xxl-4 mb-5">
+                            <div class="col-12 col-xl-6  col-xxl-4 mb-5">
 
                                 <app-info-section [help]="help.creditCardCalculatorInstruction1">
 
@@ -217,12 +320,8 @@
                                 </app-info-section>
                             </div>
 
-
-                            <div class="col-12  col-xxl-4 mb-5">
-
-                                
+                            <div class="col-12 col-xl-6  col-xxl-4 mb-5">
                                 <app-credit-card-devil-section></app-credit-card-devil-section>
-                                
                             </div>
 
                         </div>
@@ -309,109 +408,10 @@
                     </div>
                 </mat-tab>
 
-                <!-- <mat-tab label="Summary">
-                    <div class="row"
-                         data-test-id="cc-summary-tab">
-
-                        <div data-test-id="summary-container"
-                             *ngIf="showSummary"
-                             id='scroll-to-container'
-                             class="col-12 col-md-9 col-lg-6 col-xl-4 col-xxl-4 mb-5">
-
-                            <app-interest-savings [isFixedPayment]="isFixedPayment"
-                                                  [minimumPaymentMode]="minimumPaymentMode"
-                                                  [scheduleCompare]="scheduleCompare">
-                            </app-interest-savings>
-                        </div>
-
-
-                        <div class="col-12 col-md-9 col-lg-12 col-xl-4 col-xxl-4">
-                            <app-time-card [scheduleCompare]="scheduleCompare"
-                                           [minimumPaymentMode]="minimumPaymentMode">
-                            </app-time-card>
-                        </div>
-                    </div>
-                </mat-tab> -->
-
-                <!-- <mat-tab label="Schedule">
-                    <div class="row"
-                         *ngIf="scheduleCompare">
-
-                        <div class="col-xxl-6">
-
-                            <app-credit-card-schedule-list *ngIf="!minimumPaymentMode"
-                                                           [scheduleList]="scheduleCompare.schedule2.scheduleList">
-                            </app-credit-card-schedule-list>
-
-                            <app-credit-card-schedule-list *ngIf="minimumPaymentMode"
-                                                           [scheduleList]="scheduleCompare.schedule1.scheduleList">
-                            </app-credit-card-schedule-list>
-                        </div>
-                    </div>
-                </mat-tab> -->
 
             </mat-tab-group>
 
         </div>
 
     </div>
-
 </div>
-
-
-<!-- <div id="payment-type-container">
-                                <label class="p-t-c-label">What Monthly Payment Can You Make?</label>
-
-                                <div class="form-check">
-                                    <input class="form-check-input"
-                                           formControlName="paymentType"
-                                           type="radio"
-                                           name="paymentType"
-                                           id="payment-type-minimum"
-                                           value="1">
-                                    <label class="form-check-label"
-                                           for="exampleRadios1">
-                                        Minimum Payment Only
-                                        <fa-icon class="label-icon"
-                                                 [icon]="help.creditCardMinimumPayment.icon"
-                                                 matTooltipClass="tool-tip-help"
-                                                 matTooltip="{{help.creditCardMinimumPayment.defintion}}">
-                                        </fa-icon>
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input"
-                                           formControlName="paymentType"
-                                           type="radio"
-                                           name="paymentType"
-                                           id="payment-type-extra"
-                                           value="2">
-                                    <label class="form-check-label"
-                                           for="exampleRadios1">
-                                        Minimum Payment + Extra Payment
-                                        <fa-icon class="label-icon"
-                                                 [icon]="help.creditCardMinimumPaymentPlusExtra.icon"
-                                                 matTooltipClass="tool-tip-help"
-                                                 matTooltip="{{help.creditCardMinimumPaymentPlusExtra.defintion}}">
-                                        </fa-icon>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input"
-                                           type="radio"
-                                           formControlName="paymentType"
-                                           name="paymentType"
-                                           id="payment-type-fixed"
-                                           value="3">
-                                    <label class="form-check-label"
-                                           for="exampleRadios2">
-                                        Fixed Payment
-                                        <fa-icon class="label-icon"
-                                                 [icon]="help.creditCardFixedPayment.icon"
-                                                 matTooltipClass="tool-tip-help"
-                                                 matTooltip="{{help.creditCardFixedPayment.defintion}}">
-                                        </fa-icon>
-                                    </label>
-                                </div>
-                            </div>                            -->

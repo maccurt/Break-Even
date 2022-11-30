@@ -4,8 +4,8 @@ import { HelpService } from './../../help/help.service';
 import { CreditCardChartService } from './../credit-card-chart.service';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Schedule } from 'src/app/shared/schedule.class';
-import * as Highcharts from 'highcharts';
 import { PaymentType } from '../credit-card-calculator/payment-type.enum';
+import { ProfitDreamerChart } from 'src/app/chart/chart-data.class.';
 
 @Component({
   selector: 'app-credit-card-schedule',
@@ -14,9 +14,7 @@ import { PaymentType } from '../credit-card-calculator/payment-type.enum';
 })
 export class CreditCardScheduleComponent implements OnInit, OnChanges {
   paymentTypeIcon!: IconDefinition;
-  Highcharts: typeof Highcharts = Highcharts;
-  chartOptions!: Highcharts.Options;
-
+  chart!:ProfitDreamerChart;  
   @Input() schedule!: Schedule;
 
   constructor(private creditCartChartService: CreditCardChartService,
@@ -41,6 +39,6 @@ export class CreditCardScheduleComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    this.chartOptions = this.creditCartChartService.interestPieChart(this.schedule);
+    this.chart = this.creditCartChartService.interestPieChart(this.schedule);
   }
 }

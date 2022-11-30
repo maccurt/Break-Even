@@ -5,16 +5,32 @@
 
         <div class="row">
             <div id="logo-container"
-                 class="offset-xl-1 offset-xxl-2 col-md-8 col-lg-6 ">
+                 class="offset-xl-1 offset-xxl-2 col-md-12 col-lg-6">
 
                 <br>
                 <div class="container-title">PROFIT DREAMER</div>
+                <!-- TODO why do you need this, if you don't in small it runs into the next row -->
                 <br>
-                <br>
-                <a date-test-id="profit-analysis"
-                   href="#"
-                   class="btn btn-outline-primary"
-                   routerLink="/credit-card">Credit Card Calculator</a>
+                <br>                
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="offset-1 offset-md-3 offset-lg-1 offset-xl-1 offset-xxl-2 col-9 col-md-6 col-lg-6 col-xl-5 col-xxl-3">
+                <app-info-section [help]="help.creditCardLinkButton">
+                    <p style="margin-right:15px;margin-bottom:10px">
+                        Learn how your credit debt is costing you time and money and formulate a plan to get out of debt
+                        faster.
+                    </p>
+                    <hr>
+                    <a class="gtm-cc-link btn btn-primary"
+                       title="Go To Credit Card PayOff Calculator"
+                       date-test-id="credit-card-calculator"
+                       data-gtm-id="gtm-credit-card-link"
+                       routerLink="/credit-card">Go To Credit Card Calculator</a>
+                </app-info-section>
+
             </div>
         </div>
     </div>

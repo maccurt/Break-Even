@@ -42,12 +42,10 @@
             </table>
         </mat-card-content>
     </mat-card>
-    <!-- height:250px; margin-top: 20px;margin-bottom:10px; -->
     <mat-card class="chart-container">
-        <div class="chart-container-XXX">
-            <highcharts-chart [Highcharts]="Highcharts"
-                              [options]="chartOptions"></highcharts-chart>
-        </div>
+
+        <app-basic-pie-chart [chart]="chart"> </app-basic-pie-chart>
+
     </mat-card>
 
     <app-info-section style="margin-top:7px"

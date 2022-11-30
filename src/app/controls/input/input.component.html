@@ -1,0 +1,26 @@
+<div class=""
+     [ngClass]="{'has-error':(isInvalid())}">
+
+  <input id="{{inputId}}"
+         type="text"
+         autocomplete="off"
+         name="whatever"
+         [name]="options.inputFormControlName"
+         formControlName={{options.inputFormControlName}}
+         attr.maxlength="{{options.maxlength}}"
+         numeric-input
+         [min]="options.min"
+         [max]="options.max"
+         class="form-control form-control-sm"
+         aria-describedby=""
+         placeholder="{{options.placeholder}}"
+         [decimals]="options.decimals"
+         inputmode="decimal"
+         (blur)="blurHandler()"
+         (ngModelChange)="modelChange($event)">
+
+         <!-- <div id="{{inputId}}-error-message"
+            class='input-error'>
+              {{errrorMessageToDisplay()}}
+       </div> -->
+</div>

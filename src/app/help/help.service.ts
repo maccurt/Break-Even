@@ -1,17 +1,78 @@
+import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
 import { IconService } from './../icon/icon.service';
 import { Injectable } from '@angular/core';
 import { Help } from './Help';
 
+const loremIpsum = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero consequuntur esse animi tenetur, iure voluptates.  ';
 const totalPrinicpalAndInterest: string =
   'How much you will pay in principal and interest to pay off the credit card balance.';
+
+export function HelpWithHtmlInParagraph(title: string, routeLink: string, icon: IconDefinition, iconClass: string, html: string,
+): Help {
+  const help = new Help(title, '', '', '');
+  help.html = `<p>${html}<p>`;
+  help.icon = icon;
+  help.iconClass = iconClass;
+  if (routeLink && routeLink !== '') {
+    help.routeLink = routeLink;
+  }
+
+  return help;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class HelpService {
 
+  static helpDefault = HelpWithHtmlInParagraph('The Section Title', '', IconService.creditCardInstruction1, 'help-default', loremIpsum);
+
+  //Calculators
+  financialCalculators = HelpWithHtmlInParagraph('Financial Calculators', '', IconService.creditCardInstruction1, 'credit-card', loremIpsum);
+  creditCardCalculator = HelpWithHtmlInParagraph('Credit Card Pay Off Calculator', 'credit-card', IconService.creditCardInstruction1, 'credit-card', loremIpsum);
+  unitProfitAnalysisCalculaotr = HelpWithHtmlInParagraph('Unit Profit Calculator', 'unit-profit', IconService.sackDollar, 'unit', loremIpsum);
+  calculatorList: Help[] = [this.creditCardCalculator, this.unitProfitAnalysisCalculaotr];
+
+  //Press Toward The Mark Ideas
+  financialEmanicipation = HelpWithHtmlInParagraph('Financial Emancipation', '', IconService.sackDollar, 'financial-emanicipation',
+    'The rich rule over the poor, and the borrower is slave to the lender. Our goal is to help individuals break the manacles of debt with online financial calculators designed to educate, equip and encourage.We want to help you achieve financial emancipation');
+  motivation = HelpWithHtmlInParagraph('Motivation', '', IconService.motivation, 'motivation',
+    'Our passion is educating, equipping and encouraging others to chase down their dreams. “Press Toward The Mark” is our motivational battle cry when we charge into the fray. Arise, users of Profit Dreamer. Fell tasks awake, fire and slaughter.');
+  taskBasedGoals = HelpWithHtmlInParagraph('Task Based Goals', '', IconService.taskBasedGoals, 'task-based-goals',
+    'We are very task oriented and have an insatiable need to make incremental progress that leads to the completion of a bigger goal. Expect a lot of ideas around finding ways to get stuff done and released for feedback. Warts and all.');
+  technology = HelpWithHtmlInParagraph('Technology', '', IconService.technology, 'technology',
+    'Technology is how we communicate and deliver our products. Educating others in its use is a priority for us. We will be transparent about our technology stack and will share our process from design to implementation, Warts and all.');
+
+  pressTowardTheMarkList: Help[] = [this.financialEmanicipation, this.motivation, this.taskBasedGoals, this.technology];
+
+  //The Seven Habits
+  sevenHabits = HelpWithHtmlInParagraph("The Seven Habits", 'the-7-habits', IconService.cog, 'seven-habits',
+    "The Seven Habits are rules and constraints that keep us pressing toward the mark to complete our tasks, goals and ultimately the dream.");
+  twentyMinuteRule = HelpWithHtmlInParagraph("The 20 Minute Rule.", '', IconService.clock, 'twenty-minute-rule',
+    'Is a framework designed to help you make the time to  <u>execute</u> the tasks that will complete your goal.');
+  doesItHaveValue = HelpWithHtmlInParagraph('Does It Have Value?', '', IconService.doesItHaveValue, 'does-it-have-value',
+    'Is the practice of prioritizing your tasks by value so you stay focused on completing the goal.');
+  wartsAndAll = HelpWithHtmlInParagraph('Warts & All!', '', IconService.wartsAndAllIcon, 'warts-and-all',
+    'Is a constraint to schedule a release of your product frequently so you can gain valuable customer feedback.');
+  whatDidYouLearn = HelpWithHtmlInParagraph('What Did You Learn?', '', IconService.whatDidYouLearn, 'what-did-you-learn',
+    'Is introspection into your processes and product so you can make valuable adjustments.');
+  useWhatYouGout = HelpWithHtmlInParagraph('Use What You Got.', '', IconService.useWhatYouGot, 'use-what-you-got',
+    'Is maximizing and finding new ways to use what you already possess in order to increase your productivity.');
+  noTimeWasting = HelpWithHtmlInParagraph('No Time Wasting.', '', IconService.noTimeWasting, 'no-time-wasting',
+    'Is organizing your time so you can increase the velocity of reaching your goal.');
+  restAndCelebrate = HelpWithHtmlInParagraph('Rest & Celebrate.', '', IconService.restAndCelebrate, 'rest-and-celebrate',
+    'Is motivation to convince you that it is profitable to rest and celebrate .');
+  sevenHabitList: Help[] = [this.twentyMinuteRule,
+
+  this.doesItHaveValue, this.wartsAndAll,
+  this.whatDidYouLearn, this.useWhatYouGout,
+  this.noTimeWasting, this.restAndCelebrate];
+
+  creditCardLinkButton = new Help('Credit Card Pay Off Calculator',
+    '', '', 'good-icon-1');
+
   creditCardCalculatorInstruction1 = new Help('Pay Off Debt Faster To Save Money',
-    '', '','good-icon-1');
+    '', '', 'good-icon-1');
 
   minimumPaymentCalculation = new Help('Minimum Payment Calculation',
     'How is the minimum payment calculated on your credit card?', '');
@@ -109,8 +170,9 @@ export class HelpService {
     this.creditCardFixedPaymentInterest.icon = icons.minPayPlusExtraInterest;
     this.creditCardMinPayInterest.icon = icons.interest;
 
-    this.creditCardInterestRate.hint = "Find your interest rate on your credit card bill.";    
-    this.creditCardCalculatorInstruction1.icon = icons.creditCardInstruction1;
+    this.creditCardInterestRate.hint = "Find your interest rate on your credit card bill.";
+    this.creditCardCalculatorInstruction1.icon = IconService.creditCardInstruction1;
+    this.creditCardLinkButton.icon = icons.creditCard;
 
   }
 }

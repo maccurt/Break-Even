@@ -133,6 +133,7 @@ export class FormGroupInputComponent implements OnInit {
   };
 
   errrorMessageToDisplay = (): string => {
+    
     return this.control.errorMessage === '' ? this.options.errorMessage :
       this.control.errorMessage;
   };
