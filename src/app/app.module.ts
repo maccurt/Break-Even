@@ -22,6 +22,7 @@ import { EntityDataModule } from '@ngrx/data';
 import { entityConfig } from './entity-metadata';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { appReducers } from './app-state/app.reduders';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,14 @@ import { HttpClientModule } from '@angular/common/http';
     ControlsModule,
     NgxGoogleAnalyticsModule.forRoot('G-NPS0X71K2S'),//TODO make this not do it on localhost?
     NgxGoogleAnalyticsRouterModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(appReducers, {
+      runtimeChecks: {
+        strictActionImmutability: true,
+        strictStateImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true
+      }
+    }),
     FontAwesomeModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),
