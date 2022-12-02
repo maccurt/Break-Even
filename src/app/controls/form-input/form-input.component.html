@@ -1,19 +1,22 @@
 <div class=""
      [ngClass]="{'has-error':(isInvalid())}">
 
-       <label class="form-label"
-              *ngIf="options.showLabel"
-              id="{{options.labelId}}"
-              title="{{options.labelTitle}}"
-              for="{{options.labelFor}}">{{options.labelText}}</label>
+       <ng-container *ngIf="showLabel">
+              <label class="form-label"
+                     *ngIf="options.showLabel"
+                     id="{{options.labelId}}"
+                     title="{{options.labelTitle}}"
+                     for="{{options.labelFor}}">{{options.labelText}}</label>
 
-       <span *ngIf="help"
-             class="icon-container">
-              <fa-icon [icon]="help.icon"
-                       matTooltipClass="tool-tip-help"
-                       matTooltip="{{help.defintion}}">
-              </fa-icon>
-       </span>
+              <span *ngIf="help"
+                    class="icon-container">
+                     <fa-icon [icon]="help.icon"
+                              matTooltipClass="tool-tip-help"
+                              matTooltip="{{help.defintion}}">
+                     </fa-icon>
+              </span>
+
+       </ng-container>
 
        <input id="{{inputId}}"
               type="text"
@@ -33,7 +36,8 @@
               (blur)="blurHandler()"
               (ngModelChange)="modelChange($event)">
 
-       <div *ngIf="help.hint" data-test-id="input-hint"
+       <div *ngIf="help.hint"
+            data-test-id="input-hint"
             class="form-text">{{help.hint}}</div>
        <div id="{{inputId}}-error-message"
             class='input-error'>

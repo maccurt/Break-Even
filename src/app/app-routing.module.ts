@@ -5,6 +5,7 @@ import { BreakEvenComponent } from './break-even/break-even.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './home-domain/about/about.component';
+import { CreditCardWizardComponent } from './credit-card/credit-card-wizard/credit-card-wizard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'about-us', component: AboutComponent },
   { path: 'unit-profit', component: BreakEvenComponent },
   { path: 'credit-card', component: CreditCardCalculatorComponent },
+  { path: 'wizard', component: CreditCardWizardComponent },
   { path: 'the-7-habits', component: SevenHabitsComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];

@@ -1,0 +1,28 @@
+<div class="container-fluid">
+
+    <div class="row mt-5 justify-content-md-center ">
+
+
+        <div class="col-12 col-lg-4">
+
+            <mat-card>
+                <mat-card-title>
+                    What Is The Balance Of Your Credit Card?
+                </mat-card-title>
+
+                <mat-card-content>
+                    <form [formGroup]="formGroup">
+                        <app-form-input name='balance'
+                                        [showLabel]="false"
+                                        [onBlur]="calculate()"
+                                        [help]="help.creditCardBalance"></app-form-input>
+
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+
+    </div>
+
+</div>
