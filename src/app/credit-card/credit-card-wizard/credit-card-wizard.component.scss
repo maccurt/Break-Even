@@ -1,0 +1,22 @@
+::ng-deep {
+    #cc-form {
+        #balance,
+        #extraPayment, #fixedPayment {
+            width: 125px;
+        }
+
+        #interestRate {
+            width: 100px;
+        }
+
+        select {
+            width: 260px !important;
+        }
+    }
+}
+
+
+.hint{
+    margin-top: 10px;
+    font-size: small;    
+}

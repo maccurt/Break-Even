@@ -1,4 +1,5 @@
-<mat-card appearance="outlined"  class="{{sectionClass}}"   class="section">
+<mat-card class="{{sectionClass}}"
+          class="section">
     <mat-card-content>
         <div class="stat-formula">
 
@@ -17,16 +18,18 @@
             <div data-test-id="stat"
                  class="stat">
                 <span class="sign"
-                      *ngIf="sign">{{sign}}</span>{{stat |number:'1.2-2'}}<span *ngIf="endSign" class="end-sign">{{endSign}}</span>
+                      *ngIf="sign">{{sign}}</span>{{stat |number:'1.2-2'}}<span *ngIf="endSign"
+                      class="end-sign">{{endSign}}</span>
             </div>
 
             <div data-test-id="formula-expanded"
                  class="formula">
-                <ng-content  ></ng-content>
+                <ng-content></ng-content>
             </div>
 
-            <div style="text-align:center" data-test-id="content-2">
-                <ng-content select="[content-2]" ></ng-content>
+            <div style="text-align:center"
+                 data-test-id="content-2">
+                <ng-content select="[content-2]"></ng-content>
             </div>
 
             <div data-test-id="formula"

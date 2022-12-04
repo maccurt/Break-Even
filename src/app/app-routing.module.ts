@@ -1,3 +1,4 @@
+import { TesterComponent } from './tester/tester.component';
 import { SevenHabitsComponent } from './home-domain/seven-habits/seven-habits.component';
 import { CreditCardCalculatorComponent } from './credit-card/credit-card-calculator/credit-card-calculator.component';
 import { HomeComponent } from './home-domain/home/home.component';
@@ -10,6 +11,7 @@ import { CreditCardWizardComponent } from './credit-card/credit-card-wizard/cred
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'test', component: TesterComponent },
   { path: 'about-us', component: AboutComponent },
   { path: 'unit-profit', component: BreakEvenComponent },
   { path: 'credit-card', component: CreditCardCalculatorComponent },
