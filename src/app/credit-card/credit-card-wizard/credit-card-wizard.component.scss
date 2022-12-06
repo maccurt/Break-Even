@@ -1,7 +1,8 @@
 ::ng-deep {
     #cc-form {
         #balance,
-        #extraPayment, #fixedPayment {
+        #extraPayment,
+        #fixedPayment {
             width: 125px;
         }
 
@@ -15,8 +16,7 @@
     }
 }
 
-
-.hint{
+.hint {
     margin-top: 10px;
-    font-size: small;    
+    font-size: small;
 }

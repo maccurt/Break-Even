@@ -20,16 +20,22 @@ import { TimeSavedSectionComponent } from './time-saved-section/time-saved-secti
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { creditCardFeatureKey, creditCardReducer } from './credit-card-state/credit-card.reducers';
 import { CreditCardWizardComponent } from './credit-card-wizard/credit-card-wizard.component';
+import { ScheduleItemComponent } from './schedule-item/schedule-item.component';
 
 @NgModule({
   declarations: [
     CreditCardCalculatorComponent,
     CreditCardMinimumPaymentComponent,
-    CreditCardScheduleListComponent,
-    // InterestSavingsComponent,
+    CreditCardScheduleListComponent,    
     TimeCardComponent,
     ScheduleCardComponent,
-    CreditCardScheduleComponent, MinimumPaymentTrapSectionComponent, CreditCardDevilSectionComponent, InterestSavedSectionComponent, TimeSavedSectionComponent, CreditCardWizardComponent
+    CreditCardScheduleComponent,
+    MinimumPaymentTrapSectionComponent,
+    CreditCardDevilSectionComponent,
+    InterestSavedSectionComponent,
+    TimeSavedSectionComponent,
+    CreditCardWizardComponent,
+    ScheduleItemComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +52,7 @@ import { CreditCardWizardComponent } from './credit-card-wizard/credit-card-wiza
   exports: [
     CreditCardCalculatorComponent,
     CreditCardMinimumPaymentComponent,
-    CreditCardScheduleListComponent,    
+    CreditCardScheduleListComponent,
     TimeCardComponent
   ]
 })

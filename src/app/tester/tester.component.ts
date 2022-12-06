@@ -15,11 +15,11 @@ export class TesterComponent {
   sendGaEvent = () => {
     //this.$gaService.gtag('create', 'G-NPS0X71K2S', 'auto');
 
-    // this.$gaService.gtag('event', 'experiment_impression', {
-    //   experiment_id: 'zgjyPob-Qp2xt8gS8UMdwQ',
-    //   variant_id: 'zgjyPob-Qp2xt8gS8UMdwQ.0',
-    //   send_to: 'G-NPS0X71K2S',
-    // });
+    this.$gaService.gtag('event', 'experiment_impression', {
+      experiment_id: 'zgjyPob-Qp2xt8gS8UMdwQ',
+      variant_id: 'zgjyPob-Qp2xt8gS8UMdwQ.0',
+      send_to: 'G-NPS0X71K2S',
+    });
 
     // this.$gaService.appView('create', 'G-NPS0X71K2S', 'auto');
     // this.$gaService.set('exp','zgjyPob-Qp2xt8gS8UMdwQ.0');

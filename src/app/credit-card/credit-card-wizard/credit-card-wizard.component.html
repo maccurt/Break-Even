@@ -1,9 +1,8 @@
-<div class="container-fluid">
+<div class="container">
 
-    <div class="row mt-5 justify-content-md-center">
-
-        <div class="col-12 col-lg-3 col-xxl-3">
-
+    <!-- justify-content-md-center -->
+    <div class="row mt-5 ">
+        <div class="col-12 col-lg-3 col-xxl-4">
             <form id="cc-form"
                   [formGroup]="formGroup"
                   (submit)="submit()">
@@ -15,31 +14,36 @@
 
                     <mat-card-content class="mt-1">
 
-                        <div class="mb-3">
-                            <input type="number"
+                        <div class="mb-3"
+                             [ngClass]="{'has-error':(isInvalid(balanceControl))}">
+                            <input id="balance"
+                                   data-test-id="balance"
+                                   type="number"
                                    formControlName="balance"
+                                   [min]="1"
+                                   [max]="999999"
                                    class="form-control"
-                                   id="balance">
-                        </div>
+                                   (blur)="blur()">
 
-                        <button style="width:175px"
-                                type="submit"
-                                data-test-id="calculate"
-                                class="btn btn-outline-secondary float-end">See Results</button>
+                            <div data-test-id="balance-hint"
+                                 class="hint">required: 1 to 999999</div>
+                        </div>
 
                     </mat-card-content>
                 </mat-card>
 
                 <ng-container *ngIf="isSubmitted">
 
-                    <mat-card class="mt-4">
+                    <mat-card id="interest-rate-card"
+                              class="mt-4">
                         <mat-card-title>
                             What Is Your Interest Rate % (APR)
                         </mat-card-title>
                         <mat-card-content class="mt-1">
-
-                            <div class="mb-3">
+                            <div class="mb-3"
+                                 [ngClass]="{'has-error':(isInvalid(interestRateControl))}">
                                 <input id="interestRate"
+                                       data-test-id="interest-rate"
                                        maxlength="5"
                                        [min]="0"
                                        [max]="99"
@@ -49,12 +53,13 @@
                                        (blur)="blur()">
 
                                 <div class="hint">
-                                    The average APR% is {{interestRate}}%
+                                    required: 1 to 99. Average APR% is {{interestRate}}%
                                 </div>
                             </div>
                         </mat-card-content>
+                    </mat-card>
 
-                        <hr>
+                    <mat-card class="mt-4">
                         <mat-card-title>
                             How Is Your Minimum Payment Calculated?
                         </mat-card-title>
@@ -66,34 +71,48 @@
                                 <option *ngFor='let m of minimumPaymentTypeList'
                                         [ngValue]='m'>{{m.text}}</option>
                             </select>
-
                         </mat-card-content>
                     </mat-card>
 
-                    <!-- <mat-card class="mt-4">
+                    <mat-card class="mt-4">
                         <mat-card-title>
-                            How Is Your Minimum Payment Calculated?
+                            First Minimum Payment
                         </mat-card-title>
-                        <mat-card-content class="mt-1">
 
-                            <select id='minimum-payment-type'
-                                    formControlName="minimumPaymentType"
-                                    class='form-control '>
-                                <option *ngFor='let m of minimumPaymentTypeList'
-                                        [ngValue]='m'>{{m.text}}</option>
-                            </select>
+                        <mat-card-content>
+                            <h3>${{minimumPayment | number:'1.2-2'}}</h3>
+                            
+                            <p>
+                                your first minimum payment will be ${{minimumPayment | number:'1.2-2'}}
+                            </p>
+
+
 
                         </mat-card-content>
-                    </mat-card> -->
+                    </mat-card>
 
                 </ng-container>
 
             </form>
         </div>
 
-        <div class="col-xxl-3">
+        <div class="col-xxl-4">
             <app-credit-card-schedule *ngIf="schedule1"
                                       [schedule]="schedule1"></app-credit-card-schedule>
+        </div>
+
+        <div *ngIf="isSubmitted"
+             class="col-xxl-4">
+            <mat-card>
+                <mat-card-title>
+                    12 Periods Of Payment
+                </mat-card-title>
+
+                <mat-card-content>
+                    <app-credit-card-schedule-list [scheduleList]="scheduleListForMinPayment">
+                    </app-credit-card-schedule-list>
+                </mat-card-content>
+            </mat-card>
         </div>
 
     </div>
