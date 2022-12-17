@@ -12,14 +12,14 @@ import { ScheduleItem } from 'src/app/shared/schedule-item';
   templateUrl: './credit-card-wizard.component.html',
   styleUrls: ['./credit-card-wizard.component.scss']
 })
-export class CreditCardWizardComponent implements OnInit, OnDestroy {  
+export class CreditCardWizardComponent implements OnInit, OnDestroy {
 
   subList$: Subscription[] = [];
   interestRate: number = 15.13;
   minimumPayment: number = 0;
   isSubmitted: boolean = false;
   schedule1!: Schedule;
-  scheduleListForMinPayment!:ScheduleItem[];
+  scheduleListForMinPayment!: ScheduleItem[];
   minimumPaymentTypeList = this.paymentService.getMinimumPaymentTypeList();
 
   //form group controls
@@ -43,8 +43,8 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
     }));
 
     //Comment this out when you don't want it show everything
-    // this.balanceControl.setValue(20000);
-    // this.submit();
+     this.balanceControl.setValue(20000);
+     this.submit();
   }
 
   submit = () => {
@@ -57,9 +57,10 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
       this.schedule1 = this.paymentService
         .creditCardSchedule(balance, interestRate, minimumPaymentType.percentOfBalance!,
           0, false, minimumPaymentType.useInterest);
+      this.schedule1.title = 'Minium Payment Only Total';
       this.schedule1.paymentType = PaymentType.MinimumPaymentOnly;
 
-      this.scheduleListForMinPayment = this.schedule1.scheduleList.slice(0,12);
+      this.scheduleListForMinPayment = this.schedule1.scheduleList.slice(0, 12);
 
       this.minimumPayment = this.paymentService.determineMinimumPayment(
         0, minimumPaymentType.percentOfBalance, balance!, interestRate!, minimumPaymentType.useInterest);
