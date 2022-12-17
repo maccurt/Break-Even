@@ -20,8 +20,15 @@ a.no-style {
 p {
     // text-align: justify;
     font-size: larger;
-    line-height: 1.5rem;
+    line-height: 1.6rem;
 }
+
+p.large {
+    // text-align: justify;
+    font-size: large;
+    line-height: 1.6rem;
+}
+
 
 .position-1 {
     border: 1px dotted red;

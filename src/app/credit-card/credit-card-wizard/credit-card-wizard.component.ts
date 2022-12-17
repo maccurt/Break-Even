@@ -12,7 +12,7 @@ import { ScheduleItem } from 'src/app/shared/schedule-item';
   templateUrl: './credit-card-wizard.component.html',
   styleUrls: ['./credit-card-wizard.component.scss']
 })
-export class CreditCardWizardComponent implements OnInit, OnDestroy {
+export class CreditCardWizardComponent implements OnInit, OnDestroy {  
 
   subList$: Subscription[] = [];
   interestRate: number = 15.13;
@@ -34,13 +34,17 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder,
     public help: HelpService,
-    private paymentService: PaymentService,) {
+    private paymentService: PaymentService) {
   }
   ngOnInit(): void {
 
     this.subList$.push(this.minimumPaymentTypeControl.valueChanges.subscribe(() => {
       this.submit();
     }));
+
+    //Comment this out when you don't want it show everything
+    // this.balanceControl.setValue(20000);
+    // this.submit();
   }
 
   submit = () => {

@@ -1,5 +1,5 @@
 <div class="cc-schedule">
-    <mat-card  data-test-id="credit-card-card">
+    <mat-card data-test-id="credit-card-card">
         <mat-card-title class="title-responsive"
                         data-test-id="schedule-title">
             <fa-icon [icon]="paymentTypeIcon">
@@ -11,21 +11,22 @@
                    style="margin-bottom:7px"
                    class="table table-striped">
                 <tbody>
-                    <tr>
-                        <td>
-                            Principal
-                        </td>
-                        <td data-test-id="principal">
-                            {{schedule.balanceStart |number:'1.2-2' }}
-                        </td>
-                    </tr>
 
-                    <tr class=" border-2">
+                    <tr>
                         <td>
                             Interest
                         </td>
                         <td data-test-id="interest">
                             {{schedule.interest |number:'1.2-2' }}
+                        </td>
+                    </tr>
+
+                    <tr class="border-2">
+                        <td>
+                            Principal
+                        </td>
+                        <td data-test-id="principal">
+                            {{schedule.balanceStart |number:'1.2-2' }}
                         </td>
                     </tr>
 
@@ -42,7 +43,7 @@
             </table>
         </mat-card-content>
     </mat-card>
-    <mat-card  class="chart-container">
+    <mat-card class="chart-container">
 
         <app-basic-pie-chart [chart]="chart"> </app-basic-pie-chart>
 

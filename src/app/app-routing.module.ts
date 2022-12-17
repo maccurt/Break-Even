@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'unit-profit', component: BreakEvenComponent },
   { path: 'credit-card', component: CreditCardCalculatorComponent },
   { path: 'credit-card-wizard', component: CreditCardWizardComponent },
+  { path: 'credit-card-devil', component: CreditCardWizardComponent },
   { path: 'the-7-habits', component: SevenHabitsComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
