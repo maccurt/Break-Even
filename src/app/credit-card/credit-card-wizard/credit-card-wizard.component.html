@@ -1,7 +1,8 @@
 <div class="container">
 
-    <div class="row mt-5 ">
-        <div class="col-12 col-lg-3 col-xxl-4">
+    <div class="row  justify-content-sm-center   justify-content-lg-start  mt-5">
+
+        <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 col-xxl-4">
 
             <form id="cc-form"
                   [formGroup]="formGroup"
@@ -81,90 +82,79 @@
 
         </div>
 
-        <div class="col-xxl-4">
-            <app-credit-card-schedule *ngIf="schedule1"
-                                      [schedule]="schedule1"></app-credit-card-schedule>
-        </div>
-
         <div *ngIf="isSubmitted"
-             class="col-xxl-4">
+             class="col-12  col-lg-7 col-xl-8 col-xxl-8">
 
-            <div class="row">
-                <!-- <div class="col-12">
-                    <mat-card class="mt-4">
-                        <mat-card-title>
-                            First Minimum Payment
-                        </mat-card-title>
+            <mat-tab-group dynamicHeight>
+                <mat-tab label="Summary">
 
-                        <mat-card-content>
-                            <h3>${{minimumPayment | number:'1.2-2'}}</h3>
+                    <div class="row">
 
-                            <p>
-                                your first minimum payment will be ${{minimumPayment | number:'1.2-2'}}
-                            </p>
+                        <div class="col-12">
+                            <mat-card>
+                                <mat-card-content>
 
-                        </mat-card-content>
-                    </mat-card>
-                </div> -->
+                                    <div class="row">
 
-                <div class="col-12">
+                                        <div class="col-12 col-xxl-8">
 
-                    <mat-card>
-                        <mat-card-title style="color:red;">
-                            Credit Cards Are The Devil
-                        </mat-card-title>
-                        <mat-card-content>
+                                            <div class="alert alert-danger"
+                                                 role="alert">
+                                                <h3>
+                                                    ${{schedule1.balanceStart |number:'1.2-2' }}
+                                                    will turn into ${{schedule1.paymentTotal |number:'1.2-2' }}.
+                                                </h3>
+                                            </div>
 
-                            <div class="row">
+                                            <div class="alert alert-danger"
+                                                 role="alert">
+                                                <h3>
+                                                    You Will Pay An Extra ${{schedule1.interest |number:'1.2-2' }} In
+                                                    Interest.
+                                                </h3>
+                                            </div>
 
-                                <div class="col-6">
-                                    <ul>
+                                            <div class="alert alert-danger"
+                                                 role="alert">
+                                                <h3>
+                                                    It Will Take You {{schedule1.periodsText}} To Pay Off The Credit
+                                                    Card.
+                                                </h3>
+                                            </div>
 
-                                        <li>ddodo</li>
-                                        <li>ddodo</li>
-                                        <li>ddodo</li>
-                                        <li>ddodo</li>
+                                        </div>
 
-                                    </ul>
+                                        <div  class="col-12 col-xxl-4  d-flex justify-content-sm-center  justify-content-end">
+                                            <img height="275"
+                                                 width="275"
+                                                 src="../../../assets/images/credit-card-devil/Credit-Card-Devil-400.gif">
+                                        </div>
+                                    </div>
 
-                                </div>
-                                <div class="col-6 d-flex align-items-center">
-                                    <img height="150"
-                                         width="150"
-                                         src="../../../assets/images/credit-card-devil/Credit-Card-Devil-red-2x2.gif">
-                                </div>
+                                </mat-card-content>
+                            </mat-card>
+                        </div>
+                    </div>
+                </mat-tab>
 
-                            </div>
+                <mat-tab label="Details">
+                    <div class="row">
+                        <div class="col-xxl-6">
+                            <app-credit-card-schedule *ngIf="schedule1"
+                                                      [schedule]="schedule1"></app-credit-card-schedule>
+                        </div>
+                    </div>
 
+                </mat-tab>
+                <mat-tab label="See My Schedule">
 
-
-
-                        </mat-card-content>
-                    </mat-card>
-
-
-                </div>
-
-            </div>
-
-
-
-        </div>
-
-
-        <!-- <div *ngIf="isSubmitted"
-             class="col-xxl-4">
-            <mat-card>
-                <mat-card-title>
-                    12 Periods Of Payment
-                </mat-card-title>
-
-                <mat-card-content>
-                    <app-credit-card-schedule-list [scheduleList]="scheduleListForMinPayment">
+                    <app-credit-card-schedule-list [scheduleList]="schedule1.scheduleList">
                     </app-credit-card-schedule-list>
-                </mat-card-content>
-            </mat-card>
-        </div> -->
+
+                </mat-tab>
+            </mat-tab-group>
+
+        </div>        
 
     </div>
 
