@@ -1,3 +1,4 @@
+import { IconService } from 'src/app/icon/icon.service';
 import { Schedule } from './../../shared/schedule.class';
 import { HelpService } from './../../help/help.service';
 import { AbstractControl, FormBuilder, Validators, FormControl } from '@angular/forms';
@@ -34,6 +35,7 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder,
     public help: HelpService,
+    public icon:IconService,
     private paymentService: PaymentService) {
   }
   ngOnInit(): void {
@@ -43,8 +45,8 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
     }));
 
     //Comment this out when you don't want it show everything
-     this.balanceControl.setValue(20000);
-     this.submit();
+    //this.balanceControl.setValue(20000);
+    //this.submit();
   }
 
   submit = () => {

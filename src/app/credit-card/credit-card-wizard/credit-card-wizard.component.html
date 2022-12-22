@@ -10,7 +10,14 @@
 
                 <mat-card>
                     <mat-card-title class="form-title">
-                        What Is The Balance On Your Credit Card?
+
+                        <div data-test-id="title"
+                             class="title-responsive">
+                            <fa-icon [icon]="help.creditCardBalance1.icon"
+                                     class={{help.creditCardBalance1.iconClass}}>
+                            </fa-icon>
+                            What Is The Balance On Your Credit Card?
+                        </div>
                         <hr>
                     </mat-card-title>
 
@@ -39,7 +46,13 @@
                     <mat-card id="interest-rate-card"
                               class="mt-4">
                         <mat-card-title>
-                            What Is Your Interest Rate % (APR)?
+                            <div class="title-responsive">
+                                <fa-icon [icon]="help.interestRate.icon"
+                                         class={{help.interestRate.iconClass}}>
+                                </fa-icon>
+                                What Is Your Interest Rate % (APR)?
+                            </div>
+
                         </mat-card-title>
                         <mat-card-content class="mt-1">
                             <div class="mb-3"
@@ -63,7 +76,13 @@
 
                     <mat-card class="mt-4">
                         <mat-card-title>
-                            How Is Your Minimum Payment Calculated?
+                            <div class="title-responsive">
+                                <fa-icon [icon]="help.minPaymentCalculation.icon"
+                                         class={{help.minPaymentCalculation.iconClass}}>
+                                </fa-icon>
+                                How Is Your Minimum Payment Calculated?
+                            </div>
+                            
                         </mat-card-title>
                         <mat-card-content class="mt-1">
 
@@ -124,7 +143,8 @@
 
                                         </div>
 
-                                        <div  class="col-12 col-xxl-4  d-flex justify-content-sm-center  justify-content-end">
+                                        <div
+                                             class="col-12 col-xxl-4  d-flex justify-content-sm-center  justify-content-end">
                                             <img height="275"
                                                  width="275"
                                                  src="../../../assets/images/credit-card-devil/Credit-Card-Devil-400.gif">
@@ -154,7 +174,7 @@
                 </mat-tab>
             </mat-tab-group>
 
-        </div>        
+        </div>
 
     </div>
 
