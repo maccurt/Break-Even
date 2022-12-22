@@ -23,8 +23,7 @@
 
                     <mat-card-content class="mt-1">
 
-                        <div class="mb-3"
-                             [ngClass]="{'has-error':(isInvalid(balanceControl))}">
+                        <div [ngClass]="{'has-error':(isInvalid(balanceControl))}">
                             <input id="balance"
                                    data-test-id="balance"
                                    type="number"
@@ -55,8 +54,7 @@
 
                         </mat-card-title>
                         <mat-card-content class="mt-1">
-                            <div class="mb-3"
-                                 [ngClass]="{'has-error':(isInvalid(interestRateControl))}">
+                            <div [ngClass]="{'has-error':(isInvalid(interestRateControl))}">
                                 <input id="interestRate"
                                        data-test-id="interest-rate"
                                        maxlength="5"
@@ -82,7 +80,7 @@
                                 </fa-icon>
                                 How Is Your Minimum Payment Calculated?
                             </div>
-                            
+
                         </mat-card-title>
                         <mat-card-content class="mt-1">
 
