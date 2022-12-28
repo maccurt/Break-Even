@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { ScheduleCompare } from 'src/app/shared/schedule-compare.type';
 import { IconService } from 'src/app/icon/icon.service';
 import { Schedule } from './../../shared/schedule.class';
@@ -43,7 +44,8 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder,
     public help: HelpService,
     public icon: IconService,
-    private paymentService: PaymentService) {
+    private paymentService: PaymentService,
+    private route: ActivatedRoute) {
   }
   ngOnInit(): void {
 
@@ -51,9 +53,13 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
       this.submit();
     }));
 
-    //Comment this out when you don't want it show everything
-    //this.balanceControl.setValue(20000);
-    //this.submit();
+    this.route.queryParamMap.subscribe((parms) => {
+      if (parms.get('demo')) {
+        this.balanceControl.setValue(20000);
+        this.submit();
+      }
+    });
+
   }
 
   submit = () => {

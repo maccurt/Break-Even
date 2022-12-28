@@ -121,13 +121,15 @@
                                            (blur)="blur()">
                                 </div>
 
-                                <span data-test-id="fix-pay-is-min"                                    
+                                <span data-test-id="fix-pay-is-min"
                                       class="hint  "
                                       *ngIf="fixedPaymentIsMinPayment && fixedPaymentControl.valid ">Defaulted To First
                                     Mininum Payment</span>
                                 <span class="hint"
                                       *ngIf="fixedPaymentControl.invalid">
-                                    <a class="click-me" title="Click me to set to first minimum payment"  data-test-id="set-fix-payment"
+                                    <a class="click-me"
+                                       title="Click me to set to first minimum payment"
+                                       data-test-id="set-fix-payment"
                                        (click)="setFixPayment()">Set To First Minimum Payment: {{this.minimumPayment
                                         |number:'1.2-2'}}</a>
                                 </span>
@@ -154,121 +156,113 @@
                     <div class="row">
 
                         <div class="col-12">
-                            <mat-card>
-                                <mat-card-content>
 
-                                    <div class="row">
+                            <div class="row">
 
-                                        <div class="col-12 col-xxl-6">
-                                            <mat-card>
+                                <div class="col-12 col-xxl-6 mb-sm-4">
+                                    <mat-card>
 
-                                                <mat-card-title>
-                                                    Minimum Payment Only
-                                                    <hr>
-                                                </mat-card-title>
+                                        <mat-card-title>
+                                            Minimum Payment Only
+                                            <hr>
+                                        </mat-card-title>
 
-                                                <mat-card-content class="mt-2">
+                                        <mat-card-content class="mt-2">
 
-                                                    <div class="alert alert-danger"
-                                                         role="alert">
-                                                        <h4>
-                                                            ${{schedule1.balanceStart |number:'1.2-2' }}
-                                                            will turn into ${{schedule1.paymentTotal |number:'1.2-2' }}.
-                                                        </h4>
-                                                    </div>
-
-                                                    <div class="alert alert-danger"
-                                                         role="alert">
-                                                        <h4>
-                                                            You Will Pay An Extra ${{schedule1.interest |number:'1.2-2'
-                                                            }}
-                                                            In
-                                                            Interest.
-                                                        </h4>
-                                                    </div>
-
-                                                    <div class="alert alert-danger"
-                                                         role="alert">
-                                                        <h4>
-                                                            It Will Take You {{schedule1.periodsText}} To Pay Off The
-                                                            Credit
-                                                            Card.
-                                                        </h4>
-                                                    </div>
-
-                                                </mat-card-content>
-
-                                            </mat-card>
-
-                                            <div class="d-flex justify-content-sm-center  justify-content-end mt-3">
-
-                                                <img height="275"
-                                                     width="275"
-                                                     src="../../../assets/images/credit-card-devil/Credit-Card-Devil-400.gif">
+                                            <div class="alert alert-danger"
+                                                 role="alert">
+                                                <h4>
+                                                    ${{schedule1.balanceStart |number:'1.2-2' }}
+                                                    will turn into ${{schedule1.paymentTotal |number:'1.2-2' }}.
+                                                </h4>
                                             </div>
 
-                                        </div>
+                                            <div class="alert alert-danger"
+                                                 role="alert">
+                                                <h4>
+                                                    You Will Pay An Extra ${{schedule1.interest |number:'1.2-2'
+                                                    }}
+                                                    In
+                                                    Interest.
+                                                </h4>
+                                            </div>
 
-                                        <div class="col-12 col-xxl-6">
+                                            <div class="alert alert-danger"
+                                                 role="alert">
+                                                <h4>
+                                                    It Will Take You {{schedule1.periodsText}} To Pay Off The
+                                                    Credit
+                                                    Card.
+                                                </h4>
+                                            </div>
 
-                                            <mat-card>
+                                        </mat-card-content>
 
-                                                <mat-card-title>
-                                                    Fixed Monthly Payment Of
-                                                    ${{fixedPaymentControl.value |number:'1.2-2' }}
-                                                    <hr>
-                                                </mat-card-title>
+                                    </mat-card>
 
-                                                <mat-card-content class="mt-2">
+                                </div>
 
-                                                    <div class="alert alert-success"
-                                                         role="alert">
-                                                        <h4>
-                                                            ${{schedule2.balanceStart |number:'1.2-2' }}
-                                                            will turn into ${{schedule2.paymentTotal |number:'1.2-2' }}.
-                                                        </h4>
-                                                    </div>
+                                <div class="col-12 col-xxl-6">
 
-                                                    <div class="alert alert-success"
-                                                         role="alert">
-                                                        <h4>
-                                                            You Will Pay An Extra ${{schedule2.interest |number:'1.2-2'
-                                                            }}
-                                                            In
-                                                            Interest.
-                                                        </h4>
-                                                    </div>
+                                    <mat-card>
 
-                                                    <div class="alert alert-success"
-                                                         role="alert">
+                                        <mat-card-title>
+                                            Fixed Monthly Payment Of
+                                            ${{fixedPaymentControl.value |number:'1.2-2' }}
+                                            <hr>
+                                        </mat-card-title>
 
-                                                        <h4>
-                                                            It Will Take You {{schedule2.periodsText}} To Pay Off The
-                                                            Credit
-                                                            Card.
-                                                        </h4>
-                                                    </div>
+                                        <mat-card-content class="mt-2">
 
-                                                </mat-card-content>
-                                            </mat-card>
+                                            <div class="alert alert-success"
+                                                 role="alert">
+                                                <h4>
+                                                    ${{schedule2.balanceStart |number:'1.2-2' }}
+                                                    will turn into ${{schedule2.paymentTotal |number:'1.2-2' }}.
+                                                </h4>
+                                            </div>
 
-                                        </div>
+                                            <div class="alert alert-success"
+                                                 role="alert">
+                                                <h4>
+                                                    You Will Pay An Extra ${{schedule2.interest |number:'1.2-2'
+                                                    }}
+                                                    In
+                                                    Interest.
+                                                </h4>
+                                            </div>
 
-                                        <!-- <div
-                                             class="col-12 col-xxl-4  d-flex justify-content-sm-center  justify-content-end">
+                                            <div class="alert alert-success"
+                                                 role="alert">
 
-                                            
+                                                <h4>
+                                                    It Will Take You {{schedule2.periodsText}} To Pay Off The
+                                                    Credit
+                                                    Card.
+                                                </h4>
+                                            </div>
 
-                                            <img height="275"
-                                                 width="275"
-                                                 src="../../../assets/images/credit-card-devil/Credit-Card-Devil-400.gif">
-                                        </div> -->
-                                    </div>
+                                        </mat-card-content>
+                                    </mat-card>
 
-                                </mat-card-content>
-                            </mat-card>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+
+                    <div class="row">
+
+                        <div class="">
+                            <div class="d-flex justify-content-sm-center  justify-content-end mt-3">
+
+                                <img height="275"
+                                     width="275"
+                                     src="../../../assets/images/credit-card-devil/Credit-Card-Devil-400.gif">
+                            </div>
+                        </div>
+                    </div>
+
                 </mat-tab>
 
                 <mat-tab label="Details">
@@ -296,5 +290,7 @@
         </div>
 
     </div>
+
+
 
 </div>
