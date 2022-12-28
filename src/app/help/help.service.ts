@@ -93,6 +93,9 @@ export class HelpService {
   creditCardBalance1 = new Help('What Is The Balance On Your Credit Card?',
     'What Is The Balance On Your Credit Card?','', 'cc-balance');
     
+  fixedPayment = new Help('What Fixed Payment Can You Make Monthly?',
+    'What Fixed Payment Can You Make Monthly?','', 'cc-fixed-payment');
+    
   interestRate = new Help('What Is Your Interest Rate % (APR)?',
     'What Is Your Interest Rate % (APR)?','', 'cc-interest-rate');
     
@@ -186,6 +189,7 @@ export class HelpService {
 
     this.creditCardBalance1.icon = icons.creditCard;
     this.interestRate.icon = icons.interestRate;
+    this.fixedPayment.icon = icons.commentDollar;
 
     this.minPaymentCalculation.icon = icons.calculator;
 

@@ -16,7 +16,6 @@ describe('credit card wizard validation', () => {
             cy.getDataTestId('calculate').click();
         });
         checkValidation('interest-rate');
-
     });
 
 });
