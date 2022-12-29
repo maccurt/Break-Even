@@ -1,8 +1,8 @@
 <div class="container">
 
-    <div class="row  justify-content-sm-center   justify-content-lg-start  mt-5">
+    <div class="row  justify-content-sm-center justify-content-lg-start  mt-5">
 
-        <div class="col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 col-xxl-4">
+        <div class="col-12 col-md-7 col-lg-5 col-xl-4 col-xxl-4">
 
             <form id="cc-form"
                   [formGroup]="formGroup"
@@ -11,8 +11,7 @@
                 <mat-card>
                     <mat-card-title class="form-title">
 
-                        <div data-test-id="title"
-                             class="title-responsive">
+                        <div data-test-id="title">
                             <fa-icon [icon]="help.creditCardBalance1.icon"
                                      class={{help.creditCardBalance1.iconClass}}>
                             </fa-icon>
@@ -74,7 +73,7 @@
 
                     <mat-card class="mt-4">
                         <mat-card-title>
-                            <div class="title-responsive">
+                            <div>
                                 <fa-icon [icon]="help.minPaymentCalculation.icon"
                                          class={{help.minPaymentCalculation.iconClass}}>
                                 </fa-icon>
@@ -96,8 +95,7 @@
                     <mat-card class="mt-4">
                         <mat-card-title class="form-title">
 
-                            <div data-test-id="title"
-                                 class="title-responsive">
+                            <div data-test-id="title">
                                 <fa-icon [icon]="help.fixedPayment.icon"
                                          class={{help.fixedPayment.iconClass}}>
                                 </fa-icon>
@@ -148,9 +146,10 @@
         </div>
 
         <div *ngIf="isSubmitted"
-             class="col-12  col-lg-7 col-xl-8 col-xxl-8">
+             class="col-12 col-lg-7 col-xl-8 col-xxl-8">
 
-            <mat-tab-group dynamicHeight>
+            <mat-tab-group [selectedIndex]="tabIndex"
+                           dynamicHeight>
                 <mat-tab label="Summary">
 
                     <div class="row">
@@ -159,10 +158,10 @@
 
                             <div class="row">
 
-                                <div class="col-12 col-xxl-6 mb-sm-4">
+                                <div class="col-12 col-md-6 col-xxl-6 mb-sm-4">
                                     <mat-card>
 
-                                        <mat-card-title>
+                                        <mat-card-title class="">
                                             Minimum Payment Only
                                             <hr>
                                         </mat-card-title>
@@ -199,16 +198,15 @@
                                         </mat-card-content>
 
                                     </mat-card>
-
                                 </div>
 
-                                <div class="col-12 col-xxl-6">
+                                <div class="col-12 col-md-6 col-xxl-6">
 
                                     <mat-card>
 
                                         <mat-card-title>
-                                            Fixed Monthly Payment Of
-                                            ${{fixedPaymentControl.value |number:'1.2-2' }}
+                                            
+                                            ${{fixedPaymentControl.value |number:'1.2-2' }} Fixed Payment
                                             <hr>
                                         </mat-card-title>
 
@@ -267,12 +265,12 @@
 
                 <mat-tab label="Details">
                     <div class="row">
-                        <div class="col-12 col-xl-8 col-xxl-6">
+                        <div class="col-12 col-md-6 col-xl-6 col-xxl-6">
                             <app-credit-card-schedule *ngIf="schedule1"
                                                       [schedule]="schedule1"></app-credit-card-schedule>
                         </div>
 
-                        <div class="col-12 col-xl-8 col-xxl-6">
+                        <div class="col-12 col-md-6 col-xl-6 col-xxl-6">
                             <app-credit-card-schedule *ngIf="schedule2"
                                                       [schedule]="schedule2"></app-credit-card-schedule>
                         </div>

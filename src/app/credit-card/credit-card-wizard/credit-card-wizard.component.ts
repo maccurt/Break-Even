@@ -17,6 +17,7 @@ import { ScheduleItem } from 'src/app/shared/schedule-item';
 })
 export class CreditCardWizardComponent implements OnInit, OnDestroy {
 
+  tabIndex: number = 0;
   subList$: Subscription[] = [];
   interestRate: number = 15.13;
   minimumPayment: number = 0;
@@ -55,6 +56,13 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
 
     this.route.queryParamMap.subscribe((parms) => {
       if (parms.get('demo')) {
+
+        let tab = Number(parms.get('tab'));
+
+        if (tab) {
+          this.tabIndex = tab;
+        }
+
         this.balanceControl.setValue(20000);
         this.submit();
       }
@@ -84,7 +92,7 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
       this.fixedPaymentControl.addValidators(Validators.min(this.minimumPayment));
 
       this.fixedPaymentIsMinPayment = false;
-      if (!this.fixedPaymentControl.value || this.fixedPaymentControl.value! <= 0) {
+      if (!this.fixedPaymentControl.value || this.fixedPaymentControl.value! <= 0 || this.fixedPaymentControl.value < this.minimumPayment) {
         this.fixedPaymentControl.setValue(this.minimumPayment);
       };
 
