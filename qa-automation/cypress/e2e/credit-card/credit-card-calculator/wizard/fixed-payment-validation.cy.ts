@@ -48,33 +48,37 @@ describe('credit card wizard validation', () => {
                 cy.getDataTestId('fixed-payment').clear().type('226.07').blur();
             });
 
-            it('set to minimum payment label should NOT exist', () => {
-                cy.getDataTestId('fix-pay-is-min').should('not.exist');
-            });
-
-            it('set fixed payment link should exist', () => {
-                cy.getDataTestId('set-fix-payment').should('exist');
-            });
-        });
-
-        describe('click set fixed payment link', () => {
-
-            before(() => {
-                cy.getDataTestId('set-fix-payment').click();
-            });
-
-            it('set to minimum payment label should exist', () => {
-                cy.getDataTestId('fix-pay-is-min').should('exist');
-            });
-
-            it('set fixed payment link should NOT exist', () => {
-                cy.getDataTestId('set-fix-payment').should('not.exist');
-            });
-
-            it('fixed payment should have value 226.08', () => {
+            it('fixed payment should be set to miniium which is a value of 226.08', () => {
                 cy.getDataTestId('fixed-payment').should('have.value', '226.08');
             });
+
+            // it('set to minimum payment label should NOT exist', () => {
+            //     cy.getDataTestId('fix-pay-is-min').should('not.exist');
+            // });
+
+            // it('set fixed payment link should exist', () => {
+            //     cy.getDataTestId('set-fix-payment').should('exist');
+            // });
         });
+
+        // describe('click set fixed payment link', () => {
+
+        //     before(() => {
+        //         cy.getDataTestId('set-fix-payment').click();
+        //     });
+
+        //     it('set to minimum payment label should exist', () => {
+        //         cy.getDataTestId('fix-pay-is-min').should('exist');
+        //     });
+
+        //     it('set fixed payment link should NOT exist', () => {
+        //         cy.getDataTestId('set-fix-payment').should('not.exist');
+        //     });
+
+        //     it('fixed payment should have value 226.08', () => {
+        //         cy.getDataTestId('fixed-payment').should('have.value', '226.08');
+        //     });
+        // });
 
         describe('change balance to 11,000 to force invalid form ', () => {
 
@@ -82,24 +86,28 @@ describe('credit card wizard validation', () => {
                 cy.getDataTestId('balance').clear().type('11000').blur();
             });
 
-            it('set fixed payment link should exist', () => {
-                cy.getDataTestId('set-fix-payment').should('exist');
+            it('fixed payment should be set to minimum which is a value of 248.69', () => {
+                cy.getDataTestId('fixed-payment').should('have.value', '248.69');
             });
+
+            // it('set fixed payment link should exist', () => {
+            //     cy.getDataTestId('set-fix-payment').should('exist');
+            // });
         });
 
-        describe('change fixed payment to 248.69 to fix validation erros', () => {
-            before(() => {
-                cy.getDataTestId('fixed-payment').clear().type('248.69').blur();
-            });
+        // describe('change fixed payment to 248.69 to fix validation erros', () => {
+        //     before(() => {
+        //         cy.getDataTestId('fixed-payment').clear().type('248.69').blur();
+        //     });
 
-            it('set fixed payment link should NOT exist', () => {
-                cy.getDataTestId('set-fix-payment').should('not.exist');
-            });
+        //     it('set fixed payment link should NOT exist', () => {
+        //         cy.getDataTestId('set-fix-payment').should('not.exist');
+        //     });
 
-            it('set to minimum payment label should exist', () => {
-                cy.getDataTestId('fix-pay-is-min').should('exist');
-            });
-        });
+        //     it('set to minimum payment label should exist', () => {
+        //         cy.getDataTestId('fix-pay-is-min').should('exist');
+        //     });
+        // });
 
         describe('change interest rate to 16% to break validation', () => {
 
@@ -107,41 +115,44 @@ describe('credit card wizard validation', () => {
                 cy.getDataTestId('interest-rate').clear().type('16').blur();
             });
 
-            it('set fixed payment link should exist', () => {
-                cy.getDataTestId('set-fix-payment').should('exist');
-            });
-        });
-
-        describe('change interest rate to 14% to FIX validation', () => {
-
-            before(() => {
-                cy.getDataTestId('interest-rate').clear().type('14').blur();
+            it('fixed payment should be set to minimum which is a value of 256.67', () => {
+                cy.getDataTestId('fixed-payment').should('have.value', '256.67');
             });
 
-            it('set fixed payment link NOT should exist', () => {
-                cy.getDataTestId('set-fix-payment').should('not.exist');
-            });
-
-            it('set to minimum payment label should exist', () => {
-                cy.getDataTestId('fix-pay-is-min').should('not.exist');
-            });
-        });
-
-        describe('change interest rate to 20% to TO BREAK validation', () => {
-
-            before(() => {
-                cy.getDataTestId('interest-rate').clear().type('20').blur();
-            });
-
-            // it('set fixed payment link NOT should exist', () => {
-            //     cy.getDataTestId('set-fix-payment').should('not.exist');
+            // it('set fixed payment link should exist', () => {
+            //     cy.getDataTestId('set-fix-payment').should('exist');
             // });
-
-            it('set to minimum payment label should exist', () => {
-                cy.getDataTestId('fix-pay-is-min').should('not.exist');
-            });
         });
 
+        // describe('change interest rate to 14% to FIX validation', () => {
+
+        //     before(() => {
+        //         cy.getDataTestId('interest-rate').clear().type('14').blur();
+        //     });
+
+        //     it('set fixed payment link NOT should exist', () => {
+        //         cy.getDataTestId('set-fix-payment').should('not.exist');
+        //     });
+
+        //     it('set to minimum payment label should exist', () => {
+        //         cy.getDataTestId('fix-pay-is-min').should('not.exist');
+        //     });
+        // });
+
+        // describe('change interest rate to 20% to TO BREAK validation', () => {
+
+        //     before(() => {
+        //         cy.getDataTestId('interest-rate').clear().type('20').blur();
+        //     });
+
+        //     // it('set fixed payment link NOT should exist', () => {
+        //     //     cy.getDataTestId('set-fix-payment').should('not.exist');
+        //     // });
+
+        //     it('set to minimum payment label should exist', () => {
+        //         cy.getDataTestId('fix-pay-is-min').should('not.exist');
+        //     });
+        // });
     });
 
 });
