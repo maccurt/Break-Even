@@ -204,7 +204,7 @@
 
                                     <mat-card>
 
-                                        <mat-card-title>                                            
+                                        <mat-card-title>
                                             ${{schedule2.payment |number:'1.2-2' }} Fixed Payment
                                             <hr>
                                         </mat-card-title>
@@ -277,22 +277,25 @@
 
                 </mat-tab>
                 <mat-tab label="Minimum Payment Schedule">
-                    <app-credit-card-schedule-list [scheduleList]="schedule1.scheduleList">
-                    </app-credit-card-schedule-list>
+                    <div class="row">
+                        <div class="col-9">
+                            <app-credit-card-schedule-list [scheduleList]="schedule1.scheduleList">
+                            </app-credit-card-schedule-list>
+                        </div>
+                    </div>
                 </mat-tab>
 
                 <mat-tab label="Fixed Payment Schedule">
 
-                    <app-credit-card-schedule-list [scheduleList]="schedule2.scheduleList">
-                    </app-credit-card-schedule-list>
+                    <div class="row">
+                        <div class="col-9">
+                            <app-credit-card-schedule-list [scheduleList]="schedule2.scheduleList">
+                            </app-credit-card-schedule-list>
+                        </div>
+                    </div>
 
                 </mat-tab>
             </mat-tab-group>
-
         </div>
-
     </div>
-
-
-
 </div>
