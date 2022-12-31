@@ -2,6 +2,7 @@ import { IconDefinition } from '@fortawesome/free-regular-svg-icons';
 import { IconService } from './../icon/icon.service';
 import { Injectable } from '@angular/core';
 import { Help } from './Help';
+import { icon } from '@fortawesome/fontawesome-svg-core';
 
 const loremIpsum = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero consequuntur esse animi tenetur, iure voluptates.  ';
 const totalPrinicpalAndInterest: string =
@@ -89,6 +90,18 @@ export class HelpService {
   creditCardBalance = new Help('Balance',
     'The balance you owe on your credit card', '');
 
+  creditCardBalance1 = new Help('What Is The Balance On Your Credit Card?',
+    'What Is The Balance On Your Credit Card?','', 'cc-balance');
+    
+  fixedPayment = new Help('What Fixed Payment Can You Make Monthly?',
+    'What Fixed Payment Can You Make Monthly?','', 'cc-fixed-payment');
+    
+  interestRate = new Help('What Is Your Interest Rate % (APR)?',
+    'What Is Your Interest Rate % (APR)?','', 'cc-interest-rate');
+    
+  minPaymentCalculation = new Help('How Is Your Minimum Payment Calculated?',
+    'How Is Your Minimum Payment Calculated?','', 'cc-min-pay-calc');    
+
   creditCardMinPayInterest = new Help('Minimum Payment Interest',
     'How much interest you will occur', '', 'danger-icon');
 
@@ -173,6 +186,12 @@ export class HelpService {
     this.creditCardInterestRate.hint = "Find your interest rate on your credit card bill.";
     this.creditCardCalculatorInstruction1.icon = IconService.creditCardInstruction1;
     this.creditCardLinkButton.icon = icons.creditCard;
+
+    this.creditCardBalance1.icon = icons.creditCard;
+    this.interestRate.icon = icons.interestRate;
+    this.fixedPayment.icon = icons.commentDollar;
+
+    this.minPaymentCalculation.icon = icons.calculator;
 
   }
 }

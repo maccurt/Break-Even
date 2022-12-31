@@ -1,0 +1,35 @@
+<table class="table table-striped sum-table">
+    <tbody>
+        <tr>
+            <td slot="width:45%">Interest</td>
+            <td style="width:35%">
+                {{item.interest | number:'1.2-2'}}
+            </td>
+            <td style="width:15%">
+                <span class="percent">{{item.interestPercentOfPayment}}%</span>
+            </td>
+        </tr>
+        <tr class="border-2">
+            <td>Principal</td>
+            <td>
+                {{item.principal | number:'1.2-2'}}
+            </td>
+            <td><span class="percent"> {{item.principalPercentOfPayment}}%</span></td>
+        </tr>
+
+        <tr class="total ">
+            <td>Payment</td>
+            <td>${{item.payment | number:'1.2-2'}}</td>
+            <td></td>
+
+        </tr>
+    </tbody>
+</table>
+
+<hr>
+<p style="font-size:medium">
+    Your first payment will be <span style="font-weight:550;">${{item.payment | number:'1.2-2'}}</span> and it will cost you <b>${{item.interest |
+        number:'1.2-2'}}</b> in interest. Which is <b>{{item.interestPercentOfPayment}}%</b> of your payment. Only
+    <b>${{item.principal | number:'1.2-2'}}</b> went towards the debt.
+
+</p>

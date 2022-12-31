@@ -4,7 +4,7 @@
 
         <div class="col-12 offset-md-1 col-md-10 offset-lg-0  col-lg-5 col-xl-4 col-xxl-3 mb-5 ps-4">
 
-            <mat-card appearance="outlined">
+            <mat-card>
                 <mat-card-content data-test-id="credit-card-calculator">
                     <div class="form-wrapper">
                         <form ga-id="credit-card-form"
@@ -147,46 +147,6 @@
                                           class="error "> {{fixedPaymentError}}</span>
                                 </div>
                             </div>
-
-                            <!-- <div class="mb-3">
-                                <label id="payment-type-label"
-                                       for="payment-type">What Type Of Montly Payment Can You Make? <fa-icon
-                                             class="label-icon"
-                                             [icon]="help.minimumPaymentCalculation.icon">
-                                        matTooltipClass="tool-tip-help"
-                                        matTooltip="{{help.minimumPaymentCalculation.defintion}}">
-                                    </fa-icon>
-                                </label>
-                                <select data-test-id="payment-type"
-                                        style="margin-top:4px;"
-                                        id='payment-type'
-                                        formControlName="paymentType"
-                                        class='form-control form-control-sm'>
-                                    <option *ngFor='let m of paymentTypeList'
-                                            [ngValue]='m.value'>{{m.text}}</option>
-                                </select>
-                                <div class='input-error'>                          
-                                </div>
-                            </div>
-
-                            <div id='payment-input-container'
-                                 style="height: 81px;"
-                                 [style.visibility]="showPaymentInput ? 'visible':'hidden'">
-
-                                <app-form-input *ngIf="isExtraPaymentType"
-                                                name='extraPayment'
-                                                [showErrors]=showErrors
-                                                [onBlur]="calculatePayment"
-                                                [help]="help.creditCardBalance"></app-form-input>
-
-                                <app-form-input *ngIf="isFixedPaymentType"
-                                                name='fixedPayment'
-                                                [showErrors]=showErrors
-                                                [onBlur]="calculatePayment"
-                                                [help]="help.creditCardBalance"></app-form-input>
-                            </div> -->
-
-                            <!-- <hr> -->
 
                             <div class="row">
                                 <div class="col-12">

@@ -10,7 +10,7 @@
 @import "./styles/section.styles.scss";
 @import "./styles/element-responsive.styles.scss";
 @import "./styles/material-override.styles.scss";
-
+@import './styles/links.scss';
 a.no-style {
     text-decoration: underline;
     color: black;
@@ -20,8 +20,15 @@ a.no-style {
 p {
     // text-align: justify;
     font-size: larger;
-    line-height: 1.5rem;
+    line-height: 1.6rem;
 }
+
+p.large {
+    // text-align: justify;
+    font-size: large;
+    line-height: 1.6rem;
+}
+
 
 .position-1 {
     border: 1px dotted red;
@@ -76,7 +83,7 @@ mat-tab-header {
 
 .hint {
     color: black;
-    font-style: oblique;
+    font-style: oblique;    
     margin-top: 3px;
 }
 

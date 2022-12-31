@@ -10,6 +10,12 @@ import { Schedule } from './schedule.class';
   providedIn: 'root'
 })
 export class PaymentService {
+  populateScheduleItem(item: ScheduleItem) {
+    //TODO if you only have this one property move it
+    item.interestPercentOfPayment = this.mathService.getPercent(item.interest, item.payment!);  
+    item.principalPercentOfPayment = this.mathService.getPercent(item.principal, item.payment!);  
+    
+  }
 
   constructor(private mathService: MathService, private currency: CurrencyPipe) { }
 

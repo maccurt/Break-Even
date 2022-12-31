@@ -1,0 +1,37 @@
+::ng-deep {
+    #cc-form {
+        #balance,
+        #extraPayment,
+        #fixedPayment {
+            width: 125px;
+        }
+
+        #interestRate {
+            width: 100px;
+        }
+
+        select {
+            width: 260px !important;
+        }
+    }
+}
+
+form {
+    mat-card-title {
+        font-size: 16px;
+    }
+
+    mat-card {
+        margin-bottom: 7px;
+    }
+}
+
+.cc-wrapper {
+    padding: 5px 10px 15px 5px;
+    background-color: #e6ffe6;
+}
+
+.hint {
+    margin-top: 10px;
+    font-size: small;
+}

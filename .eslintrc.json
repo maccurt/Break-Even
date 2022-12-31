@@ -20,7 +20,12 @@
       ],
       "rules": {
         "no-console": "error",
-        "no-multiple-empty-lines": [2, {"max": 1}],
+        "no-multiple-empty-lines": [
+          2,
+          {
+            "max": 1
+          }
+        ],
         "semi": [
           2,
           "always"
@@ -51,6 +56,14 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@ngrx/recommended"
+      ]
     }
   ]
 }

@@ -26,6 +26,8 @@ export class CreditCardScheduleComponent implements OnInit, OnChanges {
 
     //TODO could this be used else where and could be in the icon service perhaps
     //the icon service probably should not know about payment type?? CONSIDER THAT!
+
+    //TODO I want a cypress test for this 
     switch (this.schedule.paymentType) {
       case PaymentType.MinimumPaymentOnly:
         this.paymentTypeIcon = this.icons.minimumPaymentType;

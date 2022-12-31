@@ -13,7 +13,6 @@ import { PieChartData } from 'src/app/chart/profit-dreamer-chart.service';
 import { Subscription } from 'rxjs';
 import { PaymentType } from './payment-type.enum';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
-import { faThumbsDown } from '@fortawesome/free-regular-svg-icons';
 
 const extra = 'extra';
 @Component({

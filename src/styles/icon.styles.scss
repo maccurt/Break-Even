@@ -1,32 +1,39 @@
 //TODO reconsider putting this in here, what if they change then name using something more generic
 //like our own classed, bad, good , better, etc..
 
-.twenty-minute-rule,.motivation {
+.twenty-minute-rule,
+.motivation,
+.cc-interest-rate {
     color: red;
 }
 
-.does-it-have-value, .financial-emanicipation{
+.does-it-have-value,
+.financial-emanicipation,
+.cc-balance {
     color: green;
 }
 
-.warts-and-all{
-    color:#009900;
+.warts-and-all {
+    color: #009900;
 }
 
-.what-did-you-learn{
-    color:black;
+.what-did-you-learn {
+    color: black;
 }
 
-.use-what-you-got{    
-    color:orangered
+.use-what-you-got {
+    color: orangered;
 }
 
-.no-time-wasting, .task-based-goals{
-    color:blue;
+.no-time-wasting,
+.task-based-goals,
+.cc-min-pay-calc {
+    color: blue;
 }
 
-.rest-and-celebrate{
-    color:purple;
+.rest-and-celebrate,
+.cc-fixed-payment {
+    color: purple;
 }
 
 .fa-face-frown {

@@ -1,48 +1,61 @@
-<div class="container-float overflow-hidden ">
+<div class="container overflow-hidden">
 
-    <div class="row mt-4">
+    <mat-tab-group dynamicHeight>
 
-        <div class="col-xxl-3 ps-4">
-            <mat-card appearance="outlined">
-                <mat-card-content>
-                    <h1>Form Content</h1>
-                </mat-card-content>
-            </mat-card>
-        </div>
+        <mat-tab label="Center Chart">
 
-        <div class="col-xxl-9">
-
-            <div class="row">
+            <div class="row pt-5 overflow-hidden">
 
                 <div class="col-xxl-4">
-                    <div class=""
-                         style="background-color:white">
-                        <h1>Section 1</h1>
-                    </div>
+                    <mat-card>
+                        <mat-card-title>
+                            Learning How To Center Chart
+                        </mat-card-title>
+
+                        <mat-card-content>
+                            <p>This is me trying to spend 20 minutes to learn how to size and center a chart with
+                                highchart-angular</p>
+                        </mat-card-content>
+                    </mat-card>
                 </div>
 
                 <div class="col-xxl-4">
+                    <mat-card>
+                        <mat-card-title>
+                            How To Size Center Chart
+                        </mat-card-title>
 
-                    <app-info-section [help]="help.creditCardCalculatorInstruction1">
-                        <h1>Section 2</h1>
-                    </app-info-section>
+                        <mat-card-content>
+
+                            
+                            <highcharts-chart [Highcharts]="Highcharts"
+                                              [options]="chartOptions"></highcharts-chart>                            
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <div class="col-xxl-4">
+                    <mat-card>
+                        <mat-card-title>
+                            Just A 3rd Column Spacer
+                        </mat-card-title>
+
+                        <mat-card-content>
+                            <p>This is me trying to spend 20 minutes to learn how to size and center a chart with
+                                highchart-angular</p>
+                        </mat-card-content>
+                    </mat-card>
 
                 </div>
 
-                <div class="col-xxl-4 ">
-
-                    <div class="row">
-
-                        <div class="col-12 col-xl-6 col-xxl-12 pe-4">
-
-                            <app-info-section [help]="help.creditCardCalculatorInstruction1">
-                                <h1>Section 3</h1>
-                            </app-info-section>
-                        </div>
-
-                    </div>
-                </div>
             </div>
-        </div>
-    </div>
+
+
+        </mat-tab>
+
+        <mat-tab label="Send Google Events">
+            <button (click)="sendGaEvent()">Send GA Event</button>
+        </mat-tab>
+    </mat-tab-group>
+
 </div>

@@ -8,8 +8,8 @@ describe('credit-card-validation.cy.ts', () => {
     describe('credit card balance', () => {
 
         beforeEach(() => {
-            cy.get('#balance').as("input")
-            cy.get('#balance-error-message').as("error")
+            cy.get('#balance').as("input");
+            cy.get('#balance-error-message').as("error");
         });
 
         it('error should not be visible', () => {
@@ -22,12 +22,12 @@ describe('credit-card-validation.cy.ts', () => {
         });
 
         it('enter 1 error should not be visible', () => {
-            cy.get('@input').type(1);
+            cy.get('@input').type('1');
             cy.get('@error').should('not.be.visible');
         });
 
         it('enter 0 error should be visible', () => {
-            cy.get('@input').clear().type(0);
+            cy.get('@input').clear().type('0');
             cy.get('@error').should('be.visible');
         });
     });
@@ -35,8 +35,8 @@ describe('credit-card-validation.cy.ts', () => {
     describe('interest rate', () => {
 
         beforeEach(() => {
-            cy.get('#interestRate').as("input")
-            cy.get('#interestRate-error-message').as("error")
+            cy.get('#interestRate').as("input");
+            cy.get('#interestRate-error-message').as("error");
         });
 
         it('error should not be visible', () => {
@@ -49,12 +49,12 @@ describe('credit-card-validation.cy.ts', () => {
         });
 
         it('enter 1 error should not be visible', () => {
-            cy.get('@input').type(1);
+            cy.get('@input').type('1');
             cy.get('@error').should('not.be.visible');
         });
 
         it('enter 0 error should be visible', () => {
-            cy.get('@input').clear().type(0);
+            cy.get('@input').clear().type('0');
             cy.get('@error').should('be.visible');
         });
     });    
@@ -62,8 +62,8 @@ describe('credit-card-validation.cy.ts', () => {
     describe('extra payment', () => {
 
         beforeEach(() => {
-            cy.get('#extra-payment').as("input")
-            cy.get('#extra-payment-error').as("error")
+            cy.get('#extra-payment').as("input");
+            cy.get('#extra-payment-error').as("error");
         });
 
         it('error should not be visible', () => {
@@ -76,12 +76,12 @@ describe('credit-card-validation.cy.ts', () => {
         });
 
         it('enter 1 error should not be visible', () => {
-            cy.get('@input').type(1);
+            cy.get('@input').type('1');
             cy.get('@error').should('not.be.visible');
         });
 
         it('enter 0 error should be visible', () => {
-            cy.get('@input').clear().type(0);
+            cy.get('@input').clear().type('0');
             cy.get('@error').should('be.visible');
         });
     });

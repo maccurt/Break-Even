@@ -1,0 +1,298 @@
+<div class="container">
+
+    <div class="row  justify-content-sm-center justify-content-lg-start  mt-5">
+
+        <div class="col-12 col-md-7 col-lg-5 col-xl-4 col-xxl-4">
+
+            <form id="cc-form"
+                  [formGroup]="formGroup"
+                  (submit)="submit()">
+
+                <mat-card>
+                    <mat-card-title class="form-title">
+
+                        <div data-test-id="title">
+                            <fa-icon [icon]="help.creditCardBalance1.icon"
+                                     class={{help.creditCardBalance1.iconClass}}>
+                            </fa-icon>
+                            What Is The Balance On Your Credit Card?
+                        </div>
+                        <hr>
+                    </mat-card-title>
+
+                    <mat-card-content class="mt-1">
+
+                        <div [ngClass]="{'has-error':(isInvalid(balanceControl))}">
+                            <input id="balance"
+                                   data-test-id="balance"
+                                   type="number"
+                                   formControlName="balance"
+                                   [min]="1"
+                                   [max]="999999"
+                                   class="form-control"
+                                   (blur)="blur()">
+
+                            <div data-test-id="balance-hint"
+                                 class="hint">required: 1 to 999999</div>
+                        </div>
+
+                    </mat-card-content>
+                </mat-card>
+
+                <ng-container *ngIf="isSubmitted">
+
+                    <mat-card id="interest-rate-card"
+                              class="mt-4">
+                        <mat-card-title>
+                            <div class="title-responsive">
+                                <fa-icon [icon]="help.interestRate.icon"
+                                         class={{help.interestRate.iconClass}}>
+                                </fa-icon>
+                                What Is Your Interest Rate % (APR)?
+                            </div>
+
+                        </mat-card-title>
+                        <mat-card-content class="mt-1">
+                            <div [ngClass]="{'has-error':(isInvalid(interestRateControl))}">
+                                <input id="interestRate"
+                                       data-test-id="interest-rate"
+                                       maxlength="5"
+                                       [min]="0"
+                                       [max]="99"
+                                       type="number"
+                                       class="form-control"
+                                       formControlName="interestRate"
+                                       (blur)="blur()">
+
+                                <div class="hint">
+                                    required: 1 to 99. Average APR% is {{interestRate}}%
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card class="mt-4">
+                        <mat-card-title>
+                            <div>
+                                <fa-icon [icon]="help.minPaymentCalculation.icon"
+                                         class={{help.minPaymentCalculation.iconClass}}>
+                                </fa-icon>
+                                How Is Your Minimum Payment Calculated?
+                            </div>
+
+                        </mat-card-title>
+                        <mat-card-content class="mt-1">
+
+                            <select id='minimum-payment-type'
+                                    formControlName="minimumPaymentType"
+                                    class='form-control '>
+                                <option *ngFor='let m of minimumPaymentTypeList'
+                                        [ngValue]='m'>{{m.text}}</option>
+                            </select>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <mat-card class="mt-4">
+                        <mat-card-title class="form-title">
+
+                            <div data-test-id="title">
+                                <fa-icon [icon]="help.fixedPayment.icon"
+                                         class={{help.fixedPayment.iconClass}}>
+                                </fa-icon>
+                                What Fixed Payment Can You Make Monthly?
+                            </div>
+                            <hr>
+                        </mat-card-title>
+
+                        <mat-card-content class="mt-4">
+
+                            <div [ngClass]="{'has-error':fixedPaymentControl.invalid}">
+
+                                <div style="display: inline-block; margin-right: 10px ;">
+                                    <input id="fixedPayment"
+                                           data-test-id="fixed-payment"
+                                           type="number"
+                                           formControlName="fixedPayment"
+                                           [min]="1"
+                                           [max]="999999"
+                                           class="form-control"
+                                           (blur)="blur()">
+                                </div>
+
+                                <span data-test-id="fix-pay-is-min"
+                                      class="hint  "
+                                      *ngIf="fixedPaymentIsMinPayment && fixedPaymentControl.valid ">Defaulted To First
+                                    Mininum Payment</span>
+                                <span class="hint"
+                                      *ngIf="fixedPaymentControl.invalid">
+                                    <a class="click-me"
+                                       title="Click me to set to first minimum payment"
+                                       data-test-id="set-fix-payment"
+                                       (click)="setFixPayment()">Set To First Minimum Payment: {{this.minimumPayment
+                                        |number:'1.2-2'}}</a>
+                                </span>
+
+                                <div data-test-id="fixed-payment-hint"
+                                     class="hint">required: {{this.minimumPayment |number:'1.2-2'}} or greater</div>
+                            </div>
+
+                        </mat-card-content>
+                    </mat-card>
+
+                </ng-container>
+
+            </form>
+
+        </div>
+
+        <div *ngIf="isSubmitted"
+             class="col-12 col-lg-7 col-xl-8 col-xxl-8">
+
+            <mat-tab-group [selectedIndex]="tabIndex"
+                           dynamicHeight>
+                <mat-tab label="Summary">
+
+                    <div class="row">
+
+                        <div class="col-12">
+
+                            <div class="row">
+
+                                <div class="col-12 col-md-6 col-xxl-6 mb-sm-4">
+                                    <mat-card>
+
+                                        <mat-card-title class="">
+                                            Minimum Payment Only
+                                            <hr>
+                                        </mat-card-title>
+
+                                        <mat-card-content class="mt-2">
+
+                                            <div class="alert alert-danger"
+                                                 role="alert">
+                                                <h4>
+                                                    ${{schedule1.balanceStart |number:'1.2-2' }}
+                                                    will turn into ${{schedule1.paymentTotal |number:'1.2-2' }}.
+                                                </h4>
+                                            </div>
+
+                                            <div class="alert alert-danger"
+                                                 role="alert">
+                                                <h4>
+                                                    You Will Pay An Extra ${{schedule1.interest |number:'1.2-2'
+                                                    }}
+                                                    In
+                                                    Interest.
+                                                </h4>
+                                            </div>
+
+                                            <div class="alert alert-danger"
+                                                 role="alert">
+                                                <h4>
+                                                    It Will Take You {{schedule1.periodsText}} To Pay Off The
+                                                    Credit
+                                                    Card.
+                                                </h4>
+                                            </div>
+
+                                        </mat-card-content>
+
+                                    </mat-card>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-xxl-6">
+
+                                    <mat-card>
+
+                                        <mat-card-title>                                            
+                                            ${{schedule2.payment |number:'1.2-2' }} Fixed Payment
+                                            <hr>
+                                        </mat-card-title>
+
+                                        <mat-card-content class="mt-2">
+
+                                            <div class="alert alert-success"
+                                                 role="alert">
+                                                <h4>
+                                                    ${{schedule2.balanceStart |number:'1.2-2' }}
+                                                    will turn into ${{schedule2.paymentTotal |number:'1.2-2' }}.
+                                                </h4>
+                                            </div>
+
+                                            <div class="alert alert-success"
+                                                 role="alert">
+                                                <h4>
+                                                    You Will Pay An Extra ${{schedule2.interest |number:'1.2-2'
+                                                    }}
+                                                    In
+                                                    Interest.
+                                                </h4>
+                                            </div>
+
+                                            <div class="alert alert-success"
+                                                 role="alert">
+
+                                                <h4>
+                                                    It Will Take You {{schedule2.periodsText}} To Pay Off The
+                                                    Credit
+                                                    Card.
+                                                </h4>
+                                            </div>
+
+                                        </mat-card-content>
+                                    </mat-card>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="">
+                            <div class="d-flex justify-content-sm-center  justify-content-end mt-3">
+
+                                <img height="275"
+                                     width="275"
+                                     src="../../../assets/images/credit-card-devil/Credit-Card-Devil-400.gif">
+                            </div>
+                        </div>
+                    </div>
+
+                </mat-tab>
+
+                <mat-tab label="Details">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-xl-6 col-xxl-6">
+                            <app-credit-card-schedule *ngIf="schedule1"
+                                                      [schedule]="schedule1"></app-credit-card-schedule>
+                        </div>
+
+                        <div class="col-12 col-md-6 col-xl-6 col-xxl-6">
+                            <app-credit-card-schedule *ngIf="schedule2"
+                                                      [schedule]="schedule2"></app-credit-card-schedule>
+                        </div>
+                    </div>
+
+                </mat-tab>
+                <mat-tab label="Minimum Payment Schedule">
+                    <app-credit-card-schedule-list [scheduleList]="schedule1.scheduleList">
+                    </app-credit-card-schedule-list>
+                </mat-tab>
+
+                <mat-tab label="Fixed Payment Schedule">
+
+                    <app-credit-card-schedule-list [scheduleList]="schedule2.scheduleList">
+                    </app-credit-card-schedule-list>
+
+                </mat-tab>
+            </mat-tab-group>
+
+        </div>
+
+    </div>
+
+
+
+</div>

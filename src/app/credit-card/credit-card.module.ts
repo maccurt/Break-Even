@@ -1,3 +1,4 @@
+import { StoreModule } from '@ngrx/store';
 import { ChartModule } from './../chart/chart.module';
 import { MaterialModule } from './../material/material.module';
 import { NgModule } from '@angular/core';
@@ -5,8 +6,6 @@ import { CommonModule } from '@angular/common';
 import { CreditCardCalculatorComponent } from './credit-card-calculator/credit-card-calculator.component';
 import { CreditCardMinimumPaymentComponent } from './credit-card-minimum-payment/credit-card-minimum-payment.component';
 import { CreditCardScheduleListComponent } from './credit-card-schedule-list/credit-card-schedule-list.component';
-// import { InterestSavingsComponent } from './interest-savings/interest-savings.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ControlsModule } from '../controls/controls.module';
 import { TimeCardComponent } from './time-card/time-card.component';
@@ -18,16 +17,25 @@ import { MinimumPaymentTrapSectionComponent } from './minimum-payment-trap-secti
 import { CreditCardDevilSectionComponent } from './credit-card-devil-section/credit-card-devil-section.component';
 import { InterestSavedSectionComponent } from './interest-saved-section/interest-saved-section.component';
 import { TimeSavedSectionComponent } from './time-saved-section/time-saved-section.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { creditCardFeatureKey, creditCardReducer } from './credit-card-state/credit-card.reducers';
+import { CreditCardWizardComponent } from './credit-card-wizard/credit-card-wizard.component';
+import { ScheduleItemComponent } from './schedule-item/schedule-item.component';
 
 @NgModule({
   declarations: [
     CreditCardCalculatorComponent,
     CreditCardMinimumPaymentComponent,
-    CreditCardScheduleListComponent,
-    // InterestSavingsComponent,
+    CreditCardScheduleListComponent,    
     TimeCardComponent,
-    ScheduleCardComponent,    
-    CreditCardScheduleComponent, MinimumPaymentTrapSectionComponent, CreditCardDevilSectionComponent, InterestSavedSectionComponent, TimeSavedSectionComponent
+    ScheduleCardComponent,
+    CreditCardScheduleComponent,
+    MinimumPaymentTrapSectionComponent,
+    CreditCardDevilSectionComponent,
+    InterestSavedSectionComponent,
+    TimeSavedSectionComponent,
+    CreditCardWizardComponent,
+    ScheduleItemComponent
   ],
   imports: [
     CommonModule,
@@ -38,13 +46,13 @@ import { TimeSavedSectionComponent } from './time-saved-section/time-saved-secti
     HighchartsChartModule,
     MaterialModule,
     IconModule,
-    ChartModule
+    ChartModule,
+    StoreModule.forFeature(creditCardFeatureKey, [creditCardReducer])
   ],
   exports: [
     CreditCardCalculatorComponent,
-    CreditCardMinimumPaymentComponent,    
+    CreditCardMinimumPaymentComponent,
     CreditCardScheduleListComponent,
-    // InterestSavingsComponent,
     TimeCardComponent
   ]
 })

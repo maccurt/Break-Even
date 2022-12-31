@@ -27,6 +27,7 @@ export class FormInputComponent implements OnInit {
   @Input() showErrors = false;
   @Input() help!: Help;
   @Input() options!: FormInputOptions;
+  @Input() showLabel = true;
 
   inputId = '';
   constructor(private controlContainer: FormGroupDirective, private formInputService: FormInputService) {
