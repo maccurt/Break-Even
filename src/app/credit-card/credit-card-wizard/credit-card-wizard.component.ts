@@ -83,7 +83,6 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
           0, false, minimumPaymentType.useInterest);
       this.schedule1.title = 'Minium Payment Only Total';
       this.schedule1.paymentType = PaymentType.MinimumPaymentOnly;
-      // this.scheduleListForMinPayment = this.schedule1.scheduleList.slice(0, 12);
 
       this.minimumPayment = this.paymentService.determineMinimumPayment(
         0, minimumPaymentType.percentOfBalance, balance!, interestRate!, minimumPaymentType.useInterest);
@@ -105,10 +104,9 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
       if (this.fixedPaymentControl.valid) {
         this.schedule2 = this.paymentService.creditCardSchedule(balance, interestRate, minimumPaymentType.percentOfBalance!,
           this.fixedPaymentControl.value!, true, minimumPaymentType.useInterest);
-      }
+      };
 
       this.scheduleCompare = this.paymentService.getScheduleCompare(this.schedule1, this.schedule2);
-
       this.isSubmitted = true;
     }
   };
