@@ -288,9 +288,18 @@
                 <mat-tab label="Fixed Payment Schedule">
 
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col-8">
                             <app-credit-card-schedule-list [scheduleList]="schedule2.scheduleList">
                             </app-credit-card-schedule-list>
+                        </div>
+
+                        <div class="col-4">                            
+
+                            <app-interest-saved-section data-test-id="interest-saved-by-paying-fixed"
+                                                        [scheduleCompare]="scheduleCompare"
+                                                        [help]="help.interestSavedByPayingFixedPayment">
+                            </app-interest-saved-section>
+
                         </div>
                     </div>
 
