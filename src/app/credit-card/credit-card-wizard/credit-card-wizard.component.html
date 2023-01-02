@@ -291,7 +291,7 @@
                             </app-credit-card-schedule-list>
                         </div>
 
-                        <div class="col-xxl-5">
+                        <div class="col-xxl-4">
 
                             <app-info-section style="margin-top:7px"
                                               data-test-id="time-to-pay-debt-section"
@@ -312,7 +312,7 @@
                             </app-credit-card-schedule-list>
                         </div>
 
-                        <div class="col-xxl-5">
+                        <div class="col-xxl-4 ">
 
                             <app-info-section style="margin-top:7px"
                                               data-test-id="time-to-pay-debt-section"
@@ -324,6 +324,13 @@
                                                     [scheduleCompare]="scheduleCompare"
                                                     [help]="help.timeSavedFixedPayment">
                             </app-time-saved-section>
+
+                            <app-interest-saved-section data-test-id="interest-saved-by-paying-fixed"
+                                                        [scheduleCompare]="scheduleCompare"
+                                                        [help]="help.interestSavedByPayingFixedPayment">
+                            </app-interest-saved-section>
+
+
                         </div>
                     </div>
 
