@@ -23,6 +23,7 @@ import { entityConfig } from './entity-metadata';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { appReducers } from './app-state/app.reduders';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { appReducers } from './app-state/app.reduders';
     EntityDataModule.forRoot(entityConfig),
     HttpClientModule
   ],
-  providers: [CurrencyPipe],
+  providers: [CurrencyPipe,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
