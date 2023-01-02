@@ -9,6 +9,8 @@ import { PaymentService } from 'src/app/shared/payment.service';
 import { Subscription } from 'rxjs';
 import { PaymentType } from '../credit-card-calculator/payment-type.enum';
 import { ScheduleItem } from 'src/app/shared/schedule-item';
+import { Title } from '@angular/platform-browser';
+import { MetaService } from 'src/app/shared/meta.service';
 
 @Component({
   selector: 'app-credit-card-wizard',
@@ -43,10 +45,15 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
   fixedPaymentIsMinPayment: boolean = false;
 
   constructor(private fb: FormBuilder,
+    private title: Title,
+    private metaService: MetaService,
     public help: HelpService,
     public icon: IconService,
     private paymentService: PaymentService,
     private route: ActivatedRoute) {
+    this.title.setTitle('Credit Card Calculator');
+    this.metaService.addTitle('Credit Card Calculator');
+    this.metaService.addDescription('Calculates your credit card interest and how many years it will take to pay off');
   }
   ngOnInit(): void {
 
