@@ -283,11 +283,22 @@
                     </div>
 
                 </mat-tab>
+
                 <mat-tab label="Minimum Payment Schedule">
                     <div class="row">
-                        <div class="col-9">
+                        <div class="col-xxl-7">
                             <app-credit-card-schedule-list [scheduleList]="schedule1.scheduleList">
                             </app-credit-card-schedule-list>
+                        </div>
+
+                        <div class="col-xxl-5">
+
+                            <app-info-section style="margin-top:7px"
+                                              data-test-id="time-to-pay-debt-section"
+                                              [help]="help.timeToPayOfDebt"
+                                              stat="{{schedule1.periodsText}}">
+                            </app-info-section>
+
                         </div>
                     </div>
                 </mat-tab>
@@ -295,13 +306,25 @@
                 <mat-tab label="Fixed Payment Schedule">
 
                     <div class="row">
-                        
-                        <div class="col-8">
+
+                        <div class="col-xxl-7">
                             <app-credit-card-schedule-list [scheduleList]="schedule2.scheduleList">
                             </app-credit-card-schedule-list>
                         </div>
 
-                        
+                        <div class="col-xxl-5">
+
+                            <app-info-section style="margin-top:7px"
+                                              data-test-id="time-to-pay-debt-section"
+                                              [help]="help.timeToPayOfDebt"
+                                              stat="{{schedule2.periodsText}}">
+                            </app-info-section>
+
+                            <app-time-saved-section data-test-id="time-saved-fixed-payment"
+                                                    [scheduleCompare]="scheduleCompare"
+                                                    [help]="help.timeSavedFixedPayment">
+                            </app-time-saved-section>
+                        </div>
                     </div>
 
                 </mat-tab>
