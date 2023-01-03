@@ -3,25 +3,48 @@
     <div class="container-fluid"
          id="home-top-container">
 
-        <!-- <div class="row">
-            <div id="logo-container"
-                 class="offset-xl-1 offset-xxl-2 col-md-12 col-lg-6">
+        <div class="row justify-content-center  mt-5">
 
-                <br>
-                <div class="container-title">PROFIT DREAMER</div>                
-                <br>
-                <br>                
+            <!-- class="offset-1 offset-md-3 offset-lg-1 offset-xl-1 offset-xxl-2 col-9 col-md-6 col-lg-6 col-xl-5 col-xxl-3" -->
+            <div class="col-11 col-md-8 col-lg-6 col-xl-5 col-xxl-3 mb-4">
+
+
+                <app-info-section [help]="help.creditCardDevil">
+
+                    <div>
+                        <p style="margin-right:15px;margin-bottom:10px">
+                            <img style="margin-right: 10px;"
+                                 align="left"
+                                 height="75"
+                                 width="75"
+                                 src="../../../assets/images/credit-card-devil/Credit-Card-Devil-400.gif">
+
+                            A simplified version of our Credit Card Calculator with less inputs for quicker information
+                            to
+                            help you.
+                        </p>
+                    </div>
+
+                    <hr>
+                    <a class="gtm-cc-link btn btn-primary"
+                       title="Go To Credit Card PayOff Calculator"
+                       date-test-id="credit-card-calculator"
+                       data-gtm-id="gtm-credit-card-link"
+                       routerLink="/credit-card-devil">Go To Credit Card Devil</a>
+                </app-info-section>
+
+
             </div>
-        </div> -->
+            <div class="col-11  col-md-8 col-lg-6 col-xl-5 col-xxl-3 ">
 
-        <div class="row mt-5">
-
-            <div class="offset-1 offset-md-3 offset-lg-1 offset-xl-1 offset-xxl-2 col-9 col-md-6 col-lg-6 col-xl-5 col-xxl-3">
                 <app-info-section [help]="help.creditCardLinkButton">
-                    <p style="margin-right:15px;margin-bottom:10px">
-                        Learn how your credit debt is costing you time and money and formulate a plan to get out of debt
-                        faster.
-                    </p>
+                    <div>
+                        <p style="margin-right:15px;margin-bottom:10px">
+                            Learn how your credit debt is costing you time and money and formulate a plan to get out of
+                            debt
+                            faster.
+                        </p>
+                    </div>
                     <hr>
                     <a class="gtm-cc-link btn btn-primary"
                        title="Go To Credit Card PayOff Calculator"
@@ -29,6 +52,8 @@
                        data-gtm-id="gtm-credit-card-link"
                        routerLink="/credit-card">Go To Credit Card Calculator</a>
                 </app-info-section>
+
+
 
             </div>
         </div>

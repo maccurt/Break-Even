@@ -31,13 +31,13 @@
     //     background-image: url("../../../assets/images/home/background/medium.jpg");
     // }
 
-    @include for-large() {
-        background-image: url("../../../assets/images/home/background/medium.jpg");
-    }
+    // @include for-large() {
+    //     background-image: url("../../../assets/images/home/background/medium.jpg");
+    // }
 
-    @include for-xl-large-and-above() {
-        background-image: url("../../../assets/images/home//background/xlarge.jpg");
-    }
+    // @include for-xl-large-and-above() {
+    //     background-image: url("../../../assets/images/home//background/xlarge.jpg");
+    // }
 
     #logo-container {
         text-align: center;

@@ -19,7 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { EntityDataModule } from '@ngrx/data';
-import { entityConfig } from './entity-metadata';
+// import { entityConfig } from './entity-metadata';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { appReducers } from './app-state/app.reduders';
@@ -56,7 +56,7 @@ import { CookieService } from 'ngx-cookie-service';
     FontAwesomeModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),
-    EntityDataModule.forRoot(entityConfig),
+    //EntityDataModule.forRoot(entityConfig),
     HttpClientModule
   ],
   providers: [CurrencyPipe,CookieService],
