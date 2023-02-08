@@ -1,7 +1,7 @@
-import { extraMonthlyPaySectionTest } from "../../helper/cc-monthly-payment-test";
-import { creditCardScheduleExtraPayTest, creditCardScheduleMininumPayTest } from "../../helper/cc-schedule-test";
-import { InterestSavedByPayingExtraTest } from "../../helper/interest-saved-test";
-import { timeSavedExtraPayment } from "../../helper/time-saved-test";
+import { extraMonthlyPaySectionTest } from "../../../helper/cc-monthly-payment-test";
+import { creditCardScheduleExtraPayTest, creditCardScheduleMininumPayTest } from "../../../helper/cc-schedule-test";
+import { InterestSavedByPayingExtraTest } from "../../../helper/interest-saved-test";
+import { timeSavedExtraPayment } from "../../../helper/time-saved-test";
 import { enterExtraPaymentForCreditCard } from "../new/minimum-payment-function";
 
 describe('credit card min pay page test', () => {
