@@ -9,7 +9,7 @@ import {
     faGraduationCap, faFrog, faChalkboardTeacher,
     faGlassCheers, faCircle, faArrowDown, faArrowUp, faEllipsisH,
     faTasks, faPencilAlt, faBug, faSearchDollar, faVial, faExpandArrowsAlt,
-    faBrain, faInfoCircle, faClipboardList, faChartPie, faSackDollar, faScaleBalanced, faScrewdriverWrench, faTicket, faMagnifyingGlassDollar, faCode, faCog, faBullhorn, faUniversity, faExclamationTriangle, faHandHoldingDollar, faPeopleRobbery, faPiggyBank, faSackXmark, faPersonChalkboard, faBed, faBedPulse, faPercent, faCalculator, faCommentDollar,
+    faBrain, faInfoCircle, faClipboardList, faChartPie, faSackDollar, faScaleBalanced, faScrewdriverWrench, faTicket, faMagnifyingGlassDollar, faCode, faCog, faBullhorn, faUniversity, faExclamationTriangle, faHandHoldingDollar, faPeopleRobbery, faPiggyBank, faSackXmark, faPersonChalkboard, faBed, faBedPulse, faPercent, faCalculator, faCommentDollar, faSkullCrossbones,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
@@ -35,6 +35,7 @@ export class IconService {
     faceMeh = faFaceMeh;
     minimumPaymentType = faFrown;
     trap = faExclamationTriangle;
+    skull = faSkullCrossbones;
     interestSaved = faSackDollar;
     static sackDollar = faSackDollar;
     financialEmancipation = faUniversity;

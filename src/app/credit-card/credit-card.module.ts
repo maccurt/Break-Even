@@ -1,3 +1,4 @@
+import { CreditCardEffects } from './credit-card-state/credit-card.effects';
 import { StoreModule } from '@ngrx/store';
 import { ChartModule } from './../chart/chart.module';
 import { MaterialModule } from './../material/material.module';
@@ -21,12 +22,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { creditCardFeatureKey, creditCardReducer } from './credit-card-state/credit-card.reducers';
 import { CreditCardWizardComponent } from './credit-card-wizard/credit-card-wizard.component';
 import { ScheduleItemComponent } from './schedule-item/schedule-item.component';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
     CreditCardCalculatorComponent,
     CreditCardMinimumPaymentComponent,
-    CreditCardScheduleListComponent,    
+    CreditCardScheduleListComponent,
     TimeCardComponent,
     ScheduleCardComponent,
     CreditCardScheduleComponent,
@@ -47,7 +49,8 @@ import { ScheduleItemComponent } from './schedule-item/schedule-item.component';
     MaterialModule,
     IconModule,
     ChartModule,
-    StoreModule.forFeature(creditCardFeatureKey, [creditCardReducer])
+    StoreModule.forFeature(creditCardFeatureKey, creditCardReducer),
+    EffectsModule.forFeature([CreditCardEffects]),
   ],
   exports: [
     CreditCardCalculatorComponent,

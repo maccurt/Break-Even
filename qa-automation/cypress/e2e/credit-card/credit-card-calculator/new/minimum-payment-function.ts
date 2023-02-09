@@ -1,4 +1,4 @@
-import { CreditCardScenario1, ICreditCardBase } from "../../helper/credit-card-scenario-1";
+import { CreditCardScenario1, ICreditCardBase } from "../../../helper/credit-card-scenario-1";
 
 export enum PaymentTypeForTest {
     minimum = 'mininum-payment-type',

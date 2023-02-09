@@ -14,6 +14,11 @@ import { Subscription } from 'rxjs';
 import { PaymentType } from './payment-type.enum';
 import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
+import { CreditCardState } from '../credit-card-state/credit-card.reducers';
+import { Store } from '@ngrx/store';
+import { selectInterestRate } from '../credit-card-state/credit-card.selectors';
+//import { selectInterestRate } from '../credit-card-state/credit-card.selectors';
+
 const extra = 'extra';
 @Component({
   selector: 'app-credit-card-calculator',
@@ -67,22 +72,23 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
     private paymentService: PaymentService,
     private activatedRoute: ActivatedRoute,
     public help: HelpService,
-    private gaService: GoogleAnalyticsService) {
+    private gaService: GoogleAnalyticsService,
+    private store: Store
+    ) {
+
     this.title.setTitle('Credit Card Calculator');
     this.metaService.addTitle('Credit Card Calculator');
     this.metaService.addDescription('Calculates your credit card interest and how many years it will take to pay off');
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
+    
     this.minimumPaymentTypeList = this.paymentService.getMinimumPaymentTypeList();
     this.balanceControl = new FormInput(FormInputType.CreditCardBalance);
     this.interestRateControl = new FormInput(FormInputType.CreditCardInterestRate);
     this.interestRateControl.setValue(16.4);
     this.minimumPaymentTypeControl = new FormControl(this.minimumPaymentTypeList[0], [Validators.required]);
-
     this.paymentTypeControl = new FormControl(null, [Validators.required]);
-    //this.paymentTypeControl = new FormControl(this.paymentTypeList[1].value, [Validators.required]);
-    //this.extraPaymentControl = new FormControl('');
     this.extraPaymentControl = new FormInput(FormInputType.CreditCardExtraPayment);
     this.fixedPaymentControl = new FormInput(FormInputType.CreditCardFixedPayment);
 

@@ -1,7 +1,7 @@
-import { fixedMonthlyPaySectionTest } from "../../helper/cc-monthly-payment-test";
-import { creditCardScheduleFixedPayTest, creditCardScheduleMininumPayTest } from "../../helper/cc-schedule-test";
-import { interestSavedByPayingFixedTest } from "../../helper/interest-saved-test";
-import { timeSavedFixedPay } from "../../helper/time-saved-test";
+import { fixedMonthlyPaySectionTest } from "../../../helper/cc-monthly-payment-test";
+import { creditCardScheduleFixedPayTest, creditCardScheduleMininumPayTest } from "../../../helper/cc-schedule-test";
+import { interestSavedByPayingFixedTest } from "../../../helper/interest-saved-test";
+import { timeSavedFixedPay } from "../../../helper/time-saved-test";
 import { enterFixedPaymentForCreditCard } from "../new/minimum-payment-function";
 
 describe('credit card fixed pay page test', () => {

@@ -72,6 +72,9 @@ export class HelpService {
   creditCardLinkButton = new Help('Credit Card Pay Off Calculator',
     '', '', 'good-icon-1');
 
+  creditCreditDevilButton = new Help('Credit Card Devil',
+    '', '', 'good-icon-1');
+    
   creditCardCalculatorInstruction1 = new Help('Pay Off Debt Faster To Save Money',
     '', '', 'good-icon-1');
 
@@ -138,7 +141,7 @@ export class HelpService {
   minimumPaymentTrap = new Help('Minimum Payment Trap',
     'put some sort of text here', '', 'danger-icon');
 
-  creditCardDevil = new Help('Credit Cards Are The Devil',
+  creditCardDevil = new Help('Credit Card Devil',
     'put some sort of text here', '', 'danger-icon');
 
   totalTimeSavings = new Help('Total Time Savings',
@@ -170,7 +173,7 @@ export class HelpService {
     this.timeToPayOfDebt.icon = icons.time;
     this.timeSavedByPayingExtra.icon = icons.time;
     this.timeSavedFixedPayment.icon = icons.time;
-    this.creditCardDevil.icon = icons.creditCardDevil;
+    this.creditCardDevil.icon = icons.skull;
     this.minimumPaymentTrap.icon = icons.trap;
     this.creditCardInterestSavings.icon = icons.interestSaved;
     this.interestSavedByPayingExtra.icon = icons.interestSaved;
@@ -186,12 +189,9 @@ export class HelpService {
     this.creditCardInterestRate.hint = "Find your interest rate on your credit card bill.";
     this.creditCardCalculatorInstruction1.icon = IconService.creditCardInstruction1;
     this.creditCardLinkButton.icon = icons.creditCard;
-
-    this.creditCardBalance1.icon = icons.creditCard;
+    this.creditCardBalance1.icon = icons.creditCard;    
     this.interestRate.icon = icons.interestRate;
     this.fixedPayment.icon = icons.commentDollar;
-
     this.minPaymentCalculation.icon = icons.calculator;
-
   }
 }

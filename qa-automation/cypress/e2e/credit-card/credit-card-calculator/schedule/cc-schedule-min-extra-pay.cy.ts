@@ -1,4 +1,4 @@
-import { creditCardScheduleExtraPayTest, creditCardScheduleMininumPayTest } from "../../helper/cc-schedule-test";
+import { creditCardScheduleExtraPayTest, creditCardScheduleMininumPayTest } from "../../../helper/cc-schedule-test";
 import { enterMinimumPaymentForCreditCard, enterExtraPaymentForCreditCard } from "../new/minimum-payment-function";
 
 describe('credit card schedule minimum pay + extra', () => {

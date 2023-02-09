@@ -42,7 +42,8 @@ mat-card-title {
 
     @include for-xsmall {
         font-size: small;
-        height: 48px; //this keeps the title the same height not matter the length
+        //height: 48px; //this keeps the title the same height not matter the length
+        //removed this because it was causing issues on the home page, re-check other issues
     }
 }
 

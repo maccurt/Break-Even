@@ -1,8 +1,8 @@
 describe('credit-card-validation.cy.ts', () => {
 
-    before(() => {        
+    before(() => {
         cy.visit('/credit-card');
-        cy.get('#payment-type-extra').click();
+        cy.getDataTestId('extra-payment-type').click();
     });
 
     describe('credit card balance', () => {
@@ -44,7 +44,7 @@ describe('credit-card-validation.cy.ts', () => {
         });
 
         it('blur error should be visible', () => {
-            cy.get('@input').focus().blur();
+            cy.get('@input').focus().clear().blur();
             cy.get('@error').should('be.visible');
         });
 
@@ -57,32 +57,32 @@ describe('credit-card-validation.cy.ts', () => {
             cy.get('@input').clear().type('0');
             cy.get('@error').should('be.visible');
         });
-    });    
+    });
 
     describe('extra payment', () => {
 
         beforeEach(() => {
-            cy.get('#extra-payment').as("input");
-            cy.get('#extra-payment-error').as("error");
+            cy.getDataTestId('extraPayment').as('input');
         });
 
-        it('error should not be visible', () => {
-            cy.get('@error').should('not.be.visible');
+        it('error should not exist', () => {
+            cy.getDataTestId('extra-payment-error').should('not.exist');
         });
 
         it('blur error should be visible', () => {
+            //cy.getDataTestId('extra-payment-type').focus().blur();
             cy.get('@input').focus().blur();
-            cy.get('@error').should('be.visible');
+            cy.getDataTestId('extra-payment-error').should('exist');
         });
 
         it('enter 1 error should not be visible', () => {
             cy.get('@input').type('1');
-            cy.get('@error').should('not.be.visible');
+            cy.getDataTestId('extra-payment-error').should('not.exist');
         });
 
         it('enter 0 error should be visible', () => {
             cy.get('@input').clear().type('0');
-            cy.get('@error').should('be.visible');
+            cy.getDataTestId('extra-payment-error').should('exist');
         });
     });
 });
