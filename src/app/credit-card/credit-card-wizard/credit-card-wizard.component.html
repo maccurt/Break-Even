@@ -293,11 +293,16 @@
 
                         <div class="col-xxl-4">
 
-                            <app-info-section style="margin-top:7px"
+                            <!-- <app-info-section style="margin-top:7px"
                                               data-test-id="time-to-pay-debt-section"
                                               [help]="help.timeToPayOfDebt"
                                               stat="{{schedule1.periodsText}}">
-                            </app-info-section>
+                            </app-info-section> -->
+
+
+                            <app-credit-card-schedule *ngIf="schedule1"
+                                                      [schedule]="schedule1"></app-credit-card-schedule>
+
 
                         </div>
                     </div>

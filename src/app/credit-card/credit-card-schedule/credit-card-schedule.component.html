@@ -44,12 +44,11 @@
         </mat-card-content>
     </mat-card>
 
-    <mat-card class="chart-container!!!">
+    <mat-card class="mt-4 mb-4">
         <app-basic-pie-chart [chart]="chart"> </app-basic-pie-chart>
     </mat-card>
 
-
-    <app-info-section style="margin-top:7px"
+    <app-info-section 
                       data-test-id="time-to-pay-debt-section"
                       [help]="help.timeToPayOfDebt"
                       stat="{{schedule.periodsText}}">
