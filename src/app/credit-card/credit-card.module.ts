@@ -5,7 +5,6 @@ import { MaterialModule } from './../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreditCardCalculatorComponent } from './credit-card-calculator/credit-card-calculator.component';
-import { CreditCardMinimumPaymentComponent } from './credit-card-minimum-payment/credit-card-minimum-payment.component';
 import { CreditCardScheduleListComponent } from './credit-card-schedule-list/credit-card-schedule-list.component';
 import { RouterModule } from '@angular/router';
 import { ControlsModule } from '../controls/controls.module';
@@ -26,8 +25,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
-    CreditCardCalculatorComponent,
-    CreditCardMinimumPaymentComponent,
+    CreditCardCalculatorComponent,    
     CreditCardScheduleListComponent,
     TimeCardComponent,
     ScheduleCardComponent,
@@ -53,8 +51,7 @@ import { EffectsModule } from '@ngrx/effects';
     EffectsModule.forFeature([CreditCardEffects]),
   ],
   exports: [
-    CreditCardCalculatorComponent,
-    CreditCardMinimumPaymentComponent,
+    CreditCardCalculatorComponent,    
     CreditCardScheduleListComponent,
     TimeCardComponent
   ]
