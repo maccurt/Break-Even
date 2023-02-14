@@ -261,7 +261,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
       const minimumPaymentType = this.minimumPaymentTypeControl.value as MinimumPaymentType;
       const interest = this.mathService.getFloat(this.interestRateControl.value, 0);
 
-      this.minimumPayment = this.paymentService.determineMinimumPayment(
+      this.minimumPayment = this.paymentService.determineMonthlyPayment(
         0, minimumPaymentType.percentOfBalance, balance!, interest!, minimumPaymentType.useInterest);
     }
 

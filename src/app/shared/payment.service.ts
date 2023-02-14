@@ -12,9 +12,9 @@ import { Schedule } from './schedule.class';
 export class PaymentService {
   populateScheduleItem(item: ScheduleItem) {
     //TODO if you only have this one property move it
-    item.interestPercentOfPayment = this.mathService.getPercent(item.interest, item.payment!);  
-    item.principalPercentOfPayment = this.mathService.getPercent(item.principal, item.payment!);  
-    
+    item.interestPercentOfPayment = this.mathService.getPercent(item.interest, item.payment!);
+    item.principalPercentOfPayment = this.mathService.getPercent(item.principal, item.payment!);
+
   }
 
   constructor(private mathService: MathService, private currency: CurrencyPipe) { }
@@ -43,27 +43,39 @@ export class PaymentService {
     let balanceStart = balance;
     const orginalBalance = balance;
 
-    //TODO we have a memory leak here????
     while (balance > 0) {
+
       balanceStart = balance;
       const fixedPayment = isFixedPayment ? extraPayment : 0;
-      monthlyPayment = this.determineMinimumPayment(fixedPayment!, financeChargePercent, balance, annualPercentageRate, includeApr);
+
+      monthlyPayment = this.determineMonthlyPayment(fixedPayment!, financeChargePercent, balance, annualPercentageRate, includeApr);
+
+      //If this is not a fixed payment then add the extra payment to the minimum payment
       if (!isFixedPayment) {
         monthlyPayment += extraPayment!;
       }
 
-      // Get the new monthly interest
+      // Get the new monthly interest for current balance
       monthlyInterest = this.mathService.round(balance * monthlyPercentageRate, 2);
+
+      //add to final interest total
       interestTotal += monthlyInterest;
+
+      //Add the montly interes to the balance
       balance += monthlyInterest;
 
+      //If the balance is less than or equal monthly payment
+      //set the minimum payment to the balance
       if (balance <= monthlyPayment) {
         monthlyPayment = this.mathService.round(balance, 2);
       }
 
+      //set the balance to the balance minus the  monthly payment
       balance = this.mathService.round(balance - monthlyPayment, 2);
+
       paymentCount++;
       principalPaid = this.mathService.round(monthlyPayment - monthlyInterest, 2);
+
       const scheduleItem: ScheduleItem = {
         payment: monthlyPayment,
         balanceStart,
@@ -73,7 +85,7 @@ export class PaymentService {
         extraPrincipal: extraPayment!
       };
       scheduleList.push(scheduleItem);
-    }
+    } // end of loop
 
     interestTotal = this.mathService.round(interestTotal, 2);
     paymentTotal = this.mathService.round(paymentTotal + interestTotal, 2);
@@ -109,7 +121,6 @@ export class PaymentService {
     }
 
     return schedule;
-
   };
 
   periodicInterestRate = (ratePercent: number): number => {
@@ -166,7 +177,8 @@ export class PaymentService {
 
     let minimumPayment = 0;
     const financeChargeFactor = financeChargePercent / 100;
-    minimumPayment = (balance * financeChargeFactor);
+
+    minimumPayment = (balance * financeChargeFactor);    
 
     if (includeInterest) {
       const rate = annualPercentageRate / 100 / 12;
@@ -176,7 +188,7 @@ export class PaymentService {
     return this.mathService.round(minimumPayment, 2);
   };
 
-  determineMinimumPayment = (
+  determineMonthlyPayment = (
     fixedPayment: number, financeChargePercent: number,
     balance: number, annualPercentageRate: number, includeApr = true) => {
 

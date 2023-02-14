@@ -97,7 +97,7 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
       this.schedule1.title = 'Minium Payment Only Total';
       this.schedule1.paymentType = PaymentType.MinimumPaymentOnly;
 
-      this.minimumPayment = this.paymentService.determineMinimumPayment(
+      this.minimumPayment = this.paymentService.determineMonthlyPayment(
         0, minimumPaymentType.percentOfBalance, balance!, interestRate!, minimumPaymentType.useInterest);
 
       this.fixedPaymentControl.clearValidators();

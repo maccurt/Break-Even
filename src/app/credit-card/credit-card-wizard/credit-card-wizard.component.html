@@ -291,19 +291,9 @@
                             </app-credit-card-schedule-list>
                         </div>
 
-                        <div class="col-xxl-4">
-
-                            <!-- <app-info-section style="margin-top:7px"
-                                              data-test-id="time-to-pay-debt-section"
-                                              [help]="help.timeToPayOfDebt"
-                                              stat="{{schedule1.periodsText}}">
-                            </app-info-section> -->
-
-
+                        <div class="col-xxl-4">                            
                             <app-credit-card-schedule *ngIf="schedule1"
                                                       [schedule]="schedule1"></app-credit-card-schedule>
-
-
                         </div>
                     </div>
                 </mat-tab>
@@ -334,8 +324,6 @@
                                                         [scheduleCompare]="scheduleCompare"
                                                         [help]="help.interestSavedByPayingFixedPayment">
                             </app-interest-saved-section>
-
-
                         </div>
                     </div>
 

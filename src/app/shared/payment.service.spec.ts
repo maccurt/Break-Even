@@ -7,6 +7,13 @@ import { ScheduleItem } from './schedule-item';
 describe('PaymentService', () => {
   const service: PaymentService = new PaymentService(new MathService(), new CurrencyPipe('en-US'));
 
+  describe('minimumPayment', () => {
+    it('should calculate correctly', () => {
+      let result = service.minimumPayment(10, 1000, 10, true);
+      expect(result).toBe(108.33);
+    });
+  });
+
   describe('creditCardSchedule', () => {
 
     it('$1000 15% 1%+interest $100 FIXED Payment', () => {
