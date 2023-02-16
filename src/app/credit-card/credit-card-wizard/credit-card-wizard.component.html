@@ -9,7 +9,7 @@
                   (submit)="submit()">
 
                 <mat-card>
-                    <mat-card-title class="form-title">
+                    <mat-card-title>
 
                         <div data-test-id="title">
                             <fa-icon [icon]="help.creditCardBalance1.icon"
@@ -94,7 +94,6 @@
 
                     <mat-card class="mt-4">
                         <mat-card-title class="form-title">
-
                             <div data-test-id="title">
                                 <fa-icon [icon]="help.fixedPayment.icon"
                                          class={{help.fixedPayment.iconClass}}>
@@ -139,10 +138,13 @@
                         </mat-card-content>
                     </mat-card>
 
+                    <div id="calc-form-div"
+                         class="mt-4">
+                        <app-minimum-payment-calculation [calculation]="minimumPaymentCalculation">
+                        </app-minimum-payment-calculation>
+                    </div>
                 </ng-container>
-
             </form>
-
         </div>
 
         <div *ngIf="isSubmitted"
@@ -291,7 +293,7 @@
                             </app-credit-card-schedule-list>
                         </div>
 
-                        <div class="col-xxl-4">                            
+                        <div class="col-xxl-4">
                             <app-credit-card-schedule *ngIf="schedule1"
                                                       [schedule]="schedule1"></app-credit-card-schedule>
                         </div>

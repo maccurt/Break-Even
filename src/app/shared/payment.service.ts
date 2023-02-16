@@ -1,3 +1,4 @@
+import { MinimumPaymentCalculation } from './minimum-payment-calculation.class';
 import { CurrencyPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { MinimumPaymentType } from '../credit-card/credit-card-calculator/credit-card.types';
@@ -5,6 +6,7 @@ import { MathService } from '../math/math.service';
 import { ScheduleCompare } from './schedule-compare.type';
 import { ScheduleItem } from './schedule-item';
 import { Schedule } from './schedule.class';
+import { min } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -171,14 +173,53 @@ export class PaymentService {
     return text;
   };
 
+  minimumPaymentCalculation = (financeChargePercent: number, balance: number,
+    annualPercentageRate: number, includeInterest: boolean = true): MinimumPaymentCalculation => {
+
+    let minPayCalc = new MinimumPaymentCalculation();    
+    let financeCharge = 0;
+    const financeChargeFactor = financeChargePercent / 100;
+
+    minPayCalc.financeChargePercent = financeChargePercent;
+    minPayCalc.financeChargeFactor = financeChargeFactor;
+    minPayCalc.balance = balance;
+    minPayCalc.includeInterest = includeInterest;
+    minPayCalc.annualPercentageRate = annualPercentageRate;
+    minPayCalc.monthlyInterest = 0;
+
+    financeCharge = (balance * financeChargeFactor);
+    minPayCalc.financeCharge = financeCharge;
+        
+    const interestRateMonthly = annualPercentageRate / 100 / 12;
+    minPayCalc.monthlyPercentageRate = annualPercentageRate/12;
+    
+    minPayCalc.interestRateMonthly = interestRateMonthly;
+    if (includeInterest) {
+      
+      let monthlyInterest = (balance * interestRateMonthly);
+      minPayCalc.minimumPayment = financeCharge + monthlyInterest;
+      minPayCalc.monthlyInterest = monthlyInterest;
+    }
+    else {
+      minPayCalc.minimumPayment = financeCharge;
+    }
+
+    minPayCalc.minimumPayment = this.mathService.round(minPayCalc.minimumPayment, 2);
+    return minPayCalc;
+  };
+
+  /**
+ * @deprecated use method above
+ */
   minimumPayment = (
+
     financeChargePercent: number, balance: number,
     annualPercentageRate: number, includeInterest: boolean = true): number => {
 
     let minimumPayment = 0;
     const financeChargeFactor = financeChargePercent / 100;
 
-    minimumPayment = (balance * financeChargeFactor);    
+    minimumPayment = (balance * financeChargeFactor);
 
     if (includeInterest) {
       const rate = annualPercentageRate / 100 / 12;

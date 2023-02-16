@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { MinimumPaymentCalculation } from './../../shared/minimum-payment-calculation.class';
+import { IconService } from 'src/app/icon/icon.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-minimum-payment-calculation',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class MinimumPaymentCalculationComponent {
 
+  @Input() calculation!: MinimumPaymentCalculation;
+
+  constructor(public icons: IconService) {
+  }
 }

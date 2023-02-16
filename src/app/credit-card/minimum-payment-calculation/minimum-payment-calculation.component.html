@@ -1,1 +1,39 @@
-<p>minimum-payment-calculation works!</p>
+<div *ngIf="calculation">
+    <mat-card>
+        <mat-card-title data-test-id="schedule-title">
+            <fa-icon [icon]="icons.calculator">
+            </fa-icon>
+           Minimum Payment Calculation For ${{calculation.balance |number:'1.2-2'}}
+        </mat-card-title>
+
+        <mat-card-content>
+            <table style="margin-bottom:7px"
+                   class="table table-striped">
+                <tbody>
+
+                    <tr *ngIf="calculation.includeInterest">
+                        <td>{{calculation.monthlyPercentageRate |number:'1.2-3'}}% Interest For Month</td>
+                        <td class="number">{{calculation.monthlyInterest |number:'1.2-2'}}</td>
+                    </tr>
+
+                    <tr *ngIf="!calculation.includeInterest">
+                        <td></td>
+                        <td class="number" >-</td>                        
+                    </tr>                    
+
+                    <tr class="border-2">
+                        <td>{{calculation.financeChargePercent |number:'1.2-4'}}% of Balance</td>
+                        <td class="number">{{calculation.financeCharge |number:'1.2-2' }}</td>
+                    </tr>
+
+                    <tr class="sub-total">
+                        <td>Minimum Payment</td>
+                        <td class="number">${{calculation.minimumPayment|number:'1.2-2' }}</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </mat-card-content>
+    </mat-card>
+</div>

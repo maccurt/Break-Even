@@ -1,3 +1,4 @@
+import { MinimumPaymentCalculation } from './../../shared/minimum-payment-calculation.class';
 import { ActivatedRoute } from '@angular/router';
 import { ScheduleCompare } from 'src/app/shared/schedule-compare.type';
 import { IconService } from 'src/app/icon/icon.service';
@@ -26,6 +27,7 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
   subList$: Subscription[] = [];
   interestRate: number = 15.13;
   minimumPayment: number = 0;
+  minimumPaymentCalculation!: MinimumPaymentCalculation;
   isSubmitted: boolean = false;
   schedule1!: Schedule;
   schedule2!: Schedule;
@@ -54,14 +56,14 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
     public icon: IconService,
     private paymentService: PaymentService,
     private route: ActivatedRoute,
-    private store:Store<CreditCardState>) {
+    private store: Store<CreditCardState>) {
 
     this.title.setTitle('Credit Card Calculator');
     this.metaService.addTitle('Credit Card Calculator');
     this.metaService.addDescription('Calculates your credit card interest and how many years it will take to pay off');
   }
   ngOnInit(): void {
-     this.store.dispatch(CreditCardAction.getInterestRate());
+    this.store.dispatch(CreditCardAction.getInterestRate());
 
     this.subList$.push(this.minimumPaymentTypeControl.valueChanges.subscribe(() => {
       this.submit();
@@ -99,6 +101,10 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
 
       this.minimumPayment = this.paymentService.determineMonthlyPayment(
         0, minimumPaymentType.percentOfBalance, balance!, interestRate!, minimumPaymentType.useInterest);
+
+      this.minimumPaymentCalculation = this.paymentService.
+        minimumPaymentCalculation(minimumPaymentType.percentOfBalance, balance,
+          interestRate, minimumPaymentType.useInterest);
 
       this.fixedPaymentControl.clearValidators();
       this.fixedPaymentControl.addValidators(Validators.min(this.minimumPayment));

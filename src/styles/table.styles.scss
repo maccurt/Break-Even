@@ -1,5 +1,10 @@
 @import "../styles/variables";
 
+.number{
+    text-align: right;
+    padding-right: 15px;
+}
+
 .sum-table{
  
     tr td:nth-child(2) {

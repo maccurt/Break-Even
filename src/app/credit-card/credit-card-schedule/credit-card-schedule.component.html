@@ -16,7 +16,7 @@
                         <td>
                             Interest
                         </td>
-                        <td data-test-id="interest">
+                        <td class="number" data-test-id="interest">
                             {{schedule.interest |number:'1.2-2' }}
                         </td>
                     </tr>
@@ -25,16 +25,16 @@
                         <td>
                             Principal
                         </td>
-                        <td data-test-id="principal">
+                        <td class="number" data-test-id="principal">
                             {{schedule.balanceStart |number:'1.2-2' }}
                         </td>
                     </tr>
 
-                    <tr class="total ">
+                    <tr class="total">
                         <td>
                             Total
                         </td>
-                        <td data-test-id="total">
+                        <td class="number" data-test-id="total">
                             ${{schedule.paymentTotal |number:'1.2-2' }}
                         </td>
                     </tr>
