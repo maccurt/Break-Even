@@ -376,7 +376,7 @@ export class PaymentService {
     const minimumPaymentTypeList: MinimumPaymentType[] = [];
     minimumPaymentTypeList.push({ useInterest: true, percentOfBalance: 1, text: 'Interest + 1% of balance' });
     minimumPaymentTypeList.push({ useInterest: false, percentOfBalance: 2, text: '2% of balance' });
-    minimumPaymentTypeList.push({ useInterest: false, percentOfBalance: 2.08, text: '2.08% of balance' });
+    //minimumPaymentTypeList.push({ useInterest: false, percentOfBalance: 2.08, text: '2.08% of balance' });
     minimumPaymentTypeList.push({ useInterest: false, percentOfBalance: 2.5, text: '2.5% of balance' });
     minimumPaymentTypeList.push({ useInterest: false, percentOfBalance: 2.08, text: '2.08% of balance' });
     minimumPaymentTypeList.push({ useInterest: false, percentOfBalance: 2.5, text: '2.5% of balance' });

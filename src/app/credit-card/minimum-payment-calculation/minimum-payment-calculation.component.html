@@ -1,9 +1,10 @@
-<div *ngIf="calculation">
+<div data-test-id="min-pay-calculation" *ngIf="calculation">
     <mat-card>
-        <mat-card-title data-test-id="schedule-title">
+        <mat-card-title >
             <fa-icon [icon]="icons.calculator">
             </fa-icon>
-           Minimum Payment Calculation For ${{calculation.balance |number:'1.2-2'}}
+            <span data-test-id="mpc-title">Minimum Payment Calculation For ${{calculation.balance |number:'1.2-2'}}</span>
+           
         </mat-card-title>
 
         <mat-card-content>
@@ -11,24 +12,24 @@
                    class="table table-striped">
                 <tbody>
 
-                    <tr *ngIf="calculation.includeInterest">
-                        <td>{{calculation.monthlyPercentageRate |number:'1.2-3'}}% Interest For Month</td>
-                        <td class="number">{{calculation.monthlyInterest |number:'1.2-2'}}</td>
+                    <tr  data-test-id="mpc-include-interest-true"  *ngIf="calculation.includeInterest">
+                        <td data-test-id="mpc-monthly-percentage-rate" >{{calculation.monthlyPercentageRate |number:'1.2-3'}}% Interest For Month</td>
+                        <td data-test-id="mpc-monthly-interest"  class="number">{{calculation.monthlyInterest |number:'1.2-2'}}</td>
                     </tr>
 
-                    <tr *ngIf="!calculation.includeInterest">
+                    <tr data-test-id="mpc-include-interest-false" *ngIf="!calculation.includeInterest">
                         <td></td>
                         <td class="number" >-</td>                        
                     </tr>                    
 
                     <tr class="border-2">
-                        <td>{{calculation.financeChargePercent |number:'1.2-4'}}% of Balance</td>
-                        <td class="number">{{calculation.financeCharge |number:'1.2-2' }}</td>
+                        <td data-test-id="mpc-finance-charge-percent">{{calculation.financeChargePercent |number:'1.2-4'}}% of Balance</td>
+                        <td class="number" data-test-id="mpc-finance-charge" >{{calculation.financeCharge |number:'1.2-2' }}</td>
                     </tr>
 
                     <tr class="sub-total">
                         <td>Minimum Payment</td>
-                        <td class="number">${{calculation.minimumPayment|number:'1.2-2' }}</td>
+                        <td data-test-id="mpc-minimum-payment" class="number">${{calculation.minimumPayment|number:'1.2-2' }}</td>
                     </tr>
 
                 </tbody>

@@ -83,7 +83,8 @@
                         </mat-card-title>
                         <mat-card-content class="mt-1">
 
-                            <select id='minimum-payment-type'
+                            <select data-test-id="minimum-payment-type"
+                                    id="minimum-payment-type"
                                     formControlName="minimumPaymentType"
                                     class='form-control '>
                                 <option *ngFor='let m of minimumPaymentTypeList'
