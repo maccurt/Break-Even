@@ -1,6 +1,5 @@
 import { minPayType, setMinimumPaymentType } from './change-minimum-payment-type.function';
 import { minimumPaymentCalculationTest } from "./minimum-payment-calculation.function";
-
 describe('mininum-payment-calculation', () => {
 
     before(() => {
