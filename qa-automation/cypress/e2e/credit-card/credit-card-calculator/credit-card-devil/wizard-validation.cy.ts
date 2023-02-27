@@ -12,8 +12,7 @@ describe('credit card devil', () => {
 
     describe('enter balance and test interes rate', () => {
         before(() => {
-            cy.getDataTestId('balance').clear().type('20000');
-            cy.getDataTestId('calculate').click();
+            cy.getDataTestId('balance').clear().type('20000').blur();            
         });
         checkValidation('interest-rate');
     });
