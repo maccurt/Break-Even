@@ -1,3 +1,4 @@
+import { minPayType, setMinimumPaymentType } from "./credit-card-devil/set-minimum-payment-type.function";
 import { PaymentTypeForTest, setPaymentType } from "./new/minimum-payment-function";
 
 describe('cc-calculate-monthly-payment.cy.ts', () => {
@@ -74,14 +75,14 @@ describe('cc-calculate-monthly-payment.cy.ts', () => {
 
         describe('set mininimp payment calculation to 2% of balance ', () => {
             it('payment should be $300.00', () => {
-                cy.get('#minimum-payment-type').select('2% of balance');
+                setMinimumPaymentType(minPayType.TwoPercentOfBalance);                
                 cy.get('@monthlyPay').textShouldEqual('$300.00');
             });
         });
 
         describe('set mininimp payment calculation to 2% of balance ', () => {
             it('payment should be $378.00', () => {
-                cy.get('#minimum-payment-type').select('2.78% of balance');
+                setMinimumPaymentType(minPayType.TwoPoint78PercentOfBalance);                
                 cy.get('@monthlyPay').textShouldEqual('$378.00');
             });
         });

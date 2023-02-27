@@ -1,3 +1,4 @@
+import { MinimumPaymentCalculation } from './minimum-payment-calculation.class';
 import { CurrencyPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { MinimumPaymentType } from '../credit-card/credit-card-calculator/credit-card.types';
@@ -5,6 +6,7 @@ import { MathService } from '../math/math.service';
 import { ScheduleCompare } from './schedule-compare.type';
 import { ScheduleItem } from './schedule-item';
 import { Schedule } from './schedule.class';
+import { min } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +14,9 @@ import { Schedule } from './schedule.class';
 export class PaymentService {
   populateScheduleItem(item: ScheduleItem) {
     //TODO if you only have this one property move it
-    item.interestPercentOfPayment = this.mathService.getPercent(item.interest, item.payment!);  
-    item.principalPercentOfPayment = this.mathService.getPercent(item.principal, item.payment!);  
-    
+    item.interestPercentOfPayment = this.mathService.getPercent(item.interest, item.payment!);
+    item.principalPercentOfPayment = this.mathService.getPercent(item.principal, item.payment!);
+
   }
 
   constructor(private mathService: MathService, private currency: CurrencyPipe) { }
@@ -43,27 +45,39 @@ export class PaymentService {
     let balanceStart = balance;
     const orginalBalance = balance;
 
-    //TODO we have a memory leak here????
     while (balance > 0) {
+
       balanceStart = balance;
       const fixedPayment = isFixedPayment ? extraPayment : 0;
-      monthlyPayment = this.determineMinimumPayment(fixedPayment!, financeChargePercent, balance, annualPercentageRate, includeApr);
+
+      monthlyPayment = this.determineMonthlyPayment(fixedPayment!, financeChargePercent, balance, annualPercentageRate, includeApr);
+
+      //If this is not a fixed payment then add the extra payment to the minimum payment
       if (!isFixedPayment) {
         monthlyPayment += extraPayment!;
       }
 
-      // Get the new monthly interest
+      // Get the new monthly interest for current balance
       monthlyInterest = this.mathService.round(balance * monthlyPercentageRate, 2);
+
+      //add to final interest total
       interestTotal += monthlyInterest;
+
+      //Add the montly interes to the balance
       balance += monthlyInterest;
 
+      //If the balance is less than or equal monthly payment
+      //set the minimum payment to the balance
       if (balance <= monthlyPayment) {
         monthlyPayment = this.mathService.round(balance, 2);
       }
 
+      //set the balance to the balance minus the  monthly payment
       balance = this.mathService.round(balance - monthlyPayment, 2);
+
       paymentCount++;
       principalPaid = this.mathService.round(monthlyPayment - monthlyInterest, 2);
+
       const scheduleItem: ScheduleItem = {
         payment: monthlyPayment,
         balanceStart,
@@ -73,7 +87,7 @@ export class PaymentService {
         extraPrincipal: extraPayment!
       };
       scheduleList.push(scheduleItem);
-    }
+    } // end of loop
 
     interestTotal = this.mathService.round(interestTotal, 2);
     paymentTotal = this.mathService.round(paymentTotal + interestTotal, 2);
@@ -109,7 +123,6 @@ export class PaymentService {
     }
 
     return schedule;
-
   };
 
   periodicInterestRate = (ratePercent: number): number => {
@@ -160,12 +173,52 @@ export class PaymentService {
     return text;
   };
 
+  minimumPaymentCalculation = (financeChargePercent: number, balance: number,
+    annualPercentageRate: number, includeInterest: boolean = true): MinimumPaymentCalculation => {
+
+    let minPayCalc = new MinimumPaymentCalculation();    
+    let financeCharge = 0;
+    const financeChargeFactor = financeChargePercent / 100;
+
+    minPayCalc.financeChargePercent = financeChargePercent;
+    minPayCalc.financeChargeFactor = financeChargeFactor;
+    minPayCalc.balance = balance;
+    minPayCalc.includeInterest = includeInterest;
+    minPayCalc.annualPercentageRate = annualPercentageRate;
+    minPayCalc.monthlyInterest = 0;
+
+    financeCharge = (balance * financeChargeFactor);
+    minPayCalc.financeCharge = financeCharge;
+        
+    const interestRateMonthly = annualPercentageRate / 100 / 12;
+    minPayCalc.monthlyPercentageRate = annualPercentageRate/12;
+    
+    minPayCalc.interestRateMonthly = interestRateMonthly;
+    if (includeInterest) {
+      
+      let monthlyInterest = (balance * interestRateMonthly);
+      minPayCalc.minimumPayment = financeCharge + monthlyInterest;
+      minPayCalc.monthlyInterest = monthlyInterest;
+    }
+    else {
+      minPayCalc.minimumPayment = financeCharge;
+    }
+
+    minPayCalc.minimumPayment = this.mathService.round(minPayCalc.minimumPayment, 2);
+    return minPayCalc;
+  };
+
+  /**
+ * @deprecated use method above
+ */
   minimumPayment = (
+
     financeChargePercent: number, balance: number,
     annualPercentageRate: number, includeInterest: boolean = true): number => {
 
     let minimumPayment = 0;
     const financeChargeFactor = financeChargePercent / 100;
+
     minimumPayment = (balance * financeChargeFactor);
 
     if (includeInterest) {
@@ -176,7 +229,7 @@ export class PaymentService {
     return this.mathService.round(minimumPayment, 2);
   };
 
-  determineMinimumPayment = (
+  determineMonthlyPayment = (
     fixedPayment: number, financeChargePercent: number,
     balance: number, annualPercentageRate: number, includeApr = true) => {
 
@@ -323,7 +376,7 @@ export class PaymentService {
     const minimumPaymentTypeList: MinimumPaymentType[] = [];
     minimumPaymentTypeList.push({ useInterest: true, percentOfBalance: 1, text: 'Interest + 1% of balance' });
     minimumPaymentTypeList.push({ useInterest: false, percentOfBalance: 2, text: '2% of balance' });
-    minimumPaymentTypeList.push({ useInterest: false, percentOfBalance: 2.08, text: '2.08% of balance' });
+    //minimumPaymentTypeList.push({ useInterest: false, percentOfBalance: 2.08, text: '2.08% of balance' });
     minimumPaymentTypeList.push({ useInterest: false, percentOfBalance: 2.5, text: '2.5% of balance' });
     minimumPaymentTypeList.push({ useInterest: false, percentOfBalance: 2.08, text: '2.08% of balance' });
     minimumPaymentTypeList.push({ useInterest: false, percentOfBalance: 2.5, text: '2.5% of balance' });

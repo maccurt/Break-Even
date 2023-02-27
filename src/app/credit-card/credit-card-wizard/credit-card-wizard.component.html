@@ -9,7 +9,7 @@
                   (submit)="submit()">
 
                 <mat-card>
-                    <mat-card-title class="form-title">
+                    <mat-card-title>
 
                         <div data-test-id="title">
                             <fa-icon [icon]="help.creditCardBalance1.icon"
@@ -83,7 +83,8 @@
                         </mat-card-title>
                         <mat-card-content class="mt-1">
 
-                            <select id='minimum-payment-type'
+                            <select data-test-id="minimum-payment-type"
+                                    id="minimum-payment-type"
                                     formControlName="minimumPaymentType"
                                     class='form-control '>
                                 <option *ngFor='let m of minimumPaymentTypeList'
@@ -94,7 +95,6 @@
 
                     <mat-card class="mt-4">
                         <mat-card-title class="form-title">
-
                             <div data-test-id="title">
                                 <fa-icon [icon]="help.fixedPayment.icon"
                                          class={{help.fixedPayment.iconClass}}>
@@ -139,10 +139,13 @@
                         </mat-card-content>
                     </mat-card>
 
+                    <div id="calc-form-div"
+                         class="mt-4">
+                        <app-minimum-payment-calculation [calculation]="minimumPaymentCalculation">
+                        </app-minimum-payment-calculation>
+                    </div>
                 </ng-container>
-
             </form>
-
         </div>
 
         <div *ngIf="isSubmitted"
@@ -292,13 +295,8 @@
                         </div>
 
                         <div class="col-xxl-4">
-
-                            <app-info-section style="margin-top:7px"
-                                              data-test-id="time-to-pay-debt-section"
-                                              [help]="help.timeToPayOfDebt"
-                                              stat="{{schedule1.periodsText}}">
-                            </app-info-section>
-
+                            <app-credit-card-schedule *ngIf="schedule1"
+                                                      [schedule]="schedule1"></app-credit-card-schedule>
                         </div>
                     </div>
                 </mat-tab>
@@ -329,8 +327,6 @@
                                                         [scheduleCompare]="scheduleCompare"
                                                         [help]="help.interestSavedByPayingFixedPayment">
                             </app-interest-saved-section>
-
-
                         </div>
                     </div>
 

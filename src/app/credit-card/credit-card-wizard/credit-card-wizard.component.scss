@@ -14,18 +14,15 @@
             width: 260px !important;
         }
     }
-}
 
-form {
     mat-card-title {
-        font-size: 16px;
+        font-size: 16px !important;
     }
 
     mat-card {
         margin-bottom: 7px;
     }
 }
-
 .cc-wrapper {
     padding: 5px 10px 15px 5px;
     background-color: #e6ffe6;
