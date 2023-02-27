@@ -16,5 +16,4 @@ describe('credit card devil', () => {
         });
         checkValidation('interest-rate');
     });
-
 });
