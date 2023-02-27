@@ -1,3 +1,5 @@
+
+import { minPayType, setMinimumPaymentType } from "./credit-card-devil/set-minimum-payment-type.function";
 import { PaymentTypeForTest, setPaymentType } from "./new/minimum-payment-function";
 
 describe('credit-card-fixed-payment-validation.cy.ts', () => {
@@ -17,7 +19,6 @@ describe('credit-card-fixed-payment-validation.cy.ts', () => {
         describe('focus on fixed payment and blur off', () => {
 
             it('required error message should be visibile and shown', () => {
-
                 cy.get('#fixedPayment').focus().blur();
                 cy.getDataTestId('fixed-payment-error').invoke('text').then((text) => {
                     expect(text.trim()).to.eq(requiredMessage);
@@ -38,10 +39,7 @@ describe('credit-card-fixed-payment-validation.cy.ts', () => {
         describe('set fixed payment to 225', () => {
             it('must be greater than min payment should visibile and shown', () => {
                 cy.get('#fixedPayment').clear().type('225').blur();
-                cy.getDataTestId('fixed-payment-error').should('not.exist');
-                // cy.getDataTestId('fixed-payment-error').invoke('text').then((text) => {
-                //     expect(text.trim()).to.eq('');
-                // });
+                cy.getDataTestId('fixed-payment-error').should('not.exist');                
             });
         });
 
@@ -66,7 +64,7 @@ describe('credit-card-fixed-payment-validation.cy.ts', () => {
 
         describe('change minimum payment to 4%', () => {
             it('must be greater than min payment should visibile and shown', () => {
-                cy.get('#minimum-payment-type').select('4% of balance');                
+                setMinimumPaymentType(minPayType.FourPercentOfBalance);                
                 cy.getDataTestId('fixed-payment-error').invoke('text').then((text) => {
                     expect(text.trim()).to.eq(greaterThanMinPaymentMessage);
                 });

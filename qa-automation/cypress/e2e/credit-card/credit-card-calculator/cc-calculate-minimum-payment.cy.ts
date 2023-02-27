@@ -1,3 +1,4 @@
+import { minPayType, setMinimumPaymentType } from "./credit-card-devil/set-minimum-payment-type.function";
 import { enterMinimumPaymentForCreditCard } from "./new/minimum-payment-function";
 
 describe('cc-calculate-minimum-payment.cy.ts', () => {
@@ -39,14 +40,14 @@ describe('cc-calculate-minimum-payment.cy.ts', () => {
             });
 
             it('2% of balance should be $200.00', () => {
-                cy.get('#minimum-payment-type').select('2% of balance');
+                setMinimumPaymentType(minPayType.TwoPercentOfBalance);                
                 cy.get('#minimum-payment').invoke('text').then((text) => {
                     expect(text.trim()).to.eq('$200.00');
                 });
             });
 
             it('2.78% of balance should be $278.00', () => {
-                cy.get('#minimum-payment-type').select('2.78% of balance');
+                setMinimumPaymentType(minPayType.TwoPoint78PercentOfBalance);                                
                 cy.get('#minimum-payment').invoke('text').then((text) => {
                     expect(text.trim()).to.eq('$278.00');
                 });
