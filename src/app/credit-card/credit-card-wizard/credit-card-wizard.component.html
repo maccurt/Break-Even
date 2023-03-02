@@ -164,7 +164,9 @@
                                 <div class="col-12 col-md-6 col-xxl-4 mb-sm-4">
                                     <mat-card>
 
-                                        <mat-card-title class="">
+                                        <mat-card-title>
+                                            <fa-icon [icon]="icon.unhappy">
+                                            </fa-icon>
                                             Minimum Payment Only
                                             <hr>
                                         </mat-card-title>
@@ -208,6 +210,8 @@
                                     <mat-card>
 
                                         <mat-card-title>
+                                            <fa-icon [icon]="icon.smile">
+                                            </fa-icon>
                                             ${{schedule2.payment |number:'1.2-2' }} Fixed Payment
                                             <hr>
                                         </mat-card-title>
