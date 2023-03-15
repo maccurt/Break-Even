@@ -175,7 +175,7 @@
 
                                             <div class="alert alert-danger"
                                                  role="alert">
-                                                <h4>
+                                                <h4 data-test-id="min-balance-start">
                                                     ${{schedule1.balanceStart |number:'1.2-2' }}
                                                     will turn into ${{schedule1.paymentTotal |number:'1.2-2' }}.
                                                 </h4>
@@ -212,7 +212,7 @@
                                         <mat-card-title>
                                             <fa-icon [icon]="icon.smile">
                                             </fa-icon>
-                                            ${{schedule2.payment |number:'1.2-2' }} Fixed Payment
+                                            ${{schedule2.payment |number:'1.2-2' }} Fixed Monthly Payment
                                             <hr>
                                         </mat-card-title>
 
