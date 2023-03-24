@@ -130,7 +130,7 @@ export class PaymentService {
     balance: number, annualPercentageRate: number,
     financeChargePercent: number, extraPayment?: number,
     isFixedPayment: boolean = false, includeApr: boolean = true, introRate: number = 0,
-    zeroPercentMonths: number = 0, zeroPercentChargeRate: number = 0): Schedule => {
+    introMonths: number = 0, introAnnualPercentageRate: number = 0): Schedule => {
 
     if (balance <= 0) {
       throw new Error('input error: balance 0');
@@ -141,8 +141,8 @@ export class PaymentService {
     }
 
     let chargeForIntroductoryRate = 0;
-    if (zeroPercentMonths > 0 && zeroPercentChargeRate > 0) {
-      const chargeRate = this.mathService.round(zeroPercentChargeRate / 100, 2);
+    if (introMonths > 0 && introAnnualPercentageRate > 0) {
+      const chargeRate = this.mathService.round(introAnnualPercentageRate / 100, 2);
       chargeForIntroductoryRate = this.mathService.round(chargeRate * balance);
       balance = balance + chargeForIntroductoryRate;
     }
@@ -168,7 +168,7 @@ export class PaymentService {
 
       let aprForMonth = annualPercentageRate;
       //If we are in a %month set the apr to zero      
-      if (zeroPercentMonths >= paymentCount) {
+      if (introMonths >= paymentCount) {
         aprForMonth = 0;
       }
 
@@ -180,7 +180,7 @@ export class PaymentService {
       }
 
       //Get the new monthly interest for current balance
-      if (zeroPercentMonths + 1 <= paymentCount) {
+      if (introMonths + 1 <= paymentCount) {
         monthlyInterest = this.mathService.round(balance * monthlyPercentageRate, 2);
       }
       else {
