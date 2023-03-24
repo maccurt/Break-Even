@@ -6,8 +6,6 @@ import { MathService } from '../math/math.service';
 import { ScheduleCompare } from './schedule-compare.type';
 import { ScheduleItem } from './schedule-item';
 import { Schedule } from './schedule.class';
-import { min } from 'rxjs';
-import { MapType } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +15,6 @@ export class PaymentService {
     //TODO if you only have this one property move it
     item.interestPercentOfPayment = this.mathService.getPercent(item.interest, item.payment!);
     item.principalPercentOfPayment = this.mathService.getPercent(item.principal, item.payment!);
-
   }
 
   constructor(private mathService: MathService, private currency: CurrencyPipe) { }
@@ -27,103 +24,107 @@ export class PaymentService {
     financeChargePercent: number, extraPayment?: number,
     isFixedPayment: boolean = false, includeApr: boolean = true): Schedule => {
 
-    if (balance <= 0) {
-      throw new Error('input error: balance 0');
-    }
+    return this.creditCardScheduleZeroPercentOption(balance, annualPercentageRate,
+      financeChargePercent, extraPayment,
+      isFixedPayment, includeApr);
 
-    if (annualPercentageRate <= 0) {
-      throw new Error('input error: annualPercentageRate');
-    }
+    // if (balance <= 0) {
+    //   throw new Error('input error: balance 0');
+    // }
 
-    const monthlyPercentageRate = annualPercentageRate / 100 / 12;
-    let monthlyInterest = 0;
-    let interestTotal = 0;
-    let paymentTotal = balance;
-    let paymentCount = 0;
-    const scheduleList: ScheduleItem[] = [];
-    let monthlyPayment = 0;
-    let principalPaid = 0;
-    let balanceStart = balance;
-    const orginalBalance = balance;
+    // if (annualPercentageRate <= 0) {
+    //   throw new Error('input error: annualPercentageRate');
+    // }
 
-    while (balance > 0) {
+    // const monthlyPercentageRate = annualPercentageRate / 100 / 12;
+    // let monthlyInterest = 0;
+    // let interestTotal = 0;
+    // let paymentTotal = balance;
+    // let paymentCount = 0;
+    // const scheduleList: ScheduleItem[] = [];
+    // let monthlyPayment = 0;
+    // let principalPaid = 0;
+    // let balanceStart = balance;
+    // const orginalBalance = balance;
 
-      balanceStart = balance;
-      const fixedPayment = isFixedPayment ? extraPayment : 0;
+    // while (balance > 0) {
 
-      monthlyPayment = this.determineMonthlyPayment(fixedPayment!, financeChargePercent, balance, annualPercentageRate, includeApr);
+    //   balanceStart = balance;
+    //   const fixedPayment = isFixedPayment ? extraPayment : 0;
 
-      //If this is not a fixed payment then add the extra payment to the minimum payment
-      if (!isFixedPayment) {
-        monthlyPayment += extraPayment!;
-      }
+    //   monthlyPayment = this.determineMonthlyPayment(fixedPayment!, financeChargePercent, balance, annualPercentageRate, includeApr);
 
-      // Get the new monthly interest for current balance
-      monthlyInterest = this.mathService.round(balance * monthlyPercentageRate, 2);
+    //   //If this is not a fixed payment then add the extra payment to the minimum payment
+    //   if (!isFixedPayment) {
+    //     monthlyPayment += extraPayment!;
+    //   }
 
-      //add to final interest total
-      interestTotal += monthlyInterest;
+    //   // Get the new monthly interest for current balance
+    //   monthlyInterest = this.mathService.round(balance * monthlyPercentageRate, 2);
 
-      //Add the montly interes to the balance
-      balance += monthlyInterest;
+    //   //add to final interest total
+    //   interestTotal += monthlyInterest;
 
-      //If the balance is less than or equal monthly payment
-      //set the minimum payment to the balance
-      if (balance <= monthlyPayment) {
-        monthlyPayment = this.mathService.round(balance, 2);
-      }
+    //   //Add the montly interes to the balance
+    //   balance += monthlyInterest;
 
-      //set the balance to the balance minus the  monthly payment
-      balance = this.mathService.round(balance - monthlyPayment, 2);
+    //   //If the balance is less than or equal monthly payment
+    //   //set the minimum payment to the balance
+    //   if (balance <= monthlyPayment) {
+    //     monthlyPayment = this.mathService.round(balance, 2);
+    //   }
 
-      paymentCount++;
-      principalPaid = this.mathService.round(monthlyPayment - monthlyInterest, 2);
+    //   //set the balance to the balance minus the  monthly payment
+    //   balance = this.mathService.round(balance - monthlyPayment, 2);
 
-      const scheduleItem: ScheduleItem = {
-        payment: monthlyPayment,
-        balanceStart,
-        balanceEnd: balance,
-        interest: monthlyInterest,
-        principal: principalPaid,
-        extraPrincipal: extraPayment!
-      };
-      scheduleList.push(scheduleItem);
-    } // end of loop
+    //   paymentCount++;
+    //   principalPaid = this.mathService.round(monthlyPayment - monthlyInterest, 2);
 
-    interestTotal = this.mathService.round(interestTotal, 2);
-    paymentTotal = this.mathService.round(paymentTotal + interestTotal, 2);
+    //   const scheduleItem: ScheduleItem = {
+    //     payment: monthlyPayment,
+    //     balanceStart,
+    //     balanceEnd: balance,
+    //     interest: monthlyInterest,
+    //     principal: principalPaid,
+    //     extraPrincipal: extraPayment!
+    //   };
+    //   scheduleList.push(scheduleItem);
+    // } // end of loop
 
-    const { years, months } = this.mathService.getYearsAndMonths(scheduleList.length);
+    // interestTotal = this.mathService.round(interestTotal, 2);
+    // paymentTotal = this.mathService.round(paymentTotal + interestTotal, 2);
 
-    const schedule: Schedule = {
-      balanceStart: orginalBalance,
-      scheduleList,
-      payment: isFixedPayment ? extraPayment! : 0,
-      isFixedPayment: isFixedPayment,
-      interest: interestTotal,
-      interestRatePercent: annualPercentageRate,
-      principal: principalPaid,
-      paymentTotal,
-      extraPrincipal: 0,
-      periods: scheduleList.length,
-      extraPrincipalPayment: extraPayment!,
-      years,
-      months,
-      periodsText: this.getPeriodsText(scheduleList.length),
-      interestPercentTotal: this.mathService.round(interestTotal / orginalBalance * 100, 2)
-    };
+    // const { years, months } = this.mathService.getYearsAndMonths(scheduleList.length);
 
-    if (schedule.isFixedPayment && schedule.payment > 0) {
-      schedule.title = this.currency.transform(schedule.payment)! + ' Fixed Payment';
-    }
-    else if (extraPayment && extraPayment > 0) {
-      schedule.title = 'Minimum Payment + ' + this.currency.transform(extraPayment);
-    }
-    else {
-      schedule.title = 'Minimum Payment';
-    }
+    // const schedule: Schedule = {
+    //   balanceStart: orginalBalance,
+    //   scheduleList,
+    //   payment: isFixedPayment ? extraPayment! : 0,
+    //   isFixedPayment: isFixedPayment,
+    //   interest: interestTotal,
+    //   interestRatePercent: annualPercentageRate,
+    //   principal: principalPaid,
+    //   paymentTotal,
+    //   extraPrincipal: 0,
+    //   periods: scheduleList.length,
+    //   extraPrincipalPayment: extraPayment!,
+    //   years,
+    //   months,
+    //   periodsText: this.getPeriodsText(scheduleList.length),
+    //   interestPercentTotal: this.mathService.round(interestTotal / orginalBalance * 100, 2)
+    // };
 
-    return schedule;
+    // if (schedule.isFixedPayment && schedule.payment > 0) {
+    //   schedule.title = this.currency.transform(schedule.payment)! + ' Fixed Payment';
+    // }
+    // else if (extraPayment && extraPayment > 0) {
+    //   schedule.title = 'Minimum Payment + ' + this.currency.transform(extraPayment);
+    // }
+    // else {
+    //   schedule.title = 'Minimum Payment';
+    // }
+
+    // return schedule;
   };
 
   creditCardScheduleZeroPercentOption = (
@@ -188,9 +189,9 @@ export class PaymentService {
           monthlyInterest = 0;
         }
         else {
-          
+
           //TODO re-think, we round to 5 here because it will return zero due to rounding of small 2.9, etc..
-          const ratePercent = this.mathService.round(introRate / 12 / 100,5);
+          const ratePercent = this.mathService.round(introRate / 12 / 100, 5);
           monthlyInterest = this.mathService.round(balance * ratePercent, 2);
         }
       }

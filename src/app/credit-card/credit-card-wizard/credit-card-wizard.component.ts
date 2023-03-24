@@ -82,7 +82,6 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
         this.submit();
       }
     });
-
   }
 
   submit = () => {
