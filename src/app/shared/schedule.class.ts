@@ -19,4 +19,5 @@ export class Schedule {
   months = 0;
   periodsText = '';
   interestPercentTotal = 0;
+  chargeForIntroductoryRate?:number = 0;
 }

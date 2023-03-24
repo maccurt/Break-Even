@@ -7,6 +7,7 @@ import { ScheduleCompare } from './schedule-compare.type';
 import { ScheduleItem } from './schedule-item';
 import { Schedule } from './schedule.class';
 import { min } from 'rxjs';
+import { MapType } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -125,6 +126,140 @@ export class PaymentService {
     return schedule;
   };
 
+  creditCardScheduleZeroPercentOption = (
+    balance: number, annualPercentageRate: number,
+    financeChargePercent: number, extraPayment?: number,
+    isFixedPayment: boolean = false, includeApr: boolean = true, introRate: number = 0,
+    zeroPercentMonths: number = 0, zeroPercentChargeRate: number = 0): Schedule => {
+
+    if (balance <= 0) {
+      throw new Error('input error: balance 0');
+    }
+
+    if (annualPercentageRate <= 0) {
+      throw new Error('input error: annualPercentageRate');
+    }
+
+    let chargeForIntroductoryRate = 0;
+    if (zeroPercentMonths > 0 && zeroPercentChargeRate > 0) {
+      const chargeRate = this.mathService.round(zeroPercentChargeRate / 100, 2);
+      chargeForIntroductoryRate = this.mathService.round(chargeRate * balance);
+      balance = balance + chargeForIntroductoryRate;
+    }
+
+    const monthlyPercentageRate = annualPercentageRate / 100 / 12;
+    let monthlyInterest = 0;
+    let interestTotal = 0;
+    let paymentTotal = balance;
+    let paymentCount = 0;
+    const scheduleList: ScheduleItem[] = [];
+    let monthlyPayment = 0;
+    let principalPaid = 0;
+
+    let balanceStart = balance;
+    const orginalBalance = balance;
+
+    while (balance > 0) {
+
+      paymentCount++;
+
+      balanceStart = balance;
+      const fixedPayment = isFixedPayment ? extraPayment : 0;
+
+      let aprForMonth = annualPercentageRate;
+      //If we are in a %month set the apr to zero      
+      if (zeroPercentMonths >= paymentCount) {
+        aprForMonth = 0;
+      }
+
+      monthlyPayment = this.determineMonthlyPayment(fixedPayment!, financeChargePercent, balance, aprForMonth, includeApr);
+
+      //If this is not a fixed payment then add the extra payment to the minimum payment
+      if (!isFixedPayment) {
+        monthlyPayment += extraPayment!;
+      }
+
+      //Get the new monthly interest for current balance
+      if (zeroPercentMonths + 1 <= paymentCount) {
+        monthlyInterest = this.mathService.round(balance * monthlyPercentageRate, 2);
+      }
+      else {
+        if (introRate === 0) {
+          monthlyInterest = 0;
+        }
+        else {
+          
+          //TODO re-think, we round to 5 here because it will return zero due to rounding of small 2.9, etc..
+          const ratePercent = this.mathService.round(introRate / 12 / 100,5);
+          monthlyInterest = this.mathService.round(balance * ratePercent, 2);
+        }
+      }
+
+      //add to final interest total
+      interestTotal += monthlyInterest;
+
+      //Add the montly interes to the balance
+      balance += monthlyInterest;
+
+      //If the balance is less than or equal monthly payment
+      //set the minimum payment to the balance
+      if (balance <= monthlyPayment) {
+        monthlyPayment = this.mathService.round(balance, 2);
+      }
+
+      //set the balance to the balance minus the  monthly payment
+      balance = this.mathService.round(balance - monthlyPayment, 2);
+
+      principalPaid = this.mathService.round(monthlyPayment - monthlyInterest, 2);
+
+      const scheduleItem: ScheduleItem = {
+        payment: monthlyPayment,
+        balanceStart,
+        balanceEnd: balance,
+        interest: monthlyInterest,
+        principal: principalPaid,
+        extraPrincipal: extraPayment!
+      };
+      scheduleList.push(scheduleItem);
+    } // end of loop
+
+    interestTotal = this.mathService.round(interestTotal, 2);
+    paymentTotal = this.mathService.round(paymentTotal + interestTotal, 2);
+
+    const { years, months } = this.mathService.getYearsAndMonths(scheduleList.length);
+
+    const schedule: Schedule = {
+      balanceStart: orginalBalance,
+      scheduleList,
+      payment: isFixedPayment ? extraPayment! : 0,
+      isFixedPayment: isFixedPayment,
+      interest: interestTotal,
+      interestRatePercent: annualPercentageRate,
+      principal: principalPaid,
+      paymentTotal,
+      extraPrincipal: 0,
+      periods: scheduleList.length,
+      extraPrincipalPayment: extraPayment!,
+      years,
+      months,
+      periodsText: this.getPeriodsText(scheduleList.length),
+      interestPercentTotal: this.mathService.round(interestTotal / orginalBalance * 100, 2),
+      chargeForIntroductoryRate: chargeForIntroductoryRate
+    };
+
+    if (schedule.isFixedPayment && schedule.payment > 0) {
+      schedule.title = this.currency.transform(schedule.payment)! + ' Fixed Payment';
+    }
+    else if (extraPayment && extraPayment > 0) {
+      schedule.title = 'Minimum Payment + ' + this.currency.transform(extraPayment);
+    }
+    else {
+      schedule.title = 'Minimum Payment';
+    }
+
+    return schedule;
+  };
+
   periodicInterestRate = (ratePercent: number): number => {
     return ratePercent / 12 / 100;
   };
@@ -176,7 +311,7 @@ export class PaymentService {
   minimumPaymentCalculation = (financeChargePercent: number, balance: number,
     annualPercentageRate: number, includeInterest: boolean = true): MinimumPaymentCalculation => {
 
-    let minPayCalc = new MinimumPaymentCalculation();    
+    let minPayCalc = new MinimumPaymentCalculation();
     let financeCharge = 0;
     const financeChargeFactor = financeChargePercent / 100;
 
@@ -189,13 +324,13 @@ export class PaymentService {
 
     financeCharge = (balance * financeChargeFactor);
     minPayCalc.financeCharge = financeCharge;
-        
+
     const interestRateMonthly = annualPercentageRate / 100 / 12;
-    minPayCalc.monthlyPercentageRate = annualPercentageRate/12;
-    
+    minPayCalc.monthlyPercentageRate = annualPercentageRate / 12;
+
     minPayCalc.interestRateMonthly = interestRateMonthly;
     if (includeInterest) {
-      
+
       let monthlyInterest = (balance * interestRateMonthly);
       minPayCalc.minimumPayment = financeCharge + monthlyInterest;
       minPayCalc.monthlyInterest = monthlyInterest;
@@ -243,6 +378,9 @@ export class PaymentService {
     } else {
       monthlyPayment = this.minimumPayment(financeChargePercent, balance, annualPercentageRate, includeApr);
     }
+    //TODO in the future consider adding an option for this
+    //maybe it will be $25 in future, etc.
+    //https://wallethub.com/answers/cc/minimum-payment-on-0-apr-credit-card-2140670532/#:~:text=The%20minimum%20payment%20on%20a%200%25%20APR%20credit%20card%20is,percent%20of%20the%20total%20balance.
     if (monthlyPayment < 15) {
       monthlyPayment = 15;
     }

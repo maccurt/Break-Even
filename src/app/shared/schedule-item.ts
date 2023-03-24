@@ -7,5 +7,4 @@ export class ScheduleItem {
   principalPercentOfPayment?:number;
   extraPrincipal!: number;
   payment?: number;
-
 }
