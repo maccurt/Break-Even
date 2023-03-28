@@ -7,8 +7,7 @@ describe('mininum-payment-calculation', () => {
     });
 
     describe('baseline', () => {
-        it('minimum-payment-calculation should NOT exist', () => {
-                        
+        it('minimum-payment-calculation should NOT exist', () => {                        
             cy.getDataTestId('min-pay-calculation').should('not.exist');
         });
     });

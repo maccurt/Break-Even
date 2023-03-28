@@ -1,0 +1,42 @@
+<mat-card *ngIf="schedule" data-test-id="cc-wizard-summary">
+
+    <mat-card-title>
+        <fa-icon data-test-id="title-icon" [icon]="titleIcon">
+        </fa-icon>
+        <!-- Minimum Payment Only -->
+        <span data-test-id="title">{{schedule.title}}</span>
+        <hr>
+    </mat-card-title>
+
+    <mat-card-content class="mt-2">
+
+        <div class="{{alertClass}}"
+             role="alert">
+            <h4 data-test-id="payment-total">
+                ${{schedule.balanceStart |number:'1.2-2' }}
+                will turn into ${{schedule.paymentTotal |number:'1.2-2' }}.
+            </h4>
+        </div>
+
+        <div class="{{alertClass}}"
+             role="alert">
+            <h4 data-test-id="extra-pay">
+                You Will Pay An Extra ${{schedule.interest |number:'1.2-2'
+                }}
+                In
+                Interest.
+            </h4>
+        </div>
+
+        <div class="{{alertClass}}"
+             role="alert">
+            <h4 data-test-id="year-pay-off">
+                It Will Take You {{schedule.periodsText}} To Pay Off The
+                Credit
+                Card.
+            </h4>
+        </div>
+
+    </mat-card-content>
+
+</mat-card>
