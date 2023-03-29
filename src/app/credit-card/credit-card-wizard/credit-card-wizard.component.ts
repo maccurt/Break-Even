@@ -12,16 +12,19 @@ import { PaymentType } from '../credit-card-calculator/payment-type.enum';
 import { ScheduleItem } from 'src/app/shared/schedule-item';
 import { Title } from '@angular/platform-browser';
 import { MetaService } from 'src/app/shared/meta.service';
-import { Store } from '@ngrx/store';
-import { CreditCardState } from '../credit-card-state/credit-card.reducers';
-import { CreditCardAction } from '../credit-card-state/credit-card.actions.barrel';
+import { CreditFormOutput } from '../credit-card-form/credit-card-form.component';
+
+export enum CreditCardMode {
+  default = 0,
+  introductoryRate = 1
+}
 
 @Component({
   selector: 'app-credit-card-wizard',
   templateUrl: './credit-card-wizard.component.html',
   styleUrls: ['./credit-card-wizard.component.scss']
 })
-export class CreditCardWizardComponent implements OnInit, OnDestroy {
+export class CreditCardWizardComponent implements  OnDestroy {
 
   tabIndex: number = 0;
   subList$: Subscription[] = [];
@@ -41,13 +44,23 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
   minimumPaymentTypeControl = new FormControl(this.minimumPaymentTypeList[0], [Validators.required]);
   fixedPaymentControl = new FormControl(0, [Validators.required, Validators.min(0), Validators.max(999999)]);
 
+  //intro rate mode controls
+  transferInterestRateControl = new FormControl(this.interestRate);
+  introRateControl = new FormControl(this.interestRate);
+
   formGroup = this.fb.group({
     balance: this.balanceControl,
     interestRate: this.interestRateControl,
     minimumPaymentType: this.minimumPaymentTypeControl,
-    fixedPayment: this.fixedPaymentControl
+    fixedPayment: this.fixedPaymentControl,
+    transferInterestRate: this.transferInterestRateControl,
+    introRate: this.introRateControl
   });
   fixedPaymentIsMinPayment: boolean = false;
+
+  mode: CreditCardMode = CreditCardMode.default;
+
+  isIntroRateMode: boolean = false;
 
   constructor(private fb: FormBuilder,
     private title: Title,
@@ -56,93 +69,110 @@ export class CreditCardWizardComponent implements OnInit, OnDestroy {
     public icon: IconService,
     private paymentService: PaymentService,
     private route: ActivatedRoute,
-    private store: Store<CreditCardState>) {
+  ) {
 
     this.title.setTitle('Credit Card Calculator');
     this.metaService.addTitle('Credit Card Calculator');
     this.metaService.addDescription('Calculates your credit card interest and how many years it will take to pay off');
   }
-  ngOnInit(): void {
-    this.store.dispatch(CreditCardAction.getInterestRate());
 
-    this.subList$.push(this.minimumPaymentTypeControl.valueChanges.subscribe(() => {
-      this.submit();
-    }));
-
-    this.route.queryParamMap.subscribe((parms) => {
-      if (parms.get('demo')) {
-
-        let tab = Number(parms.get('tab'));
-
-        if (tab) {
-          this.tabIndex = tab;
-        }
-
-        this.balanceControl.setValue(20000);
-        this.submit();
-      }
-    });
+  calculateEvent(output: CreditFormOutput): void {    
+    this.scheduleCompare = output.scheduleCompare;
+    this.schedule1 = this.scheduleCompare.schedule1;
+    this.schedule2 = this.scheduleCompare.schedule2;
+    this.isSubmitted = output.isSubmitted;
   }
 
-  submit = () => {
+  //ngOnInit(): void {
+    
+    // this.subList$.push(this.minimumPaymentTypeControl.valueChanges.subscribe(() => {
+    //   this.submit();
+    // }));
 
-    if (this.balanceControl.valid && this.interestRateControl.valid) {
+    // this.route.data.subscribe((data: any) => {
+    //   if (data.mode) {
+    //     this.mode = data.mode as CreditCardMode;
+    //     this.isIntroRateMode = (this.mode === CreditCardMode.introductoryRate);
+    //   }
+    // });
 
-      const minimumPaymentType = this.minimumPaymentTypeControl.value!;
-      let balance = this.formGroup.value.balance!;
-      let interestRate = this.formGroup.value.interestRate!;
+    // if (this.isIntroRateMode) {
+    //   this.interestRateControl.addValidators([Validators.required, Validators.min(1), Validators.max(99)]);
+    //   this.introRateControl.addValidators([Validators.required, Validators.min(0), Validators.max(99)]);
+    // }
 
-      this.schedule1 = this.paymentService
-        .creditCardSchedule(balance, interestRate, minimumPaymentType.percentOfBalance!,
-          0, false, minimumPaymentType.useInterest);
-      this.schedule1.title = 'Minimum Payment Only Total';
-      this.schedule1.paymentType = PaymentType.MinimumPaymentOnly;
+    // this.route.queryParamMap.subscribe((parms) => {
+    //   if (parms.get('demo')) {
+    //     let tab = Number(parms.get('tab'));
+    //     if (tab) {
+    //       this.tabIndex = tab;
+    //     }
 
-      this.minimumPayment = this.paymentService.determineMonthlyPayment(
-        0, minimumPaymentType.percentOfBalance, balance!, interestRate!, minimumPaymentType.useInterest);
+    //     this.balanceControl.setValue(20000);
+    //     this.submit();
+    //   }
+    // });
+  //}
 
-      this.minimumPaymentCalculation = this.paymentService.
-        minimumPaymentCalculation(minimumPaymentType.percentOfBalance, balance,
-          interestRate, minimumPaymentType.useInterest);
+  //submit = () => {
 
-      this.fixedPaymentControl.clearValidators();
-      this.fixedPaymentControl.addValidators(Validators.min(this.minimumPayment));
+    // if (this.balanceControl.valid && this.interestRateControl.valid) {
 
-      this.fixedPaymentIsMinPayment = false;
-      if (!this.fixedPaymentControl.value || this.fixedPaymentControl.value! <= 0 || this.fixedPaymentControl.value < this.minimumPayment) {
-        this.fixedPaymentControl.setValue(this.minimumPayment);
-      };
+    //   const minimumPaymentType = this.minimumPaymentTypeControl.value!;
+    //   let balance = this.formGroup.value.balance!;
+    //   let interestRate = this.formGroup.value.interestRate!;
 
-      if (this.fixedPaymentControl.value === this.minimumPayment) {
-        this.fixedPaymentIsMinPayment = true;
-      };
+    //   this.schedule1 = this.paymentService
+    //     .creditCardSchedule(balance, interestRate, minimumPaymentType.percentOfBalance!,
+    //       0, false, minimumPaymentType.useInterest);
+    //   this.schedule1.title = 'Minimum Payment Only Total';
+    //   this.schedule1.paymentType = PaymentType.MinimumPaymentOnly;
 
-      this.fixedPaymentControl.updateValueAndValidity();
+    //   this.minimumPayment = this.paymentService.determineMonthlyPayment(
+    //     0, minimumPaymentType.percentOfBalance, balance!, interestRate!, minimumPaymentType.useInterest);
 
-      if (this.fixedPaymentControl.valid) {
-        this.schedule2 = this.paymentService.creditCardSchedule(balance, interestRate, minimumPaymentType.percentOfBalance!,
-          this.fixedPaymentControl.value!, true, minimumPaymentType.useInterest);
-        this.schedule2.paymentType = PaymentType.FixedPayment;
-        this.schedule2.title = 'Fixed Monthly Payment';
-      };
+    //   this.minimumPaymentCalculation = this.paymentService.
+    //     minimumPaymentCalculation(minimumPaymentType.percentOfBalance, balance,
+    //       interestRate, minimumPaymentType.useInterest);
 
-      this.scheduleCompare = this.paymentService.getScheduleCompare(this.schedule1, this.schedule2);
-      this.isSubmitted = true;
-    }
-  };
+    //   this.fixedPaymentControl.clearValidators();
+    //   this.fixedPaymentControl.addValidators(Validators.min(this.minimumPayment));
 
-  setFixPayment = () => {
-    this.fixedPaymentIsMinPayment = true;
-    this.fixedPaymentControl.setValue(this.minimumPayment);
-  };
+    //   this.fixedPaymentIsMinPayment = false;
+    //   if (!this.fixedPaymentControl.value || this.fixedPaymentControl.value! <= 0 || this.fixedPaymentControl.value < this.minimumPayment) {
+    //     this.fixedPaymentControl.setValue(this.minimumPayment);
+    //   };
 
-  blur = () => {
-    this.submit();
-  };
+    //   if (this.fixedPaymentControl.value === this.minimumPayment) {
+    //     this.fixedPaymentIsMinPayment = true;
+    //   };
 
-  isInvalid = (control: AbstractControl, showErrors: boolean = false): boolean => {
-    return (control.touched && control.invalid) || (control.invalid && showErrors);
-  };
+    //   this.fixedPaymentControl.updateValueAndValidity();
+
+    //   if (this.fixedPaymentControl.valid) {
+    //     this.schedule2 = this.paymentService.creditCardSchedule(balance, interestRate, minimumPaymentType.percentOfBalance!,
+    //       this.fixedPaymentControl.value!, true, minimumPaymentType.useInterest);
+    //     this.schedule2.paymentType = PaymentType.FixedPayment;
+    //     this.schedule2.title = 'Fixed Monthly Payment';
+    //   };
+
+    //   this.scheduleCompare = this.paymentService.getScheduleCompare(this.schedule1, this.schedule2);
+    //   this.isSubmitted = true;
+    // }
+  //};
+
+  // setFixPayment = () => {
+  //   this.fixedPaymentIsMinPayment = true;
+  //   this.fixedPaymentControl.setValue(this.minimumPayment);
+  // };
+
+  // blur = () => {
+  //   this.submit();
+  // };
+
+  // isInvalid = (control: AbstractControl, showErrors: boolean = false): boolean => {
+  //   return (control.touched && control.invalid) || (control.invalid && showErrors);
+  // };
 
   ngOnDestroy(): void {
     this.subList$.forEach((sub$) => {

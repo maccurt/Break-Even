@@ -4,13 +4,13 @@
 
         <div class="col-12 col-md-7 col-lg-5 col-xl-4 col-xxl-3">
 
-            <form id="cc-form"
+            <app-credit-card-form (calculateEvent)="calculateEvent($event)" ></app-credit-card-form>
+            <!-- <form id="cc-form"
                   [formGroup]="formGroup"
                   (submit)="submit()">
 
                 <mat-card>
                     <mat-card-title>
-
                         <div data-test-id="title">
                             <fa-icon [icon]="help.creditCardBalance1.icon"
                                      class={{help.creditCardBalance1.iconClass}}>
@@ -55,6 +55,7 @@
                         <mat-card-content class="mt-1">
                             <div [ngClass]="{'has-error':(isInvalid(interestRateControl))}">
                                 <input id="interestRate"
+                                       class="apr"
                                        data-test-id="interest-rate"
                                        maxlength="5"
                                        [min]="0"
@@ -69,6 +70,66 @@
                                 </div>
                             </div>
                         </mat-card-content>
+                    </mat-card>
+
+                    <mat-card *ngIf="isIntroRateMode"
+                              id="intro-interest-rate"
+                              class="mt-4">
+                        <mat-card-title>
+                            <div class="title-responsive">
+                                <fa-icon [icon]="help.interestRate.icon"
+                                         class={{help.interestRate.iconClass}}>
+                                </fa-icon>
+                                APR% On Card You Are Transferring to?
+                            </div>
+
+                        </mat-card-title>
+                        <mat-card-content class="mt-1">
+                            <div [ngClass]="{'has-error':(isInvalid(transferInterestRateControl))}">
+                                <input id="introInterestRate"                                       
+                                       data-test-id="intro-interest-rate"
+                                       maxlength="5"
+                                       [min]="0"
+                                       [max]="99"
+                                       type="number"
+                                       class="form-control apr"
+                                       formControlName="introInterestRate"
+                                       (blur)="blur()">
+
+                                <div class="hint">
+                                    required: 1 to 99. Average APR% is {{interestRate}}%
+                                </div>
+                            </div>
+                        </mat-card-content>
+
+
+                        <mat-card-title>
+                            <div class="title-responsive">
+                                <fa-icon [icon]="help.interestRate.icon"
+                                         class={{help.interestRate.iconClass}}>
+                                </fa-icon>
+                                Introductory APR%
+                            </div>
+
+                        </mat-card-title>
+                        <mat-card-content class="mt-1">
+                            <div [ngClass]="{'has-error':(isInvalid(transferInterestRateControl))}">
+                                <input id="introInterestRate"
+                                       data-test-id="intro-interest-rate"
+                                       maxlength="5"
+                                       [min]="0"
+                                       [max]="99"
+                                       type="number"
+                                       class="form-control apr"
+                                       formControlName="introInterestRate"
+                                       (blur)="blur()">
+
+                                <div class="hint">
+                                    required: 0 to 99.
+                                </div>
+                            </div>
+                        </mat-card-content>
+
                     </mat-card>
 
                     <mat-card class="mt-4">
@@ -145,7 +206,7 @@
                         </app-minimum-payment-calculation>
                     </div>
                 </ng-container>
-            </form>
+            </form> -->
         </div>
 
         <div *ngIf="isSubmitted"
@@ -161,99 +222,15 @@
 
                             <div class="row">
 
-                                <div data-test-id="summary-min-pay" class="col-12 col-md-6 col-xxl-4 mb-sm-4">
+                                <div data-test-id="summary-min-pay"
+                                     class="col-12 col-md-6 col-xxl-4 mb-sm-4">
 
-                                    <app-cc-wizard-summary [schedule]="schedule1" ></app-cc-wizard-summary>
-
-                                    <!-- <mat-card>
-
-                                        <mat-card-title>
-                                            <fa-icon [icon]="icon.unhappy">
-                                            </fa-icon>
-                                            Minimum Payment Only
-                                            <hr>
-                                        </mat-card-title>
-
-                                        <mat-card-content class="mt-2">
-
-                                            <div class="alert alert-danger"
-                                                 role="alert">
-                                                <h4 data-test-id="min-balance-start">
-                                                    ${{schedule1.balanceStart |number:'1.2-2' }}
-                                                    will turn into ${{schedule1.paymentTotal |number:'1.2-2' }}.
-                                                </h4>
-                                            </div>
-
-                                            <div class="alert alert-danger"
-                                                 role="alert">
-                                                <h4>
-                                                    You Will Pay An Extra ${{schedule1.interest |number:'1.2-2'
-                                                    }}
-                                                    In
-                                                    Interest.
-                                                </h4>
-                                            </div>
-
-                                            <div class="alert alert-danger"
-                                                 role="alert">
-                                                <h4>
-                                                    It Will Take You {{schedule1.periodsText}} To Pay Off The
-                                                    Credit
-                                                    Card.
-                                                </h4>
-                                            </div>
-
-                                        </mat-card-content>
-
-                                    </mat-card> -->
+                                    <app-cc-wizard-summary [schedule]="schedule1"></app-cc-wizard-summary>
                                 </div>
 
-                                <div data-test-id="summary-fixed-pay" class="col-12 col-md-6 col-xxl-4">
-
-                                    <app-cc-wizard-summary [schedule]="schedule2" ></app-cc-wizard-summary>
-
-                                    <!-- <mat-card>
-
-                                        <mat-card-title>
-                                            <fa-icon [icon]="icon.smile">
-                                            </fa-icon>
-                                            ${{schedule2.payment |number:'1.2-2' }} Fixed Monthly Payment
-                                            <hr>
-                                        </mat-card-title>
-
-                                        <mat-card-content class="mt-2">
-
-                                            <div class="alert alert-success"
-                                                 role="alert">
-                                                <h4>
-                                                    ${{schedule2.balanceStart |number:'1.2-2' }}
-                                                    will turn into ${{schedule2.paymentTotal |number:'1.2-2' }}.
-                                                </h4>
-                                            </div>
-
-                                            <div class="alert alert-success"
-                                                 role="alert">
-                                                <h4>
-                                                    You Will Pay An Extra ${{schedule2.interest |number:'1.2-2'
-                                                    }}
-                                                    In
-                                                    Interest.
-                                                </h4>
-                                            </div>
-
-                                            <div class="alert alert-success"
-                                                 role="alert">
-
-                                                <h4>
-                                                    It Will Take You {{schedule2.periodsText}} To Pay Off The
-                                                    Credit
-                                                    Card.
-                                                </h4>
-                                            </div>
-
-                                        </mat-card-content>
-                                    </mat-card> -->
-
+                                <div data-test-id="summary-fixed-pay"
+                                     class="col-12 col-md-6 col-xxl-4">
+                                    <app-cc-wizard-summary [schedule]="schedule2"></app-cc-wizard-summary>
                                 </div>
                             </div>
 
@@ -264,7 +241,6 @@
 
                         <div class="col-12 col-xl-8">
                             <div class="d-flex justify-content-sm-center   justify-content-center mt-3">
-
                                 <img height="275"
                                      width="275"
                                      src="../../../assets/images/credit-card-devil/Credit-Card-Devil-400.gif">

@@ -24,6 +24,7 @@ import { ScheduleItemComponent } from './schedule-item/schedule-item.component';
 import { EffectsModule } from '@ngrx/effects';
 import { MinimumPaymentCalculationComponent } from './minimum-payment-calculation/minimum-payment-calculation.component';
 import { CcWizardSummaryComponent } from './cc-wizard-summary/cc-wizard-summary.component';
+import { CreditCardFormComponent } from './credit-card-form/credit-card-form.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CcWizardSummaryComponent } from './cc-wizard-summary/cc-wizard-summary.
     CreditCardWizardComponent,
     ScheduleItemComponent,
     MinimumPaymentCalculationComponent,
-    CcWizardSummaryComponent
+    CcWizardSummaryComponent,
+    CreditCardFormComponent
   ],
   imports: [
     CommonModule,
