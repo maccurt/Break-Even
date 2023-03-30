@@ -24,13 +24,13 @@ export function checkForErrors(dataTestId:string){
     });
 }
 
-export function CheckForNOErrors(dataTestId:string){
+export function CheckForNoErrors(dataTestId:string){
 
     beforeEach(() => {
         cy.getDataTestId(dataTestId).as('input');
     });
 
-    describe('Name of the group', () => {
+    describe('CheckForNoErrors attributes,etc', () => {
 
         it('parent should NOT have the class has-error', () => {
             cy.get('@input').clear().type('1').blur();
@@ -85,7 +85,7 @@ export function checkValidation(inputDataTestId: string) {
 
     describe('enter 1 in input and blure off', () => {
 
-        CheckForNOErrors(inputDataTestId);
+        CheckForNoErrors(inputDataTestId);
         // beforeEach(() => {
         //     cy.getDataTestId(inputDataTestId).as('input');
         // });        

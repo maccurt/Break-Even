@@ -1,4 +1,4 @@
-import { checkForErrors, checkValidation } from "./check-validation.function";
+import { checkForErrors, CheckForNoErrors, checkValidation } from "./check-validation.function";
 
 describe('intro rate fields', () => {
 
@@ -42,7 +42,7 @@ describe('intro rate fields', () => {
         checkValidation('intro-months');        
     });
 
-    describe('intro transfer cost to percern intro-transfer-cost-percent', () => {
+    describe('intro transfer cost to percent intro-transfer-cost-percent', () => {
 
         beforeEach(()=>{
             cy.getDataTestId('intro-transfer-cost-percent').as('transferCost');            
@@ -56,7 +56,9 @@ describe('intro rate fields', () => {
             cy.get('@transferCost').focus().clear().blur()
             .should('have.value','0');  
             //TODO ADD TEST TO CHECK FOR ERROR not being there
-        });        
+        }); 
+        
+        CheckForNoErrors('intro-transfer-cost-percent');            
 
         describe('enter 100 which is an error', () => {
             before(() => {
@@ -65,11 +67,11 @@ describe('intro rate fields', () => {
             checkForErrors('intro-transfer-cost-percent');            
         });
 
-        xdescribe('enter 99 which is NOT an error', () => {
+        describe('enter 99 which is NOT an error', () => {
             before(() => {
                 cy.getDataTestId('intro-transfer-cost-percent').clear().type('99.').blur();
             });
-            checkForErrors('intro-transfer-cost-percent');            
+            CheckForNoErrors('intro-transfer-cost-percent');            
         });
         
     });    
