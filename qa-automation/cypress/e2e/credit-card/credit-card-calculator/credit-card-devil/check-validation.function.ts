@@ -1,3 +1,57 @@
+export function checkForErrors(dataTestId:string){
+
+    describe('check for error attributes', () => {
+
+        beforeEach(() => {
+            cy.getDataTestId(dataTestId).as('input');
+        });
+    
+        it('input parent should have the class has-error', () => {
+            cy.get('@input').parent().should('have.class', 'has-error');
+        });
+    
+        it('input should have back-ground-color', () => {
+            cy.get('@input').should('have.css', 'background-color', 'rgb(255, 230, 230)');
+        });
+    
+        it('input should have reddish back-ground-color', () => {
+            cy.get('@input').should('have.css', 'background-color', 'rgb(255, 230, 230)');
+        });
+    
+        it('hint should have reddish color', () => {
+            cy.get('@input').parent().find('.hint').should('have.css', 'color', 'rgb(255, 0, 0)');
+        });        
+    });
+}
+
+export function CheckForNOErrors(dataTestId:string){
+
+    beforeEach(() => {
+        cy.getDataTestId(dataTestId).as('input');
+    });
+
+    describe('Name of the group', () => {
+
+        it('parent should NOT have the class has-error', () => {
+            cy.get('@input').clear().type('1').blur();
+            cy.get('@input').parent().should('not.have.class', 'has-error');
+        });
+    
+        it('input should NOT have back-ground-color', () => {
+            cy.get('@input').should('not.have.css', 'background-color', 'rgb(255, 230, 230)');
+        });
+    
+        it('input should NOT have reddish back-ground-color', () => {
+            cy.get('@input').should('not.have.css', 'background-color', 'rgb(255, 230, 230)');
+        });
+    
+        it('hint should NOT have reddish color', () => {
+            cy.get('@input').parent().find('.hint').should('not.have.css', 'color', 'rgb(255, 0, 0)');
+        });  
+        
+    });    
+}
+
 export function checkValidation(inputDataTestId: string) {
 
     beforeEach(() => {
@@ -10,44 +64,30 @@ export function checkValidation(inputDataTestId: string) {
             cy.getDataTestId(inputDataTestId).clear().focus().blur();
         });
 
-        it('input parent should have the class has-error', () => {
-            cy.get('@input').parent().should('have.class', 'has-error');
-        });
+        checkForErrors(inputDataTestId);
 
-        it('input should have back-ground-color', () => {
-            cy.get('@input').should('have.css', 'background-color', 'rgb(255, 230, 230)');
-        });
+        // it('input parent should have the class has-error', () => {
+        //     cy.get('@input').parent().should('have.class', 'has-error');
+        // });
 
-        it('input should have reddish back-ground-color', () => {
-            cy.get('@input').should('have.css', 'background-color', 'rgb(255, 230, 230)');
-        });
+        // it('input should have back-ground-color', () => {
+        //     cy.get('@input').should('have.css', 'background-color', 'rgb(255, 230, 230)');
+        // });
 
-        it('hint should have reddish color', () => {
-            cy.get('@input').parent().find('.hint').should('have.css', 'color', 'rgb(255, 0, 0)');
-        });
+        // it('input should have reddish back-ground-color', () => {
+        //     cy.get('@input').should('have.css', 'background-color', 'rgb(255, 230, 230)');
+        // });
+
+        // it('hint should have reddish color', () => {
+        //     cy.get('@input').parent().find('.hint').should('have.css', 'color', 'rgb(255, 0, 0)');
+        // });
     });
 
     describe('enter 1 in input and blure off', () => {
 
-        beforeEach(() => {
-            cy.getDataTestId(inputDataTestId).as('input');
-        });
-
-        it('balance parent should NOT have the class has-error', () => {
-            cy.get('@input').clear().type('1').blur();
-            cy.get('@input').parent().should('not.have.class', 'has-error');
-        });
-
-        it('input should NOT have back-ground-color', () => {
-            cy.get('@input').should('not.have.css', 'background-color', 'rgb(255, 230, 230)');
-        });
-
-        it('input should NOT have reddish back-ground-color', () => {
-            cy.get('@input').should('not.have.css', 'background-color', 'rgb(255, 230, 230)');
-        });
-
-        it('hint should NOT have reddish color', () => {
-            cy.get('@input').parent().find('.hint').should('not.have.css', 'color', 'rgb(255, 0, 0)');
-        });
+        CheckForNOErrors(inputDataTestId);
+        // beforeEach(() => {
+        //     cy.getDataTestId(inputDataTestId).as('input');
+        // });        
     });
 }

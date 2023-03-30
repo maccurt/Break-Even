@@ -5,6 +5,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipDefaultOptions, MatTooltipModule, MAT_TOOLTIP_DEFAULT_OPTIONS, } from '@angular/material/tooltip';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const toolTipDefault: MatTooltipDefaultOptions = {
@@ -26,7 +27,8 @@ export const toolTipDefault: MatTooltipDefaultOptions = {
     MatChipsModule,
     MatTooltipModule,
     MatTabsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatExpansionModule
   ]
 
 })

@@ -14,9 +14,9 @@ import { Schedule } from 'src/app/shared/schedule.class';
 import { PaymentType } from '../credit-card-calculator/payment-type.enum';
 import { CreditCardMode } from '../credit-card-wizard/credit-card-wizard.component';
 
-export class CreditFormOutput{
+export class CreditFormOutput {
   scheduleCompare!: ScheduleCompare;
-  isSubmitted:boolean = false;
+  isSubmitted: boolean = false;
 }
 
 @Component({
@@ -24,9 +24,9 @@ export class CreditFormOutput{
   templateUrl: './credit-card-form.component.html',
   styleUrls: ['./credit-card-form.component.scss']
 })
-export class CreditCardFormComponent implements OnInit,OnDestroy {
-  
-  @Output() calculateEvent = new EventEmitter<CreditFormOutput>();  
+export class CreditCardFormComponent implements OnInit, OnDestroy {
+
+  @Output() calculateEvent = new EventEmitter<CreditFormOutput>();
   scheduleCompare!: ScheduleCompare;
 
   tabIndex: number = 0;
@@ -37,7 +37,7 @@ export class CreditCardFormComponent implements OnInit,OnDestroy {
   isSubmitted: boolean = false;
   schedule1!: Schedule;
   schedule2!: Schedule;
-  
+
   scheduleListForMinPayment!: ScheduleItem[];
   minimumPaymentTypeList = this.paymentService.getMinimumPaymentTypeList();
 
@@ -47,17 +47,21 @@ export class CreditCardFormComponent implements OnInit,OnDestroy {
   minimumPaymentTypeControl = new FormControl(this.minimumPaymentTypeList[0], [Validators.required]);
   fixedPaymentControl = new FormControl(0, [Validators.required, Validators.min(0), Validators.max(999999)]);
 
-  //intro rate mode controls
-  transferInterestRateControl = new FormControl(this.interestRate);
-  introRateControl = new FormControl(this.interestRate);
+  //intro rate mode controls  
+  introInterestRate = new FormControl(0);
+  introMonths = new FormControl(12,[Validators.required, Validators.min(0), Validators.max(36)]);
+  introTransferFeeRate = new FormControl(0);
+  introTransferCostPercent = new FormControl(0);
 
   formGroup = this.fb.group({
     balance: this.balanceControl,
     interestRate: this.interestRateControl,
     minimumPaymentType: this.minimumPaymentTypeControl,
     fixedPayment: this.fixedPaymentControl,
-    transferInterestRate: this.transferInterestRateControl,
-    introRate: this.introRateControl
+    introInterestRate: this.introInterestRate,
+    introMonths:this.introMonths,
+    introTransferFeeRate:this.introTransferFeeRate,
+    introTransferCostPercent:this.introTransferCostPercent
   });
   fixedPaymentIsMinPayment: boolean = false;
 
@@ -66,14 +70,12 @@ export class CreditCardFormComponent implements OnInit,OnDestroy {
   isIntroRateMode: boolean = false;
 
   constructor(private fb: FormBuilder,
-    private title: Title,
-    private metaService: MetaService,
     public help: HelpService,
     public icon: IconService,
     private paymentService: PaymentService,
     private route: ActivatedRoute,
   ) {
-    
+
   }
   ngOnInit(): void {
 
@@ -90,7 +92,7 @@ export class CreditCardFormComponent implements OnInit,OnDestroy {
 
     if (this.isIntroRateMode) {
       this.interestRateControl.addValidators([Validators.required, Validators.min(1), Validators.max(99)]);
-      this.introRateControl.addValidators([Validators.required, Validators.min(0), Validators.max(99)]);
+      this.introInterestRate.addValidators([Validators.required, Validators.min(0), Validators.max(99)]);
     }
 
     this.route.queryParamMap.subscribe((parms) => {
@@ -151,17 +153,13 @@ export class CreditCardFormComponent implements OnInit,OnDestroy {
       this.scheduleCompare = this.paymentService.getScheduleCompare(this.schedule1, this.schedule2);
       this.isSubmitted = true;
 
-      //Send the output
-      //this.formOutput.scheduleCompare = this.scheduleCompare;
-
-      const formOutPut:CreditFormOutput = {
-        scheduleCompare:this.scheduleCompare,
-        isSubmitted:this.isSubmitted
-      }; 
+      const formOutPut: CreditFormOutput = {
+        scheduleCompare: this.scheduleCompare,
+        isSubmitted: this.isSubmitted
+      };
 
       this.calculateEvent.emit(formOutPut);
     }
-    
   };
 
   setFixPayment = () => {
@@ -173,6 +171,13 @@ export class CreditCardFormComponent implements OnInit,OnDestroy {
     this.submit();
   };
 
+  blurForceZero = (control:AbstractControl)=> {
+    if (!control.value){
+      control.setValue(0);
+    }
+    this.submit();
+  };
+
   isInvalid = (control: AbstractControl, showErrors: boolean = false): boolean => {
     return (control.touched && control.invalid) || (control.invalid && showErrors);
   };
@@ -181,6 +186,5 @@ export class CreditCardFormComponent implements OnInit,OnDestroy {
     this.subList$.forEach((sub$) => {
       sub$.unsubscribe();
     });
-  }   
-
+  }
 }
