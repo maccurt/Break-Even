@@ -2,18 +2,19 @@
     <table class="table table-sm table-striped table-schedule-list">
         <tbody>
             <tr>
-                <th> Period </th>
-                <th> Interest </th>
-                <th> Principal </th>
+                <th>Period</th>
+                <th>Interest</th>
+                <th>Principal</th>
                 <th>Payment</th>
-                <th> Balance </th>
+                <th>Balance</th>
             </tr>
-            <tr *ngFor="let item of scheduleList;index as i">
-                <td>{{i+1}}</td>
-                <td>{{item.interest |number :'1.2-2' }}</td>
-                <td>{{item.principal |number :'1.2-2' }}</td>
-                <td>{{item.payment |number :'1.2-2' }}</td>
-                <td>{{item.balanceEnd  |number :'1.2-2'}}</td>
+            <tr attr.data-test-id="schedule-{{i +1}}"
+                *ngFor="let item of scheduleList;index as i">
+                <td data-test-id="period">{{i+1}}</td>
+                <td data-test-id="interest">{{item.interest |number :'1.2-2' }}</td>
+                <td data-test-id="principal">{{item.principal |number :'1.2-2' }}</td>
+                <td data-test-id="payment">{{item.payment |number :'1.2-2' }}</td>
+                <td data-test-id="balance">{{item.balanceEnd |number :'1.2-2'}}</td>
             </tr>
         </tbody>
     </table>

@@ -286,11 +286,11 @@
                     </div>
                 </mat-tab>
 
-                <mat-tab label="Fixed Payment Schedule">
+                <mat-tab data-test-id="fixed-payment-schedule-tab"  label="Fixed Payment Schedule">
 
                     <div class="row">
 
-                        <div class="col-xxl-7">
+                        <div data-test-id="fixed-pay-schedule-list" class="col-xxl-7">
                             <app-credit-card-schedule-list [scheduleList]="schedule2.scheduleList">
                             </app-credit-card-schedule-list>
                         </div>

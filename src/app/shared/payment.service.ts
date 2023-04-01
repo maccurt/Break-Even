@@ -29,11 +29,16 @@ export class PaymentService {
       isFixedPayment, includeApr);
   };
 
+  monthlyPercentRate = (annualPercentRate: number): number => {    
+    const rate = this.mathService.round( annualPercentRate/12/100,5);
+    return rate;
+  };
+
   creditCardScheduleZeroPercentOption = (
     balance: number, annualPercentageRate: number,
     financeChargePercent: number, extraPayment?: number,
     isFixedPayment: boolean = false, includeApr: boolean = true, introRate: number = 0,
-    introMonths: number = 0, introAnnualPercentageRate: number = 0): Schedule => {
+    introMonths: number = 0, introFeePercent: number = 0): Schedule => {
 
     if (balance <= 0) {
       throw new Error('input error: balance 0');
@@ -44,13 +49,13 @@ export class PaymentService {
     }
 
     let chargeForIntroductoryRate = 0;
-    if (introMonths > 0 && introAnnualPercentageRate > 0) {
-      const chargeRate = this.mathService.round(introAnnualPercentageRate / 100, 2);
+    if (introMonths > 0 && introFeePercent > 0) {
+      const chargeRate = this.mathService.round(introFeePercent / 100, 5);
       chargeForIntroductoryRate = this.mathService.round(chargeRate * balance);
       balance = balance + chargeForIntroductoryRate;
     }
 
-    const monthlyPercentageRate = annualPercentageRate / 100 / 12;
+    const monthlyPercentageRate =  this.monthlyPercentRate(annualPercentageRate);
     let monthlyInterest = 0;
     let interestTotal = 0;
     let paymentTotal = balance;
@@ -72,7 +77,7 @@ export class PaymentService {
       let aprForMonth = annualPercentageRate;
       //If we are in a %month set the apr to zero      
       if (introMonths >= paymentCount) {
-        aprForMonth = 0;
+        aprForMonth = introRate;
       }
 
       monthlyPayment = this.determineMonthlyPayment(fixedPayment!, financeChargePercent, balance, aprForMonth, includeApr);
@@ -90,14 +95,11 @@ export class PaymentService {
         if (introRate === 0) {
           monthlyInterest = 0;
         }
-        else {
-
-          //TODO re-think, we round to 5 here because it will return zero due to rounding of small 2.9, etc..
-          const ratePercent = this.mathService.round(introRate / 12 / 100, 5);
+        else {          
+          const ratePercent =  this.monthlyPercentRate(introRate);
           monthlyInterest = this.mathService.round(balance * ratePercent, 2);
         }
       }
-
       //add to final interest total
       interestTotal += monthlyInterest;
 

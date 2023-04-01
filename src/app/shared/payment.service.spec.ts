@@ -7,6 +7,16 @@ import { ScheduleItem } from './schedule-item';
 describe('PaymentService', () => {
   const service: PaymentService = new PaymentService(new MathService(), new CurrencyPipe('en-US'));
 
+
+  describe('Name of the group', () => {
+
+    it('should calculate monthly interest correctly', () => {
+      expect(service.monthlyPercentRate(3)).toBe(.0025);
+      expect(service.monthlyPercentRate(15)).toBe(.01250);
+    });
+    
+  });
+
   describe('minimumPayment', () => {
     it('should calculate correctly', () => {
       let result = service.minimumPayment(10, 1000, 10, true);
@@ -68,11 +78,11 @@ describe('PaymentService', () => {
       const schedule = service.creditCardSchedule(10000, 15, 1, 0, false, true);
       expect(schedule.scheduleList.length).toBe(335);
       const s335 = schedule.scheduleList[334];
-      expect(s335.balanceStart).toBe(10.7);
+      expect(s335.balanceStart).toBe(10.74);
       expect(s335.interest).toBe(.13);
-      expect(s335.principal).toBe(10.7);
+      expect(s335.principal).toBe(10.74);
       expect(s335.balanceEnd).toBe(0);
-      expect(s335.payment).toBe(10.83);
+      expect(s335.payment).toBe(10.87);
     });
 
     it('$100,000 15% 1%+interest $100 extra payment', () => {

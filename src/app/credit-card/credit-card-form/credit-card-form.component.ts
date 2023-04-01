@@ -49,7 +49,7 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
 
   //intro rate mode controls  
   introInterestRate = new FormControl(0);
-  introMonths = new FormControl(12,[Validators.required, Validators.min(0), Validators.max(36)]);
+  introMonths = new FormControl(12, [Validators.required, Validators.min(0), Validators.max(36)]);
   introTransferFeeRate = new FormControl(0);
   introTransferCostPercent = new FormControl(0);
 
@@ -59,9 +59,9 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
     minimumPaymentType: this.minimumPaymentTypeControl,
     fixedPayment: this.fixedPaymentControl,
     introInterestRate: this.introInterestRate,
-    introMonths:this.introMonths,
-    introTransferFeeRate:this.introTransferFeeRate,
-    introTransferCostPercent:this.introTransferCostPercent
+    introMonths: this.introMonths,
+    introTransferFeeRate: this.introTransferFeeRate,
+    introTransferCostPercent: this.introTransferCostPercent
   });
   fixedPaymentIsMinPayment: boolean = false;
 
@@ -97,12 +97,22 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
 
     this.route.queryParamMap.subscribe((parms) => {
       if (parms.get('demo')) {
+        const demo = parms.get('demo');
         let tab = Number(parms.get('tab'));
         if (tab) {
           this.tabIndex = tab;
         }
 
         this.balanceControl.setValue(20000);
+
+        if (demo === '2') {
+          this.balanceControl.setValue(1000);
+          this.introInterestRate.setValue(3);
+          this.introMonths.setValue(6);
+          this.introTransferCostPercent.setValue(3);
+          this.fixedPaymentControl.setValue(100);
+        }
+
         this.submit();
       }
     });
@@ -116,9 +126,22 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
       let balance = this.formGroup.value.balance!;
       let interestRate = this.formGroup.value.interestRate!;
 
+      let introMonths: number = 0;
+      let introRate: number = 0;
+      let introPercentFee;
+
+      if (this.formGroup.value.introMonths! > 0) {
+        introMonths = this.formGroup.value.introMonths!;
+        introRate = this.formGroup.value.introInterestRate!;
+        introPercentFee = this.formGroup.value.introTransferFeeRate!;
+        console.log(introMonths, introRate, introPercentFee);
+
+      }
+
       this.schedule1 = this.paymentService
-        .creditCardSchedule(balance, interestRate, minimumPaymentType.percentOfBalance!,
-          0, false, minimumPaymentType.useInterest);
+        .creditCardScheduleZeroPercentOption(balance, interestRate, minimumPaymentType.percentOfBalance!,
+          0, false, minimumPaymentType.useInterest,
+          introRate, introMonths, introPercentFee);
       this.schedule1.title = 'Minimum Payment Only Total';
       this.schedule1.paymentType = PaymentType.MinimumPaymentOnly;
 
@@ -144,8 +167,8 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
       this.fixedPaymentControl.updateValueAndValidity();
 
       if (this.fixedPaymentControl.valid) {
-        this.schedule2 = this.paymentService.creditCardSchedule(balance, interestRate, minimumPaymentType.percentOfBalance!,
-          this.fixedPaymentControl.value!, true, minimumPaymentType.useInterest);
+        this.schedule2 = this.paymentService.creditCardScheduleZeroPercentOption(balance, interestRate, minimumPaymentType.percentOfBalance!,
+          this.fixedPaymentControl.value!, true, minimumPaymentType.useInterest,introRate, introMonths, introPercentFee);
         this.schedule2.paymentType = PaymentType.FixedPayment;
         this.schedule2.title = 'Fixed Monthly Payment';
       };
@@ -171,8 +194,8 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
     this.submit();
   };
 
-  blurForceZero = (control:AbstractControl)=> {
-    if (!control.value){
+  blurForceZero = (control: AbstractControl) => {
+    if (!control.value) {
       control.setValue(0);
     }
     this.submit();

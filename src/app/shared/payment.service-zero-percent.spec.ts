@@ -25,6 +25,23 @@ describe('creditCardScheduleZeroPercentOption', () => {
         });
     });
 
+    describe('$1000, 15%, 100 Fixed, 6 months intro, 3% intro rate, 3% fee', () => {
+
+        const schedule = service.
+            creditCardScheduleZeroPercentOption(1000, 15, 1, 100, true, true, 3, 6, 3);
+
+
+        it('should behave...', () => {
+
+            expect(schedule.scheduleList[0].balanceStart).toBe(1030);
+            expect(schedule.scheduleList[0].interest).toBe(2.58);
+            expect(schedule.scheduleList[0].balanceEnd).toBe(932.58);
+            const period7 = schedule.scheduleList[6];
+            expect(period7.balanceStart).toBe(441.79);
+        });
+
+    });
+
     describe('6 months 0% financing 3% charge', () => {
         const schedule = service.
             creditCardScheduleZeroPercentOption(1000, 15, 1, 0, true, true, 0, 6, 3);
@@ -113,14 +130,14 @@ describe('creditCardScheduleZeroPercentOption', () => {
         });
         it('the 7 balance end should be correct', () => {
             expect(schedule.scheduleList[6].balanceStart).toBe(430);
-            expect(schedule.scheduleList[6].interest).toBe(5.37);
-            expect(schedule.scheduleList[6].balanceEnd).toBe(335.37);
+            expect(schedule.scheduleList[6].interest).toBe(5.38);
+            expect(schedule.scheduleList[6].balanceEnd).toBe(335.38);
         });
 
         it('the 11 period should be correct', () => {
-            expect(schedule.scheduleList[10].balanceStart).toBe(44.33);
+            expect(schedule.scheduleList[10].balanceStart).toBe(44.34);
             expect(schedule.scheduleList[10].interest).toBe(.55);
-            expect(schedule.scheduleList[10].payment).toBe(44.88);
+            expect(schedule.scheduleList[10].payment).toBe(44.89);
             expect(schedule.scheduleList[10].balanceEnd).toBe(0);
         });
     });
