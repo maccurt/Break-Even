@@ -1,4 +1,3 @@
-
 import { CurrencyPipe } from '@angular/common';
 import { MathService } from '../math/math.service';
 import { PaymentService } from './payment.service';
@@ -6,7 +5,6 @@ import { ScheduleItem } from './schedule-item';
 
 describe('PaymentService', () => {
   const service: PaymentService = new PaymentService(new MathService(), new CurrencyPipe('en-US'));
-
 
   describe('Name of the group', () => {
 

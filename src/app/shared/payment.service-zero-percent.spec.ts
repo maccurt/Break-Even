@@ -30,7 +30,6 @@ describe('creditCardScheduleZeroPercentOption', () => {
         const schedule = service.
             creditCardScheduleZeroPercentOption(1000, 15, 1, 100, true, true, 3, 6, 3);
 
-
         it('should behave...', () => {
 
             expect(schedule.scheduleList[0].balanceStart).toBe(1030);

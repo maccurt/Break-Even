@@ -134,8 +134,6 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
         introMonths = this.formGroup.value.introMonths!;
         introRate = this.formGroup.value.introInterestRate!;
         introPercentFee = this.formGroup.value.introTransferFeeRate!;
-        console.log(introMonths, introRate, introPercentFee);
-
       }
 
       this.schedule1 = this.paymentService

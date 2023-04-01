@@ -29,8 +29,8 @@ export class PaymentService {
       isFixedPayment, includeApr);
   };
 
-  monthlyPercentRate = (annualPercentRate: number): number => {    
-    const rate = this.mathService.round( annualPercentRate/12/100,5);
+  monthlyPercentRate = (annualPercentRate: number): number => {
+    const rate = this.mathService.round(annualPercentRate / 12 / 100, 5);
     return rate;
   };
 
@@ -55,7 +55,6 @@ export class PaymentService {
       balance = balance + chargeForIntroductoryRate;
     }
 
-    const monthlyPercentageRate =  this.monthlyPercentRate(annualPercentageRate);
     let monthlyInterest = 0;
     let interestTotal = 0;
     let paymentTotal = balance;
@@ -66,11 +65,12 @@ export class PaymentService {
 
     let balanceStart = balance;
     const orginalBalance = balance;
+    const monthlyPercentageRate = this.monthlyPercentRate(annualPercentageRate);
+    const introMonthlyPercentRate = this.monthlyPercentRate(introRate);
 
     while (balance > 0) {
 
       paymentCount++;
-
       balanceStart = balance;
       const fixedPayment = isFixedPayment ? extraPayment : 0;
 
@@ -92,13 +92,10 @@ export class PaymentService {
         monthlyInterest = this.mathService.round(balance * monthlyPercentageRate, 2);
       }
       else {
-        if (introRate === 0) {
-          monthlyInterest = 0;
-        }
-        else {          
-          const ratePercent =  this.monthlyPercentRate(introRate);
-          monthlyInterest = this.mathService.round(balance * ratePercent, 2);
-        }
+
+        monthlyInterest = introRate === 0 ? 0 :
+          monthlyInterest = this.mathService.round(balance * introMonthlyPercentRate, 2);
+        
       }
       //add to final interest total
       interestTotal += monthlyInterest;
@@ -114,7 +111,6 @@ export class PaymentService {
 
       //set the balance to the balance minus the  monthly payment
       balance = this.mathService.round(balance - monthlyPayment, 2);
-
       principalPaid = this.mathService.round(monthlyPayment - monthlyInterest, 2);
 
       const scheduleItem: ScheduleItem = {
