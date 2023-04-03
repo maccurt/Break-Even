@@ -81,6 +81,7 @@ export class PaymentService {
       }
 
       monthlyPayment = this.determineMonthlyPayment(fixedPayment!, financeChargePercent, balance, aprForMonth, includeApr);
+      
 
       //If this is not a fixed payment then add the extra payment to the minimum payment
       if (!isFixedPayment) {

@@ -25,18 +25,47 @@ describe('creditCardScheduleZeroPercentOption', () => {
         });
     });
 
-    describe('$1000, 15%, 100 Fixed, 6 months intro, 3% intro rate, 3% fee', () => {
+    describe('$1000, 15%, 1, 22.5 fixed ***100 Fixed, 6 months intro, 3% intro rate, 3% fee', () => {
 
         const schedule = service.
-            creditCardScheduleZeroPercentOption(1000, 15, 1, 100, true, true, 3, 6, 3);
+            creditCardScheduleZeroPercentOption(1000, 15, 1, 22.5, true, true, 3, 6, 3);
 
-        it('should behave...', () => {
+        it('check the first period', () => {
 
             expect(schedule.scheduleList[0].balanceStart).toBe(1030);
             expect(schedule.scheduleList[0].interest).toBe(2.58);
-            expect(schedule.scheduleList[0].balanceEnd).toBe(932.58);
+            expect(schedule.scheduleList[0].principal).toBe(19.92);
+            expect(schedule.scheduleList[0].payment).toBe(22.5);
+            expect(schedule.scheduleList[0].balanceEnd).toBe(1010.08);
+
             const period7 = schedule.scheduleList[6];
-            expect(period7.balanceStart).toBe(441.79);
+            expect(period7.balanceStart).toBe(909.72);
+            expect(period7.interest).toBe(11.37);
+            expect(period7.principal).toBe(11.13);
+            expect(period7.payment).toBe(22.5);
+            expect(period7.balanceEnd).toBe(898.59);
+        });
+    });
+
+    describe('$1000, 15%, 1% of balance, 6 months intro, 3% intro rate, 3% fee', () => {
+
+        const schedule = service.
+            creditCardScheduleZeroPercentOption(1000, 15, 1, 0, false, true, 3, 6, 3);
+
+        it('check the first period', () => {        
+
+            expect(schedule.scheduleList[0].balanceStart).toBe(1030);
+            expect(schedule.scheduleList[0].interest).toBe(2.58);
+            expect(schedule.scheduleList[0].principal).toBe(12.42);
+            expect(schedule.scheduleList[0].payment).toBe(15);
+            expect(schedule.scheduleList[0].balanceEnd).toBe(1017.58);
+
+            const period7 = schedule.scheduleList[6];
+            expect(period7.balanceStart).toBe(954.98);
+            expect(period7.interest).toBe(11.94);
+            expect(period7.principal).toBe(9.55);
+            expect(period7.payment).toBe(21.49);
+            expect(period7.balanceEnd).toBe(945.43);
         });
 
     });
