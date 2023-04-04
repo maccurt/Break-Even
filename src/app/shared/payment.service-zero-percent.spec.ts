@@ -47,7 +47,7 @@ describe('creditCardScheduleZeroPercentOption', () => {
         });
     });
 
-    describe('$1000, 15%, 1% of balance, 6 months intro, 3% intro rate, 3% fee', () => {
+    describe('$1000, 15%, 1% of balance, NO FIXED PAYMENT 6 months intro, 3% intro rate, 3% fee', () => {
 
         const schedule = service.
             creditCardScheduleZeroPercentOption(1000, 15, 1, 0, false, true, 3, 6, 3);
