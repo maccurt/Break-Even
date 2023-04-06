@@ -6,6 +6,7 @@ import { MathService } from '../math/math.service';
 import { ScheduleCompare } from './schedule-compare.type';
 import { ScheduleItem } from './schedule-item';
 import { Schedule } from './schedule.class';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,10 @@ export class PaymentService {
       throw new Error('input error: annualPercentageRate');
     }
 
+    if (introRate > annualPercentageRate){
+      throw new Error('input error: intro rate can not be greater than annualPercentageRate');
+    }
+
     let chargeForIntroductoryRate = 0;
     if (introMonths > 0 && introFeePercent > 0) {
       const chargeRate = this.mathService.round(introFeePercent / 100, 5);
@@ -67,9 +72,12 @@ export class PaymentService {
     const orginalBalance = balance;
     const monthlyPercentageRate = this.monthlyPercentRate(annualPercentageRate);
     const introMonthlyPercentRate = this.monthlyPercentRate(introRate);
-
+    
     while (balance > 0) {
-
+      
+      if (balance === Infinity) {
+        balance = 0;
+      }
       paymentCount++;
       balanceStart = balance;
       const fixedPayment = isFixedPayment ? extraPayment : 0;
@@ -81,7 +89,6 @@ export class PaymentService {
       }
 
       monthlyPayment = this.determineMonthlyPayment(fixedPayment!, financeChargePercent, balance, aprForMonth, includeApr);
-      
 
       //If this is not a fixed payment then add the extra payment to the minimum payment
       if (!isFixedPayment) {
@@ -93,11 +100,15 @@ export class PaymentService {
         monthlyInterest = this.mathService.round(balance * monthlyPercentageRate, 2);
       }
       else {
-
         monthlyInterest = introRate === 0 ? 0 :
           monthlyInterest = this.mathService.round(balance * introMonthlyPercentRate, 2);
-        
       }
+
+      if (monthlyInterest > monthlyPayment){
+        const error = `monthly interest of ${monthlyInterest} is greater than monthly payment of ${monthlyPayment}`;
+        throw new Error(error);
+      }
+
       //add to final interest total
       interestTotal += monthlyInterest;
 
@@ -113,7 +124,7 @@ export class PaymentService {
       //set the balance to the balance minus the  monthly payment
       balance = this.mathService.round(balance - monthlyPayment, 2);
       principalPaid = this.mathService.round(monthlyPayment - monthlyInterest, 2);
-
+      
       const scheduleItem: ScheduleItem = {
         payment: monthlyPayment,
         balanceStart,
@@ -122,7 +133,7 @@ export class PaymentService {
         principal: principalPaid,
         extraPrincipal: extraPayment!
       };
-      scheduleList.push(scheduleItem);
+      scheduleList.push(scheduleItem);      
     } // end of loop
 
     interestTotal = this.mathService.round(interestTotal, 2);

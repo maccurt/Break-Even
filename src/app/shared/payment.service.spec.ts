@@ -7,7 +7,6 @@ describe('PaymentService', () => {
   const service: PaymentService = new PaymentService(new MathService(), new CurrencyPipe('en-US'));
 
   describe('Name of the group', () => {
-
     it('should calculate monthly interest correctly', () => {
       expect(service.monthlyPercentRate(3)).toBe(.0025);
       expect(service.monthlyPercentRate(15)).toBe(.01250);
@@ -20,7 +19,7 @@ describe('PaymentService', () => {
       let result = service.minimumPayment(10, 1000, 10, true);
       expect(result).toBe(108.33);
     });
-  });
+  });  
 
   describe('minimumPaymentCalculation', () => {
 

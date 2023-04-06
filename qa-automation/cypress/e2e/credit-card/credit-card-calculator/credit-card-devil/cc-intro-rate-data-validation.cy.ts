@@ -5,8 +5,9 @@ describe('intro rate data validation', () => {
     before(() => {
         cy.visit('credit-card-devil');
     });
-
+    
     describe('1000 balance, 15%, 100 fixed payment, intro rate 3%, transfer fee 3%', () => {
+    //https://docs.google.com/spreadsheets/d/1S5a72NtOl2jxLVFZ_u_6v0TANPPqAH4EhCC7-Ic0mow/edit#gid=1206324584
 
         before(() => {
             cy.getDataTestId('balance').clear().type('1000').blur();
@@ -20,29 +21,18 @@ describe('intro rate data validation', () => {
 
         creditCardScheduleItemTest('fixed-pay-schedule-list', {
             period:'1',
-            interest: '2.50',
-            balance: '902.50',
-            principal: '97.50',
+            interest: '2.58',
+            balance: '932.58',
+            principal: '97.42',
             payment: '100.00',
         });        
-
+ 
         creditCardScheduleItemTest('fixed-pay-schedule-list', {
             period:'11',
-            interest: '2.50',
-            balance: '902.50',
-            principal: '97.50',
-            payment: '100.00',
-        });        
-
-
-        // summaryTest('summary-min-pay',
-        //     {
-        //         title:'Minimum Payment Only Total',
-        //         titleIcon:'face-frown',
-        //         paymentTotal: '$20,000.00 will turn into $44,693.16.',
-        //         extraPayment: 'You Will Pay An Extra $24,693.16 In Interest.',
-        //         yearPayOff: 'It Will Take You 33 Years, 8 Months To Pay Off The Credit Card.'
-        //     }
-        // );
+            interest: '0.71',
+            balance: '0.00',
+            principal: '56.74',
+            payment: '57.45',
+        });           
     });
 });

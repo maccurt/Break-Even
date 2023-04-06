@@ -281,6 +281,7 @@ export class CreditCardCalculatorComponent implements OnInit, OnDestroy {
   validateFixedPayment = (fg: FormGroup): ValidationErrors | null => {
 
     let error = null;
+
     if (!this.fixedPaymentControl.value) {
       this.fixedPaymentError = '1 to 9999';
       error = { errorMessage: this.fixedPaymentError };

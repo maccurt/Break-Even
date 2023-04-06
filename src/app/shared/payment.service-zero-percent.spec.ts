@@ -6,6 +6,16 @@ describe('creditCardScheduleZeroPercentOption', () => {
 
     const service: PaymentService = new PaymentService(new MathService(), new CurrencyPipe('en-US'));
 
+    describe('ERROR CHECK intro rate is greater than annualPercentageRate', () => {
+        it('should throw error', () => {
+            expect(
+                () =>
+                    service.creditCardScheduleZeroPercentOption(1000, 15, 1, 22.5, true, true, 99, 6, 3)
+            ).toThrow(new Error('input error: intro rate can not be greater than annualPercentageRate'));
+
+        });
+    });
+
     describe('baseline known good', () => {
 
         it('$1000 15% 1%+interest $100 FIXED Payment NO ZERO PERCENT', () => {
@@ -23,6 +33,10 @@ describe('creditCardScheduleZeroPercentOption', () => {
             expect(s11.balanceEnd).toBe(0);
             expect(s11.payment).toBe(75.04);
         });
+    });
+
+    describe('memory leak, 20,000 15.13 99 Intro rate, 12 months, 0 %', () => {
+
     });
 
     describe('$1000, 15%, 1, 22.5 fixed ***100 Fixed, 6 months intro, 3% intro rate, 3% fee', () => {
@@ -52,7 +66,7 @@ describe('creditCardScheduleZeroPercentOption', () => {
         const schedule = service.
             creditCardScheduleZeroPercentOption(1000, 15, 1, 0, false, true, 3, 6, 3);
 
-        it('check the first period', () => {        
+        it('check the first period', () => {
 
             expect(schedule.scheduleList[0].balanceStart).toBe(1030);
             expect(schedule.scheduleList[0].interest).toBe(2.58);

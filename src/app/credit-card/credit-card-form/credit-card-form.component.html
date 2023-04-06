@@ -87,7 +87,7 @@
                            formControlName="introInterestRate"
                            (blur)="blurForceZero(introInterestRate)">
                     <div class="hint">
-                        required: 0 to 99.
+                        required: 0 to 99 and less than APR
                     </div>
                 </div>
             </mat-card-content>
@@ -212,7 +212,6 @@
                     <div data-test-id="fixed-payment-hint"
                          class="hint">required: {{this.minimumPayment |number:'1.2-2'}} or greater</div>
                 </div>
-
             </mat-card-content>
         </mat-card>
 

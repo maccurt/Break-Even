@@ -10,8 +10,7 @@ describe('credit card min pay page test', () => {
     beforeEach(() => {
         cy.getDataTestId('cc-compare-tab').as('parent');
     });        
-    enterMinimumPaymentForCreditCard();
-    //minimuPayScheduleTest();
+    enterMinimumPaymentForCreditCard();    
     creditCardScheduleMininumPayTest();
     minMonthlyPaySectionTest();
     it('minimum payment trap should exist', () => {
