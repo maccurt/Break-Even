@@ -1,4 +1,4 @@
-import { checkForErrors, CheckForNoErrors, checkValidation } from "./check-validation.function";
+import { checkForErrors, CheckForNoErrors as checkForNoErrors, checkValidation } from "./check-validation.function";
 
 describe('intro rate fields', () => {
 
@@ -29,8 +29,8 @@ describe('intro rate fields', () => {
 
         describe('set the APR to 15 and Intro to 16', () => {
             beforeEach(()=>{
-                cy.getDataTestId('interest-rate').focus().clear().type('15');
-                cy.getDataTestId('intro-interest-rate').focus().clear().type('16');
+                cy.getDataTestId('interest-rate').focus().clear().type('15').blur();
+                cy.getDataTestId('intro-interest-rate').focus().clear().type('16').blur();
             });
 
             checkForErrors('intro-interest-rate');            
@@ -42,8 +42,19 @@ describe('intro rate fields', () => {
                 cy.getDataTestId('interest-rate').focus().clear().type('16');                
             });
 
-            CheckForNoErrors('intro-interest-rate');            
+            checkForNoErrors('intro-interest-rate');            
         });
+
+        describe('set intro to 16 and then apr to 14 then APR to 14 ORDER MATTERS', () => {
+            beforeEach(()=>{
+                cy.getDataTestId('interest-rate').focus().clear().type('16').blur();                
+                cy.getDataTestId('intro-interest-rate').focus().clear().type('15').blur();
+                cy.getDataTestId('interest-rate').focus().clear().type('14').blur();                
+            });
+
+            checkForErrors('intro-interest-rate');            
+        });
+
     });
 
     describe('how many months is your rate', () => {
@@ -74,7 +85,7 @@ describe('intro rate fields', () => {
             .should('have.value','0');              
         }); 
         
-        CheckForNoErrors('intro-transfer-cost-percent');            
+        checkForNoErrors('intro-transfer-cost-percent');            
 
         describe('enter 100 which is an error', () => {
             before(() => {
@@ -87,7 +98,7 @@ describe('intro rate fields', () => {
             before(() => {
                 cy.getDataTestId('intro-transfer-cost-percent').clear().type('99.').blur();
             });
-            CheckForNoErrors('intro-transfer-cost-percent');            
+            checkForNoErrors('intro-transfer-cost-percent');            
         });
         
     });    

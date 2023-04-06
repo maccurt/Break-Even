@@ -67,7 +67,7 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
 
   mode: CreditCardMode = CreditCardMode.default;
 
-  isIntroRateMode: boolean = false;
+  // isIntroRateMode: boolean = false;
 
   constructor(private fb: FormBuilder,
     public help: HelpService,
@@ -86,17 +86,9 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
       this.submit();
     }));
 
-    this.route.data.subscribe((data: any) => {
-      if (data.mode) {
-        this.mode = data.mode as CreditCardMode;
-        this.isIntroRateMode = (this.mode === CreditCardMode.introductoryRate);
-      }
-    });
-
-    if (this.isIntroRateMode) {
-      this.interestRateControl.addValidators([Validators.required, Validators.min(1), Validators.max(99)]);
-      //this.introInterestRate.addValidators([Validators.required, Validators.min(0), Validators.max(99)]);      
-    }
+    this.interestRateControl.valueChanges.subscribe(()=>{
+      this.introInterestRate.updateValueAndValidity();
+    });    
 
     this.route.queryParamMap.subscribe((parms) => {
       if (parms.get('demo')) {
@@ -123,8 +115,7 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
   }
 
   submit = () => {
-
-    // if (this.balanceControl.valid && this.interestRateControl.valid) {
+    
     if (this.formGroup.valid) {
 
       const minimumPaymentType = this.minimumPaymentTypeControl.value!;
