@@ -19,14 +19,31 @@ describe('intro rate fields', () => {
 
         it('clear and blur off it should not not show error and have 0 value', () => {
             cy.get('@introInterestRate').focus().clear().blur()
-            .should('have.value','0');  
-            //TODO ADD TEST TO CHECK FOR ERROR not being there
+            .should('have.value','0');              
         });        
 
         it('type 2.9 and blur off it should not not show error and have 2.9 value', () => {
             cy.get('@introInterestRate').focus().clear().type('2.9').blur()
             .should('have.value','2.9');  
         });        
+
+        describe('set the APR to 15 and Intro to 16', () => {
+            beforeEach(()=>{
+                cy.getDataTestId('interest-rate').focus().clear().type('15');
+                cy.getDataTestId('intro-interest-rate').focus().clear().type('16');
+            });
+
+            checkForErrors('intro-interest-rate');            
+        });
+
+        describe('set the APR to 16 and Intro to 16', () => {
+            beforeEach(()=>{
+                cy.getDataTestId('intro-interest-rate').focus().clear().type('16');
+                cy.getDataTestId('interest-rate').focus().clear().type('16');                
+            });
+
+            CheckForNoErrors('intro-interest-rate');            
+        });
     });
 
     describe('how many months is your rate', () => {
@@ -54,8 +71,7 @@ describe('intro rate fields', () => {
 
         it('clear and blur off it should not not show error and have 0 value', () => {
             cy.get('@transferCost').focus().clear().blur()
-            .should('have.value','0');  
-            //TODO ADD TEST TO CHECK FOR ERROR not being there
+            .should('have.value','0');              
         }); 
         
         CheckForNoErrors('intro-transfer-cost-percent');            
@@ -67,7 +83,7 @@ describe('intro rate fields', () => {
             checkForErrors('intro-transfer-cost-percent');            
         });
 
-        xdescribe('enter 99 which is NOT an error', () => {
+        describe('enter 99 which is NOT an error', () => {
             before(() => {
                 cy.getDataTestId('intro-transfer-cost-percent').clear().type('99.').blur();
             });
