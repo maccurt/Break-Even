@@ -5,6 +5,7 @@ describe('intro rate fields', () => {
     before(() => {
         cy.visit('/credit-card-devil');
         cy.getDataTestId('balance').clear().type('20000').blur();
+        cy.getDataTestId('has-intro-rate').check();
     });
 
     describe('introductory interest rate', () => {

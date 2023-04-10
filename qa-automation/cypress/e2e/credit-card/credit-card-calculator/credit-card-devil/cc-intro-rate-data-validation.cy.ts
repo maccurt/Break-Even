@@ -12,6 +12,7 @@ describe('intro rate data validation', () => {
         before(() => {
             cy.getDataTestId('balance').clear().type('1000').blur();
             cy.getDataTestId('interest-rate').clear().type('15').blur();
+            cy.getDataTestId('has-intro-rate').check();
             cy.getDataTestId('intro-interest-rate').clear().type('3').blur();
             cy.getDataTestId('intro-months').clear().type('6').blur();
             cy.getDataTestId('intro-transfer-cost-percent').clear().type('3').blur();
