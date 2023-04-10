@@ -4,8 +4,9 @@
 
     <mat-card>
         <mat-card-title>
-            
-            <div class="title-responsive" data-test-id="title">
+
+            <div class="title-responsive"
+                 data-test-id="title">
                 <fa-icon [icon]="help.creditCardBalance1.icon"
                          class={{help.creditCardBalance1.iconClass}}>
                 </fa-icon>
@@ -47,104 +48,125 @@
 
             </mat-card-title>
             <mat-card-content class="mt-1">
-                <div [ngClass]="{'has-error':(isInvalid(interestRateControl))}">
+                <div class="mb-3"
+                     [ngClass]="{'has-error':(isInvalid(interestRateControl))}">
                     <input id="interestRate"
-                           class="apr"
                            data-test-id="interest-rate"
                            maxlength="5"
                            [min]="0"
                            [max]="99"
                            type="number"
-                           class="form-control"
+                           class="form-control apr"
                            formControlName="interestRate"
                            (blur)="blur()">
 
                     <div class="hint">
                         required: 1 to 99. Average APR% is {{interestRate}}%
                     </div>
-                </div>
-            </mat-card-content>
-            
-            <mat-card-title>
+                </div>                 
+
                 <hr>
-                <div class="title-responsive">
-                    <fa-icon [icon]="help.interestRate.icon"
-                             class={{help.interestRate.iconClass}}>
-                    </fa-icon>
-                    What Is Your Introductory Interest Rate % (APR)?
-                </div>
-            </mat-card-title>
+                <div class="form-check mt-2 mb-2"
+                     style="padding-top:3px;">
 
-            <mat-card-content class="mt-1">
-                <div [ngClass]="{'has-error':(isInvalid(introInterestRate))}">
-                    <input id="introInterestRate"
-                           data-test-id="intro-interest-rate"
-                           maxlength="5"
-                           [min]="0"
-                           [max]="99"
-                           type="number"
-                           class="form-control apr"
-                           formControlName="introInterestRate"
-                           (blur)="blurForceZero(introInterestRate)">
-                    <div class="hint">
-                        required: 0 to 99 and less than APR
-                    </div>
+                    <input id="hasIntroRate"
+                           data-test-id="has-intro-rate"
+                           class="form-check-input"
+                           formControlName="hasIntroRate"
+                           type="checkbox"
+                           value="false">
+                    <label class="form-check-label"
+                           style="font-weight: 500;"
+                           for="hasIntroRate">
+                        Has Introductory Rate %
+                    </label>
                 </div>
+
             </mat-card-content>
 
-            <mat-card-title>
-                <hr>
-                <div class="title-responsive">
-                    <fa-icon [icon]="help.interestRate.icon"
-                             class={{help.interestRate.iconClass}}>
-                    </fa-icon>
-                    How Many Months Is Your Intro Rate?
-                </div>
-            </mat-card-title>
-
-            <mat-card-content class="mt-1">
-                <div [ngClass]="{'has-error':(isInvalid(introMonths))}">
-                    <input id="introMonths"
-                           data-test-id="intro-months"
-                           maxlength="2"
-                           [min]="0"
-                           [max]="36"
-                           type="number"
-                           class="form-control apr"
-                           formControlName="introMonths"
-                           (blur)="blur()">
-                    <div class="hint">
-                        required: 1 to 36.
+            <div *ngIf="hasIntroRate">
+                <mat-card-title>
+                    <hr>
+                    <div class="title-responsive">
+                        <fa-icon [icon]="help.interestRate.icon"
+                                 class={{help.interestRate.iconClass}}>
+                        </fa-icon>
+                        What Is Your Introductory Interest Rate % (APR)?
                     </div>
-                </div>
-            </mat-card-content>
+                </mat-card-title>
 
-            <mat-card-title>
-                <hr>
-                <div class="title-responsive">
-                    <fa-icon [icon]="help.interestRate.icon"
-                             class={{help.interestRate.iconClass}}>
-                    </fa-icon>
-                    What Is The % Cost To Transfer
-                </div>
-            </mat-card-title>
-
-            <mat-card-content class="mt-1">
-                <div [ngClass]="{'has-error':(isInvalid(introTransferCostPercent))}">
-                    <input id="introTransferCostPercent"
-                           data-test-id="intro-transfer-cost-percent"
-                           maxlength="5"
-                           [min]="0"
-                           [max]="99"
-                           type="number"
-                           class="form-control apr"
-                           formControlName="introTransferCostPercent"
-                           (blur)="blurForceZero(introTransferCostPercent)">
-                    <div class="hint">
-                        required: 0 to 99.
+                <mat-card-content class="mt-1">
+                    <div [ngClass]="{'has-error':(isInvalid(introInterestRate))}">
+                        <input id="introInterestRate"
+                               data-test-id="intro-interest-rate"
+                               maxlength="5"
+                               [min]="0"
+                               [max]="99"
+                               type="number"
+                               class="form-control apr"
+                               formControlName="introInterestRate"
+                               (blur)="blurForceZero(introInterestRate)">
+                        <div class="hint">
+                            required: 0 to 99 and less than APR
+                        </div>
                     </div>
-                </div>
-            </mat-card-content>
+                </mat-card-content>
+
+                <mat-card-title>
+                    <hr>
+                    <div class="title-responsive">
+                        <fa-icon [icon]="help.interestRate.icon"
+                                 class={{help.interestRate.iconClass}}>
+                        </fa-icon>
+                        How Many Months Is Your Intro Rate?
+                    </div>
+                </mat-card-title>
+
+                <mat-card-content class="mt-1">
+                    <div [ngClass]="{'has-error':(isInvalid(introMonths))}">
+                        <input id="introMonths"
+                               data-test-id="intro-months"
+                               maxlength="2"
+                               [min]="0"
+                               [max]="36"
+                               type="number"
+                               class="form-control apr"
+                               formControlName="introMonths"
+                               (blur)="blur()">
+                        <div class="hint">
+                            required: 1 to 36.
+                        </div>
+                    </div>
+                </mat-card-content>
+
+                <mat-card-title>
+                    <hr>
+                    <div class="title-responsive">
+                        <fa-icon [icon]="help.interestRate.icon"
+                                 class={{help.interestRate.iconClass}}>
+                        </fa-icon>
+                        What Is The % Cost To Transfer
+                    </div>
+                </mat-card-title>
+
+                <mat-card-content class="mt-1">
+                    <div [ngClass]="{'has-error':(isInvalid(introTransferCostPercent))}">
+                        <input id="introTransferCostPercent"
+                               data-test-id="intro-transfer-cost-percent"
+                               maxlength="5"
+                               [min]="0"
+                               [max]="99"
+                               type="number"
+                               class="form-control apr"
+                               formControlName="introTransferCostPercent"
+                               (blur)="blurForceZero(introTransferCostPercent)">
+                        <div class="hint">
+                            required: 0 to 99.
+                        </div>
+                    </div>
+                </mat-card-content>
+
+            </div>
 
         </mat-card>
 
@@ -172,7 +194,8 @@
 
         <mat-card class="mt-4">
             <mat-card-title class="form-title">
-                <div class="title-responsive" data-test-id="title">
+                <div class="title-responsive"
+                     data-test-id="title">
                     <fa-icon [icon]="help.fixedPayment.icon"
                              class={{help.fixedPayment.iconClass}}>
                     </fa-icon>

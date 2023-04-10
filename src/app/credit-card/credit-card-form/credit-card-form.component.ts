@@ -48,6 +48,8 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
   fixedPaymentControl = new FormControl(0, [Validators.required, Validators.min(0), Validators.max(999999)]);
 
   //intro rate mode controls    
+  hasIntroRate: boolean = false;
+  hasIntroRateControl = new FormControl(false);
   introInterestRate = new FormControl(0);
   introRateError: string = '';
   introMonths = new FormControl(0, [Validators.required, Validators.min(0), Validators.max(36)]);
@@ -57,17 +59,16 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
   formGroup = this.fb.group({
     balance: this.balanceControl,
     interestRate: this.interestRateControl,
-    minimumPaymentType: this.minimumPaymentTypeControl,
-    fixedPayment: this.fixedPaymentControl,
+    hasIntroRate: this.hasIntroRateControl,
     introInterestRate: this.introInterestRate,
     introMonths: this.introMonths,
-    introTransferCostPercent: this.introTransferCostPercent
+    introTransferCostPercent: this.introTransferCostPercent,
+    minimumPaymentType: this.minimumPaymentTypeControl,
+    fixedPayment: this.fixedPaymentControl
   });
   fixedPaymentIsMinPayment: boolean = false;
 
   mode: CreditCardMode = CreditCardMode.default;
-
-  // isIntroRateMode: boolean = false;
 
   constructor(private fb: FormBuilder,
     public help: HelpService,
@@ -75,20 +76,23 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
     private paymentService: PaymentService,
     private route: ActivatedRoute
 
-  ) {
+  ) { }
 
-  }
   ngOnInit(): void {
 
+    this.hasIntroRateControl.valueChanges.subscribe(() => {
+      this.hasIntroRate = this.hasIntroRateControl.value!;
+    });
+    
     this.introInterestRate.setValidators(this.validateIntroRate as any);
 
     this.subList$.push(this.minimumPaymentTypeControl.valueChanges.subscribe(() => {
       this.submit();
     }));
 
-    this.interestRateControl.valueChanges.subscribe(()=>{
+    this.interestRateControl.valueChanges.subscribe(() => {
       this.introInterestRate.updateValueAndValidity();
-    });    
+    });
 
     this.route.queryParamMap.subscribe((parms) => {
       if (parms.get('demo')) {
@@ -115,7 +119,7 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
   }
 
   submit = () => {
-    
+
     if (this.formGroup.valid) {
 
       const minimumPaymentType = this.minimumPaymentTypeControl.value!;
@@ -204,7 +208,7 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
 
     const apr = this.interestRateControl.value!;
     const intro = this.introInterestRate.value!;
-    
+
     let error = null;
     if (intro > 99) {
       this.introRateError = '1 to 99';
