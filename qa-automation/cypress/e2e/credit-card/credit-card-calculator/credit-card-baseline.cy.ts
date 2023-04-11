@@ -20,7 +20,7 @@ describe('credit-card-baseline.cy.ts', () => {
         cy.get('#minimum-payment-type').find(':selected').contains('Interest + 1% of balance');
     });
 
-    it('minimum payment type shold be selected to Interest + 1% of balance', () => {
+    it('minimum payment type should be selected to Interest + 1% of balance', () => {
         cy.get('#minimum-payment-type').find(':selected').invoke('text').then((text) => {
             expect(text).to.eq('Interest + 1% of balance');
         });
