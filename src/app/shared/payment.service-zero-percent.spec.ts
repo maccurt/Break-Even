@@ -87,10 +87,10 @@ describe('creditCardScheduleZeroPercentOption', () => {
         const schedule = service.
             creditCardScheduleZeroPercentOption(1000, 15, 1, 0, true, true, 0, 6, 3);
 
-        it('20K', () => {
+        it('20K at 15.13 include interest', () => {
             const result = service.determineMonthlyPayment(0, 1, 20000, 15.13, true);
             //this should match the spreadsheet baseline
-            expect(result).toBe(452.17);
+            expect(result).toBe(452.20);
         });
 
         it('payment should be 15', () => {

@@ -273,7 +273,7 @@ export class PaymentService {
     minimumPayment = (balance * financeChargeFactor);
 
     if (includeInterest) {
-      const rate = annualPercentageRate / 100 / 12;
+      const rate = this.monthlyInterestRate(annualPercentageRate);
       minimumPayment += (balance * rate);
     }
 
