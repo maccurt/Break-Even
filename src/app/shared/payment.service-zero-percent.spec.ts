@@ -81,12 +81,17 @@ describe('creditCardScheduleZeroPercentOption', () => {
             expect(period7.payment).toBe(21.49);
             expect(period7.balanceEnd).toBe(945.43);
         });
-
     });
 
     describe('6 months 0% financing 3% charge', () => {
         const schedule = service.
             creditCardScheduleZeroPercentOption(1000, 15, 1, 0, true, true, 0, 6, 3);
+
+        it('20K', () => {
+            const result = service.determineMonthlyPayment(0, 1, 20000, 15.13, true);
+            //this should match the spreadsheet baseline
+            expect(result).toBe(452.17);
+        });
 
         it('payment should be 15', () => {
             //THE PAYMNET WILL BE 15 because that is the MINIMUM

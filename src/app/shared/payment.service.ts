@@ -29,10 +29,10 @@ export class PaymentService {
       financeChargePercent, extraPayment,
       isFixedPayment, includeApr);
   };
-
-  monthlyPercentRate = (annualPercentRate: number): number => {
-    const rate = this.mathService.round(annualPercentRate / 12 / 100, 5);
-    return rate;
+  calculateTransferCost = (introFeePercent: number, balance: number): number => {
+    const chargeRate = this.mathService.round(introFeePercent / 100, 5);
+    const chargeForIntroductoryRate = this.mathService.round(chargeRate * balance);
+    return chargeForIntroductoryRate;
   };
 
   creditCardScheduleZeroPercentOption = (
@@ -49,14 +49,13 @@ export class PaymentService {
       throw new Error('input error: annualPercentageRate');
     }
 
-    if (introRate > annualPercentageRate){
+    if (introRate > annualPercentageRate) {
       throw new Error('input error: intro rate can not be greater than annualPercentageRate');
     }
 
     let chargeForIntroductoryRate = 0;
     if (introMonths > 0 && introFeePercent > 0) {
-      const chargeRate = this.mathService.round(introFeePercent / 100, 5);
-      chargeForIntroductoryRate = this.mathService.round(chargeRate * balance);
+      chargeForIntroductoryRate = this.calculateTransferCost(introFeePercent, balance);
       balance = balance + chargeForIntroductoryRate;
     }
 
@@ -70,11 +69,11 @@ export class PaymentService {
 
     let balanceStart = balance;
     const orginalBalance = balance;
-    const monthlyPercentageRate = this.monthlyPercentRate(annualPercentageRate);
-    const introMonthlyPercentRate = this.monthlyPercentRate(introRate);
-    
+    const monthlyPercentageRate = this.monthlyInterestRate(annualPercentageRate);
+    const introMonthlyPercentRate = this.monthlyInterestRate(introRate);
+
     while (balance > 0) {
-      
+
       if (balance === Infinity) {
         balance = 0;
       }
@@ -104,7 +103,7 @@ export class PaymentService {
           monthlyInterest = this.mathService.round(balance * introMonthlyPercentRate, 2);
       }
 
-      if (monthlyInterest > monthlyPayment){
+      if (monthlyInterest > monthlyPayment) {
         const error = `monthly interest of ${monthlyInterest} is greater than monthly payment of ${monthlyPayment}`;
         throw new Error(error);
       }
@@ -124,7 +123,7 @@ export class PaymentService {
       //set the balance to the balance minus the  monthly payment
       balance = this.mathService.round(balance - monthlyPayment, 2);
       principalPaid = this.mathService.round(monthlyPayment - monthlyInterest, 2);
-      
+
       const scheduleItem: ScheduleItem = {
         payment: monthlyPayment,
         balanceStart,
@@ -133,7 +132,7 @@ export class PaymentService {
         principal: principalPaid,
         extraPrincipal: extraPayment!
       };
-      scheduleList.push(scheduleItem);      
+      scheduleList.push(scheduleItem);
     } // end of loop
 
     interestTotal = this.mathService.round(interestTotal, 2);
@@ -175,6 +174,10 @@ export class PaymentService {
 
   periodicInterestRate = (ratePercent: number): number => {
     return ratePercent / 12 / 100;
+  };
+
+  monthlyInterestRate = (ratePercent: number): number => {
+    return this.mathService.round(ratePercent / 12 / 100, 5);
   };
 
   payment = (loanAmount: number, ratePercent: number, years: number): number => {
@@ -238,7 +241,7 @@ export class PaymentService {
     financeCharge = (balance * financeChargeFactor);
     minPayCalc.financeCharge = financeCharge;
 
-    const interestRateMonthly = annualPercentageRate / 100 / 12;
+    const interestRateMonthly =  this.monthlyInterestRate( annualPercentageRate);
     minPayCalc.monthlyPercentageRate = annualPercentageRate / 12;
 
     minPayCalc.interestRateMonthly = interestRateMonthly;

@@ -63,7 +63,7 @@
                     <div class="hint">
                         required: 1 to 99. Average APR% is {{interestRate}}%
                     </div>
-                </div>                 
+                </div>
 
                 <hr>
                 <div class="form-check mt-2 mb-2"
@@ -84,7 +84,8 @@
 
             </mat-card-content>
 
-            <div data-test-id="has-intro-rate-container" *ngIf="hasIntroRate">
+            <div data-test-id="has-intro-rate-container"
+                 *ngIf="hasIntroRate">
                 <mat-card-title>
                     <hr>
                     <div class="title-responsive">
@@ -150,7 +151,7 @@
                 </mat-card-title>
 
                 <mat-card-content class="mt-1">
-                    <div [ngClass]="{'has-error':(isInvalid(introTransferCostPercent))}">
+                    <div [ngClass]="{'has-error':(isInvalid(introTransferCostPercentControl))}">
                         <input id="introTransferCostPercent"
                                data-test-id="intro-transfer-cost-percent"
                                maxlength="5"
@@ -159,11 +160,14 @@
                                type="number"
                                class="form-control apr"
                                formControlName="introTransferCostPercent"
-                               (blur)="blurForceZero(introTransferCostPercent)">
+                               (blur)="blurForceZero(introTransferCostPercentControl)">
                         <div class="hint">
                             required: 0 to 99.
                         </div>
                     </div>
+                    <span data-test-id="cost-to-transfer"
+                          class="hint"
+                          *ngIf="introTransferCostPercentControl.valid && balanceControl.valid ">{{costToTransfer}}</span>
                 </mat-card-content>
             </div>
         </mat-card>

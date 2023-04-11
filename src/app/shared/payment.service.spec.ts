@@ -6,20 +6,26 @@ import { ScheduleItem } from './schedule-item';
 describe('PaymentService', () => {
   const service: PaymentService = new PaymentService(new MathService(), new CurrencyPipe('en-US'));
 
-  describe('Name of the group', () => {
-    it('should calculate monthly interest correctly', () => {
-      expect(service.monthlyPercentRate(3)).toBe(.0025);
-      expect(service.monthlyPercentRate(15)).toBe(.01250);
+  describe('calculateTransferCost', () => {
+
+    it('3% and 20,0000 should return 600', () => {
+      const result = service.calculateTransferCost(3,20000);
+      expect(result).toBe(600);
     });
-    
-  });
+
+    it('3% and 10,0000 should return 300', () => {
+      const result = service.calculateTransferCost(3,10000);
+      expect(result).toBe(300);
+    });
+
+  });  
 
   describe('minimumPayment', () => {
     it('should calculate correctly', () => {
       let result = service.minimumPayment(10, 1000, 10, true);
       expect(result).toBe(108.33);
     });
-  });  
+  });
 
   describe('minimumPaymentCalculation', () => {
 
@@ -33,22 +39,22 @@ describe('PaymentService', () => {
       expect(result.annualPercentageRate).toBe(15.13);
       expect(result.interestRateMonthly).toBeCloseTo(.0126083);
       expect(result.monthlyPercentageRate).toBeCloseTo(1.26083);
-      expect(result.monthlyInterest).toBeCloseTo(252.17);
-      expect(result.minimumPayment).toBe(452.17);
+      expect(result.monthlyInterest).toBeCloseTo(252.20);
+      expect(result.minimumPayment).toBe(452.20);
     });
 
     it('test 2: should calculate correctly include interest false', () => {
       let result = service.minimumPaymentCalculation(4, 20000, 15.13, false);
       expect(result.financeChargePercent).toBe(4);
       expect(result.financeChargeFactor).toBe(.04);
-      expect(result.financeCharge).toBe(800);      
+      expect(result.financeCharge).toBe(800);
       expect(result.balance).toBe(20000);
       expect(result.includeInterest).toBe(false);
       expect(result.annualPercentageRate).toBe(15.13);
       expect(result.interestRateMonthly).toBeCloseTo(.0126083);
       expect(result.monthlyPercentageRate).toBeCloseTo(1.26083);
       expect(result.monthlyInterest).toBeCloseTo(0);
-      expect(result.minimumPayment).toBe(800);      
+      expect(result.minimumPayment).toBe(800);
     });
   });
 
@@ -171,8 +177,17 @@ describe('PaymentService', () => {
 
     describe('periodicInterestRate', () => {
       it('3% should return .025', () => {
-        expect(service.periodicInterestRate(3)).toEqual(.0025);
+        expect(service.monthlyInterestRate(3)).toEqual(.0025);
       });
+
+      it('15.13% should return 0.1261', () => {
+        expect(service.monthlyInterestRate(15.13)).toEqual(.01261);
+      });
+
+      it('15% should return 0.1261', () => {
+        expect(service.monthlyInterestRate(15)).toEqual(.0125);
+      });
+
     });
 
     describe('discountFactor', () => {
