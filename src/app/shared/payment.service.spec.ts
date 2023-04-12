@@ -177,6 +177,10 @@ describe('PaymentService', () => {
 
     describe('periodicInterestRate', () => {
       //SHOULD MATCH baseline spreadsheet
+      it('16% should return .025', () => {
+        expect(service.monthlyInterestRate(3)).toEqual(.0025);
+      });
+      
       it('3% should return .025', () => {
         expect(service.monthlyInterestRate(3)).toEqual(.0025);
       });

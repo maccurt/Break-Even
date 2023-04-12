@@ -86,11 +86,29 @@ describe('creditCardScheduleZeroPercentOption', () => {
     describe('6 months 0% financing 3% charge', () => {
         const schedule = service.
             creditCardScheduleZeroPercentOption(1000, 15, 1, 0, true, true, 0, 6, 3);
+        
+        describe('bankrate.com compare 20K 1% of balance', () => {
+            //https://www.bankrate.com/finance/credit-cards/minimum-payment-calculator/
+            it('15%APR', () => {
+                const result = service.determineMonthlyPayment(0, 1, 20000, 15, true);               
+                expect(result).toBe(450.00);
+            });
 
+            it('16%APR', () => {
+                const result = service.determineMonthlyPayment(0, 1, 20000, 16, true);               
+                expect(result).toBe(466.67);
+            });            
+
+            it('16%APR', () => {
+                const result = service.determineMonthlyPayment(0, 1, 20000, 17, true);               
+                expect(result).toBe(483.33);
+            });            
+        });
+        
         it('20K at 15.13 include interest', () => {
             const result = service.determineMonthlyPayment(0, 1, 20000, 15.13, true);
             //this should match the spreadsheet baseline
-            expect(result).toBe(452.20);
+            expect(result).toBe(452.17);
         });
 
         it('payment should be 15', () => {
