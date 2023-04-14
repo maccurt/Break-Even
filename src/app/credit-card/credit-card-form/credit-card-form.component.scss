@@ -6,7 +6,8 @@
             width: 125px;
         }
 
-        #interestRate, .apr {
+        #interestRate,
+        .apr {
             width: 100px;
         }
 
@@ -31,4 +32,9 @@
 .hint {
     margin-top: 10px;
     font-size: small;
+}
+
+.input-inline-block {
+    display: inline-block;
+    margin-right: 10px;
 }

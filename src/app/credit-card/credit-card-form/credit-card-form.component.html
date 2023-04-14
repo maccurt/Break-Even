@@ -152,20 +152,23 @@
 
                 <mat-card-content class="mt-1">
                     <div [ngClass]="{'has-error':(isInvalid(introTransferCostPercentControl))}">
-                        <input id="introTransferCostPercent"
-                               data-test-id="intro-transfer-cost-percent"
-                               maxlength="5"
-                               [min]="0"
-                               [max]="99"
-                               type="number"
-                               class="form-control apr"
-                               formControlName="introTransferCostPercent"
-                               (blur)="blurForceZero(introTransferCostPercentControl)">
 
-                        <span   data-test-id="cost-to-transfer"
+                        <div class="input-inline-block">
+                            <input id="introTransferCostPercent"
+                                   data-test-id="intro-transfer-cost-percent"
+                                   maxlength="5"
+                                   [min]="0"
+                                   [max]="99"
+                                   type="number"
+                                   class="form-control apr"
+                                   formControlName="introTransferCostPercent"
+                                   (blur)="blurForceZero(introTransferCostPercentControl)">
+                        </div>
+
+                        <span data-test-id="cost-to-transfer"
                               class="hint"
                               *ngIf="costToTransfer > 0">
-                              ${{costToTransfer |number:'1.2-2'}} to transfer balance.
+                            ${{costToTransfer |number:'1.2-2'}} to transfer balance.
                         </span>
                         <div class="hint">
                             required: 0 to 99.
@@ -214,7 +217,7 @@
 
                 <div [ngClass]="{'has-error':fixedPaymentControl.invalid}">
 
-                    <div style="display: inline-block; margin-right: 10px ;">
+                    <div class="input-inline-block">
                         <input id="fixedPayment"
                                data-test-id="fixed-payment"
                                type="number"
