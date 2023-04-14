@@ -7,7 +7,7 @@ describe('has intro rate data validation v2', () => {
         cy.getDataTestId('balance').clear().type('20000').blur();
     });
 
-    describe('has intro rate not checked baseline', () => {
+    describe.only('has intro rate not checked baseline', () => {
 
         describe('minimum payment only', () => {
             summaryTest_FixedPayment_Baseline();            

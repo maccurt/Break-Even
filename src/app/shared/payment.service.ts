@@ -96,11 +96,14 @@ export class PaymentService {
 
       //Get the new monthly interest for current balance
       if (introMonths + 1 <= paymentCount) {
-        monthlyInterest = this.mathService.round(balance * monthlyPercentageRate, 2);
+
+        monthlyInterest = this.mathService.round(annualPercentageRate / 12 / 100 * balance, 2);
+        
       }
       else {
         monthlyInterest = introRate === 0 ? 0 :
-          monthlyInterest = this.mathService.round(balance * introMonthlyPercentRate, 2);
+        monthlyInterest = this.mathService.round(introRate / 12 / 100 * balance, 2);
+         // monthlyInterest = this.mathService.round(balance * introMonthlyPercentRate, 2);
       }
 
       if (monthlyInterest > monthlyPayment) {
@@ -176,8 +179,9 @@ export class PaymentService {
     return ratePercent / 12 / 100;
   };
 
-  monthlyInterestRate = (ratePercent: number): number => {
-    return this.mathService.round(ratePercent / 12 / 100, 5);
+  
+  monthlyInterestRate = (ratePercent: number): number => {    
+    return ratePercent / 12 / 100;
   };
 
   payment = (loanAmount: number, ratePercent: number, years: number): number => {
@@ -241,13 +245,13 @@ export class PaymentService {
     financeCharge = (balance * financeChargeFactor);
     minPayCalc.financeCharge = financeCharge;
 
-    const interestRateMonthly =  this.monthlyInterestRate( annualPercentageRate);
+    const interestRateMonthly = this.monthlyInterestRate(annualPercentageRate);
     minPayCalc.monthlyPercentageRate = annualPercentageRate / 12;
 
     minPayCalc.interestRateMonthly = interestRateMonthly;
     if (includeInterest) {
 
-      let monthlyInterest = (balance * interestRateMonthly);
+      let monthlyInterest = this.mathService.round(balance * interestRateMonthly,2);
       minPayCalc.minimumPayment = financeCharge + monthlyInterest;
       minPayCalc.monthlyInterest = monthlyInterest;
     }
@@ -270,8 +274,8 @@ export class PaymentService {
     let minimumPayment = 0;
     const financeChargeFactor = financeChargePercent / 100;
 
-    minimumPayment = (balance * financeChargeFactor);
 
+    minimumPayment = (balance * financeChargeFactor);
     if (includeInterest) {
       //const rate = this.monthlyInterestRate(annualPercentageRate);
       const rate = annualPercentageRate / 12 / 100;

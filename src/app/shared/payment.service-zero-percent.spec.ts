@@ -16,7 +16,19 @@ describe('creditCardScheduleZeroPercentOption', () => {
         });
     });
 
-    describe('baseline known good', () => {
+    describe('baseline known good', () => {        
+        
+        //https://docs.google.com/spreadsheets/d/1S5a72NtOl2jxLVFZ_u_6v0TANPPqAH4EhCC7-Ic0mow/edit#gid=1371700447
+        it('THIS IS THE BASELINE FROM spreadsheet', () => {
+            const schedule = service.creditCardScheduleZeroPercentOption(20000, 15.13, 1, 0, false, true);
+            //period
+            let s1 = schedule.scheduleList[0];
+            expect(s1.balanceStart).toBe(20000);
+            expect(s1.interest).toBe(252.17);
+            expect(s1.principal).toBe(200);
+            expect(s1.payment).toBe(452.17);
+            expect(s1.balanceEnd).toBe(19800.00);
+        });
 
         it('$1000 15% 1%+interest $100 FIXED Payment NO ZERO PERCENT', () => {
             // What happens about the 15 minimum payment
@@ -33,10 +45,6 @@ describe('creditCardScheduleZeroPercentOption', () => {
             expect(s11.balanceEnd).toBe(0);
             expect(s11.payment).toBe(75.04);
         });
-    });
-
-    describe('memory leak, 20,000 15.13 99 Intro rate, 12 months, 0 %', () => {
-
     });
 
     describe('$1000, 15%, 1, 22.5 fixed ***100 Fixed, 6 months intro, 3% intro rate, 3% fee', () => {
@@ -83,28 +91,34 @@ describe('creditCardScheduleZeroPercentOption', () => {
         });
     });
 
+    describe('bankrate.com compare 20K 1% of balance', () => {
+        //https://www.bankrate.com/finance/credit-cards/minimum-payment-calculator/
+        it('15%APR', () => {
+            const result = service.determineMonthlyPayment(0, 1, 20000, 15, true);
+            expect(result).toBe(450.00);
+        });
+
+        it('15.13%APR', () => {
+            //https://www.bankrate.com/finance/credit-cards/credit-card-balance-transfer-calculator/
+            const result = service.determineMonthlyPayment(0, 1, 20000, 15.13, true);
+            expect(result).toBe(452.17);
+        });
+
+        it('16%APR', () => {
+            const result = service.determineMonthlyPayment(0, 1, 20000, 16, true);
+            expect(result).toBe(466.67);
+        });
+
+        it('16%APR', () => {
+            const result = service.determineMonthlyPayment(0, 1, 20000, 17, true);
+            expect(result).toBe(483.33);
+        });
+    });
+
     describe('6 months 0% financing 3% charge', () => {
         const schedule = service.
             creditCardScheduleZeroPercentOption(1000, 15, 1, 0, true, true, 0, 6, 3);
-        
-        describe('bankrate.com compare 20K 1% of balance', () => {
-            //https://www.bankrate.com/finance/credit-cards/minimum-payment-calculator/
-            it('15%APR', () => {
-                const result = service.determineMonthlyPayment(0, 1, 20000, 15, true);               
-                expect(result).toBe(450.00);
-            });
 
-            it('16%APR', () => {
-                const result = service.determineMonthlyPayment(0, 1, 20000, 16, true);               
-                expect(result).toBe(466.67);
-            });            
-
-            it('16%APR', () => {
-                const result = service.determineMonthlyPayment(0, 1, 20000, 17, true);               
-                expect(result).toBe(483.33);
-            });            
-        });
-        
         it('20K at 15.13 include interest', () => {
             const result = service.determineMonthlyPayment(0, 1, 20000, 15.13, true);
             //this should match the spreadsheet baseline
@@ -217,10 +231,10 @@ describe('creditCardScheduleZeroPercentOption', () => {
 
         it('the first 6 interest periods should reflect the 2.9%', () => {
             expect(schedule.scheduleList[0].interest).toBe(2.49);
-            expect(schedule.scheduleList[1].interest).toBe(2.26);
+            expect(schedule.scheduleList[1].interest).toBe(2.25);
             expect(schedule.scheduleList[2].interest).toBe(2.02);
             expect(schedule.scheduleList[3].interest).toBe(1.78);
-            expect(schedule.scheduleList[4].interest).toBe(1.55);
+            expect(schedule.scheduleList[4].interest).toBe(1.54);
             expect(schedule.scheduleList[5].interest).toBe(1.31);
         });
 
@@ -235,22 +249,22 @@ describe('creditCardScheduleZeroPercentOption', () => {
 
         it('the first 6 balance end should be correct', () => {
             expect(schedule.scheduleList[0].balanceEnd).toBe(932.49);
-            expect(schedule.scheduleList[1].balanceEnd).toBe(834.75);
-            expect(schedule.scheduleList[2].balanceEnd).toBe(736.77);
-            expect(schedule.scheduleList[3].balanceEnd).toBe(638.55);
-            expect(schedule.scheduleList[4].balanceEnd).toBe(540.1);
-            expect(schedule.scheduleList[5].balanceEnd).toBe(441.41);
+            expect(schedule.scheduleList[1].balanceEnd).toBe(834.74);
+            expect(schedule.scheduleList[2].balanceEnd).toBe(736.76);
+            expect(schedule.scheduleList[3].balanceEnd).toBe(638.54);
+            expect(schedule.scheduleList[4].balanceEnd).toBe(540.08);
+            expect(schedule.scheduleList[5].balanceEnd).toBe(441.39);
         });
         it('the 7 balance end should be correct', () => {
-            expect(schedule.scheduleList[6].balanceStart).toBe(441.41);
+            expect(schedule.scheduleList[6].balanceStart).toBe(441.39);
             expect(schedule.scheduleList[6].interest).toBe(5.52);
-            expect(schedule.scheduleList[6].balanceEnd).toBe(346.93);
+            expect(schedule.scheduleList[6].balanceEnd).toBe(346.91);
         });
 
         it('the 11 period should be correct', () => {
-            expect(schedule.scheduleList[10].balanceStart).toBe(56.34);
+            expect(schedule.scheduleList[10].balanceStart).toBe(56.32);
             expect(schedule.scheduleList[10].interest).toBe(.7);
-            expect(schedule.scheduleList[10].payment).toBe(57.04);
+            expect(schedule.scheduleList[10].payment).toBe(57.02);
             expect(schedule.scheduleList[10].balanceEnd).toBe(0);
         });
     });

@@ -25,6 +25,9 @@ describe('PaymentService', () => {
       let result = service.minimumPayment(10, 1000, 10, true);
       expect(result).toBe(108.33);
     });
+
+    
+
   });
 
   describe('minimumPaymentCalculation', () => {
@@ -39,8 +42,8 @@ describe('PaymentService', () => {
       expect(result.annualPercentageRate).toBe(15.13);
       expect(result.interestRateMonthly).toBeCloseTo(.0126083);
       expect(result.monthlyPercentageRate).toBeCloseTo(1.26083);
-      expect(result.monthlyInterest).toBeCloseTo(252.20);
-      expect(result.minimumPayment).toBe(452.20);
+      expect(result.monthlyInterest).toBe(252.17);
+      expect(result.minimumPayment).toBe(452.17);
     });
 
     it('test 2: should calculate correctly include interest false', () => {
@@ -187,7 +190,7 @@ describe('PaymentService', () => {
 
       it('15.13% should return 0.1261', () => {
 
-        expect(service.monthlyInterestRate(15.13)).toEqual(.01261);
+        expect(service.monthlyInterestRate(15.13)).toBeCloseTo(.01261);
       });
 
       it('15% should return 0.1261', () => {

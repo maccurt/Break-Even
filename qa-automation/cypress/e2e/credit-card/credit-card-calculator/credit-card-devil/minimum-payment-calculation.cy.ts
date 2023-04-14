@@ -20,10 +20,10 @@ describe('mininum-payment-calculation', () => {
         minimumPaymentCalculationTest({
             title: 'Minimum Payment Calculation For $20,000.00',
             monthlyPercentageRate: '1.261% Interest For Month',
-            monthlyInterest: '252.20',
+            monthlyInterest: '252.17',
             financeChargePercent: '1.00% of Balance',
             financeCharge: '200.00',
-            minimumPayment: '$452.20'
+            minimumPayment: '$452.17'
         });
     });
 
@@ -88,10 +88,10 @@ describe('mininum-payment-calculation', () => {
         minimumPaymentCalculationTest({
             title: 'Minimum Payment Calculation For $10,000.00',
             monthlyPercentageRate: '0.833% Interest For Month',
-            monthlyInterest: '83.30',
+            monthlyInterest: '83.33',
             financeChargePercent: '1.00% of Balance',
             financeCharge: '100.00',
-            minimumPayment: '$183.30'
+            minimumPayment: '$183.33'
         }, true);
     });
 

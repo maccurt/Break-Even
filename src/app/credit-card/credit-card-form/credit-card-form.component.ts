@@ -53,7 +53,7 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
   introMonths = new FormControl(0, [Validators.required, Validators.min(0), Validators.max(36)]);
 
   introTransferCostPercentControl = new FormControl(0);
-  costToTransfer:number = 0;
+  costToTransfer: number = 0;
 
   formGroup = this.fb.group({
     balance: this.balanceControl,
@@ -83,7 +83,7 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
       this.hasIntroRate = this.hasIntroRateControl.value!;
       this.submit();
     });
-    
+
     this.introInterestRate.setValidators(this.validateIntroRate as any);
 
     this.subList$.push(this.minimumPaymentTypeControl.valueChanges.subscribe(() => {
@@ -105,12 +105,13 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
         this.balanceControl.setValue(20000);
 
         if (demo === '2') {
-          this.balanceControl.setValue(1000);
+          this.balanceControl.setValue(20000);
           this.interestRateControl.setValue(15);
-          this.introInterestRate.setValue(3);
+          this.hasIntroRateControl.setValue(true);
+          this.introInterestRate.setValue(0);
           this.introMonths.setValue(6);
           this.introTransferCostPercentControl.setValue(3);
-          this.fixedPaymentControl.setValue(100);
+          this.fixedPaymentControl.setValue(450);
         }
 
         this.submit();
@@ -120,25 +121,25 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
 
   submit = () => {
 
-    if (this.balanceControl.valid && this.introTransferCostPercentControl.valid){
-      
+    let introMonths: number = 0;
+    let introRate: number = 0;
+    let introPercentFee;
+
+    if (this.formGroup.value.introMonths! > 0 && this.hasIntroRate) {
+      introMonths = this.formGroup.value.introMonths!;
+      introRate = this.formGroup.value.introInterestRate!;
+      introPercentFee = this.formGroup.value.introTransferCostPercent!;
+
+      if (this.balanceControl.valid && introPercentFee > 0) {
+        this.costToTransfer = this.paymentService
+          .calculateTransferCost(introPercentFee, this.formGroup.value.balance!);
+      }
     }
 
     if (this.formGroup.valid) {
-
       const minimumPaymentType = this.minimumPaymentTypeControl.value!;
       let balance = this.formGroup.value.balance!;
       let interestRate = this.formGroup.value.interestRate!;
-
-      let introMonths: number = 0;
-      let introRate: number = 0;
-      let introPercentFee;
-
-      if (this.formGroup.value.introMonths! > 0 && this.hasIntroRate) {
-        introMonths = this.formGroup.value.introMonths!;
-        introRate = this.formGroup.value.introInterestRate!;
-        introPercentFee = this.formGroup.value.introTransferCostPercent!;
-      }      
 
       //Calculate the minimum payment
       this.schedule1 = this.paymentService
@@ -148,12 +149,10 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
       this.schedule1.title = 'Minimum Payment Only Total';
       this.schedule1.paymentType = PaymentType.MinimumPaymentOnly;
 
-      this.minimumPayment = this.paymentService.determineMonthlyPayment(
-        0, minimumPaymentType.percentOfBalance, balance!, interestRate!, minimumPaymentType.useInterest);
-
       this.minimumPaymentCalculation = this.paymentService.
-        minimumPaymentCalculation(minimumPaymentType.percentOfBalance, balance,
+        minimumPaymentCalculation(minimumPaymentType.percentOfBalance, balance + this.costToTransfer,
           interestRate, minimumPaymentType.useInterest);
+      this.minimumPayment = this.minimumPaymentCalculation.minimumPayment;
 
       this.fixedPaymentControl.clearValidators();
       this.fixedPaymentControl.addValidators(Validators.min(this.minimumPayment));

@@ -161,13 +161,17 @@
                                class="form-control apr"
                                formControlName="introTransferCostPercent"
                                (blur)="blurForceZero(introTransferCostPercentControl)">
+
+                        <span   data-test-id="cost-to-transfer"
+                              class="hint"
+                              *ngIf="costToTransfer > 0">
+                              ${{costToTransfer |number:'1.2-2'}} to transfer balance.
+                        </span>
                         <div class="hint">
                             required: 0 to 99.
                         </div>
                     </div>
-                    <span data-test-id="cost-to-transfer"
-                          class="hint"
-                          *ngIf="introTransferCostPercentControl.valid && balanceControl.valid ">{{costToTransfer}}</span>
+
                 </mat-card-content>
             </div>
         </mat-card>
@@ -222,7 +226,7 @@
                     </div>
 
                     <span data-test-id="fix-pay-is-min"
-                          class="hint  "
+                          class="hint"
                           *ngIf="fixedPaymentIsMinPayment && fixedPaymentControl.valid ">Defaulted To First
                         Mininum Payment</span>
                     <span class="hint"
