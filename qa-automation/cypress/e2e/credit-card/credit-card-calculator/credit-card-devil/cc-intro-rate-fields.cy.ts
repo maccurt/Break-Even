@@ -98,6 +98,7 @@ describe('intro rate fields', () => {
         describe('enter 99 which is NOT an error', () => {
             before(() => {
                 cy.getDataTestId('intro-transfer-cost-percent').clear().type('99.').blur();
+
             });
             checkForNoErrors('intro-transfer-cost-percent');            
         });

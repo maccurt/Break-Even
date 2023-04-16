@@ -92,7 +92,7 @@
                         <fa-icon [icon]="help.interestRate.icon"
                                  class={{help.interestRate.iconClass}}>
                         </fa-icon>
-                        What Is Your Introductory  APR?
+                        What Is Your Introductory APR?
                     </div>
                 </mat-card-title>
 
@@ -153,20 +153,20 @@
                 <mat-card-content class="mt-1">
                     <div [ngClass]="{'has-error':(isInvalid(introTransferCostPercentControl))}">
 
-                        <div class="input-inline-block">
+                        
                             <input id="introTransferCostPercent"
                                    data-test-id="intro-transfer-cost-percent"
                                    maxlength="5"
                                    [min]="0"
                                    [max]="99"
                                    type="number"
-                                   class="form-control apr"
+                                   class="form-control apr input-inline-block"
                                    formControlName="introTransferCostPercent"
                                    (blur)="blurForceZero(introTransferCostPercentControl)">
-                        </div>
+                        
 
                         <span data-test-id="cost-to-transfer"
-                              class="hint"
+                              class="input-info"
                               *ngIf="costToTransfer > 0">
                             ${{costToTransfer |number:'1.2-2'}} to transfer balance.
                         </span>
@@ -217,16 +217,16 @@
 
                 <div [ngClass]="{'has-error':fixedPaymentControl.invalid}">
 
-                    <div class="input-inline-block">
-                        <input id="fixedPayment"
-                               data-test-id="fixed-payment"
-                               type="number"
-                               formControlName="fixedPayment"
-                               [min]="1"
-                               [max]="999999"
-                               class="form-control"
-                               (blur)="blur()">
-                    </div>
+
+                    <input id="fixedPayment"
+                           data-test-id="fixed-payment"
+                           type="number"
+                           formControlName="fixedPayment"
+                           [min]="1"
+                           [max]="999999"
+                           class="form-control input-inline-block"
+                           (blur)="blur()">
+
 
                     <span data-test-id="fix-pay-is-min"
                           class="hint"
