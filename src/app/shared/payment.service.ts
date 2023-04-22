@@ -6,7 +6,17 @@ import { MathService } from '../math/math.service';
 import { ScheduleCompare } from './schedule-compare.type';
 import { ScheduleItem } from './schedule-item';
 import { Schedule } from './schedule.class';
-import { throwError } from 'rxjs';
+
+export class CreditCardInput {
+  annualPercentageRate!: number;
+  balance!: number;
+  financeChargePercent!: number;
+  extraPayment!: number;
+  isFixedPayment: boolean = false; includeApr: boolean = true;
+  introRate: number = 0;
+  introMonths: number = 0;
+  introFeePercent: number = 0;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +45,14 @@ export class PaymentService {
     return chargeForIntroductoryRate;
   };
 
+  creditCardScheduleTransferCompare = (c1: CreditCardInput, c2: CreditCardInput): ScheduleCompare => {
+
+    const s1 = this.creditCardScheduleZeroPercentOption(c1.balance, c1.annualPercentageRate, c1.financeChargePercent, c1.extraPayment, c1.isFixedPayment, c1.includeApr, c1.introRate, c1.introMonths, c1.introFeePercent);
+    const s2 = this.creditCardScheduleZeroPercentOption(c2.balance, c2.annualPercentageRate, c2.financeChargePercent, c2.extraPayment, c2.isFixedPayment, c2.includeApr, c2.introRate, c2.introMonths, c2.introFeePercent);
+    const compare = this.getScheduleCompare(s1, s2);
+    return compare;
+  };
+
   creditCardScheduleZeroPercentOption = (
     balance: number, annualPercentageRate: number,
     financeChargePercent: number, extraPayment?: number,
@@ -51,6 +69,10 @@ export class PaymentService {
 
     if (introRate > annualPercentageRate) {
       throw new Error('input error: intro rate can not be greater than annualPercentageRate');
+    }
+
+    if (!extraPayment ){
+      extraPayment = 0;
     }
 
     let chargeForIntroductoryRate = 0;
@@ -98,12 +120,12 @@ export class PaymentService {
       if (introMonths + 1 <= paymentCount) {
 
         monthlyInterest = this.mathService.round(annualPercentageRate / 12 / 100 * balance, 2);
-        
+
       }
       else {
         monthlyInterest = introRate === 0 ? 0 :
-        monthlyInterest = this.mathService.round(introRate / 12 / 100 * balance, 2);
-         // monthlyInterest = this.mathService.round(balance * introMonthlyPercentRate, 2);
+          monthlyInterest = this.mathService.round(introRate / 12 / 100 * balance, 2);
+        // monthlyInterest = this.mathService.round(balance * introMonthlyPercentRate, 2);
       }
 
       if (monthlyInterest > monthlyPayment) {
@@ -179,8 +201,7 @@ export class PaymentService {
     return ratePercent / 12 / 100;
   };
 
-  
-  monthlyInterestRate = (ratePercent: number): number => {    
+  monthlyInterestRate = (ratePercent: number): number => {
     return ratePercent / 12 / 100;
   };
 
@@ -251,7 +272,7 @@ export class PaymentService {
     minPayCalc.interestRateMonthly = interestRateMonthly;
     if (includeInterest) {
 
-      let monthlyInterest = this.mathService.round(balance * interestRateMonthly,2);
+      let monthlyInterest = this.mathService.round(balance * interestRateMonthly, 2);
       minPayCalc.minimumPayment = financeCharge + monthlyInterest;
       minPayCalc.monthlyInterest = monthlyInterest;
     }

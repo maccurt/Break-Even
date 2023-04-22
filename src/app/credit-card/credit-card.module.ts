@@ -25,6 +25,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { MinimumPaymentCalculationComponent } from './minimum-payment-calculation/minimum-payment-calculation.component';
 import { CcWizardSummaryComponent } from './cc-wizard-summary/cc-wizard-summary.component';
 import { CreditCardFormComponent } from './credit-card-form/credit-card-form.component';
+import { CreditCardIntroRateComponent } from './credit-card-intro-rate/credit-card-intro-rate.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CreditCardFormComponent } from './credit-card-form/credit-card-form.com
     ScheduleItemComponent,
     MinimumPaymentCalculationComponent,
     CcWizardSummaryComponent,
-    CreditCardFormComponent
+    CreditCardFormComponent,
+    CreditCardIntroRateComponent
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,7 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './home-domain/about/about.component';
 import { CreditCardWizardComponent, CreditCardMode } from './credit-card/credit-card-wizard/credit-card-wizard.component';
+import { CreditCardIntroRateComponent } from './credit-card/credit-card-intro-rate/credit-card-intro-rate.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,10 +18,10 @@ const routes: Routes = [
   { path: 'credit-card', component: CreditCardCalculatorComponent },
   { path: 'credit-card-devil', component: CreditCardWizardComponent },
   {
-    path: 'credit-card-devil-intro-rate', component: CreditCardWizardComponent,
-    data: {
-      mode: CreditCardMode.introductoryRate
-    }
+    path: 'credit-card-introductory-rate', component: CreditCardWizardComponent,
+    data:{
+      mode:CreditCardMode.introductoryRate
+    }    
   },
   { path: 'the-7-habits', component: SevenHabitsComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }

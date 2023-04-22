@@ -26,10 +26,7 @@ export class CreditCardWizardComponent implements OnInit {
   isSubmitted: boolean = false;
   schedule1!: Schedule;
   schedule2!: Schedule;
-  scheduleCompare!: ScheduleCompare;
-  
-  mode: CreditCardMode = CreditCardMode.default;
-  isIntroRateMode: boolean = false;
+  scheduleCompare!: ScheduleCompare;  
 
   constructor(
     private title: Title,

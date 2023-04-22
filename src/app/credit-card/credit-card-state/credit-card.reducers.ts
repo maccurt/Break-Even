@@ -3,24 +3,6 @@ import { createReducer, on } from "@ngrx/store";
 import { CreditCardAction } from "./credit-card.actions.barrel";
 
 export const creditCardFeatureKey = 'creditCard';
-// export class CreditCardInput {
-//     id!: number;
-//     interestRate!: number;
-// };
-
-// export interface CreditCardState extends EntityState<CreditCardInput> {    
-//     creditCardInput: CreditCardInput
-// };
-
-// export const creditCardAdapter = createEntityAdapter<CreditCardInput>({
-// });
-
-// export const creditCardInitialState = creditCardAdapter.getInitialState({    
-//     creditCardInput: {
-//         id: 1,
-//         interestRate: 15.13 //This is the average for 2022
-//     }
-// });
 
 export interface CreditCardState {
     interestRate: number;

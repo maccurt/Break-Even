@@ -11,10 +11,15 @@ import { ScheduleItem } from 'src/app/shared/schedule-item';
 import { Schedule } from 'src/app/shared/schedule.class';
 import { PaymentType } from '../credit-card-calculator/payment-type.enum';
 import { CreditCardMode } from '../credit-card-wizard/credit-card-wizard.component';
+import { CreditCardAbstract } from '../credit-card-abstract.class';
 
 export class CreditFormOutput {
   scheduleCompare!: ScheduleCompare;
   isSubmitted: boolean = false;
+}
+
+export class ModeFields{
+  balanceText:string = 'What Is The Balance On Your Credit Card?';
 }
 
 @Component({
@@ -22,7 +27,7 @@ export class CreditFormOutput {
   templateUrl: './credit-card-form.component.html',
   styleUrls: ['./credit-card-form.component.scss']
 })
-export class CreditCardFormComponent implements OnInit, OnDestroy {
+export class CreditCardFormComponent extends CreditCardAbstract implements OnInit, OnDestroy {
 
   @Output() calculateEvent = new EventEmitter<CreditFormOutput>();
   scheduleCompare!: ScheduleCompare;
@@ -39,7 +44,9 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
   scheduleListForMinPayment!: ScheduleItem[];
   minimumPaymentTypeList = this.paymentService.getMinimumPaymentTypeList();
 
+  modeFields!:ModeFields;
   //form group controls
+  balanceControlText = 'What Is The Balance On Your Credit Card?';
   balanceControl = new FormControl(0, [Validators.required, Validators.min(1), Validators.max(999999)]);
   interestRateControl = new FormControl(this.interestRate, [Validators.required, Validators.min(1), Validators.max(99)]);
   minimumPaymentTypeControl = new FormControl(this.minimumPaymentTypeList[0], [Validators.required]);
@@ -68,6 +75,7 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
   fixedPaymentIsMinPayment: boolean = false;
 
   mode: CreditCardMode = CreditCardMode.default;
+  
 
   constructor(private fb: FormBuilder,
     public help: HelpService,
@@ -75,9 +83,31 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
     private paymentService: PaymentService,
     private route: ActivatedRoute
 
-  ) { }
+  ) {
+    super();
+  }
+
+  setModeFields = (mode: CreditCardMode):ModeFields =>  {
+
+    const modeFields = new ModeFields();
+    switch(mode){
+      case CreditCardMode.introductoryRate:
+        modeFields.balanceText = "Balance On Current Credit Card?";
+        break;
+    }
+
+    return modeFields;
+  };
 
   ngOnInit(): void {
+
+    this.route.data.subscribe((data) => {
+      this.mode = data['mode'] as CreditCardMode;
+      if (!this.mode) {
+        this.mode = CreditCardMode.default;
+      }
+      this.modeFields = this.setModeFields(this.mode);
+    });
 
     this.hasIntroRateControl.valueChanges.subscribe(() => {
       this.hasIntroRate = this.hasIntroRateControl.value!;
@@ -113,7 +143,6 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
           this.introTransferCostPercentControl.setValue(3);
           this.fixedPaymentControl.setValue(450);
         }
-
         this.submit();
       }
     });
@@ -202,11 +231,6 @@ export class CreditCardFormComponent implements OnInit, OnDestroy {
     }
     this.submit();
   };
-
-  isInvalid = (control: AbstractControl, showErrors: boolean = false): boolean => {
-    return (control.touched && control.invalid) || (control.invalid && showErrors);
-  };
-
   validateIntroRate = (fg: FormGroup): ValidationErrors | null => {
 
     const apr = this.interestRateControl.value!;

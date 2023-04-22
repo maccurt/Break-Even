@@ -17,7 +17,6 @@ describe('PaymentService', () => {
       const result = service.calculateTransferCost(3,10000);
       expect(result).toBe(300);
     });
-
   });  
 
   describe('minimumPayment', () => {
@@ -25,9 +24,6 @@ describe('PaymentService', () => {
       let result = service.minimumPayment(10, 1000, 10, true);
       expect(result).toBe(108.33);
     });
-
-    
-
   });
 
   describe('minimumPaymentCalculation', () => {
